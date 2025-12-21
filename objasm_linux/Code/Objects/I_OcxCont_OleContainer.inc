@@ -44,7 +44,7 @@ if IMPLEMENT
 ;                   caller's responsibility to call Release.
 ; Return:     eax = HRESULT.
 
-Method I_OcxCont_OleContainer.ParseDisplayName,, pIBindCtx:POINTER, pDispName:BSTR, \
+Method I_OcxCont_OleContainer.ParseDisplayName,, pIBindCtx:POINTER, pDispName:BSTR, /
                                                  pCharEaten:POINTER, ppIMoniker:POINTER
   DbgText "I_OcxCont_OleContainer.ParseDisplayName", "I_OcxCont_OleContainer"
   mov eax, E_NOTIMPL

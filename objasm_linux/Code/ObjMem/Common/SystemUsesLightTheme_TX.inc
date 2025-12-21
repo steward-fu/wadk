@@ -20,11 +20,11 @@ SystemUsesLightTheme proc
 
   mov dValue, TRUE
   mov dValueSize, sizeof(dValue)
-  invoke RegOpenKeyExW, HKEY_CURRENT_USER, \
-                       $OfsCStrW("Software\Microsoft\Windows\CurrentVersion\Themes\Personalize"), \
+  invoke RegOpenKeyExW, HKEY_CURRENT_USER, /
+                       $OfsCStrW("Software/Microsoft/Windows/CurrentVersion/Themes/Personalize"), /
                        0, KEY_QUERY_VALUE, addr hKey
   .if eax == ERROR_SUCCESS
-    invoke RegQueryValueExW, hKey, $OfsCStrW("SystemUsesLightTheme"), NULL, addr dValueType, \
+    invoke RegQueryValueExW, hKey, $OfsCStrW("SystemUsesLightTheme"), NULL, addr dValueType, /
                              addr dValue, addr dValueSize
     invoke RegCloseKey, hKey
   .endif

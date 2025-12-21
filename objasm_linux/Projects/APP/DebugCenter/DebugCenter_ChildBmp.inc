@@ -242,8 +242,8 @@ Method DbgMdiChildBmp.Init, uses xbx xdi xsi, pOwner:POINTER, pTitle:PSTRING, dB
   m2m [xsi].dBackColor, dBackColor, ecx
   m2m [xsi].dZoomFactor, $ObjTmpl(DebugCenter).dTxtZoomFactor, eax
   mov xdi, pOwner
-  invoke CreateMDIWindow, offset szDbgMdiChildBmpClass, pTitle, \
-             WS_HSCROLL or WS_VSCROLL, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateMDIWindow, offset szDbgMdiChildBmpClass, pTitle, /
+             WS_HSCROLL or WS_VSCROLL, CW_USEDEFAULT, CW_USEDEFAULT, /
              CW_USEDEFAULT, CW_USEDEFAULT, [xdi].$Obj(DbgMdiClient).hWnd, hInstance, pSelf
   .if xax != 0
     ;Manage the main Menu
@@ -251,7 +251,7 @@ Method DbgMdiChildBmp.Init, uses xbx xdi xsi, pOwner:POINTER, pTitle:PSTRING, dB
     mov xbx, [xdi].$Obj(DbgMdiClient).pOwner
     .if [xdi].$Obj(DbgMdiClient).dChildCount == 1       ;First child window ?
       invoke SendMessage, [xbx].$Obj(DebugCenter).hWnd, WM_CANCELMODE, 0, 0   ;Close any opened submenu
-      invoke SendMessage, [xdi].$Obj(DbgMdiClient).hWnd, WM_MDISETMENU, \
+      invoke SendMessage, [xdi].$Obj(DbgMdiClient).hWnd, WM_MDISETMENU, /
                           [xbx].$Obj(DebugCenter).hMenuChild, [xbx].$Obj(DebugCenter).hMenuChildWnd
       OCall xbx::DebugCenter.EnableActions, TRUE
       invoke DrawMenuBar, [xbx].$Obj(MdiApp).hWnd             ;Redraw the new menu bar
@@ -267,7 +267,7 @@ Method DbgMdiChildBmp.Init, uses xbx xdi xsi, pOwner:POINTER, pTitle:PSTRING, dB
     mov edx, $ObjTmpl(DebugCenter).dLanguage
     add edx, 125
     invoke LoadString, hInstance, edx, addr cMsg, lengthof cMsg - 1
-    invoke MessageBox, [xbx].$Obj(DebugCenter).hWnd, addr cMsg, offset szError, \
+    invoke MessageBox, [xbx].$Obj(DebugCenter).hWnd, addr cMsg, offset szError, /
                        MB_OK or MB_ICONERROR
   .endif
 MethodEnd
@@ -387,8 +387,8 @@ Method DbgMdiChildBmp.OnPaint, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
     m2m DstRect.right, dWidth, ecx
     m2m DstRect.bottom, dHeight, ecx
 
-    invoke StretchDIBits, PS.hdc, edx, eax, dWidth, dHeight, \
-             0, 0, [xdi].BITMAPINFO.bmiHeader.biWidth, [xdi].BITMAPINFO.bmiHeader.biHeight, \
+    invoke StretchDIBits, PS.hdc, edx, eax, dWidth, dHeight, /
+             0, 0, [xdi].BITMAPINFO.bmiHeader.biWidth, [xdi].BITMAPINFO.bmiHeader.biHeight, /
              xbx, xdi, DIB_RGB_COLORS, SRCCOPY
 
     ;Fill the remainig background with COLOR_APPWORKSPACE color
@@ -556,7 +556,7 @@ MethodEnd
 Method DbgMdiChildBmp.OnRButtonDown,, wParam:WPARAM, lParam:LPARAM
   SetObject xax
   mov xcx, [xax].pOwner                                 ;xcx -> DbgMdiClient
-  invoke SendMessage, [xcx].$Obj(DbgMdiClient).hWnd, WM_MDIACTIVATE, \
+  invoke SendMessage, [xcx].$Obj(DbgMdiClient).hWnd, WM_MDIACTIVATE, /
                       [xax].$Obj(DbgMdiChildBmp).hWnd, 0
   xor eax, eax
 MethodEnd
@@ -707,7 +707,7 @@ Method DbgMdiChildBmp.Open, uses xbx xdi xsi, pFileName:PSTRING
     mov edx, $ObjTmpl(DebugCenter).dLanguage
     add edx, 121
     invoke LoadString, hInstance, edx, addr cMsg, lengthof cMsg - 1
-    invoke MessageBox, [xsi].hWnd, addr cMsg, offset szDebugCenter, \
+    invoke MessageBox, [xsi].hWnd, addr cMsg, offset szDebugCenter, /
                        MB_OK or MB_ICONERROR
     .if pBmp != NULL
       MemFree pBmp
@@ -799,9 +799,9 @@ Method DbgMdiChildBmp.Print, uses xbx xdi xsi
       invoke StartPage, PrtDlg.hDC
       mov xbx, [xsi].pBmp
 
-      invoke StretchDIBits, PrtDlg.hDC, \
-                   0, 0, [xbx].BITMAPINFO.bmiHeader.biWidth, [xbx].BITMAPINFO.bmiHeader.biHeight, \
-                   0, 0, [xbx].BITMAPINFO.bmiHeader.biWidth, [xbx].BITMAPINFO.bmiHeader.biHeight, \
+      invoke StretchDIBits, PrtDlg.hDC, /
+                   0, 0, [xbx].BITMAPINFO.bmiHeader.biWidth, [xbx].BITMAPINFO.bmiHeader.biHeight, /
+                   0, 0, [xbx].BITMAPINFO.bmiHeader.biWidth, [xbx].BITMAPINFO.bmiHeader.biHeight, /
                    addr [xbx].BITMAPINFO.bmiColors, xbx, DIB_RGB_COLORS, SRCCOPY
 
       invoke EndPage, PrtDlg.hDC

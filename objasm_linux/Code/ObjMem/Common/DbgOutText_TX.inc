@@ -85,7 +85,7 @@ ProcName proc uses xbx pString:POINTER, dForeColor:DWORD, dBackColor:DWORD, dEff
         endif
         mov [xax].DBG_STR_INFO.dEffects, edx
         invoke MemClone, addr [xax + sizeof(DBG_STR_INFO)], pString, dInfo1
-        invoke SendMessageTimeout, hDbgDev, WM_COPYDATA, -1, addr CDS, \
+        invoke SendMessageTimeout, hDbgDev, WM_COPYDATA, -1, addr CDS, /
                                    SMTO_BLOCK, SMTO_TIMEOUT, NULL
         invoke GlobalFree, CDS.lpData
       .else

@@ -44,8 +44,8 @@ if IMPLEMENT
 ;  invoke CenterForm, dWndHeight, eax
 ;  mov dWndPosY, eax
 ;
-;  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, \
-;                         offset(szXTVDemoApp), offset(szAppTitle), WS_OVERLAPPEDWINDOW, \
+;  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, /
+;                         offset(szXTVDemoApp), offset(szAppTitle), WS_OVERLAPPEDWINDOW, /
 ;                         dWndPosX, dWndPosY, dWndWidth, dWndHeight, NULL, NULL, hInstance, pSelf
 ;
 ;  invoke ShowWindow, [xsi].hWnd, SW_SHOWNORMAL          ;Show the window

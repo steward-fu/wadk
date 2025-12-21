@@ -95,7 +95,7 @@ Method SkinnedDialogAbout.DrawCaptionText, uses xsi
   .endif
   invoke GetSysColor, ecx
   mov dPrvColor, $32($invoke(SetTextColor, hDC, eax))
-  invoke DrawTextEx, hDC, pCaptionText, -1, addr [xsi].Skin.TitleRect, \
+  invoke DrawTextEx, hDC, pCaptionText, -1, addr [xsi].Skin.TitleRect, /
                      DT_CENTER or DT_VCENTER or DT_SINGLELINE or DT_END_ELLIPSIS, NULL
   invoke SetTextColor, hDC, dPrvColor
   invoke SetBkMode, hDC, dPrvBkMode

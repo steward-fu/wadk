@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.01, 11/11/2018 20:15
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\vsstyle.h', last modified: 19/04/2018 09:49
+;Source file: '/ObjAsm/Projects/h2IncX/header/vsstyle.h', last modified: 19/04/2018 09:49
 ;Creation parameters: 
 
 ifndef __VSSTYLE_H__

@@ -8,30 +8,30 @@
 ; ==================================================================================================
 
 
-TB_STYLE  equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or \
+TB_STYLE  equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or /
                 CCS_NORESIZE or CCS_NODIVIDER or CCS_ADJUSTABLE or TBSTYLE_FLAT or TBSTYLE_LIST
 
 SB_STYLE  equ   WS_CHILD or WS_VISIBLE or SBARS_TOOLTIPS or SBARS_SIZEGRIP
 
 .const
-ToolbarFile DEF_TOOLBAR {IDC_TOOLBARFILE, TB_STYLE, TBSTYLE_EX_MIXEDBUTTONS, \
+ToolbarFile DEF_TOOLBAR {IDC_TOOLBARFILE, TB_STYLE, TBSTYLE_EX_MIXEDBUTTONS, /
                          $OfsTStr("File operations"), {<0,0,0,0>}, 2}
   TBBUTTON {IDB_FILE_NEW,   IDM_FILE_NEW,   TBSTATE_ENABLED, TBSTYLE_BUTTON,, 0, $OfsTStr("New")}
   TBBUTTON {IDB_FILE_CLOSE, IDM_FILE_CLOSE, TBSTATE_ENABLED, TBSTYLE_BUTTON,, 0, $OfsTStr("Close")}
 
-ToolbarWindow DEF_TOOLBAR {IDC_TOOLBARWINDOW, TB_STYLE, TBSTYLE_EX_MIXEDBUTTONS, \
+ToolbarWindow DEF_TOOLBAR {IDC_TOOLBARWINDOW, TB_STYLE, TBSTYLE_EX_MIXEDBUTTONS, /
                            $OfsTStr("Window operations"), {<0,0,0,0>}, 6}
-  TBBUTTON {IDB_WINDOW_CASCADE,  IDM_WINDOW_CASCADE,  TBSTATE_ENABLED, TBSTYLE_BUTTON,, 0, \
+  TBBUTTON {IDB_WINDOW_CASCADE,  IDM_WINDOW_CASCADE,  TBSTATE_ENABLED, TBSTYLE_BUTTON,, 0, /
             $OfsTStr("Cascade")}
-  TBBUTTON {IDB_WINDOW_TILE_HOR, IDM_WINDOW_TILE_HOR, TBSTATE_ENABLED, TBSTYLE_BUTTON,, 0, \
+  TBBUTTON {IDB_WINDOW_TILE_HOR, IDM_WINDOW_TILE_HOR, TBSTATE_ENABLED, TBSTYLE_BUTTON,, 0, /
             $OfsTStr("Tile horizontal")}
-  TBBUTTON {IDB_WINDOW_TILE_VER, IDM_WINDOW_TILE_VER, TBSTATE_ENABLED, TBSTYLE_BUTTON,, 0, \
+  TBBUTTON {IDB_WINDOW_TILE_VER, IDM_WINDOW_TILE_VER, TBSTATE_ENABLED, TBSTYLE_BUTTON,, 0, /
             $OfsTStr("Tile vertical")}
-  TBBUTTON {IDB_WINDOW_ARRANGE,  IDM_WINDOW_ARRANGE,  TBSTATE_ENABLED, TBSTYLE_BUTTON,, 0, \
+  TBBUTTON {IDB_WINDOW_ARRANGE,  IDM_WINDOW_ARRANGE,  TBSTATE_ENABLED, TBSTYLE_BUTTON,, 0, /
             $OfsTStr("Arrange")}
   TBBUTTON {IDB_WINDOW_ARRANGE,  -1                ,  TBSTATE_ENABLED, TBSTYLE_SEP}
 
-  TBBUTTON {IDB_WINDOW_CLOSEALL, IDM_WINDOW_CLOSEALL, TBSTATE_ENABLED, TBSTYLE_BUTTON,, 0, \
+  TBBUTTON {IDB_WINDOW_CLOSEALL, IDM_WINDOW_CLOSEALL, TBSTATE_ENABLED, TBSTYLE_BUTTON,, 0, /
             $OfsTStr("Close All")}
 
 AppStatusbar DEF_STATUSBAR {IDC_STATUSBAR, SB_STYLE, 0, 4}
@@ -129,7 +129,7 @@ Method Application.ChangeLanguage, uses xbx xdi xsi, dLangID:DWORD
   mov MenuInfo.cbSize, sizeof MenuInfo
   mov MenuInfo.fMask, MIIM_SUBMENU
   invoke GetMenuItemInfo, [xsi].hMenuChild, IDM_LANGUAGE, FALSE, addr MenuInfo
-  invoke CheckMenuRadioItem, MenuInfo.hSubMenu, IDM_LANGUAGE_ENGLISH, IDM_LANGUAGE_SPANISH, \
+  invoke CheckMenuRadioItem, MenuInfo.hSubMenu, IDM_LANGUAGE_ENGLISH, IDM_LANGUAGE_SPANISH, /
                              edi, MF_BYCOMMAND
 
   ;IDM_LANGUAGE popup menu has only positon 1 in the InitMenu.
@@ -235,9 +235,9 @@ Method Application.Init, uses xbx xdi xsi
   mov dWndPosY, eax
 
   invoke CreateWindowEx, WS_EX_APPWINDOW or WS_EX_WINDOWEDGE,
-                         offset szAppClassName, offset szAppTitle, \
-                         WS_OVERLAPPEDWINDOW or WS_CLIPCHILDREN, \
-                         dWndPosX, dWndPosY, dWndWidth, dWndHeight, \
+                         offset szAppClassName, offset szAppTitle, /
+                         WS_OVERLAPPEDWINDOW or WS_CLIPCHILDREN, /
+                         dWndPosX, dWndPosY, dWndWidth, dWndHeight, /
                          NULL, [xsi].hMenuInit, hInstance, pSelf
 
   ;Create and initialize Client window
@@ -248,7 +248,7 @@ Method Application.Init, uses xbx xdi xsi
   mov [xsi].pXMenu, $New(XMenu)
   mov xdi, $MethodAddr(Application.StatusbarHelp)
   mov xax, [xsi].pClientWnd
-  OCall [xsi].pXMenu::XMenu.Init, xsi, [xsi].hWnd, [xax].$Obj(MyClientWnd).hWnd, \
+  OCall [xsi].pXMenu::XMenu.Init, xsi, [xsi].hWnd, [xax].$Obj(MyClientWnd).hWnd, /
                                   [xsi].hMenuChildWnd, xbx, xdi, IDLANG_ENGLISH
 
   invoke ShowWindow, [xsi].hWnd, SW_SHOWNORMAL
@@ -271,7 +271,7 @@ Method Application.OnClose, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   .if [xbx].$Obj(MyClientWnd).dChildCount == 0          ;Ask only if a child window is open
     invoke DefFrameProc, [xsi].hWnd, [xbx].$Obj(MyClientWnd).hWnd, dMsg, wParam, lParam
   .else
-    invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), \
+    invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), /
                        MB_YESNO + MB_ICONQUESTION
     .if eax == IDNO
       xor eax, eax
@@ -347,13 +347,13 @@ Method Application.OnCommand, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
     invoke SendMessage, [xbx].$Obj(MyClientWnd).hWnd, WM_MDIICONARRANGE, 0, 0
     xor eax, eax
   .elseif ax == IDM_WINDOW_CLOSEALL                     ;Attempt to close all windows
-    invoke EnumChildWindows, [xbx].$Obj(MyClientWnd).hWnd, offset CloseEnumProc, \
+    invoke EnumChildWindows, [xbx].$Obj(MyClientWnd).hWnd, offset CloseEnumProc, /
                              [xbx].$Obj(MyClientWnd).hWnd
     xor eax, eax
 
   ;Messages for help menu
   .elseif ax == IDM_HELP_HELP
-    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Help\ObjAsm_Reference_Volume-I.pdf"), \
+    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Help/ObjAsm_Reference_Volume-I.pdf"), /
                                      addr cBuffer, lengthof(cBuffer)
     invoke PdfView, [xsi].hWnd, addr cBuffer, $OfsCStr("Introduction")
     xor eax, eax
@@ -390,7 +390,7 @@ Method Application.OnCreate, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   OCall xax::Rebar.Init, xsi, [xsi].hWnd
 
   mov [xsi].pToolbarWindow, $New(Toolbar)
-  OCall [xsi].pToolbarWindow::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarWindow, \
+  OCall [xsi].pToolbarWindow::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarWindow, /
              [xsi].pIconImageList, NULL, NULL
   mov xbx, $OCall([xsi].pToolbarWindow::Toolbar.GetHeight)
   OCall [xsi].pToolbarWindow::Toolbar.GetWidth
@@ -398,7 +398,7 @@ Method Application.OnCreate, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   OCall [xsi].pRebar::Rebar.InsertBand, [xdx].$Obj(Toolbar).hWnd, eax, ebx
 
   mov [xsi].pToolbarFile, $New(Toolbar)
-  OCall [xsi].pToolbarFile::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarFile, \
+  OCall [xsi].pToolbarFile::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarFile, /
              [xsi].pIconImageList, NULL, NULL
   mov xbx, $OCall([xsi].pToolbarFile::Toolbar.GetHeight)
   OCall [xsi].pToolbarFile::Toolbar.GetWidth
@@ -588,8 +588,8 @@ Method MyClientWnd.OnPaint, uses xsi, wParam:WPARAM, lParam:LPARAM
   invoke GetClientRect, [xsi].hWnd, addr Rct
   invoke FillRect, PS.hdc, addr Rct, [xsi].hBGBrush
   invoke EndPaint, [xsi].hWnd, addr PS
-  invoke CallWindowProc, [xsi].$Obj(MyClientWnd).pPrevWndProc, \
-                         [xsi].$Obj(MyClientWnd).hWnd, \
+  invoke CallWindowProc, [xsi].$Obj(MyClientWnd).pPrevWndProc, /
+                         [xsi].$Obj(MyClientWnd).hWnd, /
                          WM_PAINT, wParam, lParam
 MethodEnd
 
@@ -614,7 +614,7 @@ Method MyChildWnd.Done, uses xbx xdi xsi
 
   .if ZERO?
     OCall xbx::Application.EnableActions, FALSE
-    invoke SendMessage, [xdi].$Obj(MyClientWnd).hWnd, WM_MDISETMENU, \
+    invoke SendMessage, [xdi].$Obj(MyClientWnd).hWnd, WM_MDISETMENU, /
                         [xbx].$Obj(Application).hMenuInit, NULL
     invoke DrawMenuBar, [xbx].$Obj(MdiApp).hWnd         ;Redraw the new menu bar
   .endif
@@ -635,21 +635,21 @@ Method MyChildWnd.Init, uses xbx xdi xsi, pOwner:POINTER, pTitle:PSTRING
   mov xdi, pOwner                                       ;xdi -> MyClientWnd
   inc [xdi].$Obj(MyClientWnd).dChildCount
 
-  invoke CreateMDIWindow, offset szChildClassName, pTitle, WS_HSCROLL or WS_VSCROLL, \
-                          CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateMDIWindow, offset szChildClassName, pTitle, WS_HSCROLL or WS_VSCROLL, /
+                          CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                           [xdi].$Obj(MyClientWnd).hWnd, hInstance, pSelf
   .if xax != NULL
     .if [xdi].$Obj(MyClientWnd).dChildCount == 1        ;First child window ?
       mov xbx, [xdi].$Obj(MyClientWnd).pOwner           ;xbx -> Application
       OCall xbx::Application.EnableActions, TRUE
-      invoke SendMessage, [xdi].$Obj(MyClientWnd).hWnd, WM_MDISETMENU, \
-                          [xbx].$Obj(Application).hMenuChild, \
+      invoke SendMessage, [xdi].$Obj(MyClientWnd).hWnd, WM_MDISETMENU, /
+                          [xbx].$Obj(Application).hMenuChild, /
                           [xbx].$Obj(Application).hMenuChildWnd
       invoke DrawMenuBar, [xbx].$Obj(MdiApp).hWnd       ;Redraw the new menu bar
     .endif
     invoke ShowWindow, [xsi].hWnd, SW_SHOWNORMAL
   .else
-    invoke MessageBox, [xdi].$Obj(Application).hWnd, $OfsCStr("Window creation error"), \
+    invoke MessageBox, [xdi].$Obj(Application).hWnd, $OfsCStr("Window creation error"), /
                        offset szError, MB_OK or MB_ICONERROR
   .endif
 MethodEnd
@@ -709,7 +709,7 @@ Method MyChildWnd.OnPaint, uses xsi, wParam:WPARAM, lParam:LPARAM
 
   invoke SetTextColor, PS.hdc, edx
   invoke GetClientRect, [xsi].hWnd, addr Rect
-  invoke DrawText, PS.hdc, $OfsCStr("Hello World"), -1, addr Rect, \
+  invoke DrawText, PS.hdc, $OfsCStr("Hello World"), -1, addr Rect, /
                    DT_SINGLELINE or DT_CENTER or DT_VCENTER
   invoke EndPaint, [xsi].hWnd, addr PS
   xor eax, eax

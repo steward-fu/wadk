@@ -16,7 +16,7 @@ DOM ends
 
 .const
 align ALIGN_DATA
-ComErrTable \
+ComErrTable /
   DOM {080000001h, $OfsTStr("Not implemented")}
   DOM {080000002h, $OfsTStr("Ran out of memory")}
   DOM {080000003h, $OfsTStr("One or more arguments are invalid")}
@@ -69,7 +69,7 @@ ComErrTable \
   DOM {080004014h, $OfsTStr("A Remote activation was necessary but the server name provided was invalid")}
   DOM {080004015h, $OfsTStr("The class is configured to run as a security id different from the caller")}
   DOM {080004016h, $OfsTStr("Use of Ole1 services requiring DDE windows is disabled")}
-  DOM {080004017h, $OfsTStr("A RunAs specification must be \ name or simply")}
+  DOM {080004017h, $OfsTStr("A RunAs specification must be / name or simply")}
   DOM {080004018h, $OfsTStr("The server process could not be started. The pathname may be incorrect.")}
   DOM {080004019h, $OfsTStr("The server process could not be started as the configured identity. The pathname may be incorrect or unavailable.")}
   DOM {08000401Ah, $OfsTStr("The server process could not be started because the configured identity is incorrect. Check the username and password.")}
@@ -142,7 +142,7 @@ ComErrTable \
   DOM {080010129h, $OfsTStr("Unable to set a discretionary ACL into a security descriptor")}
   DOM {08001012Ah, $OfsTStr("The system function")}
   DOM {08001012Bh, $OfsTStr("Either NetAccessDel or NetAccessAdd returned an error code.")}
-  DOM {08001012Ch, $OfsTStr("One of the trustee strings provided by the user did not conform to the [Domain]\[Name] syntax and it was not the '*' string")}
+  DOM {08001012Ch, $OfsTStr("One of the trustee strings provided by the user did not conform to the [Domain]/[Name] syntax and it was not the '*' string")}
   DOM {08001012Dh, $OfsTStr("One of the security identifiers provided by the user was invalid")}
   DOM {08001012Eh, $OfsTStr("Unable to convert a wide character trustee string to a multibyte trustee string")}
   DOM {08001012Fh, $OfsTStr("Unable to find a security identifier that corresponds to a trustee string provided by the user")}

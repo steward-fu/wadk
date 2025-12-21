@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version C.01.00, 11/10/2020 17:39
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: 'D:\OA_Dev\Projects\32\h2IncX\Header_10.0.17763.0\SetupAPI.h', last modified: 01/10/2017 02:00
+;Source file: 'D:/OA_Dev/Projects/32/h2IncX/Header_10.0.17763.0/SetupAPI.h', last modified: 01/10/2017 02:00
 ;Creation parameters: 
 
 ifndef _INC_SETUPAPI

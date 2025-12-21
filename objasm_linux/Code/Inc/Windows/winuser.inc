@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.02, 21/09/2018 23:50
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\winuser.h', last modified: 19/04/2018 10:46
+;Source file: '/ObjAsm/Projects/h2IncX/header/winuser.h', last modified: 19/04/2018 10:46
 ;Creation parameters:
 
 include winapifamily.inc

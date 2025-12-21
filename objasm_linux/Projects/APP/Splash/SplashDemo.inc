@@ -43,8 +43,8 @@ Method SplashDemo.Init, uses esi
     mov dWtx, $invoke(CenterForm, dWwd, $invoke(GetSystemMetrics, SM_CXSCREEN)) ;Center the form
     mov dWty, $invoke(CenterForm, dWht, $invoke(GetSystemMetrics, SM_CYSCREEN)) ;Center the form
 
-    invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, \
-           offset szSplashDemo, offset szAppTitle, WS_OVERLAPPEDWINDOW, \
+    invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, /
+           offset szSplashDemo, offset szAppTitle, WS_OVERLAPPEDWINDOW, /
            dWtx, dWty, dWwd, dWht, NULL, NULL, hInstance, esi ;Pass the instance pointer
 
     invoke ShowWindow, [esi].hWnd, SW_SHOWNORMAL        ;Show the window
@@ -77,7 +77,7 @@ Method SplashDemo.OnCommand, uses esi, wParam:dword, lParam:dword
 
     .elseif ax == IDM_HELP
       invoke GetEnvironmentVariable, $OfsCStr("OA32_PATH"), addr cBuffer, lengthof cBuffer
-      invoke StrLCat, addr cBuffer, $OfsCStr("\Help\ObjAsm32.chm"), lengthof cBuffer
+      invoke StrLCat, addr cBuffer, $OfsCStr("/Help/ObjAsm32.chm"), lengthof cBuffer
       invoke HtmlHelp, [esi].hWnd, addr cBuffer, HH_DISPLAY_TOPIC, 0
       xor eax, eax
 
@@ -96,7 +96,7 @@ MethodEnd
 
 Method SplashDemo.OnClose, uses esi, wParam:dword, lParam:dword
     SetObject esi
-    invoke MessageBox, [esi].hWnd, $OfsCStr("Are you sure ?"), \
+    invoke MessageBox, [esi].hWnd, $OfsCStr("Are you sure ?"), /
                        $OfsCStr("Application exit"), MB_YESNO or MB_ICONQUESTION
     .if eax == IDNO
       xor eax, eax

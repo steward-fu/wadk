@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.01, 10/09/2018 22:03
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\ddraw.h', last modified: 19/04/2018 10:46
+;Source file: '/ObjAsm/Projects/h2IncX/header/ddraw.h', last modified: 19/04/2018 10:46
 ;Creation parameters: 
 
 ifndef __DDRAW_INCLUDED__
@@ -141,7 +141,7 @@ ifndef __DDRAW_INCLUDED__
     DDENUM_NONDISPLAYDEVICES equ 00000004h
     REGSTR_KEY_DDHW_DESCRIPTION equ <"Description">
     REGSTR_KEY_DDHW_DRIVERNAME equ <"DriverName">
-    REGSTR_PATH_DDHW equ <"Hardware\DirectDrawDrivers">
+    REGSTR_PATH_DDHW equ <"Hardware/DirectDrawDrivers">
     DDCREATE_HARDWAREONLY equ 00000001h
     DDCREATE_EMULATIONONLY equ 00000002h
     if Defined(WINNT) or  not Defined(WIN32)

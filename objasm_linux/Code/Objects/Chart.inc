@@ -62,7 +62,7 @@ CHT_SERIES_SHOW_TAB         equ   BIT02                 ;Show series tab on the 
 CHT_SERIES_SHOW_Y2_CHK      equ   BIT03
 CHT_SERIES_USE_Y2           equ   BIT04
 
-CHT_SERIES_DEFAULT_FLAGS equ CHT_SERIES_SHOW_DEPICTION or CHT_SERIES_SHOW_MARKER or \
+CHT_SERIES_DEFAULT_FLAGS equ CHT_SERIES_SHOW_DEPICTION or CHT_SERIES_SHOW_MARKER or /
                              CHT_SERIES_SHOW_TAB or CHT_SERIES_USE_Y2
 
 CHT_SCALE_AUTO_MIN          equ   BIT00
@@ -80,11 +80,11 @@ CHT_SCALE_SHOW_AS_DATEDIFF  equ   BIT11
 CHT_SCALE_SHOW_AS_TIME      equ   BIT12                 ;Frac(VARINAT time)
 CHT_SCALE_SHOW_TAB          equ   BIT13                 ;Show scale tab on the setup dialog
 
-CHT_SCALE_DEFAULT_FLAGS = CHT_SCALE_AUTO_MIN or CHT_SCALE_AUTO_MAX or \
-                          CHT_SCALE_AUTO_MJR_DIV or CHT_SCALE_AUTO_MNR_DIV or \
-                          CHT_SCALE_SHOW_MJR_GRID or CHT_SCALE_SHOW_MNR_GRID or \
-                          CHT_SCALE_SHOW_MJR_DIV or CHT_SCALE_SHOW_MNR_DIV or \
-                          CHT_SCALE_SHOW_LABEL or CHT_SCALE_SHOW_TITLE or \
+CHT_SCALE_DEFAULT_FLAGS = CHT_SCALE_AUTO_MIN or CHT_SCALE_AUTO_MAX or /
+                          CHT_SCALE_AUTO_MJR_DIV or CHT_SCALE_AUTO_MNR_DIV or /
+                          CHT_SCALE_SHOW_MJR_GRID or CHT_SCALE_SHOW_MNR_GRID or /
+                          CHT_SCALE_SHOW_MJR_DIV or CHT_SCALE_SHOW_MNR_DIV or /
+                          CHT_SCALE_SHOW_LABEL or CHT_SCALE_SHOW_TITLE or /
                           CHT_SCALE_SHOW_TAB
 
 ;Note: CHT_WND_PANABLE & CHT_WND_ZOOMABLE may be splitted into X, Y1 & Y2 for finer control
@@ -104,8 +104,8 @@ CHT_WND_TOOLTIP_SHOW        equ   BIT30                 ;Helper, ToolTip visibil
 CHT_WND_SELF_INST           equ   BIT31                 ;Helper, if was instanced by CreateWindowEx
 
 
-CHT_WND_DEFAULT_FLAGS = CHT_WND_PANABLE or CHT_WND_ZOOMABLE or CHT_WND_COLOR or \
-                        CHT_WND_SHOW_GENERAL_TAB or CHT_WND_CTRL_DBLCLK or \
+CHT_WND_DEFAULT_FLAGS = CHT_WND_PANABLE or CHT_WND_ZOOMABLE or CHT_WND_COLOR or /
+                        CHT_WND_SHOW_GENERAL_TAB or CHT_WND_CTRL_DBLCLK or /
                         CHT_WND_DATA_TOOLTIPS_SHOW
 
 CHT_SCALE_STRINGS struc

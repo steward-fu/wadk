@@ -81,7 +81,7 @@ MethodEnd
 
 Method RegExA.Exec, uses xsi, pSubject:POINTER, dLength:DWORD, dStartOffset:DWORD, dOptions:DWORD
   SetObject xsi
-  invoke pcre_exec, [xsi].pPattern, [xsi].pExtra, pSubject, dLength, dStartOffset, \
+  invoke pcre_exec, [xsi].pPattern, [xsi].pExtra, pSubject, dLength, dStartOffset, /
                     dOptions, [xsi].pOutVector, [xsi].dOutVecSize
   mov [xsi].dMatchCount, eax
 MethodEnd

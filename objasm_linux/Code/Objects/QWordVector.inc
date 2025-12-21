@@ -14,4 +14,4 @@ TVEC_DATA_TYPE      textequ   <QWORD>
 PVecProc            textequ   <PVecProc64>
 VEC64_MAX_CAPACITY  equ       0FFFFFFFFh/sizeof(TVEC_DATA_TYPE)
 
-include .\TVector.inc                                   ;Template file
+include ./TVector.inc                                   ;Template file

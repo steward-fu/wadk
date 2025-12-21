@@ -36,26 +36,26 @@ IDC_FTXT_FINDDOWNRADIO    equ   204
 IDC_FTXT_FINDUPRADIO      equ   205
 IDC_STATIC                equ   -1
 
-FTXT_STYLE  equ   WS_CHILD or DS_MODALFRAME or DS_3DLOOK or DS_CENTER or DS_CENTERMOUSE or \
-                  DS_SETFOREGROUND or DS_NOFAILCREATE or WS_CAPTION or WS_SYSMENU or WS_POPUP or \
+FTXT_STYLE  equ   WS_CHILD or DS_MODALFRAME or DS_3DLOOK or DS_CENTER or DS_CENTERMOUSE or /
+                  DS_SETFOREGROUND or DS_NOFAILCREATE or WS_CAPTION or WS_SYSMENU or WS_POPUP or /
                   DS_SETFONT or WS_VISIBLE
 
 .const
 CStr szNotification, "Notification"
 
-DIALOGEX DIALOGFINDTEXT, 0, 0, 200, 75, 0, 10, \
-              FTXT_STYLE, 0, \
+DIALOGEX DIALOGFINDTEXT, 0, 0, 200, 75, 0, 10, /
+              FTXT_STYLE, 0, /
               0, , " Find Text", "Segoe UI", 9, 700, FALSE, ANSI_CHARSET
 
 DEFPUSHBUTTON "&Find", IDC_FTXT_FIND, 140,51,52,15
 PUSHBUTTON    "&Close", IDCANCEL, 140,32,52,15
 LTEXT         "&Text:", IDC_STATIC, 9,10,15,8
-COMBOBOX      ,IDC_FTXT_COMBO, 32,7,160,14, \
+COMBOBOX      ,IDC_FTXT_COMBO, 32,7,160,14, /
               CBS_DROPDOWN or WS_VSCROLL or WS_TABSTOP or CBS_HASSTRINGS
 GROUPBOX      "Options", IDC_STATIC, 8,25,65,40
-CONTROL       "&Match Case", IDC_FTXT_MATCHCASECHECK, "Button", BS_AUTOCHECKBOX or WS_TABSTOP, \
+CONTROL       "&Match Case", IDC_FTXT_MATCHCASECHECK, "Button", BS_AUTOCHECKBOX or WS_TABSTOP, /
               15,37,52,11
-CONTROL       "&Whole Word", IDC_FTXT_WHOLEWORDCHECK, "Button", BS_AUTOCHECKBOX or WS_TABSTOP, \
+CONTROL       "&Whole Word", IDC_FTXT_WHOLEWORDCHECK, "Button", BS_AUTOCHECKBOX or WS_TABSTOP, /
               15,49,52,11
 GROUPBOX      "Direction",IDC_STATIC,82,25,45,40
 CONTROL       "&Up",   IDC_FTXT_FINDUPRADIO,   "Button", BS_AUTORADIOBUTTON, 88,37,36,11
@@ -117,7 +117,7 @@ Method DialogFindText.CtlsSet, uses xbx xdi xsi
     invoke CheckDlgButton, [xsi].hWnd, IDC_FTXT_MATCHCASECHECK, BST_UNCHECKED
     invoke CheckDlgButton, [xsi].hWnd, IDC_FTXT_WHOLEWORDCHECK, BST_UNCHECKED
 
-    invoke CheckRadioButton, [xsi].hWnd, IDC_FTXT_FINDDOWNRADIO, IDC_FTXT_FINDUPRADIO, \
+    invoke CheckRadioButton, [xsi].hWnd, IDC_FTXT_FINDDOWNRADIO, IDC_FTXT_FINDUPRADIO, /
                                          IDC_FTXT_FINDDOWNRADIO
   .else
     OCall [xsi].pStream::Stream.BinRead, addr dValue, 4

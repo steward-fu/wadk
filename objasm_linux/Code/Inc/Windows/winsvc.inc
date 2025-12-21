@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.01, 10/09/2018 22:03
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\winsvc.h', last modified: 19/04/2018 10:44
+;Source file: '/ObjAsm/Projects/h2IncX/header/winsvc.h', last modified: 19/04/2018 10:44
 ;Creation parameters: 
 
 ifndef _WINSVC_
@@ -395,7 +395,7 @@ ifndef _WINSVC_
     _SERVICE_TRIGGER_INFO typedef SERVICE_TRIGGER_INFO
     PSERVICE_TRIGGER_INFO typedef ptr SERVICE_TRIGGER_INFO
     
-    SC_AGGREGATE_STORAGE_KEY equ <L("System\CurrentControlSet\Control\ServiceAggregatedEvents")>
+    SC_AGGREGATE_STORAGE_KEY equ <L("System/CurrentControlSet/Control/ServiceAggregatedEvents")>
     SERVICE_PREFERRED_NODE_INFO struct
       usPreferredNode USHORT ?
       fDelete BOOLEAN ?

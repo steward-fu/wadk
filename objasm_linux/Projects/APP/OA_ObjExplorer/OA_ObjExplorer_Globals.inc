@@ -30,7 +30,7 @@ CStr  cIconName,      "ICON_APP"
 
 ;Setup strings
 CStr  cViewer,        "Viewer"
-CStr  cDefViewer,     '"%ProgramFiles%\Notepad++\Notepad++.exe" "%s" -n%lu'     ;Default string
+CStr  cDefViewer,     '"%ProgramFiles%/Notepad++/Notepad++.exe" "%s" -n%lu'     ;Default string
 CStr  cLanguage,      "Language"
 CStr  cShowRedefMtds, "ShowRedefinedMethods"
 CStr  cShowRedefVars, "ShowRedefinedVariables"
@@ -38,12 +38,12 @@ CStr  cShowRedefVars, "ShowRedefinedVariables"
 CStr  cOpen,          "open"
 
 ;Markup Texts
-MTXT_NAME           CHR "{PA 20,Z}", \
-                        "[H+2,HI 20]", \
+MTXT_NAME           CHR "{PA 20,Z}", /
+                        "[H+2,HI 20]", /
                           "[H+3][B][U]Object Name[~]:[~]     "
-MTXT_END            CHR   "[~]{P}{P}", \
+MTXT_END            CHR   "[~]{P}{P}", /
                         "[~]", 0
-MTXT_FILES          CHR "{P}[H+1,B][U]Files[~]:[~]{B}{TABCLR}{TL 30}{TL 165}{TC 800}{TC 950}", \
+MTXT_FILES          CHR "{P}[H+1,B][U]Files[~]:[~]{B}{TABCLR}{TL 30}{TL 165}{TC 800}{TC 950}", /
                         "[B]{T}{T}File Name{T}Last Write Access{T}Status[~]{P}"
 MTXT_FILE_INC       CHR "{T}[B]Definition:[~]{T}"
 MTXT_FILE_ASM       CHR "{T}[B]Assembly:[~]{T}"
@@ -124,7 +124,7 @@ MTXT_LINK_END       CHR ",C@26]"          ;COLOR_HOTLIGHT
 ;Lookup tables
 
 ;Object Method Types
-OMT_TEXT_TABLE \
+OMT_TEXT_TABLE /
   PSTRING $OfsTStr("Unknown")
   PSTRING $OfsTStr("Static")
   PSTRING $OfsTStr("Virtual")

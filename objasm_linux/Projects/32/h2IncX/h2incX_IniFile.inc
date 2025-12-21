@@ -24,7 +24,7 @@ ReadIniFile proc uses ebx esi
     lea ecx, szName
     lea eax, [ecx + eax]
     .while eax > ecx
-      .break .if (BYTE ptr [eax - 1] == '\') || (BYTE ptr [eax - 1] == '/') || (BYTE ptr [eax - 1] == ':')
+      .break .if (BYTE ptr [eax - 1] == '/') || (BYTE ptr [eax - 1] == '/') || (BYTE ptr [eax - 1] == ':')
       dec eax
     .endw
     invoke StrCopyA, eax, $OfsCStr("h2incX.ini")

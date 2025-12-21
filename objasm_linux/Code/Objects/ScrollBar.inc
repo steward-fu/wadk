@@ -67,8 +67,8 @@ Method ScrollBar.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefStruc:PDE
   assume xbx:PDEF_SCROLLBAR
   mov eax, [xbx].dStyle
   or eax, WS_CHILD or WS_VISIBLE
-  invoke CreateWindowEx, [xbx].dExStyle, $OfsCStr("ScrollBar"), [xbx].pTitle, eax, \
-                         [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, \
+  invoke CreateWindowEx, [xbx].dExStyle, $OfsCStr("ScrollBar"), [xbx].pTitle, eax, /
+                         [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, /
                          hParent, [xbx].xCtlID, hInstance, 0
   assume xbx:NOTHING
   ACall xsi.Init, pOwner, xax

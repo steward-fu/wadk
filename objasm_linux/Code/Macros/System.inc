@@ -251,7 +251,7 @@ PushAll macro ArgList:vararg
       $$Pos1 InStr 1, $$UArg, <ADDR >
       if $$Pos1 eq 1
         $$Attributes = opattr(@SubStr($$Arg, $$Pos1 + 5))
-        if ($$Attributes eq (OAT_RELOCATABLE or OAT_NO_ERROR)) or \
+        if ($$Attributes eq (OAT_RELOCATABLE or OAT_NO_ERROR)) or /
            ($$Attributes eq (OAT_RELOCATABLE or OAT_NO_ERROR or OAT_SS_RELATIVE))
           $$EaxUsed = TRUE
           lea eax, @SubStr($$Arg, 6)
@@ -1083,7 +1083,7 @@ endif
 ;             beginning with ¦), the additional arguments following format are formatted and inserted
 ;             in the resulting string replacing their respective specifiers.
 ;             Escape sequences are supported to overcome MASM limitations. Escape sequences begin
-;             with a \ character.
+;             with a / character.
 ; Arguments:  Arg1: Non-volatile register pointing to the beginning of the output buffer.
 ;                   It is used internally and its value is restored before return.
 ;             Arg2: Single or double Quoted format string. Only ANSI characters are allowed.
@@ -1128,7 +1128,7 @@ endif
 ;                 ]  ">" character
 ;                 :  "!" character
 ;                 ´  "'" character
-;                 \  "\" character
+;                 /  "/" character
 ;
 ;             - Format specifiers and escape sequences are case sensitive.
 ;
@@ -1443,16 +1443,16 @@ WriteF macro DstReg:req, Format:req, Args:vararg
         elseifidn <$$PF_Character>, <´>
           mov CHR ptr [DstReg], "'"
           add DstReg, sizeof(CHR)
-        elseifidn <$$PF_Character>, <\>
-          $$PF_Text CatStr $$PF_Text, <\>
+        elseifidn <$$PF_Character>, </>
+          $$PF_Text CatStr $$PF_Text, </>
         else
-          $$PF_Text CatStr $$PF_Text, <\>, <&$$PF_Character>
+          $$PF_Text CatStr $$PF_Text, </>, <&$$PF_Character>
         endif
         $$PF_Escape = 0                                 ;;Reset escape flag
       else
         ifidn <&$$PF_Character>, <¦>
           $$PF_Replace = 1                              ;;Set replace flag
-        elseifidn <&$$PF_Character>, <\>
+        elseifidn <&$$PF_Character>, </>
           $$PF_Escape = 1                               ;;Set escape flag
         else
           $$PF_Text CatStr $$PF_Text, <&$$PF_Character>
@@ -1496,7 +1496,7 @@ IsCharTypeA? macro CHARA:req, CharType:req
     db 002h,002h,002h,002h,002h,002h,002h,002h,002h,002h,000h,000h,010h,010h,010h,011h  ;0..9, ?
     ;    @    A    B    C    D    E    F    G    H    I    J    K    L    M    N    O
     db 001h,001h,001h,001h,001h,001h,001h,001h,001h,001h,001h,001h,001h,001h,001h,001h  ;@, A..O
-    ;    P    Q    R    S    T    U    V    W    X    Y    Z    [    \    ]    ^    _
+    ;    P    Q    R    S    T    U    V    W    X    Y    Z    [    /    ]    ^    _
     db 001h,001h,001h,001h,001h,001h,001h,001h,001h,001h,001h,008h,004h,008h,014h,001h  ;P..Z, _
     ;    `    a    b    c    d    e    f    g    h    i    j    k    l    m    n    o
     db 000h,001h,001h,001h,001h,001h,001h,001h,001h,001h,001h,001h,001h,001h,001h,001h  ;a..o
@@ -1698,21 +1698,21 @@ $CReal4 macro Value
       $$RealExpPos InStr $$RealDotPos + 1, <Value>, <E>
     endif
     if $$RealExpPos eq 0
-      $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), \
+      $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), /
                                             <p>, @SubStr(Value, $$RealDotPos + 1)
     else
       ifidn @SubStr(Value, $$RealExpPos + 1, 1), <+>
-        $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, \
-                          @SubStr(Value, $$RealDotPos + 1, $$RealExpPos - $$RealDotPos - 1), <EP>, \
+        $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, /
+                          @SubStr(Value, $$RealDotPos + 1, $$RealExpPos - $$RealDotPos - 1), <EP>, /
                           @SubStr(Value, $$RealExpPos + 2)
       else
         ifidn @SubStr(Value, $$RealExpPos + 1, 1), <->
-          $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, \
-                            @SubStr(Value, $$RealDotPos + 1, $$RealExpPos - $$RealDotPos - 1), <EM>, \
+          $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, /
+                            @SubStr(Value, $$RealDotPos + 1, $$RealExpPos - $$RealDotPos - 1), <EM>, /
                             @SubStr(Value, $$RealExpPos + 2)
         else
-          $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, \
-                            @SubStr(Value, $$RealDotPos + 1, $$RealExpPos - $$RealDotPos - 1), <EP>, \
+          $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, /
+                            @SubStr(Value, $$RealDotPos + 1, $$RealExpPos - $$RealDotPos - 1), <EP>, /
                             @SubStr(Value, $$RealExpPos + 1)
         endif
       endif
@@ -1762,21 +1762,21 @@ $CReal8 macro Value
       $$RealExpPos InStr $$RealDotPos + 1, <Value>, <E>
     endif
     if $$RealExpPos eq 0
-      $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, \
+      $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, /
                                             @SubStr(Value, $$RealDotPos + 1)
     else
       ifidn @SubStr(Value, $$RealExpPos + 1, 1), <+>
-        $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, \
-                          @SubStr(Value, $$RealDotPos + 1, $$RealExpPos - $$RealDotPos - 1), <EP>, \
+        $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, /
+                          @SubStr(Value, $$RealDotPos + 1, $$RealExpPos - $$RealDotPos - 1), <EP>, /
                           @SubStr(Value, $$RealExpPos + 2)
       else
         ifidn @SubStr(Value, $$RealExpPos + 1, 1), <->
-          $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, \
-                            @SubStr(Value, $$RealDotPos + 1, $$RealExpPos - $$RealDotPos - 1), <EM>, \
+          $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, /
+                            @SubStr(Value, $$RealDotPos + 1, $$RealExpPos - $$RealDotPos - 1), <EM>, /
                             @SubStr(Value, $$RealExpPos + 2)
         else
-          $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, \
-                            @SubStr(Value, $$RealDotPos + 1, $$RealExpPos - $$RealDotPos - 1), <EP>, \
+          $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, /
+                            @SubStr(Value, $$RealDotPos + 1, $$RealExpPos - $$RealDotPos - 1), <EP>, /
                             @SubStr(Value, $$RealExpPos + 1)
         endif
       endif
@@ -1826,21 +1826,21 @@ $CReal10 macro Value
       $$RealExpPos InStr $$RealDotPos + 1, <Value>, <E>
     endif
     if $$RealExpPos eq 0
-      $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, \
+      $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, /
                                             @SubStr(Value, $$RealDotPos + 1)
     else
       ifidn @SubStr(Value, $$RealExpPos + 1, 1), <+>
-        $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, \
-                          @SubStr(Value, $$RealDotPos + 1, $$RealExpPos - $$RealDotPos - 1), <EP>, \
+        $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, /
+                          @SubStr(Value, $$RealDotPos + 1, $$RealExpPos - $$RealDotPos - 1), <EP>, /
                           @SubStr(Value, $$RealExpPos + 2)
       else
         ifidn @SubStr(Value, $$RealExpPos + 1, 1), <->
-          $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, \
-                            @SubStr(Value, $$RealDotPos + 1, $$RealExpPos - $$RealDotPos - 1), <EM>, \
+          $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, /
+                            @SubStr(Value, $$RealDotPos + 1, $$RealExpPos - $$RealDotPos - 1), <EM>, /
                             @SubStr(Value, $$RealExpPos + 2)
         else
-          $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, \
-                            @SubStr(Value, $$RealDotPos + 1, $$RealExpPos - $$RealDotPos - 1), <EP>, \
+          $$RealName CatStr $$RealName, @SubStr(Value, $$StartPos, $$RealDotPos - $$StartPos), <p>, /
+                            @SubStr(Value, $$RealDotPos + 1, $$RealExpPos - $$RealDotPos - 1), <EP>, /
                             @SubStr(Value, $$RealExpPos + 1)
         endif
       endif

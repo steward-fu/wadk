@@ -56,7 +56,7 @@ CStr szMagnetism, "Magnetism"
 ;             Arg4: -> Magnetism object instance.
 ; Return:     Nothing.
 
-Magnetism_AddMonitorRects proc uses xbx xsi hMon:HANDLE, hMonDC:HDC, pMonRect:POINTER, \
+Magnetism_AddMonitorRects proc uses xbx xsi hMon:HANDLE, hMonDC:HDC, pMonRect:POINTER, /
                                             pObject:POINTER
   local MI:MONITORINFO
 

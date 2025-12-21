@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.01, 29/10/2018 18:21
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\winsock.h', last modified: 19/04/2018 09:44
+;Source file: '/ObjAsm/Projects/h2IncX/header/winsock.h', last modified: 19/04/2018 09:44
 ;Creation parameters: 
 
 include winapifamily.inc
@@ -10,7 +10,7 @@ ifndef _WINSOCKAPI_
   endif
   if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
     ifndef _INC_WINDOWS
-      include windows.inc
+      include Windows.inc
     endif
     if _MSC_VER ge 1200
     endif

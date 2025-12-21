@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.01, 12/11/2018 22:57
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\minidumpapiset.h', last modified: 19/04/2018 09:43
+;Source file: '/ObjAsm/Projects/h2IncX/header/minidumpapiset.h', last modified: 19/04/2018 09:43
 ;Creation parameters: 
 
 if Defined(_MSC_VER)
@@ -11,7 +11,7 @@ ifndef _MINIDUMP_H
     include nt.inc
     include ntrtl.inc
     include nturtl.inc
-    include windows.inc
+    include Windows.inc
   endif
   include apiset.inc
   include apisetcconv.inc

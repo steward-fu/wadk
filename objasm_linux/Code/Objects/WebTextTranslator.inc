@@ -166,7 +166,7 @@ Method WebTextTranslator.Init, uses xsi, pOwner:POINTER, pDstLang:PSTRING, pSrcL
   invoke InternetOpen, NULL, INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0
   .if xax != 0
     mov [xsi].hInternet, xax
-    invoke InternetConnect, [xsi].hInternet, $OfsCStr("translate.google.com"), \
+    invoke InternetConnect, [xsi].hInternet, $OfsCStr("translate.google.com"), /
                             INTERNET_DEFAULT_HTTPS_PORT, NULL, NULL, INTERNET_SERVICE_HTTP, 0, NULL
     .if xax != 0
       mov [xsi].hConnect, xax
@@ -226,8 +226,8 @@ Method WebTextTranslator.Translate, uses xbx xdi xsi, pSrcText:PSTRING, pHint:PS
       .else
         WriteF xdi, '/m?hl=en&tl=¦ST&sl=¦ST&q=¦ST "¦ST"', [xsi].pDstLang, [xsi].pSrcLang, pHint, pSrcText
       .endif
-      invoke HttpOpenRequest, [xsi].hConnect, NULL, xdi, NULL, NULL, NULL, \
-                              INTERNET_FLAG_RELOAD or INTERNET_FLAG_EXISTING_CONNECT or \
+      invoke HttpOpenRequest, [xsi].hConnect, NULL, xdi, NULL, NULL, NULL, /
+                              INTERNET_FLAG_RELOAD or INTERNET_FLAG_EXISTING_CONNECT or /
                               INTERNET_FLAG_SECURE, NULL
       .if xax != 0
         mov hRequest, xax

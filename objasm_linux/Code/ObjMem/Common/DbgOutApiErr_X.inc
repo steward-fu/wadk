@@ -21,7 +21,7 @@ align ALIGN_CODE
 DbgOutApiErr proc dErrorCode:DWORD, dForeColor:DWORD, dBackColor:DWORD, pDest:POINTER
   local pBuffer:POINTER, cHexBuffer[16]:CHRA
 
-  invoke FormatMessageA, FORMAT_MESSAGE_ALLOCATE_BUFFER or FORMAT_MESSAGE_FROM_SYSTEM, \
+  invoke FormatMessageA, FORMAT_MESSAGE_ALLOCATE_BUFFER or FORMAT_MESSAGE_FROM_SYSTEM, /
                          0, dErrorCode, 0, addr pBuffer, 0, 0
   .if eax != 0
     add xax, pBuffer

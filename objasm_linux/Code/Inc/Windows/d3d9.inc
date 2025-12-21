@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.01, 15/11/2018 21:48
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\d3d9.h', last modified: 19/04/2018 09:46
+;Source file: '/ObjAsm/Projects/h2IncX/header/d3d9.h', last modified: 19/04/2018 09:46
 ;Creation parameters: 
 
 ifndef _D3D9_H_
@@ -20,7 +20,7 @@ ifndef _D3D9_H_
       include stdlib.inc
       COM_NO_WINDOWS_H equ <>
       include objbase.inc
-      include windows.inc
+      include Windows.inc
       if  not Defined(HMONITOR_DECLARED) and (WINVER lt 0500h)
         HMONITOR_DECLARED equ <>
         DECLARE_HANDLE HMONITOR

@@ -60,7 +60,7 @@ ObjectEnd
 ;             |                                     |                 |                          |
 ;             |                                     |        I.RefCnt |     |     C.+A.RefCnt |  |
 ;             |                                     '覧覧覧覧覧覧覧覧・      ・・・・・・・・・  |
-;             |                                                                  /|\   /|\       |
+;             |                                                                  /|/   /|/       |
 ;             |                                                                   |     |        |
 ;             |                    覧・                aggr. redirection          |     |        |
 ;             |                   |   |        覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧・     |        |
@@ -76,7 +76,7 @@ ObjectEnd
 ;             |   |   |                 |                                 |             |        |
 ;             |   |   |        I.RefCnt |           |        C.RefCnt |   |             |        |
 ;             |   |   '覧覧覧覧覧覧覧覧・            ・・・・・・・・・   |             |        |
-;             |   |                                         /|\           |             |        |
+;             |   |                                         /|/           |             |        |
 ;             |   |                                                       |             |        |
 ;             |   |  Aggregated Interface                    |            |             |        |
 ;             |   |  覧  覧  覧  覧  覧  覧  覧  覧  覧  覧  覧  覧  覧   |             |        |
@@ -135,7 +135,7 @@ PrintRefCounters proc pInterface:POINTER, dColor:DWORD, pDestWnd:PSTRINGA
 
   DbgSaveContext
   invoke EnterCriticalSection, offset DbgCritSect
-  DbgOutHex <Interface -\] >, dColor, xbx, dColor, pDestWnd
+  DbgOutHex <Interface -/] >, dColor, xbx, dColor, pDestWnd
   invoke DbgOutTextA, $OfsCStrA(",   IID = "), dColor, DbgColorBackground, DBG_EFFECT_NORMAL, pDestWnd
   mov xsi, pInterface
   invoke DbgOutInterfaceName, [xsi].$Obj(IUnknown).pIID, dColor, pDestWnd
@@ -145,12 +145,12 @@ PrintRefCounters proc pInterface:POINTER, dColor:DWORD, pDestWnd:PSTRINGA
 
   mov xsi, pInterface
   mov xbx, [xsi].$Obj(IUnknown).pOwner
-  DbgOutHex <Component -\] >, dColor, xbx, dColor, pDestWnd
+  DbgOutHex <Component -/] >, dColor, xbx, dColor, pDestWnd
   invoke DbgOutTextA, $OfsCStrA(", CLSID = "), dColor, DbgColorBackground, DBG_EFFECT_NORMAL, pDestWnd
   mov xsi, pInterface
   mov xdx, [xsi].$Obj(IUnknown).pOwner
   .if [xdx].$Obj(Component).pCLSID == NULL
-    invoke DbgOutTextA, $OfsCStrA("????????-????-????-????-????????????"), \
+    invoke DbgOutTextA, $OfsCStrA("????????-????-????-????-????????????"), /
                         dColor, DbgColorBackground, DBG_EFFECT_NORMAL, pDestWnd
   .else
     lea xbx, COM_GUID_STR
@@ -178,19 +178,19 @@ PrintQueryInfoBeg proc pInterface:POINTER, pReqIID:POINTER, dColor:DWORD, pDestW
   invoke DbgOutTextA, offset bCRLF, dColor, DbgColorBackground, DBG_EFFECT_NORMAL, pDestWnd
 
   mov xbx, pInterface
-  DbgOutHex <Interface -\] >, dColor, xbx, dColor, pDestWnd
+  DbgOutHex <Interface -/] >, dColor, xbx, dColor, pDestWnd
   invoke DbgOutTextA, $OfsCStrA(",   IID = "), dColor, DbgColorBackground, DBG_EFFECT_NORMAL, pDestWnd
   mov xsi, pInterface
   invoke DbgOutInterfaceName, [xsi].$Obj(IUnknown).pIID, dColor, pDestWnd
   invoke DbgOutTextA, offset bCRLF, dColor, DbgColorBackground, DBG_EFFECT_NORMAL, pDestWnd
 
   mov xbx, [xsi].$Obj(IUnknown).pOwner
-  DbgOutHex <Component -\] >, dColor, xbx, dColor, pDestWnd
+  DbgOutHex <Component -/] >, dColor, xbx, dColor, pDestWnd
   invoke DbgOutTextA, $OfsCStrA(", CLSID = "), dColor, DbgColorBackground, DBG_EFFECT_NORMAL, pDestWnd
   mov xsi, pInterface
   mov xdx, [xsi].$Obj(IUnknown).pOwner
   .if [xdx].$Obj(Component).pCLSID == NULL
-    invoke DbgOutTextA, $OfsCStrA("????????-????-????-????-????????????"), \
+    invoke DbgOutTextA, $OfsCStrA("????????-????-????-????-????????????"), /
                         dColor, DbgColorBackground, DBG_EFFECT_NORMAL, pDestWnd
   .else
     invoke DbgOutComponentName, [xdx].$Obj(Component).pCLSID, dColor, pDestWnd
@@ -206,7 +206,7 @@ PrintQueryInfoEnd proc hResult:DWORD, dColor:DWORD, pDestWnd:PSTRINGA
   DbgSaveContext
   invoke EnterCriticalSection, offset DbgCritSect
   .if hResult == S_OK
-    invoke DbgOutTextA, $OfsCStrA("IUnknown.QueryInterface succeeded"), dColor, DbgColorBackground, \
+    invoke DbgOutTextA, $OfsCStrA("IUnknown.QueryInterface succeeded"), dColor, DbgColorBackground, /
                         DBG_EFFECT_BOLD or DBG_EFFECT_NEWLINE, pDestWnd
   .else
     invoke DbgOutComErr, hResult, pDestWnd
@@ -536,11 +536,11 @@ Method Component.GetInterface, uses xsi, pReqIID:REFIID, ppInterface:POINTER
   DbgText "Component.GetInterface", "Component"
   SetObject xsi
   ;Search for native interfaces
-  OCall [xsi].Interfaces::Collection.FirstThatNot, \
+  OCall [xsi].Interfaces::Collection.FirstThatNot, /
                                      offset IUnknown_CheckIID, pReqIID, NULL
   .if xax == NULL
     ;Search for aggregated interfaces
-    OCall [xsi].AggrInterfaces::DataCollection.FirstThatNot, \
+    OCall [xsi].AggrInterfaces::DataCollection.FirstThatNot, /
                                      offset IUnknown_CheckAggrIID, pReqIID, NULL
     .if xax != NULL
       mov pInterface, xax

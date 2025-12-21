@@ -60,7 +60,7 @@ if IMPLEMENT
 
 CStr szXCTV_Class, "XCustomTreeView"
 
-;##\
+;##/
 
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————
 ; Method:    XCustomNode.CanDragMe
@@ -97,7 +97,7 @@ MethodEnd
 ;            Arg4: Key flags (MK_CONTROL, MK_LBUTTON, MK_MBUTTON, MK_RBUTTON, MK_SHIFT).
 ; Return:    eax = TRUE if and action was triggered, otherwise FALSE.
 
-Method XCustomNode.MouseHit, uses xbx xdi xsi, dButton:DWORD, pPoint:PPOINT, \
+Method XCustomNode.MouseHit, uses xbx xdi xsi, dButton:DWORD, pPoint:PPOINT, /
                                                pDispInfo:PXTVN_CUSTOM_DISP_INFO, dKeyFlags:DWORD
 ;  DbgText "XCustomNode.MouseHit"
   .if pDispInfo != NULL
@@ -220,7 +220,7 @@ Method XCustomNode.RenderContent, uses xbx xdi xsi, pDispInfo:PXTVN_CUSTOM_DISP_
       mov [xdi].TextRect.left, eax                    ;TextRect.left
 
       ;Render the icon
-      invoke DrawIconEx, [xbx].hMemDC, edx, [xdi].CheckRect.top, [xbx].hIcon, \
+      invoke DrawIconEx, [xbx].hMemDC, edx, [xdi].CheckRect.top, [xbx].hIcon, /
                          XTV_ICON_SIZE, XTV_ICON_SIZE, NULL, NULL, DI_NORMAL
 
     .endif
@@ -306,7 +306,7 @@ MethodEnd
 ;     XCustomTreeView
 ; ==================================================================================================
 
-;##\
+;##/
 
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————
 ; Method:    XCustomTreeView.Drop
@@ -316,14 +316,14 @@ MethodEnd
 ;            Arg3: how to drop.
 ; Return:    Nothing.
 
-Method XCustomTreeView.Drop,, pNode:$ObjPtr(XCustomNode), pRefNode:$ObjPtr(XCustomNode), \
+Method XCustomTreeView.Drop,, pNode:$ObjPtr(XCustomNode), pRefNode:$ObjPtr(XCustomNode), /
                               dHowToDrop:DWORD
 ;  uses xbx!                              
 ;  local cBuffer[MAX_PATH]:CHR
 ;
 ;  lea xbx, cBuffer
 ;  invoke GetEnvironmentVariable, $OfsCStr("OBJASM_PATH"), xbx, lengthof cBuffer
-;  invoke StrCCat, xbx, $OfsCStr("\Resources\WAV\Bleep.wav"), lengthof cBuffer
+;  invoke StrCCat, xbx, $OfsCStr("/Resources/WAV/Bleep.wav"), lengthof cBuffer
 ;  invoke PlaySound, xbx, NULL, SND_FILENAME or SND_ASYNC
   ACall Drop, pNode, pRefNode, dHowToDrop
 MethodEnd
@@ -415,7 +415,7 @@ Method XCustomTreeView.Startup
   local WC:WNDCLASSEX
 
   mov WC.cbSize, sizeof WNDCLASSEX
-  mov WC.style, CS_HREDRAW or CS_VREDRAW or CS_PARENTDC or CS_BYTEALIGNWINDOW or \
+  mov WC.style, CS_HREDRAW or CS_VREDRAW or CS_PARENTDC or CS_BYTEALIGNWINDOW or /
                 CS_BYTEALIGNCLIENT; or CS_DBLCLKS
   m2m WC.lpfnWndProc, $MethodAddr(XCustomTreeView.WndProc), xax
   m2z WC.cbClsExtra

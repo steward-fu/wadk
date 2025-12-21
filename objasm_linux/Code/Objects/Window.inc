@@ -220,9 +220,9 @@ Method Window.InitWindow, uses xbx xsi
       mov Gripper.right, eax
       mov Gripper.bottom, eax
       ;Create the gripper
-      invoke CreateWindowEx, 0, $OfsCStr("ScrollBar"), NULL, \
-                             WS_CHILD or WS_VISIBLE or SBS_HORZ or SBS_SIZEGRIP, \
-                             Gripper.left, Gripper.top, Gripper.right, Gripper.bottom, \
+      invoke CreateWindowEx, 0, $OfsCStr("ScrollBar"), NULL, /
+                             WS_CHILD or WS_VISIBLE or SBS_HORZ or SBS_SIZEGRIP, /
+                             Gripper.left, Gripper.top, Gripper.right, Gripper.bottom, /
                              [xsi].hWnd, IDC__GRIPPER_, hInstance, 0
     .endif
     .ifBitSet [xbx].DL_HEADER.dFlags, DLF_LOAD_MIN_INISIZE
@@ -269,8 +269,8 @@ MoveChildWnd proc uses xbx xsi hWnd:HWND, pMoveChildWndInfo:PMoveChildWndInfo
       sub WRect.right, eax
       mov eax, CRect.bottom
       sub WRect.bottom, eax
-      invoke DeferWindowPos, [xbx].MoveChildWndInfo.hDWP, hWnd, 0, \
-                             WRect.right, WRect.bottom, 0, 0, \
+      invoke DeferWindowPos, [xbx].MoveChildWndInfo.hDWP, hWnd, 0, /
+                             WRect.right, WRect.bottom, 0, 0, /
                              SWP_NOOWNERZORDER or SWP_NOZORDER or SWP_NOSIZE
       ;In case Windows had to allocate a new memory block, update the DeferWindowPos HANDLE.
       mov [xbx].MoveChildWndInfo.hDWP, xax
@@ -300,8 +300,8 @@ MoveChildWnd proc uses xbx xsi hWnd:HWND, pMoveChildWndInfo:PMoveChildWndInfo
       add edx, [xsi].DL_CHILD_INFO.PositionInfo.bottom
       mov WRect.bottom, edx
 
-      invoke DeferWindowPos, [xbx].MoveChildWndInfo.hDWP, hWnd, 0, \
-                             WRect.left, WRect.top, WRect.right, WRect.bottom, \
+      invoke DeferWindowPos, [xbx].MoveChildWndInfo.hDWP, hWnd, 0, /
+                             WRect.left, WRect.top, WRect.right, WRect.bottom, /
                              SWP_NOOWNERZORDER or SWP_NOZORDER
       ;In case Windows had to allocate a new memory block, update the DeferWindowPos HANDLE.
       mov [xbx].MoveChildWndInfo.hDWP, xax

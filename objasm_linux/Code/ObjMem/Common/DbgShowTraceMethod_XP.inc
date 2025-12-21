@@ -20,7 +20,7 @@
 ; Return:     Nothing.
 
 align ALIGN_CODE
-DbgShowTraceMethod proc uses xbx pMName:POINTER, dCount:DWORD, pTicks:POINTER, \
+DbgShowTraceMethod proc uses xbx pMName:POINTER, dCount:DWORD, pTicks:POINTER, /
                                  dForeground:DWORD, dBackground:DWORD, pDest:POINTER
   local cBuffer[100]:CHRW
 

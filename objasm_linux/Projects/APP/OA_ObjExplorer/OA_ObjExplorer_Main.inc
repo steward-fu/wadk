@@ -7,7 +7,7 @@
 
 
 
-TB_STYLE      equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or \
+TB_STYLE      equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or /
                     CCS_NORESIZE or CCS_NODIVIDER or CCS_ADJUSTABLE or TBSTYLE_FLAT or TBSTYLE_LIST
 
 SB_STYLE      equ   WS_CHILD or WS_VISIBLE or SBARS_TOOLTIPS or SBARS_SIZEGRIP
@@ -16,11 +16,11 @@ NODE_HEIGHT   equ  20
 NODE_WIDTH    equ  146
 
 .const
-ToolbarFile DEF_TOOLBAR {IDC_TOOLBARFILE, TB_STYLE, TBSTYLE_EX_MIXEDBUTTONS, \
+ToolbarFile DEF_TOOLBAR {IDC_TOOLBARFILE, TB_STYLE, TBSTYLE_EX_MIXEDBUTTONS, /
                          $OfsTStr("File commands"), {<0,0,0,0>}, 1}
   TBBUTTON {IDB_FILE_SETUP,     IDM_FILE_SETUP,    TBSTATE_ENABLED, TBSTYLE_BUTTON}
 
-ToolbarWindow DEF_TOOLBAR {IDC_TOOLBARWINDOW, TB_STYLE, TBSTYLE_EX_MIXEDBUTTONS, \
+ToolbarWindow DEF_TOOLBAR {IDC_TOOLBARWINDOW, TB_STYLE, TBSTYLE_EX_MIXEDBUTTONS, /
                            $OfsTStr("Window commands"), {<0,0,0,0>}, 12}
   TBBUTTON {IDB_WIND_CASCADE,   IDM_WIND_CASCADE,   TBSTATE_ENABLED, TBSTYLE_BUTTON}
   TBBUTTON {IDB_WIND_TILE_HORZ, IDM_WIND_TILE_HOR,  TBSTATE_ENABLED, TBSTYLE_BUTTON}
@@ -242,7 +242,7 @@ REFRESH_ALL         equ   REFRESH_TREE or REFRESH_CHILDREN
 ;    Application implementation
 ; ==================================================================================================
 
-;##\
+;##/
 
 PROPERTIES_INFO struct
   pCaption    PSTRING   ?
@@ -336,7 +336,7 @@ Method Application.ChangeLanguage, uses xbx xdi xsi, dLangID:DWORD
   mov MenuInfo.cbSize, sizeof MenuInfo
   mov MenuInfo.fMask, MIIM_SUBMENU
   invoke GetMenuItemInfo, [xsi].hMenuChild, IDM_LANGUAGE, FALSE, addr MenuInfo
-  invoke CheckMenuRadioItem, MenuInfo.hSubMenu, IDM_LANGUAGE_ENGLISH, IDM_LANGUAGE_SPANISH, \
+  invoke CheckMenuRadioItem, MenuInfo.hSubMenu, IDM_LANGUAGE_ENGLISH, IDM_LANGUAGE_SPANISH, /
                              edi, MF_BYCOMMAND
 
   ;IDM_LANGUAGE popup menu has only positon 1 in the InitMenu.
@@ -467,14 +467,14 @@ Method Application.Init, uses xbx xdi xsi
   ACall xsi.Init
 
   ;Rebar + Statusbar + ListView + TabControl + ComboBoxEx
-  invoke LoadCommonControls, ICC_COOL_CLASSES or ICC_BAR_CLASSES or \
+  invoke LoadCommonControls, ICC_COOL_CLASSES or ICC_BAR_CLASSES or /
                              ICC_LISTVIEW_CLASSES or ICC_TAB_CLASSES or ICC_USEREX_CLASSES
 
   ;Load settings from ini file
   lea xbx, cBuffer
   invoke GetCurrentDirectory, lengthof cBuffer, xbx
   lea xax, [xbx + sizeof(CHR)*xax]
-  FillString [xax], <\OA_ObjExplorer.ini>
+  FillString [xax], </OA_ObjExplorer.ini>
 
   OCall [xsi].SetupFile::IniFile.Init, xsi, xbx
 
@@ -529,8 +529,8 @@ Method Application.Init, uses xbx xdi xsi
   mov dWty, $32($invoke(CenterForm, dWht, $32($invoke(GetSystemMetrics, SM_CYSCREEN))))
 
   invoke CreateWindowEx, WS_EX_APPWINDOW or WS_EX_WINDOWEDGE,
-                         offset cObjExplorerClass, offset cAppTitle, \
-                         WS_OVERLAPPEDWINDOW or WS_CLIPCHILDREN, \
+                         offset cObjExplorerClass, offset cAppTitle, /
+                         WS_OVERLAPPEDWINDOW or WS_CLIPCHILDREN, /
                          dWtx, dWty, dWwd, dWht, 0, [xsi].hMenuInit, hInstance, xsi
 
   ;Initialize Client window
@@ -540,7 +540,7 @@ Method Application.Init, uses xbx xdi xsi
 
   ;Initialize XMenu, xbx -> [xsi].IconList
   m2m pSBHelp, $MethodAddr(xsi::Application.StatusbarHelp), xax
-  OCall [xsi].Menu::XMenu.Init, xsi, [xsi].hWnd, xdi, [xsi].hMenuChildWnd, xbx, \
+  OCall [xsi].Menu::XMenu.Init, xsi, [xsi].hWnd, xdi, [xsi].hMenuChildWnd, xbx, /
                                 pSBHelp, IDLANG_ENGLISH
   OCall [xsi].Menu::XMenu.Convert, [xsi].hMenuContext, FALSE
   OCall xsi.ChangeLanguage, [xsi].dLanguage
@@ -747,7 +747,7 @@ Method Application.OnCommand, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
     xor eax, eax
 
   .elseif ax == IDM_HELP_HELP
-    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Help\ObjAsm_Reference_Volume-I.pdf"), \
+    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Help/ObjAsm_Reference_Volume-I.pdf"), /
                                      addr cBuffer, lengthof cBuffer
     invoke PdfView, [xsi].hWnd, addr cBuffer, $OfsCStr("Introduction")
     xor eax, eax
@@ -871,13 +871,13 @@ Method Application.OnCreate, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   ;Intialize rebar and toolbars
   OCall [xsi].RBar::Rebar.Init, xsi, [xsi].hWnd
 
-  OCall [xsi].TbWindow::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarWindow, \
+  OCall [xsi].TbWindow::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarWindow, /
                                       addr [xsi].IconList, NULL, NULL
   mov ebx, $32($OCall([xsi].TbWindow::Toolbar.GetHeight))
   OCall [xsi].TbWindow::Toolbar.GetWidth
   OCall [xsi].RBar::Rebar.InsertBand, [xsi].TbWindow.hWnd, eax, ebx
 
-  OCall [xsi].TbFile::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarFile, \
+  OCall [xsi].TbFile::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarFile, /
                                     addr [xsi].IconList, NULL, NULL
   mov ebx, $32($OCall([xsi].TbFile::Toolbar.GetHeight))
   OCall [xsi].TbFile::Toolbar.GetWidth
@@ -1021,7 +1021,7 @@ Method Application.OnSize, uses xsi, wParam:WPARAM, lParam:LPARAM
     .endif
 
     ;Redraw all child windows
-    invoke RedrawWindow, [xsi].hWnd, NULL, NULL, \
+    invoke RedrawWindow, [xsi].hWnd, NULL, NULL, /
                          RDW_ERASE or RDW_INVALIDATE or RDW_UPDATENOW or RDW_ALLCHILDREN
 
     xor eax, eax                                        ;Return zero
@@ -1122,7 +1122,7 @@ AddBrokenObjects proc uses xbx xdi xsi pInfo:POBJECTINFORMATION, pSelf:$ObjPtr(A
         BitSet [xcx].OBJECTINFORMATION.dFlags, INF_INVALID
         OCall xbx::InfoTree.Insert, xdi, NULL, XTVN_INSERT_AS_LAST_CHILD
         mov xcx, [xsi].pObjDB
-        OCall [xcx].$Obj(OA_ObjDB).ObjectColl::ObjInfoCollection.ForEach, \
+        OCall [xcx].$Obj(OA_ObjDB).ObjectColl::ObjInfoCollection.ForEach, /
                                                 addr AddObjectBranch, xdi, xsi
       .endif
     .endif
@@ -1138,7 +1138,7 @@ AddBrokenObjects endp
 ;             Arg3: -> Application.
 ; Return:     Nothing.
 
-AddInterfaceBranch proc uses xbx xdi xsi, pInfo:PINTERFACEINFORMATION, \
+AddInterfaceBranch proc uses xbx xdi xsi, pInfo:PINTERFACEINFORMATION, /
                                           pAncestorNode:$ObjPtr(InfoNode), pSelf:$ObjPtr(Application)
   SetObject xsi, Application, pSelf
   mov xax, pInfo
@@ -1167,7 +1167,7 @@ AddInterfaceBranch proc uses xbx xdi xsi, pInfo:PINTERFACEINFORMATION, \
     BitSet [xcx].INTERFACEINFORMATION.dFlags, INF_INTREE
     OCall xbx::InfoTree.Insert, xdi, pAncestorNode, XTVN_INSERT_AS_LAST_CHILD
     mov xcx, [xsi].pObjDB
-    OCall [xcx].$Obj(OA_ObjDB).InterfaceColl::IntInfoCollection.ForEach, \
+    OCall [xcx].$Obj(OA_ObjDB).InterfaceColl::IntInfoCollection.ForEach, /
                                                 addr AddInterfaceBranch, xdi, xsi
   .endif
   ret
@@ -1181,7 +1181,7 @@ AddInterfaceBranch endp
 ;             Arg3: Dummy.
 ; Return:     Nothing.
 
-AddBrokenInterfaces proc uses xbx xdi xsi pInfo:PINTERFACEINFORMATION, \
+AddBrokenInterfaces proc uses xbx xdi xsi pInfo:PINTERFACEINFORMATION, /
                                           pSelf:$ObjPtr(Application), xDummy:XWORD
   SetObject xsi, Application, pSelf
   mov xax, pInfo
@@ -1197,7 +1197,7 @@ AddBrokenInterfaces proc uses xbx xdi xsi pInfo:PINTERFACEINFORMATION, \
         BitSet [xcx].INTERFACEINFORMATION.dFlags, INF_INVALID
         OCall xbx::InfoTree.Insert, xdi, NULL, XTVN_INSERT_AS_LAST_CHILD
         mov xcx, [xsi].pObjDB
-        OCall [xcx].$Obj(OA_ObjDB).InterfaceColl::IntInfoCollection.ForEach, \
+        OCall [xcx].$Obj(OA_ObjDB).InterfaceColl::IntInfoCollection.ForEach, /
                                                     addr AddInterfaceBranch, xdi, xsi
       .endif
     .endif
@@ -1374,7 +1374,7 @@ MethodEnd
 ;    ClientWnd implementation
 ; ==================================================================================================
 
-;##\
+;##/
 
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————
 ; Method:     ClientWnd.Done
@@ -1431,7 +1431,7 @@ Method ClientWnd.OnPaint, uses xsi, wParam:WPARAM, lParam:LPARAM
   invoke GetClientRect, [xsi].hWnd, addr Rct
   invoke FillRect, PS.hdc, addr Rct, [xsi].hBGBrush
   invoke EndPaint, [xsi].hWnd, addr PS
-  invoke CallWindowProc, [xsi].$Obj(ClientWnd).pPrevWndProc, \
+  invoke CallWindowProc, [xsi].$Obj(ClientWnd).pPrevWndProc, /
                          [xsi].$Obj(ClientWnd).hWnd, WM_PAINT, wParam, lParam
 MethodEnd
 

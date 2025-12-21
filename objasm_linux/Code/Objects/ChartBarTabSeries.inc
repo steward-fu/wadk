@@ -201,7 +201,7 @@ Method ChartBarTabSeries.CtlsSet, uses xbx xdi xsi
   invoke SendMessage, xbx, CB_RESETCONTENT, 0, 0
   invoke SendMessage, xbx, CB_ADDSTRING, 0, $OfsCStr("Hatch Horizontal --")
   invoke SendMessage, xbx, CB_ADDSTRING, 0, $OfsCStr("Hatch Vertical ||||")
-  invoke SendMessage, xbx, CB_ADDSTRING, 0, $OfsCStr("Hatch Diagonal \\\")
+  invoke SendMessage, xbx, CB_ADDSTRING, 0, $OfsCStr("Hatch Diagonal ///")
   invoke SendMessage, xbx, CB_ADDSTRING, 0, $OfsCStr("Hatch Diagonal ///")
   invoke SendMessage, xbx, CB_ADDSTRING, 0, $OfsCStr("Hatch Cross ++")
   invoke SendMessage, xbx, CB_ADDSTRING, 0, $OfsCStr("Hatch Diagonals XX")
@@ -221,7 +221,7 @@ MethodEnd
 
 Method ChartBarTabSeries.Init, uses xsi, pOwner:POINTER, hParent:HWND, pImageList:$ObjPtr(MaskedImageList)
   SetObject xsi
-  TCall xsi::DialogModeless.Init, pOwner, hParent, IDD_CHT_SER_BAR_TAB, \
+  TCall xsi::DialogModeless.Init, pOwner, hParent, IDD_CHT_SER_BAR_TAB, /
                                   offset $ObjTmpl(Application).hActiveMlsDlg
 
   OCall pImageList::MaskedImageList.IconLoadResource, $OfsCStr("ICON_SERIESBAR")
@@ -244,8 +244,8 @@ Method ChartBarTabSeries.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPAR
   local ChooseClr:CHOOSECOLOR, ColorRef[16]:DWORD
 
   SetObject xsi
-  .if (WORD ptr wParam == IDC_CHT_SER_BAR_LINE_COLOR_BTN) || \
-      (WORD ptr wParam == IDC_CHT_SER_BAR_FILL_FORE_BTN) || \
+  .if (WORD ptr wParam == IDC_CHT_SER_BAR_LINE_COLOR_BTN) || /
+      (WORD ptr wParam == IDC_CHT_SER_BAR_FILL_FORE_BTN) || /
       (WORD ptr wParam == IDC_CHT_SER_BAR_FILL_BACK_BTN)
     mov xbx, [xsi].pOwner
 
@@ -323,7 +323,7 @@ MethodEnd
 ; Return:     Message result.
 ; Note:       WM_PASTE is used to paste text from clipboard.
 
-SignedIntegerSubclassProc proc hWnd:HWND, uMsg:UINT, wParam:WPARAM, lParam:LPARAM, \
+SignedIntegerSubclassProc proc hWnd:HWND, uMsg:UINT, wParam:WPARAM, lParam:LPARAM, /
                                uIdSubclass:UINT_PTR, dwRefData:DWORD_PTR
   local dFirstPos:DWORD, EBT:EDITBALLOONTIP
 
@@ -334,7 +334,7 @@ SignedIntegerSubclassProc proc hWnd:HWND, uMsg:UINT, wParam:WPARAM, lParam:LPARA
     invoke DefSubclassProc, hWnd, EM_GETSEL, addr dFirstPos, NULL
     mov xcx, wParam
     .if cx >= ' '                                       ;Let control character through
-      .if !(dFirstPos == 0 && cx == '-') && \           ;Let minus through if it is the 1st char
+      .if !(dFirstPos == 0 && cx == '-') && /           ;Let minus through if it is the 1st char
           !(cx >= '0' && cx <= '9')                     ;Let digits pass through
         mov EBT.cbStruct, sizeof(EBT)                   ;Otherwise invalid
         m2m EBT.pszTitle, $OfsCStr("Error"), xax

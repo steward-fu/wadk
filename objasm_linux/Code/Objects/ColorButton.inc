@@ -49,8 +49,8 @@ Method ColorButton.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefStruc:P
   assume xbx:PDEF_BUTTON
   mov eax, [xbx].dStyle
   or eax, WS_CHILD or WS_VISIBLE or WS_TABSTOP
-  invoke CreateWindowEx, [xbx].dExStyle, offset(szColorButton), [xbx].pTitle, \
-                         eax, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, \
+  invoke CreateWindowEx, [xbx].dExStyle, offset(szColorButton), [xbx].pTitle, /
+                         eax, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, /
                          hParent, [xbx].xCtlID, hInstance, pSelf
   assume xbx:NOTHING
 
@@ -199,11 +199,11 @@ Method ColorButton.OnPaint, uses xdi xsi, wParam:WPARAM, lParam:LPARAM
       ;Enabled
       invoke GetSysColor, COLOR_WINDOWTEXT
       mov dPrevColor, $32($invoke(SetTextColor, [xsi].hMemDC, eax))
-      invoke DrawTextEx, [xsi].hMemDC, [xsi].pTextBuffer, -1, \
+      invoke DrawTextEx, [xsi].hMemDC, [xsi].pTextBuffer, -1, /
                          addr [xsi].TextRect, DT_LEFT or DT_VCENTER or DT_SINGLELINE, NULL
       .ifBitSet [xsi].dFlags, BTF_FOCUSED
         invoke MemClone, addr Rct, addr [xsi].TextRect, sizeof(RECT)
-        invoke DrawTextEx, [xsi].hMemDC, [xsi].pTextBuffer, -1, \
+        invoke DrawTextEx, [xsi].hMemDC, [xsi].pTextBuffer, -1, /
                addr Rct, DT_CALCRECT or DT_LEFT or DT_VCENTER or DT_SINGLELINE, NULL
         GrowRect Rct, 3, 1
         invoke DrawFocusRect, [xsi].hMemDC, addr Rct
@@ -213,11 +213,11 @@ Method ColorButton.OnPaint, uses xdi xsi, wParam:WPARAM, lParam:LPARAM
       invoke GetSysColor, COLOR_BTNHILIGHT
       mov dPrevColor, $32($invoke(SetTextColor, [xsi].hMemDC, eax))
       MoveRect [xsi].TextRect, 1
-      invoke DrawTextEx, [xsi].hMemDC, [xsi].pTextBuffer, -1, \
+      invoke DrawTextEx, [xsi].hMemDC, [xsi].pTextBuffer, -1, /
                      addr [xsi].TextRect, DT_LEFT or DT_VCENTER or DT_SINGLELINE, NULL
       MoveRect [xsi].TextRect, -1
       invoke SetTextColor, [xsi].hMemDC, $32($invoke(GetSysColor, COLOR_BTNSHADOW))
-      invoke DrawTextEx, [xsi].hMemDC, [xsi].pTextBuffer, -1, \
+      invoke DrawTextEx, [xsi].hMemDC, [xsi].pTextBuffer, -1, /
                          addr [xsi].TextRect, DT_LEFT or DT_VCENTER or DT_SINGLELINE, NULL
     .endif
     invoke SetTextColor, [xsi].hMemDC, dPrevColor
@@ -226,7 +226,7 @@ Method ColorButton.OnPaint, uses xdi xsi, wParam:WPARAM, lParam:LPARAM
 
   ;Now, copy the content of the memory DC to the drawing DC.
   invoke BeginPaint, [xsi].hWnd, addr PS
-  invoke BitBlt, PS.hdc, 0, 0, [xsi].FaceRect.right, [xsi].FaceRect.bottom, \
+  invoke BitBlt, PS.hdc, 0, 0, [xsi].FaceRect.right, [xsi].FaceRect.bottom, /
                  [xsi].hMemDC, 0, 0, SRCCOPY
   invoke EndPaint, [xsi].hWnd, addr PS
   xor eax, eax

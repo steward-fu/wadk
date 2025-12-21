@@ -65,7 +65,7 @@ Method TextSource.Init, uses xsi, pOwner:POINTER, pFileName:PSTRING
   ACall xsi.Init, pOwner
   mov [xsi].dFileOffset, 0
   OCall [xsi].MemStream::MemoryStream.Init, xsi, 50*1024, 50*1024, -1
-  invoke CreateFile, pFileName, GENERIC_READ, FILE_SHARE_READ, NULL, \
+  invoke CreateFile, pFileName, GENERIC_READ, FILE_SHARE_READ, NULL, /
                                 OPEN_EXISTING, FILE_ATTRIBUTE_ARCHIVE, 0
   mov [xsi].hSource, xax
   invoke GetFileLinesA, xax
@@ -264,16 +264,16 @@ Method TextSource.GetNextWord, uses xbx xdi xsi
               mov dInWord, 2
             .endif
             inc xbx
-          .elseif al == "," || al == "." || \
-              al == "+" || al == "-" || al == "*" || al == "/" || \
-              al == "=" || al == "!" || al == "<" || al == ">" || \
-              al == "[" || al == "]" || \
-              al == "(" || al == ")" || \
+          .elseif al == "," || al == "." || /
+              al == "+" || al == "-" || al == "*" || al == "/" || /
+              al == "=" || al == "!" || al == "<" || al == ">" || /
+              al == "[" || al == "]" || /
+              al == "(" || al == ")" || /
               al == "{" || al == "}"                    ;":" is excluded to allow the
             mov xax, xdi                                ;addtion of NameSpaces
             inc xbx
             jmp @@Exit
-          .elseif al == "\"                             ;Line break
+          .elseif al == "/"                             ;Line break
             mov xax, xdi
             inc xbx
             BitSet dFlags, BIT16

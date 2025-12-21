@@ -30,15 +30,15 @@
 ;             OCall [xsi].pControl::MovingThrobber.Start
 ;             ...
 ;
-; Example 2:  invoke CreateWindowEx, WS_EX_LAYERED, \
-;                                    offset szMovingThrobberClass, NULL, \
-;                                    WS_VISIBLE or WS_CHILD, \
+; Example 2:  invoke CreateWindowEx, WS_EX_LAYERED, /
+;                                    offset szMovingThrobberClass, NULL, /
+;                                    WS_VISIBLE or WS_CHILD, /
 ;                                    100, 100, 1, 1, [xsi].hWnd, 123, hInstance, NULL
 ;             .if xax != 0
 ;               invoke SendMessage, xax, WM_GETOBJECTINSTANCE, 0, 0
 ;               mov [xsi].pControl, xax
 ;               mov [xax].$Obj(MovingThrobber).dInterval, 50
-;               OCall [xsi].pControl::MovingThrobber.AddPngFromResList, \
+;               OCall [xsi].pControl::MovingThrobber.AddPngFromResList, /
 ;                                                                 offset SpinnerList0, SpinnerCount0
 ;               OCall [xsi].pControl::MovingThrobber.Start
 ;               ...
@@ -510,7 +510,7 @@ Method MovingThrobber.Animate, uses xbx xsi
       s2s PtSize, [xsi].BmpSize, xax, xcx, xmm0
       ;Note: UpdateLayeredWindow changes the window width and height
       ;      according to the hModDC selected bitmap size!
-      invoke UpdateLayeredWindow, [xsi].hWnd, hDstDC, NULL, addr PtSize, \
+      invoke UpdateLayeredWindow, [xsi].hWnd, hDstDC, NULL, addr PtSize, /
                                   hModDC, addr PtZero, $RGB(0,0,0), addr bfn, ULW_ALPHA
       invoke SelectObject, hSrcDC, hPrvSrcBmp
       invoke DeleteDC, hSrcDC
@@ -560,8 +560,8 @@ Method MovingThrobber.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefStru
   assume xbx:PDEF_MTHROBBER
   mov ecx, [xbx].dExStyle
   or ecx, WS_EX_LAYERED
-  invoke CreateWindowEx, ecx, offset(szMovingThrobberClass), [xbx].pTitle, \
-                         [xbx].dStyle, [xbx].sdPosX, [xbx].sdPosY, 1, 1, \
+  invoke CreateWindowEx, ecx, offset(szMovingThrobberClass), [xbx].pTitle, /
+                         [xbx].dStyle, [xbx].sdPosX, [xbx].sdPosY, 1, 1, /
                          hParent, [xbx].xCtlID, hInstance, xsi
   ACall xsi.Init, pOwner, xax
   .if [xbx].dImageType == TBR_IMAGE_BMP
@@ -572,7 +572,7 @@ Method MovingThrobber.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefStru
   m2m [xsi].dInterval, [xbx].dInterval, xax
 
   BitClr [xsi].dFlags, TBR_FLAG_ANIMATION_THREAD_STOP
-  invoke CreateThread, 0, 0, $MethodAddr(MovingThrobber.Animate), \
+  invoke CreateThread, 0, 0, $MethodAddr(MovingThrobber.Animate), /
                        xsi, CREATE_SUSPENDED, NULL
   mov [xsi].hThread, xax
   invoke ResumeThread, xax
@@ -594,7 +594,7 @@ Method MovingThrobber.InitRes, uses xsi, pOwner:POINTER, hWnd:HWND
   BitSet eax, TBR_FLAG_SELF_INST
   BitClr eax, TBR_FLAG_ANIMATION_THREAD_STOP
   mov [xsi].dFlags, eax
-  invoke CreateThread, 0, 0, $MethodAddr(MovingThrobber.Animate), \
+  invoke CreateThread, 0, 0, $MethodAddr(MovingThrobber.Animate), /
                        xsi, CREATE_SUSPENDED, NULL
   mov [xsi].hThread, xax
   invoke ResumeThread, xax

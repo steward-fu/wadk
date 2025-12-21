@@ -107,7 +107,7 @@
 ;fIsAbsGreater    Compare 2 floats and set eax to TRUE if the |1st| > |2nd|.
 
 
-fStatusWord record fIsBusy:1, fC3:1, fStackPtr:3, fC2:1, fC1:1, fC0:1, fExpt:1, fStackFault:1, \
+fStatusWord record fIsBusy:1, fC3:1, fStackPtr:3, fC2:1, fC1:1, fC0:1, fExpt:1, fStackFault:1, /
                    fPrecision:1, fUnderflow:1, fOverflow:1, fZeroDiv:1, fDenorm:1, fInvOp:1
 
 f_OK                equ   0

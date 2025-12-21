@@ -69,8 +69,8 @@ Method ImagApp.Init, uses xsi
   OCall [xsi].Img2::Image.Init, xsi
   OCall [xsi].Img2::Image.%LoadFromRes, $OfsCStr("IMG2")
 
-  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, \
-                         offset szImagApp, offset szAppTitle, WS_OVERLAPPEDWINDOW, \
+  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, /
+                         offset szImagApp, offset szAppTitle, WS_OVERLAPPEDWINDOW, /
                          dWndPosX, dWndPosY, dWndWidth, dWndHeight, NULL, NULL, hInstance, pSelf
 
   invoke ShowWindow, [xsi].hWnd, SW_SHOWNORMAL          ;Show the window
@@ -102,7 +102,7 @@ Method ImagApp.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
     xor eax, eax
 
   .elseif ax == IDM_HELP
-    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Help\ObjAsm_Reference_Volume-I.pdf"), \
+    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Help/ObjAsm_Reference_Volume-I.pdf"), /
                                      addr cBuffer, lengthof(cBuffer)
     invoke PdfView, [xsi].hWnd, addr cBuffer, $OfsCStr("Introduction")
     xor eax, eax

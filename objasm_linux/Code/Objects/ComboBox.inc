@@ -67,8 +67,8 @@ Method ComboBox.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefStruc:PDEF
   assume xbx:PDEF_COMBOBOX
   mov eax, [xbx].dStyle
   or eax, WS_CHILD or WS_VISIBLE
-  invoke CreateWindowEx, [xbx].dExStyle, $OfsCStr("ComboBox"), [xbx].pTitle, eax, \
-                         [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, \
+  invoke CreateWindowEx, [xbx].dExStyle, $OfsCStr("ComboBox"), [xbx].pTitle, eax, /
+                         [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, /
                          hParent, [xbx].xCtlID, hInstance, 0
   assume xbx:NOTHING
   ACall xsi.Init, pOwner, xax

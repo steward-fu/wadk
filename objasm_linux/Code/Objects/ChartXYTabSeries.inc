@@ -229,7 +229,7 @@ MethodEnd
 
 Method ChartXYTabSeries.Init, uses xsi, pOwner:POINTER, hParent:HWND, pImageList:$ObjPtr(MaskedImageList)
   SetObject xsi
-  TCall xsi::DialogModeless.Init, pOwner, hParent, IDD_CHT_SER_XY_TAB, \
+  TCall xsi::DialogModeless.Init, pOwner, hParent, IDD_CHT_SER_XY_TAB, /
                                   offset $ObjTmpl(Application).hActiveMlsDlg
 
   OCall pImageList::MaskedImageList.IconLoadResource, $OfsCStr("ICON_SERIESXY")
@@ -252,8 +252,8 @@ Method ChartXYTabSeries.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARA
   local ChooseClr:CHOOSECOLOR, ColorRef[16]:DWORD
 
   SetObject xsi
-  .if (WORD ptr wParam == IDC_CHT_SER_XY_LINE_COLOR_BTN) || \
-      (WORD ptr wParam == IDC_CHT_SER_XY_MARK_COLOR_B_BTN) || \
+  .if (WORD ptr wParam == IDC_CHT_SER_XY_LINE_COLOR_BTN) || /
+      (WORD ptr wParam == IDC_CHT_SER_XY_MARK_COLOR_B_BTN) || /
       (WORD ptr wParam == IDC_CHT_SER_XY_MARK_COLOR_F_BTN)
     mov xbx, [xsi].pOwner
 

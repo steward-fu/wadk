@@ -36,9 +36,9 @@ Object Toolbar, ToolbarID, WinControl                             ;Class "Toolba
   VirtualMethod     BtnHide,            DWORD, DWORD
   RedefineMethod    GetHeight
   RedefineMethod    GetWidth
-  RedefineMethod    Init,               POINTER, HWND, PDEF_TOOLBAR, \
-                                        $ObjPtr(MaskedImageList), \
-                                        $ObjPtr(MaskedImageList), \
+  RedefineMethod    Init,               POINTER, HWND, PDEF_TOOLBAR, /
+                                        $ObjPtr(MaskedImageList), /
+                                        $ObjPtr(MaskedImageList), /
                                         $ObjPtr(MaskedImageList)
   RedefineMethod    WndProc,            DWORD, WPARAM, LPARAM
 ObjectEnd
@@ -123,34 +123,34 @@ MethodEnd
 ;             Arg6: -> MaskedImageList object for disabled icons.
 ; Return:     Nothing.
 
-Method Toolbar.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefStruc:PDEF_TOOLBAR, \
-                                   pIlNormal:$ObjPtr(MaskedImageList), \
-                                   pIlHot:$ObjPtr(MaskedImageList), \
+Method Toolbar.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefStruc:PDEF_TOOLBAR, /
+                                   pIlNormal:$ObjPtr(MaskedImageList), /
+                                   pIlHot:$ObjPtr(MaskedImageList), /
                                    pIlDisabled:$ObjPtr(MaskedImageList)
   SetObject xsi
   mov xbx, pDefStruc
   assume xbx:PDEF_TOOLBAR
-  invoke CreateWindowEx, 0, $OfsCStr("ToolbarWindow32"), [xbx].pTitle, [xbx].dStyle, \
-                         [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, hParent, \
+  invoke CreateWindowEx, 0, $OfsCStr("ToolbarWindow32"), [xbx].pTitle, [xbx].dStyle, /
+                         [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, hParent, /
                          [xbx].xCtlID, hInstance, NULL
   ACall xsi.Init, pOwner, xax
-  invoke SendMessage, [xsi].hWnd, TB_SETEXTENDEDSTYLE, 0, \
+  invoke SendMessage, [xsi].hWnd, TB_SETEXTENDEDSTYLE, 0, /
                       [xbx].dExStyle
 
   invoke SetWindowText, [xsi].hWnd, [xbx].pTitle
   .if pIlNormal != NULL
     mov xax, pIlNormal
-    invoke SendMessage, [xsi].hWnd, TB_SETIMAGELIST, 0, \
+    invoke SendMessage, [xsi].hWnd, TB_SETIMAGELIST, 0, /
                         [xax].$Obj(MaskedImageList).hImageList
   .endif
   .if pIlHot != NULL
     mov xax, pIlHot
-    invoke SendMessage, [xsi].hWnd, TB_SETHOTIMAGELIST, 0, \
+    invoke SendMessage, [xsi].hWnd, TB_SETHOTIMAGELIST, 0, /
                         [xax].$Obj(MaskedImageList).hImageList
   .endif
   .if pIlDisabled != NULL
     mov xax, pIlDisabled
-    invoke SendMessage, [xsi].hWnd, TB_SETDISABLEDIMAGELIST, 0, \
+    invoke SendMessage, [xsi].hWnd, TB_SETDISABLEDIMAGELIST, 0, /
                         [xax].$Obj(MaskedImageList).hImageList
   .endif
 

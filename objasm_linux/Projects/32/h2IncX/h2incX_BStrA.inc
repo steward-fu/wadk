@@ -32,7 +32,7 @@
 ; Returns:    Nothing / Reference to the string.
 ; Notes:      - Quotation marks can be used as usual. See example.
 ;             - Partial input strings can be separated by commas.
-;             - Break input lines with "\".
+;             - Break input lines with "/".
 ;             - Empty input strings ("" or '') causes an error.
 ;             - Numeric inputs in word range are possible.
 ; Example:    CBStr MyBStr, 'Note: "', "Director's cut", '"', 13, 10

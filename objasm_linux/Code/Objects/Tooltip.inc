@@ -146,12 +146,12 @@ MethodEnd
 
 Method Tooltip.Init, uses xsi, pOwner:POINTER, hParent:HWND
   SetObject xsi
-  invoke CreateWindowEx, WS_EX_TOPMOST or WS_EX_TOOLWINDOW, $OfsCStr("tooltips_class32"), \
-                         NULL, WS_POPUP or TTS_NOPREFIX or TTS_ALWAYSTIP, \
-                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateWindowEx, WS_EX_TOPMOST or WS_EX_TOOLWINDOW, $OfsCStr("tooltips_class32"), /
+                         NULL, WS_POPUP or TTS_NOPREFIX or TTS_ALWAYSTIP, /
+                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                          hParent, NULL, hInstance, NULL
   ACall xsi.Init, pOwner, xax
-  invoke SetWindowPos, [xsi].hWnd, HWND_TOPMOST, 0, 0, 0, 0, \        ;Must be defined as Topmost
+  invoke SetWindowPos, [xsi].hWnd, HWND_TOPMOST, 0, 0, 0, 0, /        ;Must be defined as Topmost
                        SWP_NOMOVE or SWP_NOSIZE or SWP_NOACTIVATE     ;  See the API reference
   Subclass Tooltip                                      ;Uses xsi
 MethodEnd

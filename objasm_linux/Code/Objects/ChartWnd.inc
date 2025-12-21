@@ -179,7 +179,7 @@ Method ChartWnd.Calc, uses xbx xdi xsi, hDC:HWND, pOutRect:PRECT
     .endif
   .else
     .ifBitSet [xsi].ScaleX.dFlags, CHT_SCALE_SHOW_LABEL
-      .ifBitSet [xsi].ScaleX.dFlags, CHT_SCALE_SHOW_AS_DATE or CHT_SCALE_SHOW_AS_DATEDIFF or \
+      .ifBitSet [xsi].ScaleX.dFlags, CHT_SCALE_SHOW_AS_DATE or CHT_SCALE_SHOW_AS_DATEDIFF or /
                                        CHT_SCALE_SHOW_AS_TIME
         m2z TextSize1.x
         m2z TextSize2.x
@@ -228,7 +228,7 @@ Method ChartWnd.Calc, uses xbx xdi xsi, hDC:HWND, pOutRect:PRECT
   ;Determine the right plot border ----------------------------------
   .ifBitClr [xsi].dFlags, CHT_WND_SHOW_Y2
     .ifBitSet [xsi].ScaleX.dFlags, CHT_SCALE_SHOW_LABEL
-      .ifBitSet [xsi].ScaleX.dFlags, CHT_SCALE_SHOW_AS_DATE or CHT_SCALE_SHOW_AS_DATEDIFF or \
+      .ifBitSet [xsi].ScaleX.dFlags, CHT_SCALE_SHOW_AS_DATE or CHT_SCALE_SHOW_AS_DATEDIFF or /
                                        CHT_SCALE_SHOW_AS_TIME
         m2z TextSize1.x
         m2z TextSize2.x
@@ -815,8 +815,8 @@ Method ChartWnd.DrawScaleX, uses xbx xdi xsi, hDC:HDC
               invoke TextOut, hDC, sdPosition, ebx, xdi, eax
             .else
               fst r8TimeCurrent
-              invoke VarBstrFromDate, r8TimeCurrent, 0, \
-                                      LOCALE_NOUSEROVERRIDE or VAR_DATEVALUEONLY or VAR_FOURDIGITYEARS, \
+              invoke VarBstrFromDate, r8TimeCurrent, 0, /
+                                      LOCALE_NOUSEROVERRIDE or VAR_DATEVALUEONLY or VAR_FOURDIGITYEARS, /
                                       addr pTimeCurrent
               .if eax == S_OK
                 mov xax, pTimeCurrent
@@ -824,7 +824,7 @@ Method ChartWnd.DrawScaleX, uses xbx xdi xsi, hDC:HDC
                   FillString [xdi], <30.12.1899>
                 .else
                   if TARGET_STR_TYPE eq STR_TYPE_ANSI
-                    invoke WideCharToMultiByte, CP_ACP, 0, pTimeCurrent, -1, \
+                    invoke WideCharToMultiByte, CP_ACP, 0, pTimeCurrent, -1, /
                                                 xdi, lengthof cBuffer, NULL, NULL
                   else
                     invoke StrCopyW, xdi, pTimeCurrent
@@ -845,12 +845,12 @@ Method ChartWnd.DrawScaleX, uses xbx xdi xsi, hDC:HDC
             fld st(0)
             fFrac
             fstp r8TimeCurrent
-            invoke VarBstrFromDate, r8TimeCurrent, 0, \
-                                    LOCALE_NOUSEROVERRIDE or VAR_TIMEVALUEONLY, \
+            invoke VarBstrFromDate, r8TimeCurrent, 0, /
+                                    LOCALE_NOUSEROVERRIDE or VAR_TIMEVALUEONLY, /
                                     addr pTimeCurrent
             .if eax == S_OK
               if TARGET_STR_TYPE eq STR_TYPE_ANSI
-                invoke WideCharToMultiByte, CP_ACP, 0, pTimeCurrent, -1, \
+                invoke WideCharToMultiByte, CP_ACP, 0, pTimeCurrent, -1, /
                                             xdi, lengthof cBuffer, NULL, NULL
               else
                 invoke StrCopyW, xdi, pTimeCurrent
@@ -1445,8 +1445,8 @@ Method ChartWnd.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefStruc:PDEF
   mov eax, [xbx].dStyle
   or eax, WS_CHILD or WS_VISIBLE
 
-  invoke CreateWindowEx, [xbx].dExStyle, offset(szChart), NULL, \
-                         eax, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, \
+  invoke CreateWindowEx, [xbx].dExStyle, offset(szChart), NULL, /
+                         eax, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, /
                          hParent, [xbx].xCtlID, hInstance, xsi
   assume xbx:NOTHING
   ACall xsi.Init, pOwner, xax
@@ -1598,22 +1598,22 @@ Method ChartWnd.OnButtonDown, uses xsi, wParam:WPARAM, lParam:LPARAM
   mov [xsi].LastCursorPos.y, ecx
 
   ;Check if X scale was clicked
-  .if (SDWORD ptr eax >= [xsi].PlotRect.left) && (SDWORD ptr eax < [xsi].PlotRect.right) && \
+  .if (SDWORD ptr eax >= [xsi].PlotRect.left) && (SDWORD ptr eax < [xsi].PlotRect.right) && /
     (SDWORD ptr ecx >= [xsi].PlotRect.bottom) && (SDWORD ptr ecx < [xsi].ViewRect.bottom)
     mov [xsi].sbButtonDownOn, CHT_ID_SCALEX
     invoke SetCapture, [xsi].hWnd
   ;Check if Y1 scale was clicked
-  .elseif (SDWORD ptr eax >= [xsi].ViewRect.left) && (SDWORD ptr eax < [xsi].PlotRect.left) && \
+  .elseif (SDWORD ptr eax >= [xsi].ViewRect.left) && (SDWORD ptr eax < [xsi].PlotRect.left) && /
     (SDWORD ptr ecx >= [xsi].ViewRect.top) && (SDWORD ptr ecx < [xsi].PlotRect.bottom)
     mov [xsi].sbButtonDownOn, CHT_ID_SCALEY1
     invoke SetCapture, [xsi].hWnd
   ;Check if Y2 scale was clicked
-  .elseif (SDWORD ptr eax < [xsi].ViewRect.right) && (SDWORD ptr eax >= [xsi].PlotRect.right) && \
+  .elseif (SDWORD ptr eax < [xsi].ViewRect.right) && (SDWORD ptr eax >= [xsi].PlotRect.right) && /
     (SDWORD ptr ecx >= [xsi].ViewRect.top) && (SDWORD ptr ecx <= [xsi].PlotRect.bottom)
     mov [xsi].sbButtonDownOn, CHT_ID_SCALEY2
     invoke SetCapture, [xsi].hWnd
   ;Check if plot area was clicked
-  .elseif (SDWORD ptr eax >= [xsi].PlotRect.left) && (SDWORD ptr eax < [xsi].PlotRect.right) && \
+  .elseif (SDWORD ptr eax >= [xsi].PlotRect.left) && (SDWORD ptr eax < [xsi].PlotRect.right) && /
     (SDWORD ptr ecx >= [xsi].PlotRect.top) && (SDWORD ptr ecx <= [xsi].PlotRect.bottom)
     mov [xsi].sbButtonDownOn, CHT_ID_PLOT
     invoke SetCapture, [xsi].hWnd
@@ -1659,14 +1659,14 @@ Method ChartWnd.OnCreate, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
 
   ;Create a ToolTip window to display popup information when hoovering over an InfoArea
-  invoke CreateWindowEx, WS_EX_TOPMOST, $OfsCStr("tooltips_class32"), NULL, \
-                         WS_POPUP or TTS_NOPREFIX or TTS_ALWAYSTIP or TTS_BALLOON, \
-                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateWindowEx, WS_EX_TOPMOST, $OfsCStr("tooltips_class32"), NULL, /
+                         WS_POPUP or TTS_NOPREFIX or TTS_ALWAYSTIP or TTS_BALLOON, /
+                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                          [xsi].hWnd, 0, hInstance, NULL
   mov [xsi].hToolTip, xax
   invoke SendMessage, [xsi].hToolTip, TTM_ACTIVATE, FALSE, 0
   BitClr [xsi].dFlags, CHT_WND_TOOLTIP_ACTIVE
-  invoke SetWindowPos, [xsi].hToolTip, HWND_TOPMOST, 0, 0, 0, 0, \
+  invoke SetWindowPos, [xsi].hToolTip, HWND_TOPMOST, 0, 0, 0, 0, /
                        SWP_NOMOVE or SWP_NOSIZE or SWP_NOACTIVATE
   invoke SendMessage, [xsi].hToolTip, TTM_SETMAXTIPWIDTH, 0, 500    ;Set max width to
                                                                     ;enable line breaks
@@ -2349,7 +2349,7 @@ Method ChartWnd.Show, uses xbx xdi xsi, hDC:HDC, pRect:PRECT
     xor ebx, ebx
     .while ebx < [xsi].Data.dCount
       OCall [xsi].Data::Collection.ItemAt, ebx
-      OCall xax::ChartSeries.Scan, [xax].$Obj(ChartSeries).dDataFrom, \
+      OCall xax::ChartSeries.Scan, [xax].$Obj(ChartSeries).dDataFrom, /
                                    [xax].$Obj(ChartSeries).dDataCount
       inc ebx
     .endw
@@ -2490,7 +2490,7 @@ Method ChartWnd.Show, uses xbx xdi xsi, hDC:HDC, pRect:PRECT
 
   ;Copy the drawn chart on memory DC to window DC
   mov xbx, pRect
-  invoke BitBlt, hDC, [xbx].RECT.left, [xbx].RECT.top, [xbx].RECT.right, [xbx].RECT.bottom, \
+  invoke BitBlt, hDC, [xbx].RECT.left, [xbx].RECT.top, [xbx].RECT.right, [xbx].RECT.bottom, /
                  xdi, [xbx].RECT.left, [xbx].RECT.top, SRCCOPY
 
   invoke DeleteObject, $invoke(SelectObject, xdi, hPrevBmp)   ;Release hMemBmp

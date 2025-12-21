@@ -230,10 +230,8 @@ endm
 BuildObjInherPath macro MglObjName:req, MglAncName:=<>
   ifnb <MglAncName>
     ifdef MglAncName
-      @CatStr(MglObjName, <_InherFrwPath>) textequ \
-        @CatStr(MglAncName, <,>, %@CatStr(MglObjName, <_InherFrwPath>))
-      @CatStr(MglObjName, <_InherRevPath>) textequ \
-        @CatStr(%@CatStr(MglObjName, <_InherRevPath>), <,>, MglAncName)
+      @CatStr(MglObjName, <_InherFrwPath>) textequ @CatStr(MglAncName, <,>, %@CatStr(MglObjName, <_InherFrwPath>))
+      @CatStr(MglObjName, <_InherRevPath>) textequ @CatStr(%@CatStr(MglObjName, <_InherRevPath>), <,>, MglAncName)
       $$Inher CatStr <MglAncName>, <_Inherit>
       %exitm <BuildObjInherPath(MglObjName, %$$Inher)>  ;;Use recursion
     else
@@ -478,8 +476,7 @@ InterfaceMethod macro MtdName:req, Args:vararg
     %$$Index = &??ObjName&_IfcMtdCount + 1
     %&??ObjName&_IfcMtdCount = $$Index
     @CatStr(%??ObjName, <_IfcMethodName_>, %$$Index) textequ @CatStr(%??MtdPfx, MtdName)
-    @CatStr(%??ObjName, <_IfcMethodProc_>, %$$Index) textequ \
-           @CatStr(<offset(>, %??ObjName, %??MtdPfx, MtdName, <)>)
+    @CatStr(%??ObjName, <_IfcMethodProc_>, %$$Index) textequ @CatStr(<offset(>, %??ObjName, %??MtdPfx, MtdName, <)>)
     %&??ObjName&_&MtdName&_Access = ??MethodAccess
     @CatStr(%??ObjName, %??MtdPfx, MtdName, <_MtdType>) = ??MTDTYPE_INTERFACE
   endif
@@ -521,8 +518,7 @@ VirtualMethod macro MtdName:req, Args:vararg
     %$$Index = &??ObjName&_VtlMtdCount + 1
     %&??ObjName&_VtlMtdCount = $$Index
     @CatStr(%??ObjName, <_VtlMethodName_>, %$$Index) textequ @CatStr(%??MtdPfx, MtdName)
-    @CatStr(%??ObjName, <_VtlMethodProc_>, %$$Index) textequ \
-           @CatStr(<offset(>, %??ObjName, %??MtdPfx, MtdName, <)>)
+    @CatStr(%??ObjName, <_VtlMethodProc_>, %$$Index) textequ @CatStr(<offset(>, %??ObjName, %??MtdPfx, MtdName, <)>)
     %&??ObjName&_&MtdName&_Access = ??MethodAccess
     @CatStr(%??ObjName, %??MtdPfx, MtdName, <_MtdType>) = ??MTDTYPE_VIRTUAL
   endif
@@ -564,8 +560,7 @@ DynamicMethod macro MtdName:req, Args:vararg
     %$$Index = &??ObjName&_DynMtdCount + 1
     %&??ObjName&_DynMtdCount = $$Index
     @CatStr(%??ObjName, <_DynMtdName_>, %$$Index) textequ @CatStr(%??MtdPfx, MtdName)
-    @CatStr(%??ObjName, <_DynMtdProc_>, %$$Index) textequ \
-           @CatStr(<offset(>, %??ObjName, %??MtdPfx, MtdName, <)>)
+    @CatStr(%??ObjName, <_DynMtdProc_>, %$$Index) textequ @CatStr(<offset(>, %??ObjName, %??MtdPfx, MtdName, <)>)
     %&??ObjName&_&MtdName&_Access = ??MethodAccess
     @CatStr(%??ObjName, %??MtdPfx, MtdName, <_MtdType>) = ??MTDTYPE_DYNAMIC
   endif
@@ -691,8 +686,7 @@ RedefineMethod macro MtdName:req, Args:vararg
         %$$Index = &??ObjName&_OMCount + 1
         %&??ObjName&_OMCount = $$Index
         @CatStr(%??ObjName, <_OvrMtdName_>, %$$Index) textequ @CatStr(%??MtdPfx, MtdName)
-        @CatStr(%??ObjName, <_OvrMtdProc_>, %$$Index) textequ \
-               @CatStr(<offset(>, %??ObjName, %??MtdPfx, MtdName, <)>)
+        @CatStr(%??ObjName, <_OvrMtdProc_>, %$$Index) textequ @CatStr(<offset(>, %??ObjName, %??MtdPfx, MtdName, <)>)
       endif
     endif
   endif
@@ -867,12 +861,12 @@ endm
 LoadObjects macro FileNameList:vararg
   IMPLEMENT = FALSE
   for $$FileName:req, <FileNameList>
-    if @InStr(1, $$FileName, <\>) eq 0
+    if @InStr(1, $$FileName, </>) eq 0
       $$IncObjPath textequ <&ObjPath&>
       if TARGET_STR_TYPE eq STR_TYPE_ANSI
-        $$LibObjPath catstr <&ObjPath&>, <Lib\>, %TARGET_BITNESS, <A\>
+        $$LibObjPath catstr <&ObjPath&>, <Lib/>, %TARGET_BITNESS, <A/>
       else
-        $$LibObjPath catstr <&ObjPath&>, <Lib\>, %TARGET_BITNESS, <W\>
+        $$LibObjPath catstr <&ObjPath&>, <Lib/>, %TARGET_BITNESS, <W/>
       endif
     else
       $$IncObjPath textequ <>
@@ -896,7 +890,7 @@ endm
 MakeObjects macro FileNameList:vararg
   for $$FileName:req, <FileNameList>
     IMPLEMENT = TRUE                                    ;;In case it was reseted
-    if @InStr(1, $$FileName, <\>) eq 0
+    if @InStr(1, $$FileName, </>) eq 0
       $$IncObjPath textequ <&ObjPath&>
     else
       $$IncObjPath textequ <>
@@ -916,7 +910,7 @@ VirtualObjects macro FileNameList:req
     $$FName textequ <$$FileName>
     IMPLEMENT = FALSE
     MAKETEMPL = FALSE
-    if @InStr(1, $$FileName, <\>) eq 0
+    if @InStr(1, $$FileName, </>) eq 0
       $$FName CatStr <&ObjPath&>, <$$FileName>
     endif
     %include $$FName.inc
@@ -1107,15 +1101,13 @@ CreateTemplate macro MglObjName:req
   ??IMCount = CountInterfaceMethods(MglObjName)
 
   %??&MglObjName&_Init struc 1                          ;;Structure holding vars & dynamic methods
-    %POINTER offset(@CatStr(<TPL_>, MglObjName, <_DMT>)) + \ ;;-> Dual Method Table
-             sizeof(??&MglObjName&_VMT) + sizeof(POINTER)
+    %POINTER offset(@CatStr(<TPL_>, MglObjName, <_DMT>)) + sizeof(??&MglObjName&_VMT) + sizeof(POINTER)
     CreateDynamicTemplate MglObjName, <TRUE>            ;;Create initialized dynamic (DYN) struc
   %??&MglObjName&_Init ends
 
   %??&MglObjName&_DMT_Init struc 1
     CreateVirtualMethodTable MglObjName, <TRUE>         ;;Create VMT initialized structure
-    %POINTER offset(@CatStr(<TPL_>, MglObjName, <_DMT>)) + \ ;;-> end of structure
-             sizeof(??&MglObjName&_DMT) + 2*sizeof(DWORD)   ;;2 IDs
+    %POINTER offset(@CatStr(<TPL_>, MglObjName, <_DMT>)) + sizeof(??&MglObjName&_DMT) + 2*sizeof(DWORD)   ;;2 IDs
     %if ??IMCount gt 0
       CreateInterfaceMethodTable MglObjName, <TRUE>     ;;Create initialized IMT structure
     endif
@@ -1279,8 +1271,7 @@ CreateEventList macro MglObjName:req
           elseif ??MtdType eq ??MTDTYPE_INTERFACE
             POINTER offset(@CatStr(<TPL_>, MglObjName, <_DMT.>, %$$sz1))
           elseif ??MtdType eq ??MTDTYPE_DYNAMIC
-            POINTER offset(@CatStr(<TPL_>, MglObjName, <.>, %$$sz1)) - \
-                    offset(@CatStr(<TPL_>, MglObjName))
+            POINTER offset(@CatStr(<TPL_>, MglObjName, <.>, %$$sz1)) - offset(@CatStr(<TPL_>, MglObjName))
           else
             %@Err <CreateEventList Error: unknown method $$sz1>
           endif
@@ -1409,8 +1400,7 @@ $MethodAddr macro Expression:req
               mov xax, ??InsExpr                          ;;??InsExpr is not a register => load it
             else
               $$Attributes = opattr(??InsExpr)
-              if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or \
-                 ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
+              if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
                 lea xax, ??InsExpr
               else
                 mov xax, ??InsExpr
@@ -1419,20 +1409,17 @@ $MethodAddr macro Expression:req
             mov xax, POINTER ptr [xax]                  ;;Get address of VMT
           endif
         endif
-        %exitm <@CatStr(<(??>, %??ObjExpr, <_VMT ptr [xax - ??>, %??ObjExpr, \
-                        <_VMT - sizeof(POINTER)]).>, %??MtdExpr)>
+        %exitm <@CatStr(<(??>, %??ObjExpr, <_VMT ptr [xax - ??>, %??ObjExpr, <_VMT - sizeof(POINTER)]).>, %??MtdExpr)>
 
       elseif ??MtdType eq ??MTDTYPE_INTERFACE
         %ifb <??InsExpr>
-          mov xax, @CatStr(<offset(TPL_>, %??ImpObj, <_DMT) + sizeof(??>, %??ImpObj, <_VMT)>)) + \
-                   sizeof(POINTER)                      ;;xax -> IMT of the implementing object
+          mov xax, @CatStr(<offset(TPL_>, %??ImpObj, <_DMT) + sizeof(??>, %??ImpObj, <_VMT)>)) + sizeof(POINTER)                      ;;xax -> IMT of the implementing object
         else
           if (opattr ??InsExpr) and OAT_REGISTER        ;;Is ??InsExpr a register?
             mov xax, POINTER ptr [??InsExpr]            ;;Get address of IMT
           else
             $$Attributes = opattr(??InsExpr)
-            if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or \
-               ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
+            if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
               lea xax, ??InsExpr
             else
               mov xax, ??InsExpr
@@ -1451,8 +1438,7 @@ $MethodAddr macro Expression:req
             %exitm <(??ObjExpr ptr [??InsExpr]).??MtdExpr>;;Return method address in instance data
           else
             $$Attributes = opattr(??InsExpr)
-            if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or \
-               ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
+            if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
               lea xax, ??InsExpr
             else
               mov xax, ??InsExpr
@@ -1505,17 +1491,13 @@ New macro Expression:req, MemSize:=<$$DynamicTemplateSize>
   ;;Get ??ObjExpr
   if ??Pos1 ne 0
     if ??Pos2 ne 0
-      ??ObjExpr CatStr @SubStr(<Expression>, ??Pos1 + 2, ??Pos2 - ??Pos1 - 2), \
-                       ??ObjPfxSep, \
-                       @SubStr(<Expression>, ??Pos2 + 1)
+      ??ObjExpr CatStr @SubStr(<Expression>, ??Pos1 + 2, ??Pos2 - ??Pos1 - 2), ??ObjPfxSep, @SubStr(<Expression>, ??Pos2 + 1)
     else
       ??ObjExpr CatStr ??ObjPfx, @SubStr(<Expression>, ??Pos1 + 2)
     endif
   else
     if ??Pos2 ne 0
-      ??ObjExpr CatStr @SubStr(<Expression>, 1, ??Pos2 - 1), \
-                       ??ObjPfxSep, \
-                       @SubStr(<Expression>, ??Pos2 + 1)
+      ??ObjExpr CatStr @SubStr(<Expression>, 1, ??Pos2 - 1), ??ObjPfxSep, @SubStr(<Expression>, ??Pos2 + 1)
     else
       ??ObjExpr CatStr ??ObjPfx, <Expression>
     endif
@@ -1544,8 +1526,7 @@ New macro Expression:req, MemSize:=<$$DynamicTemplateSize>
           endif
         else
           %$$Attributes = opattr(??InsExpr)
-          if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or \
-             ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
+          if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
             %lea xax, ??InsExpr
           else
             %mov xax, offset(??InsExpr)
@@ -1621,13 +1602,9 @@ Kill macro Expression:req, Args:vararg
   if ??Pos1 ne 0
     if ??Pos2 ne 0
       if ??Pos3 ne 0
-        ??ObjExpr CatStr @SubStr(<Expression>, ??Pos1 + 2, ??Pos2 - ??Pos1 - 2), \
-                         ??ObjPfxSep, \
-                         @SubStr(<Expression>, ??Pos2 + 1, ??Pos3 - ??Pos2 - 1)
+        ??ObjExpr CatStr @SubStr(<Expression>, ??Pos1 + 2, ??Pos2 - ??Pos1 - 2), ??ObjPfxSep, @SubStr(<Expression>, ??Pos2 + 1, ??Pos3 - ??Pos2 - 1)
       else
-        ??ObjExpr CatStr @SubStr(<Expression>, ??Pos1 + 2, ??Pos2 - ??Pos1 - 2), \
-                         ??ObjPfxSep, \
-                         @SubStr(<Expression>, ??Pos2 + 1)
+        ??ObjExpr CatStr @SubStr(<Expression>, ??Pos1 + 2, ??Pos2 - ??Pos1 - 2), ??ObjPfxSep, @SubStr(<Expression>, ??Pos2 + 1)
       endif
     else
       if ??Pos3 ne 0
@@ -1727,8 +1704,7 @@ SetObject macro Register:req, ObjName:=<>, pInstance
       endif
     else
       $$Attributes = opattr($$InstPtr)
-      if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or \
-         ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
+      if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
         lea Register, $$InstPtr
       else
         mov Register, offset($$InstPtr)
@@ -1836,8 +1812,7 @@ Override macro DstExpression:req, SrcExpression:req
               endif
             else
               $$Attributes = opattr(??InsExpr)
-              if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or \
-                 ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
+              if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
                 lea xcx, ??InsExpr
               else
                 mov xcx, offset(??InsExpr)
@@ -1856,8 +1831,7 @@ Override macro DstExpression:req, SrcExpression:req
               endif
             else
               $$Attributes = opattr(??InsExpr)
-              if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or \
-                 ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
+              if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
                 lea xcx, ??InsExpr
               else
                 mov xcx, offset(??InsExpr)
@@ -1875,8 +1849,7 @@ Override macro DstExpression:req, SrcExpression:req
               endif
             else
               $$Attributes = opattr(??InsExpr)
-              if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or \
-                 ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
+              if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
                 lea xdx, ??InsExpr
               else
                 mov xdx, offset(??InsExpr)
@@ -2727,8 +2700,7 @@ $GetInstance32 macro InsName:req, Reg:req
     endif
   else
     $$Attributes = opattr(InsName)
-    if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or \
-       ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
+    if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
       lea Reg, InsName
     else
       mov Reg, offset(InsName)
@@ -2753,8 +2725,7 @@ GetInstance64 macro InsName:req
     endif
   else
     $$Attributes = opattr(InsName)
-    if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or \
-       ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
+    if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
       lea rcx, InsName
     else
       mov rcx, offset(InsName)
@@ -2842,8 +2813,7 @@ MethodInvoke macro UseTPL, InsName:req, MglObjName:req, MglMtdName:req, Args:var
                   push InsName
                 else
                   $$Attributes = opattr(InsName)
-                  if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or \
-                     ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
+                  if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
                     lea edx, InsName
                     push edx
                   else
@@ -2858,8 +2828,7 @@ MethodInvoke macro UseTPL, InsName:req, MglObjName:req, MglMtdName:req, Args:var
               else
                 if type(InsName) ne @WordSize
                   $$Attributes = opattr(InsName)
-                  if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or \
-                     ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
+                  if ($$Attributes eq (OAT_NO_ERROR or OAT_RELOCATABLE)) or ($$Attributes eq (OAT_SS_RELATIVE or OAT_NO_ERROR or OAT_RELOCATABLE))
                     lea rcx, InsName
                   else
                     mov rcx, offset(InsName)
@@ -3033,13 +3002,9 @@ $ParseMtdExpr macro Expression:req
   if ??Pos1 ne 0
     if ??Pos2 ne 0
       if ??Pos3 ne 0
-        ??ObjExpr CatStr @SubStr(<Expression>, ??Pos1 + 2, ??Pos2 - ??Pos1 - 2), \
-                         ??ObjPfxSep, \
-                         @SubStr(<Expression>, ??Pos2 + 1, ??Pos3 - ??Pos2 - 1)
+        ??ObjExpr CatStr @SubStr(<Expression>, ??Pos1 + 2, ??Pos2 - ??Pos1 - 2), ??ObjPfxSep, @SubStr(<Expression>, ??Pos2 + 1, ??Pos3 - ??Pos2 - 1)
       else
-        ??ObjExpr CatStr @SubStr(<Expression>, ??Pos1 + 2, ??Pos2 - ??Pos1 - 2), \
-                         ??ObjPfxSep, \
-                         @SubStr(<Expression>, ??Pos2 + 1)
+        ??ObjExpr CatStr @SubStr(<Expression>, ??Pos1 + 2, ??Pos2 - ??Pos1 - 2), ??ObjPfxSep, @SubStr(<Expression>, ??Pos2 + 1)
       endif
     else
       if ??Pos3 ne 0
@@ -3052,9 +3017,7 @@ $ParseMtdExpr macro Expression:req
   else
     if ??Pos2 ne 0
       if ??Pos3 ne 0
-        ??ObjExpr CatStr @SubStr(<Expression>, 1, ??Pos2 - 1), \
-                         ??ObjPfxSep, \
-                         @SubStr(<Expression>, ??Pos2 + 1, ??Pos3 - ??Pos2 - 1)
+        ??ObjExpr CatStr @SubStr(<Expression>, 1, ??Pos2 - 1), ??ObjPfxSep, @SubStr(<Expression>, ??Pos2 + 1, ??Pos3 - ??Pos2 - 1)
       else
         @Err <ParseMtdExpr Error: invalid syntax in Expression>
         exitm <FALSE>
@@ -3118,13 +3081,9 @@ $ParseCallExpr macro Expression:req
   if ??Pos1 ne 0
     if ??Pos2 ne 0
       if ??Pos3 ne 0
-        ??ObjExpr CatStr @SubStr(<Expression>, ??Pos1 + 2, ??Pos2 - ??Pos1 - 2), \
-                         ??ObjPfxSep, \
-                         @SubStr(<Expression>, ??Pos2 + 1, ??Pos3 - ??Pos2 - 1)
+        ??ObjExpr CatStr @SubStr(<Expression>, ??Pos1 + 2, ??Pos2 - ??Pos1 - 2), ??ObjPfxSep, @SubStr(<Expression>, ??Pos2 + 1, ??Pos3 - ??Pos2 - 1)
       else
-        ??ObjExpr CatStr @SubStr(<Expression>, ??Pos1 + 2, ??Pos2 - ??Pos1 - 2), \
-                         ??ObjPfxSep, \
-                         @SubStr(<Expression>, ??Pos2 + 1)
+        ??ObjExpr CatStr @SubStr(<Expression>, ??Pos1 + 2, ??Pos2 - ??Pos1 - 2), ??ObjPfxSep, @SubStr(<Expression>, ??Pos2 + 1)
       endif
     else
       if ??Pos3 ne 0
@@ -3136,9 +3095,7 @@ $ParseCallExpr macro Expression:req
   else
     if ??Pos2 ne 0
       if ??Pos3 ne 0
-        ??ObjExpr CatStr @SubStr(<Expression>, 1, ??Pos2 - 1), \
-                         ??ObjPfxSep, \
-                         @SubStr(<Expression>, ??Pos2 + 1, ??Pos3 - ??Pos2 - 1)
+        ??ObjExpr CatStr @SubStr(<Expression>, 1, ??Pos2 - 1), ??ObjPfxSep, @SubStr(<Expression>, ??Pos2 + 1, ??Pos3 - ??Pos2 - 1)
       else
         exitm <FALSE>
       endif
@@ -3195,9 +3152,7 @@ $ParseInstExpr macro Expression:req
   ;;Get ??ObjExpr
   if ??Pos1 ne 0
     if ??Pos2 ne 0
-      ??ObjExpr CatStr @SubStr(<Expression>, ??Pos1 + 2, ??Pos2 - ??Pos1 - 2), \
-                       ??ObjPfxSep, \
-                       @SubStr(<Expression>, ??Pos2 + 1)
+      ??ObjExpr CatStr @SubStr(<Expression>, ??Pos1 + 2, ??Pos2 - ??Pos1 - 2), ??ObjPfxSep, @SubStr(<Expression>, ??Pos2 + 1)
     else
       ??ObjExpr CatStr ??ObjPfx, @SubStr(<Expression>, ??Pos1 + 2)
     endif
@@ -3239,9 +3194,7 @@ $ParseObjExpr macro Expression:req
 
   ;;Get ??ObjExpr
   if ??Pos2 ne 0
-    ??ObjExpr CatStr @SubStr(<Expression>, 1, ??Pos2 - 1), \
-                     ??ObjPfxSep, \
-                     @SubStr(<Expression>, ??Pos2 + 1)
+    ??ObjExpr CatStr @SubStr(<Expression>, 1, ??Pos2 - 1), ??ObjPfxSep, @SubStr(<Expression>, ??Pos2 + 1)
   else
     ??ObjExpr CatStr ??ObjPfx, <Expression>
   endif

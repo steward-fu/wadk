@@ -63,16 +63,16 @@ MethodEnd
 ;             Arg4: -> DEF_TREEVIEW structure.
 ; Return:     Nothing.
 
-Method TreeView.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, \
+Method TreeView.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, /
                                     pImgList:$ObjPtr(MaskedImageList), pDefStruc:PDEF_TREEVIEW
   SetObject xsi
   mov xbx, pDefStruc
   assume xbx:PDEF_TREEVIEW
   mov eax, [xbx].dStyle
   or eax, WS_CHILD or WS_VISIBLE
-  invoke CreateWindowEx, [xbx].DEF_TREEVIEW.dExStyle, $OfsCStr("SysTreeView32"), \
-                         [xbx].pTitle, eax, \
-                         [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, \
+  invoke CreateWindowEx, [xbx].DEF_TREEVIEW.dExStyle, $OfsCStr("SysTreeView32"), /
+                         [xbx].pTitle, eax, /
+                         [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, /
                          hParent, [xbx].xCtlID, hInstance, NULL
   assume xbx:NOTHING
   ACall xsi.Init, pOwner, xax
@@ -103,7 +103,7 @@ MethodEnd
 ;             Arg5: Selected icon index.
 ; Return:     eax = Node handle.
 
-Method TreeView.NodeInsert,, hNodeParent:HANDLE, hNodeAfter:HANDLE, pText:PSTRING, \
+Method TreeView.NodeInsert,, hNodeParent:HANDLE, hNodeAfter:HANDLE, pText:PSTRING, /
                              dImgNorIndex:DWORD, dImgSelIndex:DWORD
     local TVI:TV_INSERTSTRUCT
 

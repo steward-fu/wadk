@@ -31,25 +31,25 @@ align ALIGN_CODE
       .endif
 
       ;There is a wildcard => we have to recurse
-      invoke StrLScan, xax, "\"
+      invoke StrLScan, xax, "/"
       mov pNextSlash, xax
       .if xax == NULL
         invoke StrCat, xsi, pPosStr                     ;PreStr + PosStr
       .else
         sub xax, pPosStr
-        invoke StrCCat, xsi, pPosStr, eax               ;PreStr + PosStr up to "\"
+        invoke StrCCat, xsi, pPosStr, eax               ;PreStr + PosStr up to "/"
       .endif
 
       mov xax, pFindFileParams
       lea xsi, [xax].FIND_FILE_PARAMS.cPreStr
-      invoke StrRScan, xsi, "\"
+      invoke StrRScan, xsi, "/"
       .if xax != NULL
         mov xsi, xax
         add xsi, sizeof(CHR)
       .endif
 
       mov xax, pFindFileParams
-      invoke FindFirstFileEx, addr [xax].FIND_FILE_PARAMS.cPreStr, FindExInfoStandard, xbx, 0, \
+      invoke FindFirstFileEx, addr [xax].FIND_FILE_PARAMS.cPreStr, FindExInfoStandard, xbx, 0, /
                               NULL, FIND_FIRST_EX_LARGE_FETCH
       .if eax != INVALID_HANDLE_VALUE
         mov hFindFile, xax
@@ -77,9 +77,9 @@ align ALIGN_CODE
                 mov xdx, pStrEnd
                 m2z CHR ptr [xdx]                       ;Restore PreStr
 
-                ;Then search recursively into subfolders => we create a new PosStr = "\*"
+                ;Then search recursively into subfolders => we create a new PosStr = "/*"
                 lea xcx, cPosStr
-                FillString [xcx], <\*>
+                FillString [xcx], </*>
                 .if pNextSlash != NULL
                   add xcx, 2*sizeof(CHR)
                   invoke StrCopy, xcx, pNextSlash
@@ -109,7 +109,7 @@ align ALIGN_CODE
     invoke StrIFilter, addr [xdi].FIND_FILE_PARAMS.cPreStr, [xdi].FIND_FILE_PARAMS.pFilter
     .if eax != FALSE
       mov xsi, $invoke(StrEnd, addr [xdi].FIND_FILE_PARAMS.cPreStr)
-      mov CHR ptr [xsi], "\"
+      mov CHR ptr [xsi], "/"
       add xsi, sizeof(CHR)
       invoke StrCopyA, xsi, [xdi].FIND_FILE_PARAMS.pFileName
       invoke FindFirstFile, addr [xdi].FIND_FILE_PARAMS.cPreStr, xbx
@@ -118,7 +118,7 @@ align ALIGN_CODE
         xor eax, eax                                    ;Return FALSE
       .else
         invoke FindClose, xax
-        invoke GetFullPathName, addr [xdi].FIND_FILE_PARAMS.cPreStr, MAX_PATH, \
+        invoke GetFullPathName, addr [xdi].FIND_FILE_PARAMS.cPreStr, MAX_PATH, /
                                 [xdi].FIND_FILE_PARAMS.pRetBuffer, NULL
       .endif
     .endif
@@ -134,8 +134,8 @@ align ALIGN_CODE
 ;             Arg3: -> Buffer containing the full path and file name in which the file was found.
 ;                      Buffer length = MAX_PATH.
 ; Return:     eax = Number of chars copied to the destination buffer. 0 if the file was not found.
-; Example:    invoke FindFile, $OfsCStr("free.inc"), $OfsCStr("\Here*",0), addr cBuf
-;               Search free.inc in all \Here and suddirectories.
+; Example:    invoke FindFile, $OfsCStr("free.inc"), $OfsCStr("/Here*",0), addr cBuf
+;               Search free.inc in all /Here and suddirectories.
 
 align ALIGN_CODE
 ProcName proc uses xbx, pFileName:POINTER, pPaths:POINTER, pRetBuffer:POINTER

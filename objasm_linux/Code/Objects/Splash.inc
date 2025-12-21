@@ -129,7 +129,7 @@ Method Splash.OnPaint, uses xsi, wParam:WPARAM, lParam:LPARAM
 
   SetObject xsi
   invoke BeginPaint, [xsi].hWnd, addr PS
-  invoke BitBlt, xax, 0, 0, [xsi].BmpData.bmWidth, [xsi].BmpData.bmHeight, \
+  invoke BitBlt, xax, 0, 0, [xsi].BmpData.bmWidth, [xsi].BmpData.bmHeight, /
                  [xsi].hMemDC, 0, 0, SRCCOPY
   invoke EndPaint, [xsi].hWnd, addr PS
   xor eax, eax
@@ -176,8 +176,8 @@ Method Splash.Worker, uses xsi
   mov dPosX, eax
   invoke CenterForm, [xsi].BmpData.bmHeight, $32($invoke(GetSystemMetrics, SM_CYSCREEN))
   mov dPosY, eax
-  invoke CreateWindowEx, WS_EX_TOOLWINDOW or WS_EX_TOPMOST or WS_EX_LAYERED, \
-             offset szSplash, offset szSplash, WS_POPUP, \
+  invoke CreateWindowEx, WS_EX_TOOLWINDOW or WS_EX_TOPMOST or WS_EX_LAYERED, /
+             offset szSplash, offset szSplash, WS_POPUP, /
              dPosX, dPosY, [xsi].BmpData.bmWidth, [xsi].BmpData.bmHeight, 0, 0, hInstance, pSelf
   invoke SetWindowRgn, [xsi].hWnd, [xsi].hSkinRegion, FALSE ;The region is now owned by the window!
 

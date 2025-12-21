@@ -23,7 +23,7 @@
 ; Return:     Nothing.
 
 align ALIGN_CODE
-ProcName proc uses xbx xdi xsi, pStart:POINTER, dSize:DWORD, dRepresentationFormat:DWORD, \
+ProcName proc uses xbx xdi xsi, pStart:POINTER, dSize:DWORD, dRepresentationFormat:DWORD, /
                                 dMemColor:DWORD, dRepColor:DWORD, dBackColor:DWORD, pDest:POINTER
   local bOutBuffer[1024]:CHRA, bAuxBuffer[128]:CHRA, dHeaderCount:DWORD
   local .xsi:XWORD, .xbx:XWORD, .ecx:DWORD

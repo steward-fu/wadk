@@ -513,8 +513,8 @@ EFIPrintGfxInfo proc uses rsi r10 r11 pConsoleOut:PCONOUT, ModeNumber:DWORD, pGf
   if 0
     .if (showHeader == 1)
       mov rcx, pConsoleOut
-      pConsoleOut->OutputString(pConsoleOut, L"Mode       | Resolution              | Stride     | Pixel Format \r\n")
-      pConsoleOut->OutputString(pConsoleOut, L"-----------+-------------------------+------------+--------------------\r\n")
+      pConsoleOut->OutputString(pConsoleOut, L"Mode       | Resolution              | Stride     | Pixel Format /r/n")
+      pConsoleOut->OutputString(pConsoleOut, L"-----------+-------------------------+------------+--------------------/r/n")
     .endif
 
     PrintHexDWORD(ModeNumber)
@@ -531,16 +531,16 @@ EFIPrintGfxInfo proc uses rsi r10 r11 pConsoleOut:PCONOUT, ModeNumber:DWORD, pGf
     mov r10d, (EFI_GRAPHICS_OUTPUT_MODE_INFORMATION ptr [rsi]).PixelFormat
     .switch r10
       .case EFI_PIX_FMT_PixelRedGreenBlueReserved8BitPerColor
-        pConsoleOut->OutputString(pConsoleOut, L"32bit RGBx\r\n")
+        pConsoleOut->OutputString(pConsoleOut, L"32bit RGBx/r/n")
         .break
       .case EFI_PIX_FMT_PixelBlueGreenRedReserved8BitPerColor
-        pConsoleOut->OutputString(pConsoleOut, L"32bit BGRx\r\n")
+        pConsoleOut->OutputString(pConsoleOut, L"32bit BGRx/r/n")
         .break
       .case EFI_PIX_FMT_PixelBitMask
-        pConsoleOut->OutputString(pConsoleOut, L"32bit Pixel Mask\r\n")
+        pConsoleOut->OutputString(pConsoleOut, L"32bit Pixel Mask/r/n")
         .break
       .case EFI_PIX_FMT_PixelBltOnly
-        pConsoleOut->OutputString(pConsoleOut, L"BLT Only\r\n")
+        pConsoleOut->OutputString(pConsoleOut, L"BLT Only/r/n")
         .break
     .endsw
   endif

@@ -41,11 +41,11 @@ ObjectEnd
 ;    SkinApp implementation
 ; ==================================================================================================
 
-CLSSTYLE          equ   CS_BYTEALIGNWINDOW or CS_BYTEALIGNCLIENT or \
+CLSSTYLE          equ   CS_BYTEALIGNWINDOW or CS_BYTEALIGNCLIENT or /
                         CS_VREDRAW or CS_HREDRAW; or CS_DROPSHADOW
 
-TBSTYLE           equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or \
-                        CCS_NORESIZE or CCS_NOPARENTALIGN or CCS_NODIVIDER or CCS_ADJUSTABLE or \
+TBSTYLE           equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or /
+                        CCS_NORESIZE or CCS_NOPARENTALIGN or CCS_NODIVIDER or CCS_ADJUSTABLE or /
                         TBSTYLE_FLAT or TBSTYLE_LIST
 
 IDC_BTNCLOSE      equ   8000
@@ -132,7 +132,7 @@ Method SkinApp.DrawCaptionText, uses xbx xsi
   .endif
   invoke GetSysColor, ecx
   mov dPrvColor, $32($invoke(SetTextColor, hDC, eax))
-  invoke DrawTextEx, hDC, pCaptionText, -1, addr [xsi].Skin.TitleRect, \
+  invoke DrawTextEx, hDC, pCaptionText, -1, addr [xsi].Skin.TitleRect, /
                      DT_CENTER or DT_VCENTER or DT_SINGLELINE or DT_END_ELLIPSIS, NULL
   invoke SetTextColor, hDC, dPrvColor
   invoke SetBkMode, hDC, dPrvBkMode
@@ -169,8 +169,8 @@ Method SkinApp.Init, uses xbx xsi
 
   mov [xsi].hContextMenu, $invoke(LoadMenu, hInstance, $OfsCStr("MENU_APP"))
 
-  invoke CreateWindowEx, 0, \
-                         offset szSkinApp, offset szAppTitle, WS_POPUP, \
+  invoke CreateWindowEx, 0, /
+                         offset szSkinApp, offset szAppTitle, WS_POPUP, /
                          dWndPosX, dWndPosY, dWndWidth, dWndHeight, NULL, NULL, hInstance, pSelf
 
   ;Create XMenu
@@ -212,8 +212,8 @@ Method SkinApp.OnClose, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
 
   SetObject xsi
   New Dlg::SkinnedMsgBox
-  OCall Dlg::SkinnedMsgBox.Init, xsi, [xsi].hWnd, 50, 51, $OfsCStr("ALERT"), \
-                                                          $OfsCStr("BUTTON_YES"), IDYES, \
+  OCall Dlg::SkinnedMsgBox.Init, xsi, [xsi].hWnd, 50, 51, $OfsCStr("ALERT"), /
+                                                          $OfsCStr("BUTTON_YES"), IDYES, /
                                                           $OfsCStr("BUTTON_NO"), IDNO
   OCall Dlg::SkinnedMsgBox.Show
   mov ebx, eax
@@ -385,7 +385,7 @@ Method SkinApp.OnRButtonUp, uses xsi, wParam:WPARAM, lParam:LPARAM
   shr Pnt.y, 16
   invoke ClientToScreen, [xsi].hWnd, addr Pnt           ;Convert clicked position to screen coords
   invoke GetSubMenu, [xsi].hContextMenu, 0              ;Get "Context" submenu
-  invoke TrackPopupMenu, xax, TPM_LEFTALIGN, \          ;Show the popup menu
+  invoke TrackPopupMenu, xax, TPM_LEFTALIGN, /          ;Show the popup menu
                          Pnt.x, Pnt.y, 0, [xsi].hWnd, NULL
 MethodEnd
 

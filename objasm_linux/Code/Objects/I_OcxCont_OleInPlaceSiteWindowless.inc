@@ -49,7 +49,7 @@ if IMPLEMENT
 ; Return:     eax = HRESULT.
 
 Method I_OcxCont_OleInPlaceSiteWindowless.CanWindowlessActivate
-  DbgText "I_OcxCont_OleInPlaceSiteWindowless.CanWindowlessActivate", \
+  DbgText "I_OcxCont_OleInPlaceSiteWindowless.CanWindowlessActivate", /
           "I_OcxCont_OleInPlaceSiteWindowless"
   mov eax, E_NOTIMPL
 MethodEnd
@@ -172,7 +172,7 @@ MethodEnd
 ;                   clipped.
 ; Return:     eax = HRESULT.
 
-Method I_OcxCont_OleInPlaceSiteWindowless.ScrollRect,, sdX:SDWORD, sdY:SDWORD, \
+Method I_OcxCont_OleInPlaceSiteWindowless.ScrollRect,, sdX:SDWORD, sdY:SDWORD, /
                                                        pRectScroll:POINTER, pRectClip:POINTER
   DbgText "I_OcxCont_OleInPlaceSiteWindowless.ScrollRect", "I_OcxCont_OleInPlaceSiteWindowless"
   mov eax, E_NOTIMPL
@@ -199,9 +199,9 @@ MethodEnd
 ;             Arg4: -> result code for the window message.
 ; Return:     eax = HRESULT.
 
-Method I_OcxCont_OleInPlaceSiteWindowless.OnDefWindowMessage,, dMsg:DWORD, \
+Method I_OcxCont_OleInPlaceSiteWindowless.OnDefWindowMessage,, dMsg:DWORD, /
                                               wParam:WPARAM, lParam:LPARAM, pResult:POINTER
-  DbgText "I_OcxCont_OleInPlaceSiteWindowless.OnDefWindowMessage", \
+  DbgText "I_OcxCont_OleInPlaceSiteWindowless.OnDefWindowMessage", /
           "I_OcxCont_OleInPlaceSiteWindowless"
   mov eax, E_NOTIMPL
 MethodEnd

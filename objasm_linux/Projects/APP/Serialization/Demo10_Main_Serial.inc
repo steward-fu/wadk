@@ -8,7 +8,7 @@
 
 CLSSTYLE  equ   CS_BYTEALIGNWINDOW or CS_BYTEALIGNCLIENT or CS_VREDRAW or CS_HREDRAW
 
-TBSTYLE   equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or \
+TBSTYLE   equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or /
                 CCS_NORESIZE or CCS_NODIVIDER or CCS_ADJUSTABLE or TBSTYLE_FLAT or TBSTYLE_LIST
 
 SBSTYLE   equ   WS_CHILD or WS_VISIBLE or SBARS_TOOLTIPS or SBARS_SIZEGRIP
@@ -16,12 +16,12 @@ SBSTYLE   equ   WS_CHILD or WS_VISIBLE or SBARS_TOOLTIPS or SBARS_SIZEGRIP
 STSTYLE equ WS_CHILD or WS_VISIBLE or WS_TABSTOP or TCS_TABS or TCS_FOCUSNEVER; or TCS_HOTTRACK
 
 .const
-ToolbarFile DEF_TOOLBAR {IDC_TOOLBARFILE, TBSTYLE, TBSTYLE_EX_MIXEDBUTTONS, \
+ToolbarFile DEF_TOOLBAR {IDC_TOOLBARFILE, TBSTYLE, TBSTYLE_EX_MIXEDBUTTONS, /
                          $OfsTStr("File operations"), {<0,0,0,0>}, 2}
   TBBUTTON {IDB_FILE_NEW,   IDM_FILE_NEW,   TBSTATE_ENABLED, TBSTYLE_BUTTON}
   TBBUTTON {IDB_FILE_CLOSE, IDM_FILE_CLOSE, TBSTATE_ENABLED, TBSTYLE_BUTTON}
 
-ToolbarWindow DEF_TOOLBAR {IDC_TOOLBARWINDOW, TBSTYLE, TBSTYLE_EX_MIXEDBUTTONS, \
+ToolbarWindow DEF_TOOLBAR {IDC_TOOLBARWINDOW, TBSTYLE, TBSTYLE_EX_MIXEDBUTTONS, /
                            $OfsTStr("Window operations"), {<0,0,0,0>}, 6}
   TBBUTTON {IDB_WINDOW_CASCADE,  IDM_WINDOW_CASCADE,  TBSTATE_ENABLED, TBSTYLE_BUTTON}
   TBBUTTON {IDB_WINDOW_TILE_HOR, IDM_WINDOW_TILE_HOR, TBSTATE_ENABLED, TBSTYLE_BUTTON}
@@ -155,7 +155,7 @@ ObjectEnd
 ;    DemoApp10 implementation
 ; ==================================================================================================
 
-;##\
+;##/
 
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————
 ; Method:     DemoApp10.ChangeLanguage
@@ -195,7 +195,7 @@ Method DemoApp10.ChangeLanguage, uses xbx xdi xsi, dLangID:DWORD
   mov MenuInfo.cbSize, sizeof MenuInfo
   mov MenuInfo.fMask, MIIM_SUBMENU
   invoke GetMenuItemInfo, [xsi].hMenuChild, IDM_LANGUAGE, FALSE, addr MenuInfo
-  invoke CheckMenuRadioItem, MenuInfo.hSubMenu, IDM_LANGUAGE_ENGLISH, IDM_LANGUAGE_SPANISH, \
+  invoke CheckMenuRadioItem, MenuInfo.hSubMenu, IDM_LANGUAGE_ENGLISH, IDM_LANGUAGE_SPANISH, /
                              edi, MF_BYCOMMAND
 
   ;IDM_LANGUAGE popup menu has only positon 1 in the InitMenu.
@@ -299,7 +299,7 @@ Method DemoApp10.Init, uses xbx xdi xsi
   mov [xsi].pCommandLine, $invoke(GetCommandLine)
 
   ;Rebar + Statusbar + ListView + TabControl + ComboBoxEx
-  invoke LoadCommonControls, ICC_COOL_CLASSES or ICC_BAR_CLASSES or \
+  invoke LoadCommonControls, ICC_COOL_CLASSES or ICC_BAR_CLASSES or /
                              ICC_LISTVIEW_CLASSES or ICC_TAB_CLASSES or ICC_USEREX_CLASSES
 
   ;Load application & menu icons
@@ -336,9 +336,9 @@ Method DemoApp10.Init, uses xbx xdi xsi
   mov dWndPosY, $32($invoke(CenterForm, dWndHeight, $32($invoke(GetSystemMetrics, SM_CYSCREEN))))
 
   invoke CreateWindowEx, WS_EX_APPWINDOW or WS_EX_WINDOWEDGE,
-                         offset szDemoApp10, offset szAppTitle, \
-                         WS_OVERLAPPEDWINDOW or WS_CLIPCHILDREN, \
-                         dWndPosX, dWndPosY, dWndWidth, dWndHeight, \
+                         offset szDemoApp10, offset szAppTitle, /
+                         WS_OVERLAPPEDWINDOW or WS_CLIPCHILDREN, /
+                         dWndPosX, dWndPosY, dWndWidth, dWndHeight, /
                          NULL, [xsi].hMenuInit, hInstance, pSelf
 
   ;Create and Initialize Client window
@@ -349,7 +349,7 @@ Method DemoApp10.Init, uses xbx xdi xsi
 
   ;Create and initialize XMenu
   m2m pSBHelp, $MethodAddr(DemoApp10.StatusbarHelp), xax
-  OCall [xsi].Menu::XMenu.Init, xsi, [xsi].hWnd, xdi, [xsi].hMenuChildWnd, \
+  OCall [xsi].Menu::XMenu.Init, xsi, [xsi].hWnd, xdi, [xsi].hMenuChildWnd, /
                                 xbx, pSBHelp, IDLANG_ENGLISH
 
   invoke ShowWindow, [xsi].hWnd, SW_SHOWNORMAL
@@ -438,7 +438,7 @@ Method DemoApp10.OnClose, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   .if [xbx].$Obj(MyClientWnd).dChildCount == 0          ;Ask only if a child window is open
     invoke DefFrameProc, [xsi].hWnd, [xbx].$Obj(MyClientWnd).hWnd, dMsg, wParam, lParam
   .else
-    invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), \
+    invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), /
                        MB_YESNO + MB_ICONQUESTION
     .if eax == IDNO
       xor eax, eax
@@ -525,7 +525,7 @@ Method DemoApp10.OnCommand, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
 
   ;Messages for help menu
   .elseif ax == IDM_HELP_HELP
-    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Help\ObjAsm_Reference_Volume-I.pdf"), \
+    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Help/ObjAsm_Reference_Volume-I.pdf"), /
                                      addr cBuffer, lengthof(cBuffer)
     invoke PdfView, [xsi].hWnd, addr cBuffer, $OfsCStr("Introduction")
     xor eax, eax
@@ -578,13 +578,13 @@ Method DemoApp10.OnCreate, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   ;Create rebar, toolbars
   OCall [xsi].RBar::Rebar.Init, xsi, [xsi].hWnd
 
-  OCall [xsi].TbWindow::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarWindow, \
+  OCall [xsi].TbWindow::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarWindow, /
              addr [xsi].IconImageList, NULL, NULL
   mov ebx, $32($OCall([xsi].TbWindow::Toolbar.GetHeight))
   OCall [xsi].TbWindow::Toolbar.GetWidth
   OCall [xsi].RBar::Rebar.InsertBand, [xsi].TbWindow.hWnd, eax, ebx
 
-  OCall [xsi].TbFile::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarFile, \
+  OCall [xsi].TbFile::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarFile, /
              addr [xsi].IconImageList, NULL, NULL
   mov ebx, $32($OCall([xsi].TbFile::Toolbar.GetHeight))
   OCall [xsi].TbFile::Toolbar.GetWidth
@@ -703,7 +703,7 @@ Method DemoApp10.OnSize, uses xsi, wParam:WPARAM, lParam:LPARAM
     .endif
 
     ;Redraw all child windows
-    invoke RedrawWindow, [xsi].hWnd, NULL, NULL, \
+    invoke RedrawWindow, [xsi].hWnd, NULL, NULL, /
                          RDW_ERASE or RDW_INVALIDATE or RDW_UPDATENOW or RDW_ALLCHILDREN
     xor eax, eax                                      ;Return zero
   .endif
@@ -810,7 +810,7 @@ MethodEnd
 ;    MyClientWnd implementation
 ; ==================================================================================================
 
-;##\
+;##/
 
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————
 ; Method:     MyClientWnd.Deserialize
@@ -914,8 +914,8 @@ Method MyClientWnd.OnPaint, uses xsi, wParam:WPARAM, lParam:LPARAM
   invoke GetClientRect, [xsi].hWnd, addr Rct
   invoke FillRect, PS.hdc, addr Rct, [xsi].hBGBrush
   invoke EndPaint, [xsi].hWnd, addr PS
-  invoke CallWindowProc, [xsi].$Obj(MyClientWnd).pPrevWndProc, \
-                         [xsi].$Obj(MyClientWnd).hWnd, \
+  invoke CallWindowProc, [xsi].$Obj(MyClientWnd).pPrevWndProc, /
+                         [xsi].$Obj(MyClientWnd).hWnd, /
                          WM_PAINT, wParam, lParam
 MethodEnd
 
@@ -953,7 +953,7 @@ MethodEnd
 ;    MyChildWnd implementation
 ; ==================================================================================================
 
-;##\
+;##/
 
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————
 ; Method:     MyChildWnd.Done
@@ -971,7 +971,7 @@ Method MyChildWnd.Done, uses xbx xdi xsi
   ;Main menu update
   .if ZERO?                                             ;No more child windows ?
     OCall xbx::DemoApp10.EnableActions, FALSE
-    invoke SendMessage, [xdi].$Obj(MyClientWnd).hWnd, WM_MDISETMENU, \
+    invoke SendMessage, [xdi].$Obj(MyClientWnd).hWnd, WM_MDISETMENU, /
                         [xbx].$Obj(DemoApp10).hMenuInit, NULL
     invoke DrawMenuBar, [xbx].$Obj(DemoApp10).hWnd      ;Redraw the new menu bar
   .endif
@@ -991,22 +991,22 @@ Method MyChildWnd.Init, uses xbx xdi xsi, pOwner:POINTER, pTitle:PSTRING
 
   mov xdi, pOwner                                       ;xdi -> MyClientWnd
   inc [xdi].$Obj(MyClientWnd).dChildCount
-  invoke CreateMDIWindow, offset szDemoChild10, pTitle, WS_HSCROLL or WS_VSCROLL, \
-                          CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateMDIWindow, offset szDemoChild10, pTitle, WS_HSCROLL or WS_VSCROLL, /
+                          CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                           [xdi].$Obj(MyClientWnd).hWnd, hInstance, pSelf
   .if xax != NULL
     .if [xdi].$Obj(MyClientWnd).dChildCount == 1        ;First child window ?
       mov xbx, [xdi].$Obj(MyClientWnd).pOwner           ;xbx -> DemoApp10
       OCall xbx::DemoApp10.EnableActions, TRUE
-      invoke SendMessage, [xdi].$Obj(MyClientWnd).hWnd, WM_MDISETMENU, \
-                          [xbx].$Obj(DemoApp10).hMenuChild, \
+      invoke SendMessage, [xdi].$Obj(MyClientWnd).hWnd, WM_MDISETMENU, /
+                          [xbx].$Obj(DemoApp10).hMenuChild, /
                           [xbx].$Obj(DemoApp10).hMenuChildWnd
       invoke DrawMenuBar, [xbx].$Obj(DemoApp10).hWnd    ;Redraw the new menu bar
     .endif
 
     invoke ShowWindow, [xsi].hWnd, SW_SHOWNORMAL
   .else
-    invoke MessageBox, [xdi].$Obj(DemoApp10).hWnd, $OfsCStr("Window creation error"), \
+    invoke MessageBox, [xdi].$Obj(DemoApp10).hWnd, $OfsCStr("Window creation error"), /
                        offset szError, MB_OK or MB_ICONERROR
   .endif
 MethodEnd
@@ -1091,7 +1091,7 @@ Method MyChildWnd.OnPaint, uses xsi, wParam:WPARAM, lParam:LPARAM
 
   invoke SetTextColor, PS.hdc, edx
   invoke GetClientRect, [xsi].hWnd, addr Rect
-  invoke DrawText, PS.hdc, $OfsCStr("Hello World"), -1, addr Rect, \
+  invoke DrawText, PS.hdc, $OfsCStr("Hello World"), -1, addr Rect, /
                    DT_SINGLELINE or DT_CENTER or DT_VCENTER
   invoke EndPaint, [xsi].hWnd, addr PS
   invoke DefWindowProc, [xsi].hWnd, WM_PAINT, wParam, lParam
@@ -1172,7 +1172,7 @@ MethodEnd
 ;    DialogSetup implementation
 ; ==================================================================================================
 
-;##\
+;##/
 
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————
 ; Method:     DialogSetup.CtlsGet
@@ -1277,7 +1277,7 @@ Method DialogSetup.OnInitDialog, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   OCall [xsi].TabDialog1::Tab1.Show
   invoke ShowWindow, [xsi].TabDialog1.hWnd, SW_SHOWDEFAULT
 
-  OCall [xsi].TabDialog2::Tab2.Init, xbx, [xbx].$Obj(TabCtrl).hWnd, $OfsCStr("SETUPTAB2"), \
+  OCall [xsi].TabDialog2::Tab2.Init, xbx, [xbx].$Obj(TabCtrl).hWnd, $OfsCStr("SETUPTAB2"), /
                                                addr $ObjTmpl(DemoApp10).hActiveMlsDlg
 
   OCall [xsi].TabDialog2::Tab2.Show

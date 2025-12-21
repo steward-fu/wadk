@@ -104,15 +104,15 @@ Method DB_RecordEditorLine.CtlsMove, uses xbx xdi xsi, pControl:POINTER, pCtlPos
 
   mov eax, [xbx].LineOrigin.y
   add eax, [xdi].dEdtButOffsetY
-  mov [xdi].hDWP, $invoke(DeferWindowPos, [xdi].hDWP, [xsi].hRbnFieldName, HWND_BOTTOM, \
+  mov [xdi].hDWP, $invoke(DeferWindowPos, [xdi].hDWP, [xsi].hRbnFieldName, HWND_BOTTOM, /
                                           [xbx].sdPosX1, eax, [xdi].BtnSize.x, [xdi].BtnSize.y, 0)
   mov eax, [xbx].LineOrigin.y
   add eax, [xdi].dEdtStcOffsetY
-  mov [xdi].hDWP, $invoke(DeferWindowPos, [xdi].hDWP, [xsi].hStcFieldName, HWND_BOTTOM, \
+  mov [xdi].hDWP, $invoke(DeferWindowPos, [xdi].hDWP, [xsi].hStcFieldName, HWND_BOTTOM, /
                                           [xbx].sdPosX2, eax, [xdi].StcSize.x, [xdi].StcSize.y, 0)
 
   mov eax, [xbx].LineOrigin.y
-  mov [xdi].hDWP, $invoke(DeferWindowPos, [xdi].hDWP, [xsi].hEdtRecord, HWND_BOTTOM, \
+  mov [xdi].hDWP, $invoke(DeferWindowPos, [xdi].hDWP, [xsi].hEdtRecord, HWND_BOTTOM, /
                                           [xbx].sdPosX3, eax, [xdi].EdtSize.x, [xdi].EdtSize.y, 0)
 
   ;Increment Y position for the next line.
@@ -154,7 +154,7 @@ MethodEnd
 ; Note:       Avoid setting CtlIDs that equals IDOK and IDCANCEL.
 ;             If used and the control is disabled, these messages are no longer sent!
 
-Method DB_RecordEditorLine.Init, uses xbx xdi xsi, pOwner:$ObjPtr(Collection), \
+Method DB_RecordEditorLine.Init, uses xbx xdi xsi, pOwner:$ObjPtr(Collection), /
                                                    pField:$ObjPtr(DB_Field)
   local xCtlID:XWORD
 
@@ -169,24 +169,24 @@ Method DB_RecordEditorLine.Init, uses xbx xdi xsi, pOwner:$ObjPtr(Collection), \
   imul ecx, REL_CTRLS_PER_LINE
   mov xCtlID, xcx
   ;Use the ANSI version of the control to pass the ANSI caption string (Descriptor.bName)
-  invoke CreateWindowExA, 0, $OfsCStrA("STATIC"), addr [xbx].$Obj(DB_Field).Descriptor.bName, \
-                          WS_CHILD or WS_VISIBLE or WS_CLIPSIBLINGS or SS_ENDELLIPSIS or \
-                          SS_CENTERIMAGE or SS_NOTIFY, \
-                          CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateWindowExA, 0, $OfsCStrA("STATIC"), addr [xbx].$Obj(DB_Field).Descriptor.bName, /
+                          WS_CHILD or WS_VISIBLE or WS_CLIPSIBLINGS or SS_ENDELLIPSIS or /
+                          SS_CENTERIMAGE or SS_NOTIFY, /
+                          CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                           [xdi].hWnd, xCtlID, hInstance, 0
   mov [xsi].hStcFieldName, xax
   invoke SendMessage, xax, WM_SETFONT, [xdi].hFont, FALSE
   inc xCtlID
-  invoke CreateWindowEx, 0, $OfsCStr("BUTTON"), NULL, \
-                         WS_CHILD or WS_TABSTOP or WS_CLIPSIBLINGS or BS_AUTORADIOBUTTON, \ ;Hidden!
-                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateWindowEx, 0, $OfsCStr("BUTTON"), NULL, /
+                         WS_CHILD or WS_TABSTOP or WS_CLIPSIBLINGS or BS_AUTORADIOBUTTON, / ;Hidden!
+                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                          [xdi].hWnd, xCtlID, hInstance, 0
   mov [xsi].hRbnFieldName, xax
   invoke SendMessage, xax, WM_SETFONT, [xdi].hFont, FALSE
   inc xCtlID
-  invoke CreateWindowEx, WS_EX_CLIENTEDGE, $OfsCStr("EDIT"), NULL, \
-                         WS_CHILD or WS_VISIBLE or WS_CLIPSIBLINGS or WS_TABSTOP or ES_AUTOHSCROLL,\
-                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateWindowEx, WS_EX_CLIENTEDGE, $OfsCStr("EDIT"), NULL, /
+                         WS_CHILD or WS_VISIBLE or WS_CLIPSIBLINGS or WS_TABSTOP or ES_AUTOHSCROLL,/
+                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                          [xdi].hWnd, xCtlID, hInstance, 0
   mov [xsi].hEdtRecord, xax
   invoke SendMessage, [xsi].hEdtRecord, WM_SETFONT, [xdi].hFont, FALSE
@@ -297,7 +297,7 @@ GetFieldNameMaxWidth proc pField:$ObjPtr(DB_Field), pOwner:$ObjPtr(DB_RecordEdit
   ret
 GetFieldNameMaxWidth endp
 
-NewRecordEditorLine proc uses xsi pField:$ObjPtr(DB_Field), pControl:$ObjPtr(DB_RecordEditor), \
+NewRecordEditorLine proc uses xsi pField:$ObjPtr(DB_Field), pControl:$ObjPtr(DB_RecordEditor), /
                                   xUnused:XWORD
   New DB_RecordEditorLine
   mov xcx, pControl
@@ -368,7 +368,7 @@ Method DB_RecordEditor.CtlsMove, uses xsi
   mov xcx, [xsi].pOwner                                 ;xcx -> DB_RecordEditorDlg
   .if xcx != NULL
     .ifBitSet [xcx].$Obj(DB_RecordEditorDlg).dFlags, RDF_USE_INDEX_ENABLED
-      invoke SendDlgItemMessage, [xcx].$Obj(DB_RecordEditorDlg).hWnd, IDC_RECORD_CHK_USE_INDEX, \
+      invoke SendDlgItemMessage, [xcx].$Obj(DB_RecordEditorDlg).hWnd, IDC_RECORD_CHK_USE_INDEX, /
                                  BM_GETCHECK, 0, 0
       .if eax == BST_CHECKED
         add eax, [xsi].BtnSize.x
@@ -522,9 +522,9 @@ Method DB_RecordEditor.Init, uses xsi, pOwner:POINTER, hParent:HWND
   ACall xsi.Init, pOwner, 0
 
   ;Create DB_RecordEditor Window
-  invoke CreateWindowEx, 0, offset(szDB_RecordEditorClass), NULL, \
-                         WS_CHILD or WS_CLIPSIBLINGS or WS_CLIPCHILDREN or WS_VSCROLL, \
-                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateWindowEx, 0, offset(szDB_RecordEditorClass), NULL, /
+                         WS_CHILD or WS_CLIPSIBLINGS or WS_CLIPCHILDREN or WS_VSCROLL, /
+                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                          hParent, NULL, hInstance, pSelf
   .if xax != 0
     mov [xsi].hWnd, xax
@@ -575,7 +575,7 @@ Method DB_RecordEditor.OnCommand, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
           inc eax
           DbgDec eax
           invoke CheckRadioButton, [xsi].hWnd, 1, 999, eax
-;          invoke SendMessage, [xbx].$Obj(DB_RecordEditorLine).hRbnFieldName, BM_SETCHECK, \
+;          invoke SendMessage, [xbx].$Obj(DB_RecordEditorLine).hRbnFieldName, BM_SETCHECK, /
 ;                              BST_CHECKED, 0
         .elseif eax == BST_CHECKED
           invoke GetParent, [xsi].hWnd

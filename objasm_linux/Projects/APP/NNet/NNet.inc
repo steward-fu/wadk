@@ -44,15 +44,15 @@ PNNT_INFO typedef ptr NNT_INFO
 ;         Hidden Layers                   Weight Matrix        Output Matrix
 ;
 ;         N  x  N  x  N          1)| 2)|   W  W  W  W     3)|  S  S  S  S  S
-;       / N  x  N  x  N \          |   |   W  W  W  W       |  S  S  S  S  S
-;    I /  N  x  N  x  N  \         |   |   W  W  W  W       |  S  S  S  S  S     I: Network Inputs
-;    I    N  x  N  x  N   \        |   |   W  W  W  W       |  S  S  S  S  S     O: Network Outputs
+;       / N  x  N  x  N /          |   |   W  W  W  W       |  S  S  S  S  S
+;    I /  N  x  N  x  N  /         |   |   W  W  W  W       |  S  S  S  S  S     I: Network Inputs
+;    I    N  x  N  x  N   /        |   |   W  W  W  W       |  S  S  S  S  S     O: Network Outputs
 ;    I    N  x  N  x  N    O       V   |   W  W  W  W       |  S  S  S  S  S     N: Neutrons
 ;    I    N  x  N  x  N    O           |   W  W  W  W       |  S  S  S  S  S     x: Connections
 ;    I    N  x  N  x  N    O           |   W  W  W  W       |  S  S  S  S  S     W: Weights
 ;    I    N  x  N  x  N   /            |   .  .  .  .       |  S  S  S  S  S     B: Bias
-;    I \  N  x  N  x  N  / ^           |   .  .  .  .       |  S  S  S  S  S     S: Neuron output
-;       \ N  x  N  x  N /  |           |   .  .  .  .       |  S  S  S  S  S     ?: Unused values
+;    I /  N  x  N  x  N  / ^           |   .  .  .  .       |  S  S  S  S  S     S: Neuron output
+;       / N  x  N  x  N /  |           |   .  .  .  .       |  S  S  S  S  S     ?: Unused values
 ;    ^    N  x  N  x  N    |           |   W  W  W  W       |  S  S  S  S  S
 ;    |                     |           |   W  W  W  W       V  ?  B  B  B  ?     1) xWeightSkip
 ; Network               Network        V   W  W  W  W                            2) xOutputLayerSkip

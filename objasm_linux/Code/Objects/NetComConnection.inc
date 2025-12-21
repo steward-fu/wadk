@@ -86,8 +86,8 @@ Method NetComConnection.DoRead, uses xbx xsi, pIOSockJob:PIO_SOCKJOB
   SDLL_Append xax, xcx                                  ;Link this IOSockJob to the IO list
   mov dLen, sizeof NETCOMADDR
   mov dFlags, MSG_PARTIAL
-  invoke WSARecvFrom, [xsi].hSocket, addr [xbx].IO_SOCKJOB.WSABuf, 1, \
-                      addr [xbx].IO_SOCKJOB.dBytesConsumed, addr dFlags, \
+  invoke WSARecvFrom, [xsi].hSocket, addr [xbx].IO_SOCKJOB.WSABuf, 1, /
+                      addr [xbx].IO_SOCKJOB.dBytesConsumed, addr dFlags, /
                       addr [xsi].RemoteHostAddr, addr dLen, xbx, NULL
   invoke LeaveCriticalSection, addr [xsi].CritSect
   .if eax != 0                                          ;Did read IO complete synchronously?
@@ -115,8 +115,8 @@ Method NetComConnection.DoWrite, uses xbx xsi, pIOSockJob:PIO_SOCKJOB
   mov xbx, pIOSockJob
   mov dLen, sizeof NETCOMADDR
   lea xdx, [xbx].IO_SOCKJOB.WSABuf
-  invoke WSASendTo, [xsi].hSocket, xdx, 1, \
-                    addr [xbx].IO_SOCKJOB.dBytesConsumed, 0, \
+  invoke WSASendTo, [xsi].hSocket, xdx, 1, /
+                    addr [xbx].IO_SOCKJOB.dBytesConsumed, 0, /
                     addr [xsi].RemoteHostAddr, addr dLen, xbx, NULL
   .if eax != 0
     invoke WSAGetLastError
@@ -236,27 +236,27 @@ Method NetComConnection.OnAccept, uses xbx xdi xsi, pIOSockJob:PIO_SOCKJOB
     xBitClr [xsi].dFlags, NCC_DISCONNECTED
 
     ;Updates the accepting socket with the context of the listening socket.
-    invoke setsockopt, [xsi].hSocket, SOL_SOCKET, SO_UPDATE_ACCEPT_CONTEXT, \
+    invoke setsockopt, [xsi].hSocket, SOL_SOCKET, SO_UPDATE_ACCEPT_CONTEXT, /
                        addr [xbx].LISTENER.hSocket, sizeof HANDLE
     CheckSockError "Error on SetSockOpt SO_UPDATE_ACCEPT_CONTEXT"
 
     mov dRvcTimeSize, sizeof DWORD
-    invoke getsockopt, [xsi].hSocket, SOL_SOCKET, SO_CONNECT_TIME, \
+    invoke getsockopt, [xsi].hSocket, SOL_SOCKET, SO_CONNECT_TIME, /
                        addr [xsi].dRcvLastTime, addr dRvcTimeSize
     CheckSockError "ERROR on OnRead getsockopt SO_CONNECT_TIME"
 
     ;Get the local host address
     mov xcx, pIOSockJob
     mov xdx, [xcx].IO_SOCKJOB.WSABuf.buf
-    invoke MemClone, addr [xsi].LocalHostAddr, \
-                     addr [xdx].ACCEPT_DATA.LocalHostAddr, \
+    invoke MemClone, addr [xsi].LocalHostAddr, /
+                     addr [xdx].ACCEPT_DATA.LocalHostAddr, /
                      sizeof NETCOMADDR
 
     ;Get the remote host address, we don't use getpeername to avoid 1 kernel transition
     mov xcx, pIOSockJob
     mov xdx, [xcx].IO_SOCKJOB.WSABuf.buf
-    invoke MemClone, addr [xsi].RemoteHostAddr, \
-                     addr [xdx].ACCEPT_DATA.RemoteHostAddr, \
+    invoke MemClone, addr [xsi].RemoteHostAddr, /
+                     addr [xdx].ACCEPT_DATA.RemoteHostAddr, /
                      sizeof NETCOMADDR
 
     ;Notify the NetComConnection's Protocol handler
@@ -270,7 +270,7 @@ Method NetComConnection.OnAccept, uses xbx xdi xsi, pIOSockJob:PIO_SOCKJOB
 
       ;Issue a read IO reusing the accept IOSockJob for a read IOJob
       mov xcx, [xsi].pOwner
-      OCall [xcx].$Obj(NetComConnectionPool).pIOSockJobPool::NetComIOSockJobPool.ResetIOJob, \
+      OCall [xcx].$Obj(NetComConnectionPool).pIOSockJobPool::NetComIOSockJobPool.ResetIOJob, /
                                              pIOSockJob, OPERATION_SOCK_READ
       lock dec [xsi].dPendingIOJobs                     ;DoRead increments the count again
       OCall xsi.DoRead, xax
@@ -349,7 +349,7 @@ DbgOnError macro WarningText:req, Error:req, InfoText, Dest
     DbgSaveContext FALSE, Error
     DbgSetDestWnd Dest
     invoke DbgOutCmd, DBG_CMD_SINGLE_LINE, 0, 0, ??DbgDstWnd
-    invoke DbgOutTextA, $OfsCStrA($Esc(<WarningText>)), DbgColorWarning, DbgColorBackground, DBG_EFFECT_NORMAL, \
+    invoke DbgOutTextA, $OfsCStrA($Esc(<WarningText>)), DbgColorWarning, DbgColorBackground, DBG_EFFECT_NORMAL, /
                         ??DbgDstWnd
     $$Buffersize = 1024
     sub xsp, $$Buffersize                               ;;Reserve a buffer on the stack.
@@ -506,7 +506,7 @@ Method NetComConnection.OnRead, uses xbx xdi xsi, pIOSockJob:PIO_SOCKJOB
     mov xdx, pIOSockJob
     ;We queue a new read for the one we recieve here
     mov xcx, [xsi].pOwner
-    OCall [xcx].$Obj(NetComConnectionPool).pIOSockJobPool::NetComIOSockJobPool.NewItem, \
+    OCall [xcx].$Obj(NetComConnectionPool).pIOSockJobPool::NetComIOSockJobPool.NewItem, /
                                                                                OPERATION_SOCK_READ
     .if xax != NULL
       OCall xsi.DoRead, xax
@@ -516,7 +516,7 @@ Method NetComConnection.OnRead, uses xbx xdi xsi, pIOSockJob:PIO_SOCKJOB
 
     ;Return the number of seconds a socket has been connected.
     mov dRvcTimeSize, sizeof DWORD
-    invoke getsockopt, [xsi].hSocket, SOL_SOCKET, SO_CONNECT_TIME, \
+    invoke getsockopt, [xsi].hSocket, SOL_SOCKET, SO_CONNECT_TIME, /
                        addr [xsi].dRcvLastTime, addr dRvcTimeSize
     CheckSockError "ERROR on OnRead getsockopt SO_CONNECT_TIME"
 
@@ -543,7 +543,7 @@ Method NetComConnection.OnRead, uses xbx xdi xsi, pIOSockJob:PIO_SOCKJOB
             lea xax, [xbx - IO_HEADER_SIZE]             ;xax -> IOSockJob
             mov pIOSockJob, xax
             mov xbx, [xbx].SDLL_ITEM.pNextItem
-            OCall [xcx].$Obj(NetComConnectionPool).pIOSockJobPool::NetComIOSockJobPool.FreeItem,\
+            OCall [xcx].$Obj(NetComConnectionPool).pIOSockJobPool::NetComIOSockJobPool.FreeItem,/
                                                                                       pIOSockJob
             lock dec [xsi].dCompletedIOJobs
             .break .if dConsumed == 0
@@ -592,7 +592,7 @@ Method NetComConnection.QueueAccept, uses xdi xsi, pListener:PLISTENER, pProtoco
 
   ;Allocate an IOSockJob to represent the accept IO operation
   mov xcx, [xsi].pOwner
-  OCall [xcx].$Obj(NetComConnectionPool).pIOSockJobPool::NetComIOSockJobPool.NewItem, \
+  OCall [xcx].$Obj(NetComConnectionPool).pIOSockJobPool::NetComIOSockJobPool.NewItem, /
                                                           OPERATION_SOCK_ACCEPT
   ;DbgHex eax, "Acceptor IOSockJob"
   .if xax != NULL
@@ -601,9 +601,9 @@ Method NetComConnection.QueueAccept, uses xdi xsi, pListener:PLISTENER, pProtoco
     mov [xdi].IO_SOCKJOB.DataBuffer.ACCEPT_DATA.pConnection, xsi
     ;if ReceiveDataLength = 0, AcceptEx completes as soon as a connection arrives,
     ;without waiting for any data. Local and remote addresses are written into the buffer
-    invoke AcceptEx, [xcx].LISTENER.hSocket, [xsi].hSocket, [xdi].IO_SOCKJOB.WSABuf.buf, 0, \
-                     sizeof ACCEPT_DATA.LocalHostAddr, \
-                     sizeof ACCEPT_DATA.RemoteHostAddr, \
+    invoke AcceptEx, [xcx].LISTENER.hSocket, [xsi].hSocket, [xdi].IO_SOCKJOB.WSABuf.buf, 0, /
+                     sizeof ACCEPT_DATA.LocalHostAddr, /
+                     sizeof ACCEPT_DATA.RemoteHostAddr, /
                      addr dBytesRecieved, xdi
     .if eax == FALSE
       invoke WSAGetLastError
@@ -636,8 +636,8 @@ Method NetComConnection.QueueConnect, uses xdi xsi, pRemoteHostAddr:PNETCOMADDR
 
   mov xax, [xsi].pOwner                                 ;xax -> NetComConnectionPool
   mov xdi, [xax].$Obj(NetComConnectionPool).pOwner      ;xdi -> NetComEngine
-  invoke MemClone, addr [xsi].LocalHostAddr, \
-                   addr [xdi].$Obj(NetComEngine).LocalHostAddr, \
+  invoke MemClone, addr [xsi].LocalHostAddr, /
+                   addr [xdi].$Obj(NetComEngine).LocalHostAddr, /
                    sizeof NETCOMADDR
   ;Here we can change the returning port
 
@@ -653,13 +653,13 @@ Method NetComConnection.QueueConnect, uses xdi xsi, pRemoteHostAddr:PNETCOMADDR
     invoke getsockname, [xsi].hSocket, addr [xsi].LocalHostAddr, addr dSize
 
     mov xcx, [xsi].pOwner                               ;xcx -> NetComConnectionPool
-    OCall [xcx].$Obj(NetComConnectionPool).pIOSockJobPool::NetComIOSockJobPool.NewItem, \
+    OCall [xcx].$Obj(NetComConnectionPool).pIOSockJobPool::NetComIOSockJobPool.NewItem, /
                                                                               OPERATION_SOCK_CONNECT
     .if xax != NULL
       mov xdi, xax
       .if [xsi].pConnectEx != NULL
         m2z [xdi].IO_SOCKJOB.WSABuf.len                 ;dSize MUST be zero to get
-        invoke [xsi].pConnectEx, [xsi].hSocket, addr [xsi].RemoteHostAddr, \
+        invoke [xsi].pConnectEx, [xsi].hSocket, addr [xsi].RemoteHostAddr, /
                                                 sizeof NETCOMADDR, NULL, 0, NULL, xdi
         .if eax != 0                                    ;Zero means success
           invoke WSAGetLastError
@@ -709,7 +709,7 @@ Method NetComConnection.QueueRead, uses xsi
 ;  DbgHex xsi, "NetComConnection.QueueRead"
   .ifBitClr [xsi].dFlags, NCC_DISCONNECTED              ;We are connected
     mov xcx, [xsi].pOwner
-    OCall [xcx].$Obj(NetComConnectionPool).pIOSockJobPool::NetComIOSockJobPool.NewItem, \
+    OCall [xcx].$Obj(NetComConnectionPool).pIOSockJobPool::NetComIOSockJobPool.NewItem, /
                                                                                OPERATION_SOCK_READ
     .if xax != NULL
       OCall xsi.DoRead, xax
@@ -739,7 +739,7 @@ Method NetComConnection.QueueWrite, uses xdi xsi, pData:POINTER, dSize:DWORD
     mov edi, dSize
     .while edi != 0
       mov xcx, [xsi].pOwner                             ;xcx -> NetComConnectionPool
-      OCall [xcx].$Obj(NetComConnectionPool).pIOSockJobPool::NetComIOSockJobPool.NewItem, \
+      OCall [xcx].$Obj(NetComConnectionPool).pIOSockJobPool::NetComIOSockJobPool.NewItem, /
                                                                                OPERATION_SOCK_WRITE
       .if xax != NULL
         mov pItem, xax

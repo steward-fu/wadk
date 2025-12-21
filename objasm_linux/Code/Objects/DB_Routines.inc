@@ -37,7 +37,7 @@ CreateTempFile proc
     .if eax == 0
       mov xax, INVALID_HANDLE_VALUE
     .else
-      invoke CreateFile, addr cTmpFileName, GENERIC_WRITE or GENERIC_READ, 0, NULL, CREATE_ALWAYS, \
+      invoke CreateFile, addr cTmpFileName, GENERIC_WRITE or GENERIC_READ, 0, NULL, CREATE_ALWAYS, /
                          FILE_ATTRIBUTE_TEMPORARY or FILE_FLAG_DELETE_ON_CLOSE, NULL
     .endif
   .endif
@@ -62,7 +62,7 @@ GetPhysicalSectorSize proc pPath:PSTRING
   .if eax == -1
     xor eax, eax
   .else
-    FillString cDevicePath, <\\.\_!:>                   ;_ is a placeholder for the drive letter
+    FillString cDevicePath, <//./_!:>                   ;_ is a placeholder for the drive letter
     add $SubReg(eax, sizeof(CHR)), "A"
     mov CHR ptr cDevicePath[4*sizeof(CHR)], $SubReg(eax, sizeof(CHR))
     mov BufferIn.PropertyId, StorageAccessAlignmentProperty
@@ -71,11 +71,11 @@ GetPhysicalSectorSize proc pPath:PSTRING
     mov BufferOut.Version, sizeof(STORAGE_ACCESS_ALIGNMENT_DESCRIPTOR)
     mov BufferOut.Size_, sizeof(BufferOut)
     m2z BufferOut.BytesPerPhysicalSector
-    mov hDevice, $invoke(CreateFile, addr cDevicePath, 0, \   ;dwDesiredAccess = 0 !!!
+    mov hDevice, $invoke(CreateFile, addr cDevicePath, 0, /   ;dwDesiredAccess = 0 !!!
                          FILE_SHARE_READ or FILE_SHARE_WRITE, NULL, OPEN_EXISTING, 0, 0)
-    invoke DeviceIoControl, hDevice, IOCTL_STORAGE_QUERY_PROPERTY, \
-                            addr BufferIn, sizeof(BufferIn), \
-                            addr BufferOut, sizeof(BufferOut), \
+    invoke DeviceIoControl, hDevice, IOCTL_STORAGE_QUERY_PROPERTY, /
+                            addr BufferIn, sizeof(BufferIn), /
+                            addr BufferOut, sizeof(BufferOut), /
                             addr dBytesReturned, NULL
     invoke CloseHandle, hDevice
     mov eax, BufferOut.BytesPerPhysicalSector
@@ -93,52 +93,52 @@ GetPhysicalSectorSize endp
 .const
 align ALIGN_DATA
 StdFieldLookupTable label STD_FIELD_INFO
-;  STD_FIELD_INFO {FDT_BINARY,    10, KTM_BIN, SFF_MEMO or SFF_NO_VISUAL or SSF_NO_INDEX, \
+;  STD_FIELD_INFO {FDT_BINARY,    10, KTM_BIN, SFF_MEMO or SFF_NO_VISUAL or SSF_NO_INDEX, /
 ;                  $OfsTStr("B: Binary"),      SFM_BLANKA,   0}
 
-  STD_FIELD_INFO {FDT_CHAR_ANSI, 00, KTM_ANSI, 0, \
+  STD_FIELD_INFO {FDT_CHAR_ANSI, 00, KTM_ANSI, 0, /
                   $OfsTStr("C: ANSI Char"),   SFM_BLANKA,   0}
 
-  STD_FIELD_INFO {FDT_DATE,      08, KTM_ANSI, 0, \
+  STD_FIELD_INFO {FDT_DATE,      08, KTM_ANSI, 0, /
                   $OfsTStr("D: Date"),        SFM_BLANKA,   10}
 
-  STD_FIELD_INFO {FDT_REAL4,     04, KTM_REAL, 0, \
+  STD_FIELD_INFO {FDT_REAL4,     04, KTM_REAL, 0, /
                   $OfsTStr("F: Float"),       SFM_ZERO,     36}
 
-;  STD_FIELD_INFO {FDT_OLE,       10, KTM_NONE, SFF_MEMO or SFF_NO_VISUAL or SSF_NO_INDEX, \
+;  STD_FIELD_INFO {FDT_OLE,       10, KTM_NONE, SFF_MEMO or SFF_NO_VISUAL or SSF_NO_INDEX, /
 ;                  $OfsTStr("G: OLE"),         SFM_BLANKA,   0}
 
-  STD_FIELD_INFO {FDT_SDWORD,    04, KTM_BIN,  0, \
+  STD_FIELD_INFO {FDT_SDWORD,    04, KTM_BIN,  0, /
                   $OfsTStr("I: Integer 32"),  SFM_ZERO,     36}
 
-  STD_FIELD_INFO {FDT_BOOL,      01, KTM_ANSI, 0, \
+  STD_FIELD_INFO {FDT_BOOL,      01, KTM_ANSI, 0, /
                   $OfsTStr("L: Logical"),     SFM_LOGIC,    1}
 
-;  STD_FIELD_INFO {FDT_MEMO_ANSI,  10, KTM_NONE, SFF_MEMO or SSF_NO_INDEX, \
+;  STD_FIELD_INFO {FDT_MEMO_ANSI,  10, KTM_NONE, SFF_MEMO or SSF_NO_INDEX, /
 ;                  $OfsTStr("M: ANSI Memo"),   SFM_BLANKA,   0}
 
-  STD_FIELD_INFO {FDT_NUMERIC,   00, KTM_ANSI, SFF_HAS_PARAM, \
+  STD_FIELD_INFO {FDT_NUMERIC,   00, KTM_ANSI, SFF_HAS_PARAM, /
                   $OfsTStr("N: Numeric"),     SFM_BLANKA,   0}
 
-  STD_FIELD_INFO {FDT_REAL8,     08, KTM_REAL, 0, \
+  STD_FIELD_INFO {FDT_REAL8,     08, KTM_REAL, 0, /
                   $OfsTStr("O: Double"),      SFM_ZERO,     36}
 
-  STD_FIELD_INFO {FDT_REAL10,    10, KTM_REAL, 0, \
+  STD_FIELD_INFO {FDT_REAL10,    10, KTM_REAL, 0, /
                   $OfsTStr("T: REAL10"),      SFM_ZERO,     36}
 
-  STD_FIELD_INFO {FDT_CURRENCY,  08, KTM_REAL, 0, \
+  STD_FIELD_INFO {FDT_CURRENCY,  08, KTM_REAL, 0, /
                   $OfsTStr("Y: Currency"),    SFM_ZERO,     36}
 
-  STD_FIELD_INFO {FDT_CHAR_WIDE, 00, KTM_WIDE, 0, \
+  STD_FIELD_INFO {FDT_CHAR_WIDE, 00, KTM_WIDE, 0, /
                   $OfsTStr("W: WIDE Char"),   SFM_BLANKW,   0}
 
-  STD_FIELD_INFO {FDT_CHAR_UTF8, 00, KTM_UTF8, 0, \
+  STD_FIELD_INFO {FDT_CHAR_UTF8, 00, KTM_UTF8, 0, /
                   $OfsTStr("8: UTF8 Char"),   SFM_BLANKA,   0}
 
-  STD_FIELD_INFO {FDT_TIMESTAMP, 08, KTM_BIN,  SFF_READ_ONLY, \
+  STD_FIELD_INFO {FDT_TIMESTAMP, 08, KTM_BIN,  SFF_READ_ONLY, /
                   $OfsTStr("@: Timestamp"),   SFM_NOW,      0}
 
-  STD_FIELD_INFO {FDT_AUTOINC,   04, KTM_BIN,  SFF_HAS_PARAM or SFF_READ_ONLY or SFF_WRITE_SETUP, \
+  STD_FIELD_INFO {FDT_AUTOINC,   04, KTM_BIN,  SFF_HAS_PARAM or SFF_READ_ONLY or SFF_WRITE_SETUP, /
                   $OfsTStr("+: Autoinc"),     SFM_AUTOINC,  11}
   BYTE  0
 
@@ -1208,7 +1208,7 @@ DB_TimestampToStr proc pDstString:PSTRING, pTimeStamp:POINTER
     mov dMonth, edx
     mov dYear, ecx
 
-    invoke wsprintf, pDstString, $OfsCStr("%04d/%02u/%02u %02u:%02u:%02u.%03u"), \
+    invoke wsprintf, pDstString, $OfsCStr("%04d/%02u/%02u %02u:%02u:%02u.%03u"), /
                      dYear, dMonth, dDay, dHours, dMinutes, dSeconds, dMilliSeconds
   .endif
   ret
@@ -1860,7 +1860,7 @@ MemoGetBmp proc uses xbx pMemo:$ObjPtr(DB_Memo), dBlockNo:DWORD
   OCall pMemo::DB_Memo.GetFrom, dBlockNo
   .if eax == OBJ_OK
     mov xbx, xcx
-    mov hBmp, $invoke(CreateCompatibleBitmap, hDC, [xbx].BITMAPINFO.bmiHeader.biWidth, \
+    mov hBmp, $invoke(CreateCompatibleBitmap, hDC, [xbx].BITMAPINFO.bmiHeader.biWidth, /
                                                    [xbx].BITMAPINFO.bmiHeader.biHeight)  
     lea xax, [xbx + sizeof(BITMAPINFO)]
     invoke SetDIBits, hDC, hBmp, 0, [xbx].BITMAPINFO.bmiHeader.biHeight, xax, xbx, DIB_RGB_COLORS

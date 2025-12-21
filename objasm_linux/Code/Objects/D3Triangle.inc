@@ -69,10 +69,10 @@ Method D3Triangle.Colorize, uses xbx xdi xsi, pLight:$ObjPtr(D3Light), Unused:XW
     xor eax, eax
     movzx eax, [xsi].SrcColor.RGBQUAD.rgbBlue
     fildReg eax                                         ;              2
-    fmul st(0), st(1)                                   ;    Normal   /\
-    fistpReg eax                                        ;       \  21/  \ Triangle
-    mov [xsi].OutColor1.RGBQUAD.rgbBlue, al             ;        \  /    \
-                                                        ;         \/______\3
+    fmul st(0), st(1)                                   ;    Normal   //
+    fistpReg eax                                        ;       /  21/  / Triangle
+    mov [xsi].OutColor1.RGBQUAD.rgbBlue, al             ;        /  /    /
+                                                        ;         //______/3
     mov al, [xsi].SrcColor.RGBQUAD.rgbGreen             ;         1|  31
     fildReg eax                                         ;          |
     fmul st(0), st(1)                                   ;          |
@@ -183,7 +183,7 @@ Polygon3 struc
   P3  POINT   {?, ?}
 Polygon3 ends
 
-;; % includelib ...\Msimg32.lib  is needed
+;; % includelib .../Msimg32.lib  is needed
 ;TriVertex3 struc
 ;  V1  TriVertex   {?, ?, ?, ?, ?, ?}
 ;  V2  TriVertex   {?, ?, ?, ?, ?, ?}

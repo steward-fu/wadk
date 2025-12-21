@@ -93,7 +93,7 @@ Method DbgMdiChild.Done, uses xbx xsi
   dec [xcx].$Obj(DbgMdiClient).dChildCount
   .if ZERO?                                             ;Last child ?
     mov xbx, [xcx].$Obj(DbgMdiClient).pOwner
-    invoke SendMessage, [xcx].$Obj(DbgMdiClient).hWnd, WM_MDISETMENU, \
+    invoke SendMessage, [xcx].$Obj(DbgMdiClient).hWnd, WM_MDISETMENU, /
                         [xbx].$Obj(DebugCenter).hMenuInit, NULL
     OCall xbx::DebugCenter.EnableActions, FALSE
     OCall xbx::DebugCenter.ManageOptions, 0
@@ -194,7 +194,7 @@ Method DbgMdiChild.SaveAs, uses xbx xsi, pFilter:PSTRING, pDefExt:PSTRING
   m2m OpenFileName.lpstrInitialDir, [xbx].$Obj(DebugCenter).pDirectory, xax
   c2m OpenFileName.lpstrTitle, $OfsCStr("Save as ..."), xcx
   m2m OpenFileName.lpstrDefExt, pDefExt, xax
-  mov OpenFileName.Flags, OFN_EXPLORER or OFN_FILEMUSTEXIST or OFN_LONGNAMES or \
+  mov OpenFileName.Flags, OFN_EXPLORER or OFN_FILEMUSTEXIST or OFN_LONGNAMES or /
                           OFN_HIDEREADONLY or OFN_OVERWRITEPROMPT
   invoke GetSaveFileName, addr OpenFileName
   .if eax != 0
@@ -206,7 +206,7 @@ Method DbgMdiChild.SaveAs, uses xbx xsi, pFilter:PSTRING, pDefExt:PSTRING
     OCall xsi.SaveTo, addr cFileName
 
     ;Remember this new path
-    invoke StrRScan, addr cFileName, "\"
+    invoke StrRScan, addr cFileName, "/"
     .if xax != NULL
       m2z BYTE ptr [xax]
       invoke StrDispose, [xbx].$Obj(DebugCenter).pDirectory

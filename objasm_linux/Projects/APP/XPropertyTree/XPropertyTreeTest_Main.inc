@@ -97,8 +97,8 @@ Method Application.Init, uses xsi
   mov dWndPosX, $32($invoke(CenterForm, dWndWidth, $32($invoke(GetSystemMetrics, SM_CXSCREEN))))
   mov dWndPosY, $32($invoke(CenterForm, dWndHeight, $32($invoke(GetSystemMetrics, SM_CYSCREEN))))
 
-  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, \
-                         offset cAppClassName, offset cAppCaption, WS_OVERLAPPEDWINDOW, \
+  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, /
+                         offset cAppClassName, offset cAppCaption, WS_OVERLAPPEDWINDOW, /
                          dWndPosX, dWndPosY, dWndWidth, dWndHeight, NULL, NULL, hInstance, pSelf
 
   invoke ShowWindow, [xsi].hWnd, SW_SHOWNORMAL
@@ -188,13 +188,13 @@ Method Application.OnCreate, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
 
   mov pNodeCat, $New(XPT_CategoryNode)
   OCall xbx::XPropertyTree.Insert, xax, NULL, XTVN_INSERT_AS_LAST_CHILD
-  OCall pNodeCat::XPT_CategoryNode.Init, xbx, hIconStrMain, $OfsCStr("Strings"), \
+  OCall pNodeCat::XPT_CategoryNode.Init, xbx, hIconStrMain, $OfsCStr("Strings"), /
                                          HEIGHT_LEVEL_1, XTVNS_EXPANDED
 
     mov pNodePrp, $New(XPT_PropertyNode)
     OCall xbx::XPropertyTree.Insert, xax, pNodeCat, XTVN_INSERT_AS_LAST_CHILD
-    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconStrItem, $OfsCStr("Caption"), \
-                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, \
+    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconStrItem, $OfsCStr("Caption"), /
+                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, /
                                            addr [xsi].cCaption, XPT_VAR_TYPE_STRING, 50
     mov xax, pNodePrp
     BitSet [xax].$Obj(XPT_PropertyNode).dState, XTVNS_DISABLED
@@ -202,110 +202,110 @@ Method Application.OnCreate, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
 
     mov pNodePrp, $New(XPT_PropertyNode)
     OCall xbx::XPropertyTree.Insert, xax, pNodeCat, XTVN_INSERT_AS_LAST_CHILD
-    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconStrItem, $OfsCStr("Description"), \
-                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, \
+    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconStrItem, $OfsCStr("Description"), /
+                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, /
                                            addr [xsi].cDescription, XPT_VAR_TYPE_STRING, 200
 
   mov pNodeCat, $New(XPT_CategoryNode)
   OCall xbx::XPropertyTree.Insert, xax, NULL, XTVN_INSERT_AS_LAST_CHILD
-  OCall pNodeCat::XPT_CategoryNode.Init, xbx, hIconSize, $OfsCStr("Size"), \
+  OCall pNodeCat::XPT_CategoryNode.Init, xbx, hIconSize, $OfsCStr("Size"), /
                                          HEIGHT_LEVEL_1, XTVNS_EXPANDED
 
     mov pNodePrp, $New(XPT_PropertyNode)
     OCall xbx::XPropertyTree.Insert, xax, pNodeCat, XTVN_INSERT_AS_LAST_CHILD
-    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconWidth, $OfsCStr("Width"), \
-                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, \
+    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconWidth, $OfsCStr("Width"), /
+                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, /
                                            addr [xsi].dWidth, XPT_VAR_TYPE_INTEGER, NULL
 
     mov pNodePrp, $New(XPT_PropertyNode)
     OCall xbx::XPropertyTree.Insert, xax, pNodeCat, XTVN_INSERT_AS_LAST_CHILD
-    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconHeight, $OfsCStr("Height"), \
-                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, \
+    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconHeight, $OfsCStr("Height"), /
+                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, /
                                            addr [xsi].dHeight, XPT_VAR_TYPE_INTEGER, NULL
 
     mov pNodePrp, $New(XPT_PropertyNode)
     OCall xbx::XPropertyTree.Insert, xax, pNodeCat, XTVN_INSERT_AS_LAST_CHILD
-    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconAverage, $OfsCStr("Average"), \
-                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, \
+    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconAverage, $OfsCStr("Average"), /
+                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, /
                                            addr [xsi].r4Average, XPT_VAR_TYPE_REAL4, offset Validate
 
   mov pNodeCat, $New(XPT_CategoryNode)
   OCall xbx::XPropertyTree.Insert, xax, NULL, XTVN_INSERT_AS_LAST_CHILD
-  OCall pNodeCat::XPT_CategoryNode.Init, xbx, hIconStyle, $OfsCStr("Style"), \
+  OCall pNodeCat::XPT_CategoryNode.Init, xbx, hIconStyle, $OfsCStr("Style"), /
                                          HEIGHT_LEVEL_1, XTVNS_EXPANDED
 
     mov pNodePrp, $New(XPT_PropertyNode)
     OCall xbx::XPropertyTree.Insert, xax, pNodeCat, XTVN_INSERT_AS_LAST_CHILD
-    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconColor, $OfsCStr("Custom color"), \
-                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, \
+    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconColor, $OfsCStr("Custom color"), /
+                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, /
                                            addr [xsi].dColor, XPT_VAR_TYPE_COLOR, offset CC
 
     mov pNodePrp, $New(XPT_PropertyNode)
     OCall xbx::XPropertyTree.Insert, xax, pNodeCat, XTVN_INSERT_AS_LAST_CHILD
-    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconBorder, $OfsCStr("Border color"), \
-                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, \
+    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconBorder, $OfsCStr("Border color"), /
+                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, /
                                            addr [xsi].dSysColor, XPT_VAR_TYPE_SYS_COLOR, NULL
 
     mov pNodePrp, $New(XPT_PropertyNode)
     OCall xbx::XPropertyTree.Insert, xax, pNodeCat, XTVN_INSERT_AS_LAST_CHILD
-    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconMode, $OfsCStr("Mode"), \
-                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, \
-                                           addr [xsi].dMode, XPT_VAR_TYPE_LIST, \
+    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconMode, $OfsCStr("Mode"), /
+                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, /
+                                           addr [xsi].dMode, XPT_VAR_TYPE_LIST, /
                                            $OfsCStr("Automatic", 0, "Manual", 0)
 
 
   mov pNodeCat, $New(XPT_CategoryNode)
   OCall xbx::XPropertyTree.Insert, xax, NULL, XTVN_INSERT_AS_LAST_CHILD
-  OCall pNodeCat::XPT_CategoryNode.Init, xbx, hIconBehavior, $OfsCStr("Behavior"), \
+  OCall pNodeCat::XPT_CategoryNode.Init, xbx, hIconBehavior, $OfsCStr("Behavior"), /
                                          HEIGHT_LEVEL_1, XTVNS_EXPANDED
 
     mov pNodePrp, $New(XPT_PropertyNode)
     OCall xbx::XPropertyTree.Insert, xax, pNodeCat, XTVN_INSERT_AS_LAST_CHILD
-    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconRedraw, $OfsCStr("Autoredraw"), \
-                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, \
-                                           addr [xsi].dAutoRedraw, XPT_VAR_TYPE_LIST, \
+    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconRedraw, $OfsCStr("Autoredraw"), /
+                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, /
+                                           addr [xsi].dAutoRedraw, XPT_VAR_TYPE_LIST, /
                                            $OfsCStr("False", 0, "True", 0)
 
     mov pNodePrp, $New(XPT_PropertyNode)
     OCall xbx::XPropertyTree.Insert, xax, pNodeCat, XTVN_INSERT_AS_LAST_CHILD
-    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconClip, $OfsCStr("Clip Controls"), \
-                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, \
-                                           addr [xsi].dClipCtrls, XPT_VAR_TYPE_LIST, \
+    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconClip, $OfsCStr("Clip Controls"), /
+                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, /
+                                           addr [xsi].dClipCtrls, XPT_VAR_TYPE_LIST, /
                                            $OfsCStr("0", 0, "1", 0, "2", 0, "3", 0)
 
     mov pNodePrp, $New(XPT_PropertyNode)
     OCall xbx::XPropertyTree.Insert, xax, pNodeCat, XTVN_INSERT_AS_LAST_CHILD
-    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconDrawStyle, $OfsCStr("Draw Style"), \
-                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, \
-                                           addr [xsi].dDrawStyle, XPT_VAR_TYPE_LIST, \
+    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconDrawStyle, $OfsCStr("Draw Style"), /
+                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, /
+                                           addr [xsi].dDrawStyle, XPT_VAR_TYPE_LIST, /
                                            $OfsCStr("Invisible", 0, "Thin", 0, "Fat", 0)
 
   mov pNodeCat, $New(XPT_CategoryNode)
   OCall xbx::XPropertyTree.Insert, xax, NULL, XTVN_INSERT_AS_LAST_CHILD
-  OCall pNodeCat::XPT_CategoryNode.Init, xbx, hIconPath, $OfsCStr("Paths"), \
+  OCall pNodeCat::XPT_CategoryNode.Init, xbx, hIconPath, $OfsCStr("Paths"), /
                                          HEIGHT_LEVEL_1, XTVNS_EXPANDED
   mov xax, pNodeCat
   BitSet [xax].$Obj(XPT_PropertyNode).dState, XTVNS_DISABLED
 
     mov pNodePrp, $New(XPT_PropertyNode)
     OCall xbx::XPropertyTree.Insert, xax, pNodeCat, XTVN_INSERT_AS_LAST_CHILD
-    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconMain, $OfsCStr("Main directory"), \
-                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, \
+    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconMain, $OfsCStr("Main directory"), /
+                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, /
                                            addr [xsi].cMainDirPath, XPT_VAR_TYPE_PATH, offset BI_Main
 
     mov pNodePrp, $New(XPT_PropertyNode)
     OCall xbx::XPropertyTree.Insert, xax, pNodeCat, XTVN_INSERT_AS_LAST_CHILD
-    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconConfig, $OfsCStr("Configuration file"), \
-                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, \
+    OCall pNodePrp::XPT_PropertyNode.Init, xbx, hIconConfig, $OfsCStr("Configuration file"), /
+                                           HEIGHT_LEVEL_2, DIVIDER_WIDTH, XTVNS_EXPANDED, /
                                            addr [xsi].cConfigFile, XPT_VAR_TYPE_FILE, offset OFN
 
   invoke StrCopy, addr [xsi].cCaption,     $OfsCStr("XPropertyTree")
   invoke StrCopy, addr [xsi].cDescription, $OfsCStr("Demo application showing the use of the XPropertyTree object")
 
-  invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Projects"), \
+  invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Projects"), /
                                    addr cBuffer, lengthof(cBuffer)
   invoke StrCopy, addr [xsi].cMainDirPath, addr cBuffer
-  invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Config.txt"), \
+  invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Config.txt"), /
                                    addr cBuffer, lengthof(cBuffer)
   invoke StrCopy, addr [xsi].cConfigFile, addr cBuffer
 
@@ -324,7 +324,7 @@ Method Application.OnCreate, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
   lea xax, cBuffer
   mov OFN.lpstrInitialDir, xax
   c2m OFN.lpstrTitle, $OfsCStr("Select a setting file..."), xax
-  mov OFN.Flags, OFN_EXPLORER or OFN_EXTENSIONDIFFERENT or OFN_LONGNAMES or \
+  mov OFN.Flags, OFN_EXPLORER or OFN_EXTENSIONDIFFERENT or OFN_LONGNAMES or /
                  OFN_OVERWRITEPROMPT or OFN_HIDEREADONLY
   c2m OFN.lpstrDefExt, $OfsCStr("txt"), xax
 
@@ -384,7 +384,7 @@ Method Application.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
     xor eax, eax
 
   .elseif ax == IDM_HELP
-    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Help\ObjAsm_Reference_Volume-I.pdf"), \
+    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Help/ObjAsm_Reference_Volume-I.pdf"), /
                                      addr cBuffer, lengthof(cBuffer)
     invoke PdfView, [xsi].hWnd, addr cBuffer, NULL
     xor eax, eax
@@ -403,7 +403,7 @@ MethodEnd
 
 Method Application.OnClose, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
-  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), \
+  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), /
                  MB_YESNO or MB_ICONQUESTION
   .if eax == IDNO
     xor eax, eax

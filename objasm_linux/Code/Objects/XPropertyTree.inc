@@ -97,7 +97,7 @@ ObjectEnd
 ; ——————————
 ;  1. See XTreeView object rules (XTreeView.inc).
 ;  2. Each node (Category or Property) need to be created, initialized and finally inserted.
-;       New XPT_PropertyNode, Init, pOwner, hIcon, "Description", dHeight, XTVNS_EXPANDED, \
+;       New XPT_PropertyNode, Init, pOwner, hIcon, "Description", dHeight, XTVNS_EXPANDED, /
 ;           pVariable, dNodeType, dOptions
 ;       OCall xbx::XPropertyTree.Insert, eax, pCategoryNode, XTVN_INSERT_AS_LAST_CHILD
 ;  3. Property nodes of type XPT_VAR_TYPE_CUSTOM passes an address to a customization procedure.
@@ -195,7 +195,7 @@ ObjectEnd
 
 Object XPT_PropertyNode, XPT_PropertyNodeID, XTreeViewNode
   RedefineMethod    Done
-  RedefineMethod    Init,               POINTER, HICON, PSTRING, DWORD, DWORD, DWORD, POINTER, \
+  RedefineMethod    Init,               POINTER, HICON, PSTRING, DWORD, DWORD, DWORD, POINTER, /
                                         DWORD, POINTER
   RedefineMethod    CanDragMe,          DWORD
   RedefineMethod    MouseHit,           DWORD, PPOINT, PXPTN_DISP_INFO, DWORD
@@ -221,8 +221,8 @@ if IMPLEMENT
 ExterndefMethod pepe::DisplayInfoColl.DestroyItem
 
 .data
-XPT_LogFontText LOGFONT <0, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, \
-                         OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, \
+XPT_LogFontText LOGFONT <0, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, /
+                         OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, /
                          DEFAULT_PITCH or FF_DONTCARE, {"A","R","I","A","L",0}>
 
 .const
@@ -234,7 +234,7 @@ XPT_SYS_COLOR_ENTRY struc sizeof(XWORD)
   pDescription    POINTER     ?                         ;-> System element that uses this color
 XPT_SYS_COLOR_ENTRY ends
 
-XPT_SYS_COLOR_TABLE_EN_BEG \
+XPT_SYS_COLOR_TABLE_EN_BEG /
 XPT_SYS_COLOR_ENTRY <00, $OfsTStr("Scrollbar")>
 XPT_SYS_COLOR_ENTRY <01, $OfsTStr("Background / Desktop")>
 XPT_SYS_COLOR_ENTRY <02, $OfsTStr("Active caption")>
@@ -304,7 +304,7 @@ MethodEnd
 ;             Arg4: Node state (XTVNS_DISABLED, XTVNS_EXPANDED, etc.
 ; Return:     Nothing.
 
-Method XPT_CategoryNode.Init, uses xdi xsi, pOwner:POINTER, hIcon:HICON, pCaption:PSTRING, \
+Method XPT_CategoryNode.Init, uses xdi xsi, pOwner:POINTER, hIcon:HICON, pCaption:PSTRING, /
                                             dHeight:DWORD, dState:DWORD
   local hDC:HDC
 
@@ -343,7 +343,7 @@ MethodEnd
 ;             Arg4: Key flags (MK_CONTROL, MK_LBUTTON, MK_MBUTTON, MK_RBUTTON, MK_SHIFT).
 ; Return:     eax = TRUE if and action was triggered, otherwise FALSE.
 
-Method XPT_CategoryNode.MouseHit, uses xbx xsi, dButton:DWORD, pPoint:PPOINT, \
+Method XPT_CategoryNode.MouseHit, uses xbx xsi, dButton:DWORD, pPoint:PPOINT, /
                                                 pDispInfo:PXPTN_DISP_INFO, dKeyFlags:DWORD
   local pSelNode:$ObjPtr(XPT_CategoryNode), pSelNodeDispInfo:PXPTN_DISP_INFO
 
@@ -377,7 +377,7 @@ MethodEnd
 ;             Arg4: Key flags (MK_CONTROL, MK_LBUTTON, MK_MBUTTON, MK_RBUTTON, MK_SHIFT).
 ; Return:     eax = TRUE if and action was triggered, otherwise FALSE.
 
-Method XPT_CategoryNode.MouseHitDbl, uses xbx xsi, dButton:DWORD, pPoint:PPOINT, \
+Method XPT_CategoryNode.MouseHitDbl, uses xbx xsi, dButton:DWORD, pPoint:PPOINT, /
                                                    pDispInfo:PXPTN_DISP_INFO, dKeyFlags:DWORD
   SetObject xsi
   SetObject xbx, XPropertyTree, [xsi].pOwner
@@ -446,7 +446,7 @@ Method XPT_CategoryNode.RenderContent, uses xbx xdi xsi, pDispInfo:PXPTN_DISP_IN
     mov [xdi].TextRect.left, ecx                    ;TextRect.left
 
     ;Render the icon
-    invoke DrawIconEx, [xbx].hMemDC, edx, eax, [xsi].hIcon, \
+    invoke DrawIconEx, [xbx].hMemDC, edx, eax, [xsi].hIcon, /
                        XPT_ICON_SIZE, XPT_ICON_SIZE, NULL, NULL, DI_NORMAL
 
     ;Set text and background colors
@@ -535,8 +535,8 @@ MethodEnd
 ;             Arg8: -> Control option list.
 ; Return:     Nothing.
 
-Method XPT_PropertyNode.Init, uses xdi xsi, pOwner:POINTER, hIcon:HICON, pCaption:PSTRING, \
-                                            dHeight:DWORD, dDividerPos:DWORD, dState:DWORD, \
+Method XPT_PropertyNode.Init, uses xdi xsi, pOwner:POINTER, hIcon:HICON, pCaption:PSTRING, /
+                                            dHeight:DWORD, dDividerPos:DWORD, dState:DWORD, /
                                             pVariable:POINTER, dVarType:DWORD, pOptions:POINTER
   local hPrvFont:HFONT, TxtMtr:TEXTMETRIC
 
@@ -587,7 +587,7 @@ MethodEnd
 ;             Arg4: Key flags (MK_CONTROL, MK_LBUTTON, MK_MBUTTON, MK_RBUTTON, MK_SHIFT).
 ; Return:     eax = TRUE if and action was triggered, otherwise FALSE.
 
-Method XPT_PropertyNode.MouseHit, uses xbx xsi, dButton:DWORD, pPoint:PPOINT, \
+Method XPT_PropertyNode.MouseHit, uses xbx xsi, dButton:DWORD, pPoint:PPOINT, /
                                                 pDispInfo:PXPTN_DISP_INFO, dKeyFlags:DWORD
   local pSelNode:$ObjPtr(XPT_PropertyNode), pSelNodeDispInfo:PXPTN_DISP_INFO
 
@@ -621,7 +621,7 @@ MethodEnd
 ;             Arg4: Key flags (MK_CONTROL, MK_LBUTTON, MK_MBUTTON, MK_RBUTTON, MK_SHIFT).
 ; Return:     eax = TRUE if and action was triggered, otherwise FALSE.
 
-Method XPT_PropertyNode.MouseHitDbl, uses xbx xdi xsi, dButton:DWORD, pPoint:PPOINT, \
+Method XPT_PropertyNode.MouseHitDbl, uses xbx xdi xsi, dButton:DWORD, pPoint:PPOINT, /
                                                        pDispInfo:PXPTN_DISP_INFO, dKeyFlags:DWORD
   local cBuffer[20]:CHR, CtrlDef:XPT_CTRLDEF
   local pTableEnd:POINTER, hWnd:HWND
@@ -669,7 +669,7 @@ Method XPT_PropertyNode.MouseHitDbl, uses xbx xdi xsi, dButton:DWORD, pPoint:PPO
             invoke SetWindowLongPtr, xbx, GWL_STYLE, CtrlDef.dStyle
             invoke SetWindowLongPtr, xbx, GWL_EXSTYLE, CtrlDef.dExStyle
             invoke SetWindowText, xbx, CtrlDef.pTitle
-            invoke MoveWindow, xbx, CtrlDef.sdPosX, CtrlDef.sdPosY, \
+            invoke MoveWindow, xbx, CtrlDef.sdPosX, CtrlDef.sdPosY, /
                                CtrlDef.dWidth, CtrlDef.dHeight, TRUE
           .endif
           invoke SendMessage, xbx, WM_SETFONT, [xsi].hFont, FALSE
@@ -710,7 +710,7 @@ Method XPT_PropertyNode.MouseHitDbl, uses xbx xdi xsi, dButton:DWORD, pPoint:PPO
             invoke SetWindowLongPtr, xbx, GWL_STYLE, CtrlDef.dStyle
             invoke SetWindowLongPtr, xbx, GWL_EXSTYLE, CtrlDef.dExStyle
             invoke SetWindowText, xbx, CtrlDef.pTitle
-            invoke MoveWindow, xbx, CtrlDef.sdPosX, CtrlDef.sdPosY, \
+            invoke MoveWindow, xbx, CtrlDef.sdPosX, CtrlDef.sdPosY, /
                                CtrlDef.dWidth, CtrlDef.dHeight, TRUE
           .endif
           invoke SendMessage, xbx, WM_SETFONT, [xsi].hFont, FALSE
@@ -753,7 +753,7 @@ Method XPT_PropertyNode.MouseHitDbl, uses xbx xdi xsi, dButton:DWORD, pPoint:PPO
             invoke SetWindowLongPtr, xbx, GWL_STYLE, CtrlDef.dStyle
             invoke SetWindowLongPtr, xbx, GWL_EXSTYLE, CtrlDef.dExStyle
             invoke SetWindowText, xbx, CtrlDef.pTitle
-            invoke MoveWindow, xbx, CtrlDef.sdPosX, CtrlDef.sdPosY, \
+            invoke MoveWindow, xbx, CtrlDef.sdPosX, CtrlDef.sdPosY, /
                                CtrlDef.dWidth, CtrlDef.dHeight, TRUE
           .endif
           invoke SendMessage, xbx, WM_SETFONT, [xsi].hFont, FALSE
@@ -787,7 +787,7 @@ Method XPT_PropertyNode.MouseHitDbl, uses xbx xdi xsi, dButton:DWORD, pPoint:PPO
             mov xbx, [xax].$Obj(WinControl).hWnd
             invoke SetWindowLongPtr, xbx, GWL_STYLE, CtrlDef.dStyle
             invoke SetWindowLongPtr, xbx, GWL_EXSTYLE, CtrlDef.dExStyle
-            invoke MoveWindow, xbx, CtrlDef.sdPosX, CtrlDef.sdPosY, \
+            invoke MoveWindow, xbx, CtrlDef.sdPosX, CtrlDef.sdPosY, /
                                CtrlDef.dWidth, CtrlDef.dHeight, TRUE
           .endif
           invoke SendMessage, xbx, WM_SETFONT, [xsi].hFont, FALSE
@@ -820,7 +820,7 @@ Method XPT_PropertyNode.MouseHitDbl, uses xbx xdi xsi, dButton:DWORD, pPoint:PPO
             mov xbx, [xax].$Obj(WinControl).hWnd
             invoke SetWindowLongPtr, xbx, GWL_STYLE, CtrlDef.dStyle
             invoke SetWindowLongPtr, xbx, GWL_EXSTYLE, CtrlDef.dExStyle
-            invoke MoveWindow, xbx, CtrlDef.sdPosX, CtrlDef.sdPosY, \
+            invoke MoveWindow, xbx, CtrlDef.sdPosX, CtrlDef.sdPosY, /
                                CtrlDef.dWidth, CtrlDef.dHeight, TRUE
           .endif
           invoke SendMessage, xbx, WM_SETFONT, [xsi].hFont, FALSE
@@ -858,7 +858,7 @@ Method XPT_PropertyNode.MouseHitDbl, uses xbx xdi xsi, dButton:DWORD, pPoint:PPO
             invoke SetWindowLongPtr, xbx, GWL_STYLE, CtrlDef.dStyle
             invoke SetWindowLongPtr, xbx, GWL_EXSTYLE, CtrlDef.dExStyle
             invoke SetWindowText, xbx, CtrlDef.pTitle
-            invoke MoveWindow, xbx, CtrlDef.sdPosX, CtrlDef.sdPosY, \
+            invoke MoveWindow, xbx, CtrlDef.sdPosX, CtrlDef.sdPosY, /
                                CtrlDef.dWidth, CtrlDef.dHeight, TRUE
           .endif
           invoke SendMessage, xbx, WM_SETFONT, [xsi].hFont, FALSE
@@ -1075,11 +1075,11 @@ Method XPT_PropertyNode.RenderContent, uses xbx xdi xsi, pDispInfo:PXPTN_DISP_IN
     mov [xdi].TextRect.left, eax                        ;TextRect.left
     mov eax, [xbx].ClientSize.x
     mov [xdi].ButtonRect.right, eax                     ;ButtonRect.right
-    .if (([xsi].dVarType == XPT_VAR_TYPE_SYS_COLOR) || \;In all these cases make room
-         ([xsi].dVarType == XPT_VAR_TYPE_COLOR) || \    ;  for the button at the end
-         ([xsi].dVarType == XPT_VAR_TYPE_FILE) || \     ;  of the text rect
-         ([xsi].dVarType == XPT_VAR_TYPE_PATH) || \
-         ([xsi].dVarType == XPT_VAR_TYPE_LIST)) && \
+    .if (([xsi].dVarType == XPT_VAR_TYPE_SYS_COLOR) || /;In all these cases make room
+         ([xsi].dVarType == XPT_VAR_TYPE_COLOR) || /    ;  for the button at the end
+         ([xsi].dVarType == XPT_VAR_TYPE_FILE) || /     ;  of the text rect
+         ([xsi].dVarType == XPT_VAR_TYPE_PATH) || /
+         ([xsi].dVarType == XPT_VAR_TYPE_LIST)) && /
          ([xsi].dState & XTVNS_FOCUSED)                 ;and only if the node is focused!
       sub eax, [xdi].CaptionRect.bottom
       add eax, [xdi].CaptionRect.top
@@ -1098,7 +1098,7 @@ Method XPT_PropertyNode.RenderContent, uses xbx xdi xsi, pDispInfo:PXPTN_DISP_IN
     invoke DeleteObject, hBrush
 
     ;Render the icon
-    invoke DrawIconEx, [xbx].hMemDC, [xdi].IconRect.left, [xdi].IconRect.top, [xsi].hIcon, \
+    invoke DrawIconEx, [xbx].hMemDC, [xdi].IconRect.left, [xdi].IconRect.top, [xsi].hIcon, /
                        XPT_ICON_SIZE, XPT_ICON_SIZE, NULL, NULL, DI_NORMAL
 
     .if xsi == [xbx].pSelectedNode
@@ -1152,11 +1152,11 @@ Method XPT_PropertyNode.RenderContent, uses xbx xdi xsi, pDispInfo:PXPTN_DISP_IN
     sub ecx, [xsi].dFontAveWidth
     mov OutputRect.right, ecx
 
-    invoke DrawText, [xbx].hMemDC, [xsi].pCaption , -1, addr OutputRect, \
+    invoke DrawText, [xbx].hMemDC, [xsi].pCaption , -1, addr OutputRect, /
                      DT_SINGLELINE or DT_LEFT or DT_END_ELLIPSIS
 
     ;Fill the property text background and button area
-    .if (xsi == [xbx].pSelectedNode) && ([xsi].dState & XTVNS_FOCUSED) && \
+    .if (xsi == [xbx].pSelectedNode) && ([xsi].dState & XTVNS_FOCUSED) && /
         !(([xbx].dState & XTVS_DISABLED) || ([xsi].dState & XTVNS_DISABLED))
       invoke GetSysColor, COLOR_WINDOW
     .else
@@ -1177,8 +1177,8 @@ Method XPT_PropertyNode.RenderContent, uses xbx xdi xsi, pDispInfo:PXPTN_DISP_IN
         mov AuxRect.left, eax
         lea eax, [xcx + XPT_MARGIN + XPT_ICON_SIZE]
         mov AuxRect.right, eax
-        invoke Rectangle, [xbx].hMemDC, \
-                          AuxRect.left, [xdi].IconRect.top, \
+        invoke Rectangle, [xbx].hMemDC, /
+                          AuxRect.left, [xdi].IconRect.top, /
                           AuxRect.right, [xdi].IconRect.bottom
         invoke SelectObject, [xbx].hMemDC, hPrevBrush
         invoke DeleteObject, hBrush
@@ -1197,8 +1197,8 @@ Method XPT_PropertyNode.RenderContent, uses xbx xdi xsi, pDispInfo:PXPTN_DISP_IN
         mov AuxRect.left, eax
         lea eax, [xcx + XPT_MARGIN + XPT_ICON_SIZE]
         mov AuxRect.right, eax
-        invoke Rectangle, [xbx].hMemDC, \
-                          AuxRect.left, [xdi].IconRect.top, \
+        invoke Rectangle, [xbx].hMemDC, /
+                          AuxRect.left, [xdi].IconRect.top, /
                           AuxRect.right, [xdi].IconRect.bottom
         invoke SelectObject, [xbx].hMemDC, hPrevBrush
 
@@ -1318,7 +1318,7 @@ Method XPT_PropertyNode.RenderContent, uses xbx xdi xsi, pDispInfo:PXPTN_DISP_IN
         m2z pText
       .endif
 
-      invoke DrawText, [xbx].hMemDC, pText , -1, addr OutputRect, \
+      invoke DrawText, [xbx].hMemDC, pText , -1, addr OutputRect, /
                        DT_SINGLELINE or DT_LEFT or DT_END_ELLIPSIS
 
       ;Restore previous settings
@@ -1340,8 +1340,8 @@ Method XPT_PropertyNode.RenderContent, uses xbx xdi xsi, pDispInfo:PXPTN_DISP_IN
       invoke SelectObject, [xbx].hMemDC, hPrevPen
 
 ;      ;Render a down pointing arrow if we have the combobox active
-;      .if (([xsi].dVarType == XPT_VAR_TYPE_SYS_COLOR) || \
-;           ([xsi].dVarType == XPT_VAR_TYPE_LIST)) && \
+;      .if (([xsi].dVarType == XPT_VAR_TYPE_SYS_COLOR) || /
+;           ([xsi].dVarType == XPT_VAR_TYPE_LIST)) && /
 ;          ([xsi].dState & XTVNS_FOCUSED)
 ;        mov ecx, [xdi].ButtonRect.left
 ;        sub ecx, [xdi].TextRect.left
@@ -1492,8 +1492,8 @@ Method XPropertyTree.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefStruc
   assume xbx:PDEF_XTV
   mov eax, [xbx].dStyle
   or eax, WS_CHILD or WS_VISIBLE or WS_TABSTOP; or WS_CLIPCHILDREN or WS_CLIPSIBLINGS
-  invoke CreateWindowEx, [xbx].dExStyle, offset cClassNameXPT, [xbx].pTitle, \
-                         eax, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, \
+  invoke CreateWindowEx, [xbx].dExStyle, offset cClassNameXPT, [xbx].pTitle, /
+                         eax, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, /
                          hParent, [xbx].xCtlID, hInstance, pSelf
   assume xbx:NOTHING
   TCall xsi::WinPrimer.Init, pOwner, [xsi].hWnd
@@ -1694,7 +1694,7 @@ Method XPropertyTree.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
                 m2m [xdi].OPENFILENAME.hwndOwner, [xsi].hWnd, xdx
                 invoke GetOpenFileName, xdi
                 .if eax == TRUE
-                  invoke StrCopy, [xbx].$Obj(XPT_PropertyNode).pVariable, \
+                  invoke StrCopy, [xbx].$Obj(XPT_PropertyNode).pVariable, /
                                   [xdi].OPENFILENAME.lpstrFile
                   OCall xsi.GetDispInfo, xbx
                   OCall xbx::XPT_PropertyNode.RenderContent, xax
@@ -1731,9 +1731,9 @@ Method XPropertyTree.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
         .endif
       .endif
 
-    .elseif (ax == EN_UPDATE) && \                      ;Edit has changed its text
-      (([xbx].$Obj(XPT_PropertyNode).dVarType == XPT_VAR_TYPE_CUSTOM) || \
-       ([xbx].$Obj(XPT_PropertyNode).dVarType == XPT_VAR_TYPE_INTEGER) || \
+    .elseif (ax == EN_UPDATE) && /                      ;Edit has changed its text
+      (([xbx].$Obj(XPT_PropertyNode).dVarType == XPT_VAR_TYPE_CUSTOM) || /
+       ([xbx].$Obj(XPT_PropertyNode).dVarType == XPT_VAR_TYPE_INTEGER) || /
        ([xbx].$Obj(XPT_PropertyNode).dVarType == XPT_VAR_TYPE_REAL4))
       mov xcx, [xbx].$Obj(XPT_PropertyNode).pOptions
       .if xcx != NULL
@@ -2014,7 +2014,7 @@ Method XPropertyTree.OnDrawItem, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
 
         .endif
 
-        invoke DrawText, [xdi].hDC, [xdi].itemData, -1, addr [xdi].rcItem, \
+        invoke DrawText, [xdi].hDC, [xdi].itemData, -1, addr [xdi].rcItem, /
                      DT_SINGLELINE or DT_LEFT or DT_END_ELLIPSIS
 
         ;Restore previous settings
@@ -2038,7 +2038,7 @@ Method XPropertyTree.OnDrawItem, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
     mov dPrevColor, $32($invoke(SetTextColor, [xdi].hDC, $32($invoke(GetSysColor, COLOR_WINDOWTEXT))))
     mov hBrush, $invoke(CreateSolidBrush, $32($invoke(GetSysColor, COLOR_WINDOW)))
     invoke FillRect, [xdi].hDC, addr [xdi].rcItem, xax
-    invoke DrawText, [xdi].hDC, $OfsCStr("..."), -1, addr [xdi].rcItem, \
+    invoke DrawText, [xdi].hDC, $OfsCStr("..."), -1, addr [xdi].rcItem, /
                  DT_SINGLELINE or DT_CENTER or DT_VCENTER
     invoke DeleteObject, hBrush
 
@@ -2454,7 +2454,7 @@ Method XPropertyTree.Startup
   local WC:WNDCLASSEX
 
   mov WC.cbSize, sizeof WNDCLASSEX
-  mov WC.style, CS_HREDRAW or CS_VREDRAW or CS_PARENTDC or CS_BYTEALIGNWINDOW or \
+  mov WC.style, CS_HREDRAW or CS_VREDRAW or CS_PARENTDC or CS_BYTEALIGNWINDOW or /
                 CS_BYTEALIGNCLIENT or CS_DBLCLKS
   m2m WC.lpfnWndProc, $MethodAddr(XPropertyTree.WndProc), xdx
   m2z WC.cbClsExtra
@@ -2503,8 +2503,8 @@ Method XPT_Edit.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefStruc:PXPT
   SetObject xsi
   mov xbx, pDefStruc
   assume xbx:PXPT_CTRLDEF
-  invoke CreateWindowEx, [xbx].dExStyle, $OfsCStr("EDIT"), [xbx].pTitle, [xbx].dStyle, \
-                     [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, \
+  invoke CreateWindowEx, [xbx].dExStyle, $OfsCStr("EDIT"), [xbx].pTitle, [xbx].dStyle, /
+                     [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, /
                      hParent, [xbx].xCtlID, hInstance, 0
   assume xbx:NOTHING
   ACall xsi.Init, pOwner, xax
@@ -2611,8 +2611,8 @@ Method XPT_Button.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefStruc:PX
   SetObject xsi
   mov xbx, pDefStruc
   assume xbx:PXPT_CTRLDEF
-  invoke CreateWindowEx, [xbx].dExStyle, $OfsCStr("BUTTON"), [xbx].pTitle, [xbx].dStyle, \
-                     [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, \
+  invoke CreateWindowEx, [xbx].dExStyle, $OfsCStr("BUTTON"), [xbx].pTitle, [xbx].dStyle, /
+                     [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, /
                      hParent, [xbx].xCtlID, hInstance, 0
   assume xbx:NOTHING
   ACall xsi.Init, pOwner, xax
@@ -2688,8 +2688,8 @@ Method XPT_ComboBox.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefStruc:
   m2m [xsi].pOwner, pOwner, xdx                         ;Do this to get the owner in WM_MEASUREITEM
   mov xbx, pDefStruc
   assume xbx:PXPT_CTRLDEF
-  invoke CreateWindowEx, [xbx].dExStyle, $OfsCStr("ComboBox"), [xbx].pTitle, [xbx].dStyle, \
-                         [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, \
+  invoke CreateWindowEx, [xbx].dExStyle, $OfsCStr("ComboBox"), [xbx].pTitle, [xbx].dStyle, /
+                         [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, /
                          hParent, [xbx].xCtlID, hInstance, 0
   assume xbx:NOTHING
   ACall xsi.Init, pOwner, xax

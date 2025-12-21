@@ -27,10 +27,10 @@ ObjectEnd
 ; ==================================================================================================
 
 IDC_STC_MESSAGE equ 1001
-CStr Message, CRLF, "Hello", CRLF, CRLF, \
-              "This is a dialog that acts", CRLF, \
-              "as the main application window.", CRLF, \
-              "Press 'OK' or the close button to", CRLF, \
+CStr Message, CRLF, "Hello", CRLF, CRLF, /
+              "This is a dialog that acts", CRLF, /
+              "as the main application window.", CRLF, /
+              "Press 'OK' or the close button to", CRLF, /
               "exit the application."
 
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————

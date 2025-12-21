@@ -108,8 +108,8 @@ MethodEnd
 ;                   data. If an error is returned, this parameter must be set to NULL.
 ; Return:     eax = HRESULT.
 
-Method I_OcxCont_OleInPlaceSite.GetWindowContext, uses xsi, ppFrame:POINTER, ppDoc:POINTER, \
-                                                            pPosRect:ptr RECT, pClipRect:ptr RECT, \
+Method I_OcxCont_OleInPlaceSite.GetWindowContext, uses xsi, ppFrame:POINTER, ppDoc:POINTER, /
+                                                            pPosRect:ptr RECT, pClipRect:ptr RECT, /
                                                             pFrameInfo:ptr OLEINPLACEFRAMEINFO
   DbgText "I_OcxCont_OleInPlaceSite.GetWindowContext", "I_OcxCont_OleInPlaceSite"
   SetOwner xsi, OcxClientSite

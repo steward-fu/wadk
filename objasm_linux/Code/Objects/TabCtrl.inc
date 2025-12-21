@@ -82,13 +82,13 @@ MethodEnd
 ;             Arg4: -> DEF_TABCONTROL structure.
 ; Return:     Nothing.
 
-Method TabCtrl.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, \
+Method TabCtrl.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, /
                                    pImageList:$ObjPtr(MaskedImageList), pDefStruc:PDEF_TABCONTROL
   SetObject xsi
   mov xbx, pDefStruc
   assume xbx:PDEF_TABCONTROL
-  invoke CreateWindowEx, [xbx].dExStyle, $OfsCStr("SysTabControl32"), [xbx].pTitle, \
-                         [xbx].dStyle, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, \
+  invoke CreateWindowEx, [xbx].dExStyle, $OfsCStr("SysTabControl32"), [xbx].pTitle, /
+                         [xbx].dStyle, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, /
                          hParent, [xbx].xCtlID, hInstance, 0
   assume xbx:NOTHING
   ACall xsi.Init, pOwner, xax

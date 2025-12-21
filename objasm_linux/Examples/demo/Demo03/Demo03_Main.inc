@@ -8,13 +8,13 @@
 ; ==================================================================================================
 
 
-TB_STYLE    equ     WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or \
+TB_STYLE    equ     WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or /
                     CCS_NORESIZE or CCS_NODIVIDER or CCS_ADJUSTABLE or TBSTYLE_FLAT or TBSTYLE_LIST
 
 SB_STYLE    equ     WS_CHILD or WS_VISIBLE or SBARS_SIZEGRIP or SBARS_TOOLTIPS
 
 .const
-ToolbarFile DEF_TOOLBAR {IDC_TOOLBARFILE, TB_STYLE, TBSTYLE_EX_MIXEDBUTTONS, \
+ToolbarFile DEF_TOOLBAR {IDC_TOOLBARFILE, TB_STYLE, TBSTYLE_EX_MIXEDBUTTONS, /
                          $OfsTStr("File operations"), {<0,0,0,0>}, 5}
   TBBUTTON {IDB_FILE_NEW,    IDM_FILE_NEW,    TBSTATE_ENABLED, TBSTYLE_BUTTON,, 0, $OfsTStr("New")}
   TBBUTTON {0,               -1,              TBSTATE_ENABLED, TBSTYLE_SEP}
@@ -22,7 +22,7 @@ ToolbarFile DEF_TOOLBAR {IDC_TOOLBARFILE, TB_STYLE, TBSTYLE_EX_MIXEDBUTTONS, \
   TBBUTTON {IDB_FILE_SAVE,   IDM_FILE_SAVE,   TBSTATE_ENABLED, TBSTYLE_BUTTON,, 0, $OfsTStr("Save")}
   TBBUTTON {IDB_FILE_SAVEAS, IDM_FILE_SAVEAS, TBSTATE_ENABLED, TBSTYLE_BUTTON,, 0, $OfsTStr("Save as")}
 
-ToolbarEdit DEF_TOOLBAR {IDC_TOOLBAREDIT, TB_STYLE, TBSTYLE_EX_MIXEDBUTTONS, \
+ToolbarEdit DEF_TOOLBAR {IDC_TOOLBAREDIT, TB_STYLE, TBSTYLE_EX_MIXEDBUTTONS, /
                          $OfsTStr("Edit operations"), {<0,0,0,0>}, 3}
   TBBUTTON {IDB_EDIT_CUT,    IDM_EDIT_CUT,    TBSTATE_ENABLED, TBSTYLE_BUTTON,, 0, $OfsTStr("Cut")}
   TBBUTTON {IDB_EDIT_COPY,   IDM_EDIT_COPY,   TBSTATE_ENABLED, TBSTYLE_BUTTON,, 0, $OfsTStr("Copy")}
@@ -139,8 +139,8 @@ Method Application.Init, uses xbx xsi
   invoke CenterForm, dWndHeight, eax
   mov dWndPosY, eax
 
-  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, \
-                         offset szAppClassName, offset szAppTitle, WS_OVERLAPPEDWINDOW, \
+  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, /
+                         offset szAppClassName, offset szAppTitle, WS_OVERLAPPEDWINDOW, /
                          dWndPosX, dWndPosY, dWndWidth, dWndHeight, NULL, NULL, hInstance, xsi
   invoke ShowWindow, [xsi].hWnd, SW_SHOWNORMAL
   invoke UpdateWindow, [xsi].hWnd
@@ -155,7 +155,7 @@ MethodEnd
 
 Method Application.OnClose, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
-  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), \
+  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), /
                      MB_YESNO or MB_ICONQUESTION
   .if eax == IDNO
     xor eax, eax
@@ -202,7 +202,7 @@ Method Application.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
     .if [xsi].pModelessDlg == NULL
       New DialogModeless
       mov [xsi].pModelessDlg, xax
-      OCall [xsi].pModelessDlg::DialogModeless.Init, xsi, [xsi].hWnd, $OfsCStr("DIALOG1"), \
+      OCall [xsi].pModelessDlg::DialogModeless.Init, xsi, [xsi].hWnd, $OfsCStr("DIALOG1"), /
                                                      addr [xsi].hActiveMlsDlg
       OCall [xsi].pModelessDlg::DialogModeless.Show
     .else
@@ -241,7 +241,7 @@ Method Application.OnCreate, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   OCall xax::Rebar.Init, xsi, [xsi].hWnd
 
   mov [xsi].pToolbar2, $New(Toolbar)
-  OCall [xsi].pToolbar2::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarEdit, \
+  OCall [xsi].pToolbar2::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarEdit, /
                                        [xsi].pIconImageList, NULL, NULL
 
   OCall [xsi].pToolbar2::Toolbar.GetHeight
@@ -251,7 +251,7 @@ Method Application.OnCreate, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   OCall [xsi].pRebar::Rebar.InsertBand, [xdx].$Obj(Toolbar).hWnd, eax, ebx
 
   mov [xsi].pToolbar1, $New(Toolbar)
-  OCall [xsi].pToolbar1::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarFile, \
+  OCall [xsi].pToolbar1::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarFile, /
                                        [xsi].pIconImageList, NULL, NULL
   OCall [xsi].pToolbar1::Toolbar.GetHeight
   mov ebx, eax

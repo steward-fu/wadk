@@ -20,7 +20,7 @@ SEL_FLAG_CHANGE_TYPE    equ   BIT10
 SEL_FLAG_CHANGE_LENGTH  equ   BIT11
 SEL_FLAG_CHANGE_PARAM   equ   BIT12
 SEL_FLAG_CHANGE_INDEX   equ   BIT13     ;Index file name changed
-SEL_FLAG_CHANGE_DATA    equ   SEL_FLAG_CHANGE_NAME or SEL_FLAG_CHANGE_TYPE or \
+SEL_FLAG_CHANGE_DATA    equ   SEL_FLAG_CHANGE_NAME or SEL_FLAG_CHANGE_TYPE or /
                               SEL_FLAG_CHANGE_LENGTH or SEL_FLAG_CHANGE_PARAM
 SEL_FLAG_CHANGE_ANY     equ   SEL_FLAG_CHANGE_DATA or SEL_FLAG_CHANGE_POS or SEL_FLAG_CHANGE_INDEX
 
@@ -236,22 +236,22 @@ Method DB_StructEditorLine.CtlsMove, uses xbx xdi xsi, pControl:POINTER, pCtlPos
   mov xbx, pCtlPos
   assume xbx:PCTRL_POSITIONS
 
-  invoke DeferWindowPos, [xdi].hDWP, [xsi].hStcInfo, HWND_BOTTOM, \
+  invoke DeferWindowPos, [xdi].hDWP, [xsi].hStcInfo, HWND_BOTTOM, /
                          [xbx].sdPosX1, [xbx].LineOrigin.y, [xdi].InfoSize.x, [xdi].InfoSize.y, 0
   mov [xdi].hDWP, xax
-  invoke DeferWindowPos, [xdi].hDWP, [xsi].hEdtFieldName, HWND_BOTTOM, \
+  invoke DeferWindowPos, [xdi].hDWP, [xsi].hEdtFieldName, HWND_BOTTOM, /
                          [xbx].sdPosX2, [xbx].LineOrigin.y, [xdi].dFldNameWidth, [xdi].EdtSize.y, 0
   mov [xdi].hDWP, xax
-  invoke DeferWindowPos, [xdi].hDWP, [xsi].hCboFieldType, HWND_BOTTOM, \
+  invoke DeferWindowPos, [xdi].hDWP, [xsi].hCboFieldType, HWND_BOTTOM, /
                          [xbx].sdPosX3, [xbx].LineOrigin.y, [xdi].dFldTypeWidth, [xdi].EdtSize.y, 0
   mov [xdi].hDWP, xax
-  invoke DeferWindowPos, [xdi].hDWP, [xsi].hEdtFieldLength, HWND_BOTTOM, \
+  invoke DeferWindowPos, [xdi].hDWP, [xsi].hEdtFieldLength, HWND_BOTTOM, /
                          [xbx].sdPosX4, [xbx].LineOrigin.y, [xdi].dFldLengthWidth, [xdi].EdtSize.y,0
   mov [xdi].hDWP, xax
-  invoke DeferWindowPos, [xdi].hDWP, [xsi].hEdtFieldParam, HWND_BOTTOM, \
+  invoke DeferWindowPos, [xdi].hDWP, [xsi].hEdtFieldParam, HWND_BOTTOM, /
                          [xbx].sdPosX5, [xbx].LineOrigin.y, [xdi].dFldParamWidth, [xdi].EdtSize.y, 0
   mov [xdi].hDWP, xax
-  invoke DeferWindowPos, [xdi].hDWP, [xsi].hEdtFieldIndex, HWND_BOTTOM, \
+  invoke DeferWindowPos, [xdi].hDWP, [xsi].hEdtFieldIndex, HWND_BOTTOM, /
                          [xbx].sdPosX6, [xbx].LineOrigin.y, [xdi].EdtSize.x, [xdi].EdtSize.y, 0
   mov [xdi].hDWP, xax
 
@@ -288,12 +288,12 @@ Method DB_StructEditorLine.CtlsRead, uses xbx xdi xsi
     .ifBitSet bl, BIT00
       MessageText textequ <Invalid length in WIDE Char field >
       FillWordA cBuffer, <%MessageText>
-      invoke GetWindowTextA, [xsi].hEdtFieldName, addr [xdi + @SizeStr(%MessageText)], \
+      invoke GetWindowTextA, [xsi].hEdtFieldName, addr [xdi + @SizeStr(%MessageText)], /
                             LOCAL_BUFFER_SIZE - @SizeStr(%MessageText)
       invoke StrCatA, xdi, $OfsCStrA(".", 10, 13, "Increasing length by 1.")
       mov xax, [xsi].pOwner                             ;xax -> Collection
       mov xcx, [xax].$Obj(Collection).pOwner            ;xcx -> DB_StructEditor
-      invoke MessageBoxA, [xcx].$Obj(DB_StructEditor).hWnd, xdi, $OfsCStrA("Error"), \
+      invoke MessageBoxA, [xcx].$Obj(DB_StructEditor).hWnd, xdi, $OfsCStrA("Error"), /
                           MB_ICONWARNING or MB_OK
       inc ebx
       invoke dword2dec, xdi, ebx
@@ -303,12 +303,12 @@ Method DB_StructEditorLine.CtlsRead, uses xbx xdi xsi
     .if bl == 0
       MessageText textequ <Invalid length in field >
       FillWordA cBuffer, <%MessageText>
-      invoke GetWindowTextA, [xsi].hEdtFieldName, addr [xdi + @SizeStr(%MessageText)], \
+      invoke GetWindowTextA, [xsi].hEdtFieldName, addr [xdi + @SizeStr(%MessageText)], /
                             LOCAL_BUFFER_SIZE - @SizeStr(%MessageText)
       invoke StrCatA, xdi, $OfsCStrA(".", 10, 13, "Correcting to length 1.")
       mov xax, [xsi].pOwner                             ;xax -> Collection
       mov xcx, [xax].$Obj(Collection).pOwner            ;xcx -> DB_StructEditor
-      invoke MessageBoxA, [xcx].$Obj(DB_StructEditor).hWnd, xdi, $OfsCStrA("Error"), \
+      invoke MessageBoxA, [xcx].$Obj(DB_StructEditor).hWnd, xdi, $OfsCStrA("Error"), /
                           MB_ICONWARNING or MB_OK
       invoke SetWindowText, [xsi].hEdtFieldLength, $OfsCStr("1")
       mov bl, 1
@@ -337,7 +337,7 @@ Method DB_StructEditorLine.CtlsRead, uses xbx xdi xsi
 
       MessageText textequ <Invalid decimals in NUMERIC field >
       FillWordA cBuffer, <%MessageText>
-      invoke GetWindowTextA, [xsi].hEdtFieldName, addr [xdi + @SizeStr(%MessageText)], \
+      invoke GetWindowTextA, [xsi].hEdtFieldName, addr [xdi + @SizeStr(%MessageText)], /
                              LOCAL_BUFFER_SIZE - @SizeStr(%MessageText)
       invoke StrECatA, xdi, $OfsCStrA(".", 10, 13, "Correcting to ")
       mov xcx, xax
@@ -346,7 +346,7 @@ Method DB_StructEditorLine.CtlsRead, uses xbx xdi xsi
 
       mov xax, [xsi].pOwner                             ;xax -> Collection
       mov xcx, [xax].$Obj(Collection).pOwner            ;xcx -> DB_StructEditor
-      invoke MessageBoxA, [xcx].$Obj(DB_StructEditor).hWnd, xdi, $OfsCStrA("Error"), \
+      invoke MessageBoxA, [xcx].$Obj(DB_StructEditor).hWnd, xdi, $OfsCStrA("Error"), /
                           MB_ICONWARNING or MB_OK
     .endif
   .endif
@@ -665,18 +665,18 @@ Method DB_StructEditorLine.Init, uses xbx xdi xsi, pOwner:$ObjPtr(Collection)
   imul ecx, SEL_CTRLS_PER_LINE
   mov xCtlID, xcx
   ;Use the ANSI version of the control to pass the ANSI caption string (Descriptor.bName)
-  invoke CreateWindowEx, 0, $OfsCStr("STATIC"), NULL, \
-                         WS_CHILD or WS_VISIBLE or SS_ICON or SS_REALSIZECONTROL, \
-                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateWindowEx, 0, $OfsCStr("STATIC"), NULL, /
+                         WS_CHILD or WS_VISIBLE or SS_ICON or SS_REALSIZECONTROL, /
+                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                          [xdi].hWnd, xCtlID, hInstance, 0
   mov [xsi].hStcInfo, xax
   invoke SetWindowLongPtr, [xsi].hEdtFieldName, GWLP_USERDATA, xsi
   invoke SendMessage, [xsi].hEdtFieldName, WM_SETFONT, [xdi].hFont, FALSE
 
   inc xCtlID
-  invoke CreateWindowExA, WS_EX_CLIENTEDGE, $OfsCStrA("EDIT"), NULL, \
-                          WS_CHILD or WS_VISIBLE or WS_TABSTOP or ES_AUTOHSCROLL, \
-                          CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateWindowExA, WS_EX_CLIENTEDGE, $OfsCStrA("EDIT"), NULL, /
+                          WS_CHILD or WS_VISIBLE or WS_TABSTOP or ES_AUTOHSCROLL, /
+                          CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                           [xdi].hWnd, xCtlID, hInstance, 0
   mov [xsi].hEdtFieldName, xax
   invoke SetWindowLongPtr, [xsi].hEdtFieldName, GWLP_USERDATA, xsi
@@ -684,9 +684,9 @@ Method DB_StructEditorLine.Init, uses xbx xdi xsi, pOwner:$ObjPtr(Collection)
   invoke SendMessage, [xsi].hEdtFieldName, EM_LIMITTEXT, DB_FIELD_NAME_LENGTH, 0
 
   inc xCtlID
-  invoke CreateWindowEx, 0, $OfsCStr("COMBOBOX"), NULL, \
-                         WS_CHILD or WS_VISIBLE or WS_TABSTOP or CBS_DROPDOWNLIST,\
-                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateWindowEx, 0, $OfsCStr("COMBOBOX"), NULL, /
+                         WS_CHILD or WS_VISIBLE or WS_TABSTOP or CBS_DROPDOWNLIST,/
+                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                          [xdi].hWnd, xCtlID, hInstance, 0
   mov [xsi].hCboFieldType, xax
   invoke SetWindowLongPtr, [xsi].hCboFieldType, GWLP_USERDATA, xsi
@@ -694,47 +694,47 @@ Method DB_StructEditorLine.Init, uses xbx xdi xsi, pOwner:$ObjPtr(Collection)
   invoke SendMessage, [xsi].hCboFieldType, CB_SETEXTENDEDUI, TRUE, 0
 
   inc xCtlID
-  invoke CreateWindowEx, WS_EX_CLIENTEDGE, $OfsCStr("EDIT"), NULL, \
-                         WS_CHILD or WS_VISIBLE or WS_TABSTOP or ES_AUTOHSCROLL or ES_NUMBER,\
-                         CW_USEDEFAULT, CW_USEDEFAULT, 20, 20, \
+  invoke CreateWindowEx, WS_EX_CLIENTEDGE, $OfsCStr("EDIT"), NULL, /
+                         WS_CHILD or WS_VISIBLE or WS_TABSTOP or ES_AUTOHSCROLL or ES_NUMBER,/
+                         CW_USEDEFAULT, CW_USEDEFAULT, 20, 20, /
                          [xdi].hWnd, xCtlID, hInstance, 0
   mov [xsi].hEdtFieldLength, xax
   invoke SetWindowLongPtr, [xsi].hEdtFieldLength, GWLP_USERDATA, xsi
   invoke SendMessage, [xsi].hEdtFieldLength, WM_SETFONT, [xdi].hFont, FALSE
   invoke SendMessage, [xsi].hEdtFieldLength, EM_LIMITTEXT, 3, 0
 
-  invoke CreateWindowEx, WS_EX_LEFT, $OfsCStr("msctls_updown32"), NULL, \
-                         WS_CHILD or WS_VISIBLE or UDS_SETBUDDYINT or UDS_NOTHOUSANDS or \
-                         UDS_ALIGNRIGHT or UDS_ARROWKEYS or UDS_HOTTRACK,\
-                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateWindowEx, WS_EX_LEFT, $OfsCStr("msctls_updown32"), NULL, /
+                         WS_CHILD or WS_VISIBLE or UDS_SETBUDDYINT or UDS_NOTHOUSANDS or /
+                         UDS_ALIGNRIGHT or UDS_ARROWKEYS or UDS_HOTTRACK,/
+                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                          [xdi].hWnd, CTLID_FieldLength, hInstance, 0
   mov [xsi].hUdcFieldLength, xax
   invoke SendMessage, [xsi].hUdcFieldLength, UDM_SETBASE, 10, 0
   invoke SendMessage, [xsi].hUdcFieldLength, UDM_SETRANGE32, 0, 255
 
   inc xCtlID
-  invoke CreateWindowEx, WS_EX_CLIENTEDGE, $OfsCStr("EDIT"), NULL, \
-                         WS_CHILD or WS_VISIBLE or WS_TABSTOP or ES_AUTOHSCROLL or ES_NUMBER,\
-                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateWindowEx, WS_EX_CLIENTEDGE, $OfsCStr("EDIT"), NULL, /
+                         WS_CHILD or WS_VISIBLE or WS_TABSTOP or ES_AUTOHSCROLL or ES_NUMBER,/
+                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                          [xdi].hWnd, xCtlID, hInstance, 0
   mov [xsi].hEdtFieldParam, xax
   invoke SetWindowLongPtr, [xsi].hEdtFieldParam, GWLP_USERDATA, xsi
   invoke SendMessage, [xsi].hEdtFieldParam, WM_SETFONT, [xdi].hFont, FALSE
   invoke SendMessage, [xsi].hEdtFieldParam, EM_LIMITTEXT, 11, 0
 
-  invoke CreateWindowEx, WS_EX_LEFT, $OfsCStr("msctls_updown32"), NULL, \
-                         WS_CHILD or WS_VISIBLE or UDS_SETBUDDYINT or UDS_NOTHOUSANDS or \
-                         UDS_ALIGNRIGHT or UDS_ARROWKEYS or UDS_HOTTRACK,\
-                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateWindowEx, WS_EX_LEFT, $OfsCStr("msctls_updown32"), NULL, /
+                         WS_CHILD or WS_VISIBLE or UDS_SETBUDDYINT or UDS_NOTHOUSANDS or /
+                         UDS_ALIGNRIGHT or UDS_ARROWKEYS or UDS_HOTTRACK,/
+                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                          [xdi].hWnd, CTLID_FieldParam, hInstance, 0
   mov [xsi].hUdcFieldParam, xax
   invoke SendMessage, [xsi].hUdcFieldParam, UDM_SETBASE, 10, 0
   invoke SendMessage, [xsi].hUdcFieldParam, UDM_SETRANGE32, 0, 7FFFFFFFh
 
   inc xCtlID
-  invoke CreateWindowEx, WS_EX_CLIENTEDGE, $OfsCStr("EDIT"), NULL, \
-                         WS_CHILD or WS_VISIBLE or WS_TABSTOP or ES_AUTOHSCROLL,\
-                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateWindowEx, WS_EX_CLIENTEDGE, $OfsCStr("EDIT"), NULL, /
+                         WS_CHILD or WS_VISIBLE or WS_TABSTOP or ES_AUTOHSCROLL,/
+                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                          [xdi].hWnd, xCtlID, hInstance, 0
   mov [xsi].hEdtFieldIndex, xax
   invoke SetWindowLongPtr, [xsi].hEdtFieldIndex, GWLP_USERDATA, xsi
@@ -871,21 +871,21 @@ Method DB_StructEditor.CtlsInit, uses xbx xsi
   mov [xsi].dFldParamWidth,  $Dlu2PixX([xsi].dFldParamWidth,  ebx)
 
   ;Load some resources
-  mov [xsi].hSelected,    $invoke(LoadImage, hInstance, $OfsCStr("ICON_SEL"), \
+  mov [xsi].hSelected,    $invoke(LoadImage, hInstance, $OfsCStr("ICON_SEL"), /
                                              IMAGE_ICON, 0, 0, 0)
-  mov [xsi].hSelGreen,    $invoke(LoadImage, hInstance, $OfsCStr("ICON_SEL_GREEN"), \
+  mov [xsi].hSelGreen,    $invoke(LoadImage, hInstance, $OfsCStr("ICON_SEL_GREEN"), /
                                              IMAGE_ICON, 0, 0, 0)
-  mov [xsi].hSelYellow,   $invoke(LoadImage, hInstance, $OfsCStr("ICON_SEL_YELLOW"), \
+  mov [xsi].hSelYellow,   $invoke(LoadImage, hInstance, $OfsCStr("ICON_SEL_YELLOW"), /
                                              IMAGE_ICON, 0, 0, 0)
-  mov [xsi].hSelRed,      $invoke(LoadImage, hInstance, $OfsCStr("ICON_SEL_RED"), \
+  mov [xsi].hSelRed,      $invoke(LoadImage, hInstance, $OfsCStr("ICON_SEL_RED"), /
                                              IMAGE_ICON, 0, 0, 0)
-  mov [xsi].hUnselected,  $invoke(LoadImage, hInstance, $OfsCStr("ICON_USEL"), \
+  mov [xsi].hUnselected,  $invoke(LoadImage, hInstance, $OfsCStr("ICON_USEL"), /
                                              IMAGE_ICON, 0, 0, 0)
-  mov [xsi].hUnselGreen,  $invoke(LoadImage, hInstance, $OfsCStr("ICON_USEL_GREEN"), \
+  mov [xsi].hUnselGreen,  $invoke(LoadImage, hInstance, $OfsCStr("ICON_USEL_GREEN"), /
                                              IMAGE_ICON, 0, 0, 0)
-  mov [xsi].hUnselYellow, $invoke(LoadImage, hInstance, $OfsCStr("ICON_USEL_YELLOW"), \
+  mov [xsi].hUnselYellow, $invoke(LoadImage, hInstance, $OfsCStr("ICON_USEL_YELLOW"), /
                                              IMAGE_ICON, 0, 0, 0)
-  mov [xsi].hUnselRed,    $invoke(LoadImage, hInstance, $OfsCStr("ICON_USEL_RED"), \
+  mov [xsi].hUnselRed,    $invoke(LoadImage, hInstance, $OfsCStr("ICON_USEL_RED"), /
                                              IMAGE_ICON, 0, 0, 0)
 
   invoke SelectObject, hDC, hPrevFont
@@ -994,7 +994,7 @@ Method DB_StructEditor.CtlsSet, uses xbx xdi xsi, pTable:$ObjPtr(DB_Table)
     New DB_StructEditorLine
     .if xax == NULL
       OCall xsi.ErrorReport, NULL, DB_OUT_OF_MEMORY
-      DbgWarning "DB_StructEditor.Set: out of memory creating a DB_StructEditorLine", \
+      DbgWarning "DB_StructEditor.Set: out of memory creating a DB_StructEditorLine", /
                   offset(szDbgObjErr)
       .break
     .endif
@@ -1009,7 +1009,7 @@ Method DB_StructEditor.CtlsSet, uses xbx xdi xsi, pTable:$ObjPtr(DB_Table)
     OCall [xsi].EditorLines::Collection.Insert, pEditorLine
 
     mov xcx, pEditorLine
-    BitClr [xcx].$Obj(DB_StructEditorLine).dFlags, SEL_FLAG_CHANGE_ANY or \
+    BitClr [xcx].$Obj(DB_StructEditorLine).dFlags, SEL_FLAG_CHANGE_ANY or /
                                                    SEL_FLAG_DATA_LOSS or SEL_FLAG_INIT
     inc ebx
   .endw
@@ -1063,9 +1063,9 @@ Method DB_StructEditor.Init, uses xsi, pOwner:POINTER, hParent:HWND
   ACall xsi.Init, pOwner, 0
 
   ;Create DB_StructEditor Window
-  invoke CreateWindowEx, 0, offset(szDB_StructEditorClass), NULL, \
-                         WS_CHILD or WS_CLIPSIBLINGS or WS_CLIPCHILDREN or WS_VSCROLL, \
-                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateWindowEx, 0, offset(szDB_StructEditorClass), NULL, /
+                         WS_CHILD or WS_CLIPSIBLINGS or WS_CLIPCHILDREN or WS_VSCROLL, /
+                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                          hParent, NULL, hInstance, 0
   .if xax != 0
     mov [xsi].hWnd, xax

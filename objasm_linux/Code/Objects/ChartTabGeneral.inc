@@ -90,7 +90,7 @@ MethodEnd
 Method ChartTabGeneral.Init, uses xbx xsi, pOwner:POINTER, pChartWnd:$ObjPtr(ChartWnd)
   SetObject xsi
   mov xbx, pOwner
-  ACall xsi.Init, xbx, [xbx].$Obj(TabCtrl).hWnd, IDD_CHT_GRL_TAB, \
+  ACall xsi.Init, xbx, [xbx].$Obj(TabCtrl).hWnd, IDD_CHT_GRL_TAB, /
                   offset $ObjTmpl(Application).hActiveMlsDlg
   mrm [xsi].pChartWnd, pChartWnd, xbx
 
@@ -109,7 +109,7 @@ Method ChartTabGeneral.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
   local ChooseClr:CHOOSECOLOR, ColorRef[16]:DWORD
 
   SetObject xsi
-  .if (WORD ptr wParam >= IDC_CHT_GRL_COL_MJR_GRID_BTN) && \
+  .if (WORD ptr wParam >= IDC_CHT_GRL_COL_MJR_GRID_BTN) && /
       (WORD ptr wParam <= IDC_CHT_GRL_COL_PLOT_BCKGND_BTN)
     mov xbx, [xsi].pChartWnd
 
@@ -194,22 +194,22 @@ MethodEnd
 ; Return:     eax = FALSE.
 
 .const
-String szHelp,  "[H+2,C#%s,N#%s]", \
-                  "General Information{P}", \
-                  "[H-2,C#7F7F7F,I]", \
-                  "  This setup dialog allows you to{B}", \
-                  "modify the chart properties.{P}", \
-                  "  Select a tab to get access to{B}", \
+String szHelp,  "[H+2,C#%s,N#%s]", /
+                  "General Information{P}", /
+                  "[H-2,C#7F7F7F,I]", /
+                  "  This setup dialog allows you to{B}", /
+                  "modify the chart properties.{P}", /
+                  "  Select a tab to get access to{B}", /
                   "each category.{P}"
-ExtendString      "  On the bottom of this dialog box {B}", \
-                  "you have 3 button. Click the [C#5F5F5F,B]Preview[~]{B}", \
-                  "button to visualize your changes.{B}", \
-                  "They are not persistant until you{B}", \
-                  "hit the [C#5F5F5F,B]OK[~] button.{P}", \
-                  "Pressing the [C#5F5F5F,B]Cancel[~] button{B}", \
-                  "discards all changes and closes this{B}", \
-                  "dialog box.{B}", \
-                  "[~]", \
+ExtendString      "  On the bottom of this dialog box {B}", /
+                  "you have 3 button. Click the [C#5F5F5F,B]Preview[~]{B}", /
+                  "button to visualize your changes.{B}", /
+                  "They are not persistant until you{B}", /
+                  "hit the [C#5F5F5F,B]OK[~] button.{P}", /
+                  "Pressing the [C#5F5F5F,B]Cancel[~] button{B}", /
+                  "discards all changes and closes this{B}", /
+                  "dialog box.{B}", /
+                  "[~]", /
                 "[~]"
 
 .code
@@ -229,7 +229,7 @@ Method ChartTabGeneral.OnInitDialog, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   invoke GetSysColor, COLOR_WINDOWTEXT
   invoke dword2hex, addr cForeColor, eax
   
-  invoke wsprintf, addr cBuffer, addr szHelp, \
+  invoke wsprintf, addr cBuffer, addr szHelp, /
                    addr [cForeColor + 2*sizeof(CHR)], addr [cBackColor + 2*sizeof(CHR)]
 
   mov xbx, $invoke(GetDlgItem, [xsi].hWnd, IDC_CHT_GRL_HELP_TVC)

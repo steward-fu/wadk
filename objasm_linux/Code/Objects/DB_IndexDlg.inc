@@ -116,7 +116,7 @@ Method DB_IndexDlg.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
     xor eax, eax
 
   .elseif ax == IDC_INDEX_BTN_SEARCH_FILE
-    invoke CoCreateInstance, offset CLSID_FileOpenDialog, NULL, CLSCTX_INPROC_SERVER, \
+    invoke CoCreateInstance, offset CLSID_FileOpenDialog, NULL, CLSCTX_INPROC_SERVER, /
                              offset IID_IFileOpenDialog, addr pIFODlg
     .if SUCCEEDED(eax)
       c2m MFS.FS0.pszName, $OfsCStr("All"), xax
@@ -124,7 +124,7 @@ Method DB_IndexDlg.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
       c2m MFS.FS1.pszName, $OfsCStr("Index"), xax
       c2m MFS.FS1.pszSpec, $OfsCStr("*.ndx"), xcx
 
-      ICall pIFODlg::IFileOpenDialog.SetFileTypes, sizeof(MultiFileSpec)/sizeof(COMDLG_FILTERSPEC), \
+      ICall pIFODlg::IFileOpenDialog.SetFileTypes, sizeof(MultiFileSpec)/sizeof(COMDLG_FILTERSPEC), /
                                                    addr MFS
       ICall pIFODlg::IFileOpenDialog.SetFileTypeIndex, 2
       ICall pIFODlg::IFileOpenDialog.SetOptions, 0
@@ -156,11 +156,11 @@ Method DB_IndexDlg.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
   .elseif ax == IDC_INDEX_BTN_INDEX
     ;Set Task header
     mov NdxTask.Header.dTaskCount, 1
-    c2m NdxTask.Header.pMainDesc, $OfsCStrA("{\rtf1\sa50\fs19\b Description:\b0", \
-        "\par\fs18 The index file is created according to the settings ", \
+    c2m NdxTask.Header.pMainDesc, $OfsCStrA("{/rtf1/sa50/fs19/b Description:/b0", /
+        "/par/fs18 The index file is created according to the settings ", /
         "of the selected databse field.}"), xax
-    c2m NdxTask.Header.pOverallDesc, $OfsCStrA("{\rtf1\b Overall progress:\b0}"), xax
-    mov NdxTask.Header.hIcon, $invoke(LoadImage, hInstance, $OfsCStr("ICON_MUTATION"), \
+    c2m NdxTask.Header.pOverallDesc, $OfsCStrA("{/rtf1/b Overall progress:/b0}"), xax
+    mov NdxTask.Header.hIcon, $invoke(LoadImage, hInstance, $OfsCStr("ICON_MUTATION"), /
                                       IMAGE_ICON, 0, 0, LR_DEFAULTCOLOR)
     ;Set index TaskSetup
     mov NdxTask.Indexing.pOwner, xsi
@@ -181,13 +181,13 @@ Method DB_IndexDlg.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
         mov NdxTask.Indexing.xParam1, xax               ;pField
         mov NdxTask.Indexing.xParam2, xbx               ;pFileName
   
-        ProgressText textequ <{\rtf1\b Task:\b0  Creating Index \ul > 
+        ProgressText textequ <{/rtf1/b Task:/b0  Creating Index /ul > 
         FillWordA bMsgBuffer, <%ProgressText>
         invoke StrECopyA, addr [bMsgBuffer + @SizeStr(%ProgressText)], xdi 
-        ProgressText textequ <\ul0  for table field >
+        ProgressText textequ </ul0  for table field >
         FillWordA [xax], <%ProgressText>
         mov xdx, NdxTask.Indexing.xParam1               ;xdx -> DB_Field
-        invoke StrECopyA, addr [xax + @SizeStr(%ProgressText)], \
+        invoke StrECopyA, addr [xax + @SizeStr(%ProgressText)], /
                           addr [xdx].$Obj(DB_Field).Descriptor.bName
         FillStringA [xax], <...}>
         mov NdxTask.Indexing.pDescription, $invoke(StrNewA, addr bMsgBuffer)
@@ -271,7 +271,7 @@ Method DB_IndexDlg.OnInitDialog, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
   xor ebx, ebx
   .while ebx != [xdi].$Obj(Collection).dCount
     OCall xdi::Collection.ItemAt, ebx
-    invoke SendMessageA, [xsi].hCboFieldName, CB_ADDSTRING, \
+    invoke SendMessageA, [xsi].hCboFieldName, CB_ADDSTRING, /
                          0, addr [xax].$Obj(DB_Field).Descriptor.bName
     inc ebx
   .endw
@@ -290,7 +290,7 @@ MethodEnd
 ;             Arg3: -> File name.
 ; Return:     Nothing.
 
-Method DB_IndexDlg.RebuildIndex, uses xsi, pStatus:PTaskStatus, pField:$ObjPtr(DB_Field), \
+Method DB_IndexDlg.RebuildIndex, uses xsi, pStatus:PTaskStatus, pField:$ObjPtr(DB_Field), /
                                            pFileName:PSTRING
   local pPrvIndex:$ObjPtr(DB_Index), pNewIndex:$ObjPtr(DB_Index) 
   
@@ -301,7 +301,7 @@ Method DB_IndexDlg.RebuildIndex, uses xsi, pStatus:PTaskStatus, pField:$ObjPtr(D
   New DB_Index
   .if xax == NULL
     OCall xsi.ErrorReport, NULL, DB_OUT_OF_MEMORY
-    DbgWarning "DB_IndexDlg.RebuildIndex: Out of memory creating a DB_Index", \
+    DbgWarning "DB_IndexDlg.RebuildIndex: Out of memory creating a DB_Index", /
                offset(szDbgObjErr)
     mov xax, pStatus
     BitSet [xax].TaskStatus.dFlags, TSF_TASK_ERROR

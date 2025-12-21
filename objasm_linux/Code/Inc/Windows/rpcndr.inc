@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.01, 19/04/2018 10:46
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\rpcndr.h', last modified: 19/04/2018 10:43
+;Source file: '/ObjAsm/Projects/h2IncX/header/rpcndr.h', last modified: 19/04/2018 10:43
 ;Creation parameters: 
 
 if _MSC_VER ge 1200

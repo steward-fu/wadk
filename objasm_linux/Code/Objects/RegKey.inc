@@ -39,9 +39,9 @@
 ;KEY_ENUMERATE_SUB_KEYS         equ     0008h
 ;KEY_NOTIFY                     equ     0010h
 ;KEY_CREATE_LINK                equ     0020h
-;KEY_READ                       equ     STANDARD_RIGHTS_READ or KEY_QUERY_VALUE or \
+;KEY_READ                       equ     STANDARD_RIGHTS_READ or KEY_QUERY_VALUE or /
 ;                                       KEY_ENUMERATE_SUB_KEYS or KEY_NOTIFY
-;KEY_WRITE                      equ     STANDARD_RIGHTS_WRITE or KEY_SET_VALUE or \
+;KEY_WRITE                      equ     STANDARD_RIGHTS_WRITE or KEY_SET_VALUE or /
 ;                                       KEY_CREATE_SUB_KEY
 ;KEY_EXECUTE                    equ     KEY_READ
 ;KEY_ALL_ACCESS                 equ     KEY_READ or KEY_WRITE or KEY_CREATE_LINK
@@ -52,8 +52,8 @@
 ;REG_OPTION_CREATE_LINK         equ     0002h
 ;REG_OPTION_BACKUP_RESTORE      equ     0004h
 ;REG_OPTION_OPEN_LINK           equ     0008h
-;REG_LEGAL_OPTION               equ     REG_OPTION_RESERVED or REG_OPTION_NON_VOLATILE or \
-;                                       REG_OPTION_CREATE_LINK or \
+;REG_LEGAL_OPTION               equ     REG_OPTION_RESERVED or REG_OPTION_NON_VOLATILE or /
+;                                       REG_OPTION_CREATE_LINK or /
 ;                                       REG_OPTION_BACKUP_RESTORE or REG_OPTION_OPEN_LINK
 
 ;REG_CREATED_NEW_KEY            equ     1
@@ -125,7 +125,7 @@ Method RegKey.Create, uses xsi
   local Dispo:DWORD
 
   SetObject xsi
-  invoke RegCreateKeyEx, [xsi].hParentKey, addr [xsi].cKeyName, NULL, NULL, \
+  invoke RegCreateKeyEx, [xsi].hParentKey, addr [xsi].cKeyName, NULL, NULL, /
            REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, addr [xsi].hKey, addr Dispo
   .if eax != ERROR_SUCCESS
     mov [xsi].dErrorCodeEx, eax
@@ -192,7 +192,7 @@ Method RegKey.EnumerateSubKeys, uses xbx xsi, pProc:POINTER
 
   .if pProc != NULL
     SetObject xsi
-    invoke RegQueryInfoKey, [xsi].hKey, NULL, NULL, NULL, \
+    invoke RegQueryInfoKey, [xsi].hKey, NULL, NULL, NULL, /
            addr dSubKeys, addr dMaxSubKeyLen, NULL, NULL, NULL, NULL, NULL, NULL
     mov xbx, $MemAlloc(dMaxSubKeyLen)
     .while dSubKeys > 0
@@ -215,7 +215,7 @@ Method RegKey.EnumerateValues, uses xbx xsi, pProc:POINTER
 
   .if pProc != NULL
     SetObject xsi
-    invoke RegQueryInfoKey, [xsi].hKey, NULL, NULL, NULL, NULL, NULL, NULL, \
+    invoke RegQueryInfoKey, [xsi].hKey, NULL, NULL, NULL, NULL, NULL, NULL, /
            addr dEntries, addr dMaxEntriesNameLen, addr dMaxEntriesValueLen, NULL, NULL
     mov xbx, $MemAlloc(dMaxEntriesNameLen)
     .while dEntries > 0
@@ -256,7 +256,7 @@ Method RegKey.FileImport, uses xsi, pKeyName:PSTRING, pFileName:PSTRING
   invoke RegLoadKey, [xsi].hKey, pKeyName, pFileName
   .if eax != ERROR_SUCCESS
 ;    mov ecx, eax
-;    invoke FormatMessage, FORMAT_MESSAGE_FROM_SYSTEM or FORMAT_MESSAGE_ALLOCATE_BUFFER, \
+;    invoke FormatMessage, FORMAT_MESSAGE_FROM_SYSTEM or FORMAT_MESSAGE_ALLOCATE_BUFFER, /
 ;           NULL, ecx, 0, addr pBuffer, 0, 0
 ;    DbgStr pBuffer
 ;    MemFree pBuffer
@@ -322,7 +322,7 @@ Method RegKey.ValueGetDW, uses xsi, pValueName:PSTRING
 
   SetObject xsi
   mov dValueSize, sizeof(DWORD)
-  invoke RegQueryValueEx, [xsi].hKey, pValueName, NULL, addr dValueType, \
+  invoke RegQueryValueEx, [xsi].hKey, pValueName, NULL, addr dValueType, /
                           addr dRetValue, addr dValueSize
   .if eax != ERROR_SUCCESS
     mov [xsi].dErrorCodeEx, eax
@@ -384,7 +384,7 @@ Method RegKey.ValueGetQW, uses xsi, pValueName:PSTRING
 
   SetObject xsi
   mov dValueSize, sizeof(QWORD)
-  invoke RegQueryValueEx, [xsi].hKey, pValueName, NULL, addr dValueType, \
+  invoke RegQueryValueEx, [xsi].hKey, pValueName, NULL, addr dValueType, /
                           addr qRetValue, addr dValueSize
   .if eax != ERROR_SUCCESS
     mov [xsi].dErrorCodeEx, eax

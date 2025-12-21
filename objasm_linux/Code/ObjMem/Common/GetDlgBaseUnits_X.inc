@@ -20,8 +20,8 @@ GetDlgBaseUnits proc hDC:HDC
   local StrExtend:SIZE_, TM:TEXTMETRIC
 
   invoke GetTextMetrics, hDC, addr TM
-  invoke GetTextExtentPoint32A, hDC, \
-                               $OfsCStrA("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"), \
+  invoke GetTextExtentPoint32A, hDC, /
+                               $OfsCStrA("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"), /
                                52, addr StrExtend
   mov eax, StrExtend.cx_
   xor edx, edx

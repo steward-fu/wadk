@@ -52,7 +52,7 @@ if IMPLEMENT
 ;     InfoNode
 ; ==================================================================================================
 
-;##\
+;##/
 
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————
 ; Method:     InfoNode.CanDragMe
@@ -155,12 +155,12 @@ Method InfoNode.RenderContent, uses xbx xdi xsi, pDispInfo:PXTVN_TREE_DISP_INFO
         mov xax, [xbx].hIconObjStd
       .endif
     .endif
-    invoke DrawIconEx, [xbx].hMemDC, dIconWidth, dIconHeight, xax, \
+    invoke DrawIconEx, [xbx].hMemDC, dIconWidth, dIconHeight, xax, /
                        XTV_ICON_SIZE, XTV_ICON_SIZE, NULL, NULL, DI_NORMAL
     ;Render the overlay
     mov xax, [xsi].pInfo
     .ifBitSet [xax].INFORMATION.dFlags, INF_INVALID
-      invoke DrawIconEx, [xbx].hMemDC, dIconWidth, dIconHeight, [xbx].hIconErr, \
+      invoke DrawIconEx, [xbx].hMemDC, dIconWidth, dIconHeight, [xbx].hIconErr, /
                          XTV_ICON_SIZE, XTV_ICON_SIZE, NULL, NULL, DI_NORMAL
     .endif
 
@@ -228,7 +228,7 @@ MethodEnd
 ;     InfoTree
 ; ==================================================================================================
 
-;##\
+;##/
 
 CStr cInfoTreeClass, "OAC_InfoTree"
 
@@ -247,8 +247,8 @@ Method InfoTree.Init, uses xbx xsi, pOwner:POINTER, hParentWnd:HANDLE, pDefStruc
   assume xbx:ptr DEF_XTV
   mov eax, [xbx].dStyle
   or eax, WS_CHILD or WS_VISIBLE or WS_TABSTOP
-  invoke CreateWindowEx, [xbx].dExStyle, offset cInfoTreeClass, [xbx].pTitle, \
-         eax, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, \
+  invoke CreateWindowEx, [xbx].dExStyle, offset cInfoTreeClass, [xbx].pTitle, /
+         eax, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, /
          hParentWnd, [xbx].xCtlID, hInstance, xsi
   assume xbx:NOTHING
   TCall xsi::WinPrimer.Init, pOwner, [xsi].hWnd

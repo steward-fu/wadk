@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.02, 23/09/2018 18:52
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\StructuredQueryCondition.h', last modified: 19/04/2018 10:45
+;Source file: '/ObjAsm/Projects/h2IncX/header/StructuredQueryCondition.h', last modified: 19/04/2018 10:45
 ;Creation parameters:
 
 ifndef __REQUIRED_RPCNDR_H_VERSION__
@@ -15,7 +15,7 @@ ifndef __RPCNDR_H_VERSION__
   .err <this stub requires an updated version of < rpcndr.h >>
 endif
 ifndef COM_NO_WINDOWS_H
-  include windows.inc
+  include Windows.inc
   include ole2.inc
 endif
 ifndef __structuredquerycondition_h__

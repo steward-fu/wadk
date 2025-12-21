@@ -64,7 +64,7 @@ MethodEnd
 ;             Positive INT32     - This many bytes are the complete packet length.
 ;             Zero               - We need more data.
 
-Method NetComServerProtocol.IsDataComplete?, uses xsi, pConnection:$ObjPtr(NetComConnection), \
+Method NetComServerProtocol.IsDataComplete?, uses xsi, pConnection:$ObjPtr(NetComConnection), /
                                                        pIOSockJob:PIO_SOCKJOB
   local pRcvIOChain:PSDLL_SENTINEL
 
@@ -160,12 +160,12 @@ Method NetComServerProtocol.OnAccept, uses xbx xsi, pConnection:$ObjPtr(NetComCo
   mov xbx, pConnection
   if DEBUGGING
     invoke DbgOutCmd, DBG_CMD_SINGLE_LINE, 0, 0, ??DbgDstWnd
-    invoke GetNameInfo, addr [xbx].$Obj(NetComConnection).RemoteHostAddr, sizeof NETCOMADDR, \
-                        addr cAddrStr, lengthof cAddrStr, \
-                        NULL, 0, \
+    invoke GetNameInfo, addr [xbx].$Obj(NetComConnection).RemoteHostAddr, sizeof NETCOMADDR, /
+                        addr cAddrStr, lengthof cAddrStr, /
+                        NULL, 0, /
                         NI_NUMERICHOST
     invoke DbgOutText, addr cAddrStr, DbgColorString, DbgColorBackground, DBG_EFFECT_NORMAL, ??DbgDstWnd
-    invoke DbgOutText, $OfsCStr(" is requesting a connection..."), DbgColorString, DbgColorBackground, \
+    invoke DbgOutText, $OfsCStr(" is requesting a connection..."), DbgColorString, DbgColorBackground, /
                        DBG_EFFECT_NEWLINE, ??DbgDstWnd
   endif
 
@@ -205,7 +205,7 @@ MethodEnd
 ;             Positive INT32     - This many bytes were cleanly processed and should be removed
 ;                                  from the IOJob buffers.
 
-Method NetComServerProtocol.ProcessData, uses xbx xdi xsi, pConnection:$ObjPtr(NetComConnection), \
+Method NetComServerProtocol.ProcessData, uses xbx xdi xsi, pConnection:$ObjPtr(NetComConnection), /
                                                            TransmitionLength:dword
   local dConsumed:DWORD, pMemory:POINTER, dRetval:DWORD
   local hNewBmp:HBITMAP, hPrvBmp:HBITMAP, hScreenDC:HDC, hMemDC:HANDLE
@@ -251,7 +251,7 @@ Method NetComServerProtocol.ProcessData, uses xbx xdi xsi, pConnection:$ObjPtr(N
   mov hNewBmp, $invoke(CreateCompatibleBitmap, hScreenDC, dSizeX, dSizeY) ;Create a compatible bmp
   mov hPrvBmp, $invoke(SelectObject, hMemDC, hNewBmp)
   lea xax, [xbx + sizeof(BITMAPINFO)]
-  invoke SetDIBits, hMemDC, hNewBmp, 0, [xbx].BITMAPINFO.bmiHeader.biHeight, \
+  invoke SetDIBits, hMemDC, hNewBmp, 0, [xbx].BITMAPINFO.bmiHeader.biHeight, /
                     xax, xbx, DIB_RGB_COLORS
   invoke SelectObject, hMemDC, hPrvBmp                  ;Return back the previous Bitmap
   invoke DeleteDC, hMemDC

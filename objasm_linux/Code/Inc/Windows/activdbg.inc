@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version C.01.00, 20/07/2019 16:32
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: 'D:\ObjAsm\Projects\32\h2IncX\Header_10.0.17763.0\activdbg.h', last modified: 22/10/2018 21:37
+;Source file: 'D:/ObjAsm/Projects/32/h2IncX/Header_10.0.17763.0/activdbg.h', last modified: 22/10/2018 21:37
 ;Creation parameters: 
 
 ifndef __REQUIRED_RPCNDR_H_VERSION__
@@ -15,7 +15,7 @@ ifndef __RPCNDR_H_VERSION__
   .err <this stub requires an updated version of < rpcndr.h >>
 endif
 ifndef COM_NO_WINDOWS_H
-  include windows.inc
+  include Windows.inc
   include ole2.inc
 endif
 ifndef __activdbg_h__

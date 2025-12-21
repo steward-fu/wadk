@@ -111,7 +111,7 @@ MethodEnd
 ;
 ; Return:    eax = HRESULT.
 
-Method I_OcxCont_OleControlSite.TransformCoords,, pPtlHimetric:POINTER, pPtfContainer:POINTER, \
+Method I_OcxCont_OleControlSite.TransformCoords,, pPtlHimetric:POINTER, pPtfContainer:POINTER, /
                                                       dFlags:DWORD
   DbgText "I_OcxCont_OleControlSite.TransformCoords", "I_OcxCont_OleControlSite"
   mov eax, E_NOTIMPL    ;The container does not require any special coordinate conversions.

@@ -40,7 +40,7 @@ ifdef USE_CITIES
   DB_INDEX_NAME     equ   "CitiesByName.ndx"
 else
 
-;  DB_TABLE_NAME     equ   "DBF\dbase_31.dbf"
+;  DB_TABLE_NAME     equ   "DBF/dbase_31.dbf"
   DB_TABLE_NAME     equ   "Rodam.dbf"
   DB_INDEX_NAME_0   equ   "RodamByMfg.ndx"
   DB_INDEX_NAME_1   equ   "RodamByNbr.ndx"
@@ -145,8 +145,8 @@ Method Application.Init, uses xbx xsi
   mov Wtx, $32($invoke(CenterForm, Wwd, $32($invoke(GetSystemMetrics, SM_CXSCREEN))))
   mov Wty, $32($invoke(CenterForm, Wht, $32($invoke(GetSystemMetrics, SM_CYSCREEN))))
 
-  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, \
-                         offset(szApplicationClass), offset(szAppTitle), WS_OVERLAPPEDWINDOW, \
+  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, /
+                         offset(szApplicationClass), offset(szAppTitle), WS_OVERLAPPEDWINDOW, /
                          Wtx, Wty, Wwd, Wht, NULL, NULL, hInstance, pSelf
 
   invoke ShowWindow, [xsi].hWnd, SW_SHOWNORMAL
@@ -160,7 +160,7 @@ Method Application.Init, uses xbx xsi
     mov xdx, PSTRINGW ptr [xax]
     if TARGET_STR_TYPE eq STR_TYPE_ANSI
       mov pFileNameW, xdx
-      invoke WideCharToMultiByte, CP_ACP, 0, pFileNameW, -1, addr bArgumentBuffer, \
+      invoke WideCharToMultiByte, CP_ACP, 0, pFileNameW, -1, addr bArgumentBuffer, /
                                   lengthof(bArgumentBuffer), NULL, NULL
       lea xdx, bArgumentBuffer
     endif
@@ -331,7 +331,7 @@ Method Application.OnCommand, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
     xor eax, eax
 
   .elseif ax == IDM_OPEN
-    invoke CoCreateInstance, offset CLSID_FileOpenDialog, NULL, CLSCTX_INPROC_SERVER, \
+    invoke CoCreateInstance, offset CLSID_FileOpenDialog, NULL, CLSCTX_INPROC_SERVER, /
                              offset IID_IFileOpenDialog, addr pIFODlg
     .if SUCCEEDED(eax)
       c2m MFS.FS0.pszName, $OfsCStr("All"), xax
@@ -339,7 +339,7 @@ Method Application.OnCommand, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
       c2m MFS.FS1.pszName, $OfsCStr("Database"), xax
       c2m MFS.FS1.pszSpec, $OfsCStr("*.dbf"), xcx
 
-      ICall pIFODlg::IFileOpenDialog.SetFileTypes, sizeof(MultiFileSpec)/sizeof(COMDLG_FILTERSPEC), \
+      ICall pIFODlg::IFileOpenDialog.SetFileTypes, sizeof(MultiFileSpec)/sizeof(COMDLG_FILTERSPEC), /
                                                    addr MFS
       ICall pIFODlg::IFileOpenDialog.SetFileTypeIndex, 2
       ICall pIFODlg::IFileOpenDialog.SetOptions, 0
@@ -419,8 +419,8 @@ Method Application.OnCommand, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
     xor eax, eax
 
   .elseif ax == IDM_ZAP
-    invoke MessageBox, [xsi].hWnd, \
-                       $OfsCStr("Are you sure you want to delete the database content?"), \
+    invoke MessageBox, [xsi].hWnd, /
+                       $OfsCStr("Are you sure you want to delete the database content?"), /
                        $OfsCStr("ATTENTION"), MB_YESNO or MB_DEFBUTTON2 or MB_ICONEXCLAMATION
     .if eax == IDYES
       mov [xsi].dRecNo, 0
@@ -462,8 +462,8 @@ Method Application.OnCommand, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
         mov [xsi].dRecNo, $32($OCall([xsi].pActiveIndex::DB_Index.Skip, 1))
         SW_End "Skip +1"
         .if eax == 0
-          invoke MessageBox, [xsi].hWnd, \
-            $OfsCStr($Esc("Bottom limit of Database reached\:\nContinue with a seek operation...")), \
+          invoke MessageBox, [xsi].hWnd, /
+            $OfsCStr($Esc("Bottom limit of Database reached/:/nContinue with a seek operation...")), /
             $OfsCStr("Database information..."), MB_ICONINFORMATION or MB_OK
         .endif
         OCall xsi.UpdateStatusbar
@@ -478,8 +478,8 @@ Method Application.OnCommand, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
         mov [xsi].dRecNo, $32($OCall([xsi].pActiveIndex::DB_Index.Skip, -1))
         SW_End "Skip -1"
         .if eax == 0
-          invoke MessageBox, [xsi].hWnd, \
-            $OfsCStr($Esc("Top limit of Database reached\:\nContinue with a seek operation...")), \
+          invoke MessageBox, [xsi].hWnd, /
+            $OfsCStr($Esc("Top limit of Database reached/:/nContinue with a seek operation...")), /
             $OfsCStr("Database information..."), MB_ICONINFORMATION or MB_OK
         .endif
         OCall xsi.UpdateStatusbar
@@ -489,7 +489,7 @@ Method Application.OnCommand, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
 
   .elseif ax == IDM_REC_SEEK
     New SeekDlg::DB_SeekDlg
-    OCall SeekDlg::DB_SeekDlg.Init, xsi, [xsi].hWnd, \
+    OCall SeekDlg::DB_SeekDlg.Init, xsi, [xsi].hWnd, /
                                     addr [xsi].Table, [xsi].pActiveIndex, addr [xsi].dRecNo
     OCall SeekDlg::DB_SeekDlg.Show
     OCall SeekDlg::DB_SeekDlg.Done
@@ -682,7 +682,7 @@ MethodEnd
 
 Method Application.OnClose, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
-  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), \
+  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), /
                      MB_ICONQUESTION or MB_YESNO
   .if eax == IDNO
     xor eax, eax
@@ -801,11 +801,11 @@ Method Application.Pack, uses xbx xdi xsi
 
   ;Set Task header
   m2m [xdi].TaskHeader.dTaskCount, dTaskCount, eax
-  c2m [xdi].TaskHeader.pMainDesc, $OfsCStrA("{\rtf1\sa50\fs19\b Description:\b0", \
-      "\par\fs18 Deleted records are removed from the table.\line ", \
+  c2m [xdi].TaskHeader.pMainDesc, $OfsCStrA("{/rtf1/sa50/fs19/b Description:/b0", /
+      "/par/fs18 Deleted records are removed from the table./line ", /
       "Indexes are updated accordingly.}"), xax
-  c2m [xdi].TaskHeader.pOverallDesc, $OfsCStrA("{\rtf1\b Overall progress:\b0}"), xax
-  mov [xdi].TaskHeader.hIcon, $invoke(LoadImage, hInstance, $OfsCStr("ICON_MUTATION"), \
+  c2m [xdi].TaskHeader.pOverallDesc, $OfsCStrA("{/rtf1/b Overall progress:/b0}"), xax
+  mov [xdi].TaskHeader.hIcon, $invoke(LoadImage, hInstance, $OfsCStr("ICON_MUTATION"), /
                                       IMAGE_ICON, 0, 0, LR_DEFAULTCOLOR)
   add xdi, sizeof(TaskHeader)
 
@@ -814,7 +814,7 @@ Method Application.Pack, uses xbx xdi xsi
   mov [xdi].TaskSetup.pOwner, xsi
   mov [xdi].TaskSetup.xParam1, 0
   mov [xdi].TaskSetup.xParam2, 0
-  ProgressText textequ <{\rtf1\b Task:\b0  Deleted records on table \ul >
+  ProgressText textequ <{/rtf1/b Task:/b0  Deleted records on table /ul >
   FillWordA cBuffer, <%ProgressText>
   invoke PathFindFileName, [xsi].Table.pFileName
   lea xcx, [cBuffer + @SizeStr(%ProgressText)]
@@ -824,7 +824,7 @@ Method Application.Pack, uses xbx xdi xsi
     invoke StrW2StrA, xcx, xax
     invoke StrEndA, addr cBuffer
   endif
-  FillStringA [xax], <\ul0  are being removed...}>
+  FillStringA [xax], </ul0  are being removed...}>
   mov [xdi].TaskSetup.pDescription, $invoke(StrNewA, addr cBuffer)
   m2m [xdi].TaskSetup.dPrgCntMax, [xsi].Table.Descriptor.dNumRecs, eax
   add xdi, sizeof(TaskSetup)
@@ -849,11 +849,11 @@ Method Application.Pack, uses xbx xdi xsi
       mov [xdi].TaskSetup.xParam2, 0
 
       invoke PathFindFileNameA, addr bBuffer
-      ProgressText textequ <{\rtf1\b Task:\b0  Index \ul >
+      ProgressText textequ <{/rtf1/b Task:/b0  Index /ul >
       FillWordA bMsgBuffer, <%ProgressText>
       lea xcx, [bMsgBuffer + @SizeStr(%ProgressText)]
       invoke StrECopyA, xcx, xax
-      ProgressText textequ <\ul0  of table field >
+      ProgressText textequ </ul0  of table field >
       FillStringA [xax], <%ProgressText>
       mov xcx, pField
       add xax, @SizeStr(%ProgressText)

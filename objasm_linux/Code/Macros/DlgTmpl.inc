@@ -40,10 +40,10 @@ endm
 ; Arguments:  Structure arguments.
 ; Return:     Nothing.
 
-DIALOGEX macro sName:req, wXPos:=<0>, wYPos:=<0>, wWidth:=<1>, wHeight:=<1>, \
-               dHelpID:=<0>, wItems:=<0>, dStyle:=<0>, dExStyle:=<0>, \
-               wMenuID:=<0>, sWndClass:=<>, sTitle:=<>, \
-               sFont:=<Lucida Console>, wPts:=<8>, wWeight:=<FW_NORMAL>, \
+DIALOGEX macro sName:req, wXPos:=<0>, wYPos:=<0>, wWidth:=<1>, wHeight:=<1>, /
+               dHelpID:=<0>, wItems:=<0>, dStyle:=<0>, dExStyle:=<0>, /
+               wMenuID:=<0>, sWndClass:=<>, sTitle:=<>, /
+               sFont:=<Lucida Console>, wPts:=<8>, wWeight:=<FW_NORMAL>, /
                bItalic:=<FALSE>, sCharset:=<DEFAULT_CHARSET>
 align 4
 sName WORD 01h                                  ;Dialog version
@@ -72,8 +72,8 @@ endm
 ; Arguments:  Structure arguments.
 ; Return:     Nothing.
 
-CONTROL macro sTitle, dCtlID:req, sWndClass:req, dStyle:req, \
-              wXPos:=<0>, wYPos:=<0>, wWidth:=<1>, wHeight:=<1>, \
+CONTROL macro sTitle, dCtlID:req, sWndClass:req, dStyle:req, /
+              wXPos:=<0>, wYPos:=<0>, wWidth:=<1>, wHeight:=<1>, /
               dExStyle:=<0>, dHelpID:=<0>, wExtra:=<0>
 align 4
     DWORD dHelpID

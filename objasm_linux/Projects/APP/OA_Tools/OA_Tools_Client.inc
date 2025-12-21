@@ -88,7 +88,7 @@ Method OAT_Client.OnPaint, uses xsi, wParam:WPARAM, lParam:LPARAM
   invoke GetClientRect, [xsi].hWnd, addr Rct1
   invoke FillRect, PS.hdc, addr Rct1, [xsi].hBGBrush
   invoke EndPaint, [xsi].hWnd, addr PS
-  invoke CallWindowProc, [xsi].$Obj(OAT_Client).pPrevWndProc, \
-                         [xsi].$Obj(OAT_Client).hWnd, \
+  invoke CallWindowProc, [xsi].$Obj(OAT_Client).pPrevWndProc, /
+                         [xsi].$Obj(OAT_Client).hWnd, /
                          WM_PAINT, wParam, lParam
 MethodEnd

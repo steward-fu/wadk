@@ -55,9 +55,9 @@ Method ChartSeries.GetToolTipText, uses xbx xdi xsi, pBuffer:PSTRING, dDataIndex
     mov xdi, [xdx].$Obj(ChartWnd).ScaleY2.pUnit
   .endif
     
-  invoke wsprintf, pBuffer, $OfsCStr("Series Name: %s", CRLF, "Description: %s", CRLF, \
-                                     "  X = %s %s", CRLF, "  Y = %s %s"), \
-                   [xsi].pName, [xsi].pDescription, \
+  invoke wsprintf, pBuffer, $OfsCStr("Series Name: %s", CRLF, "Description: %s", CRLF, /
+                                     "  X = %s %s", CRLF, "  Y = %s %s"), /
+                   [xsi].pName, [xsi].pDescription, /
                    addr cStrBufferX, xbx, addr cStrBufferY, xdi
 MethodEnd
 

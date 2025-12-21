@@ -116,7 +116,7 @@ MethodEnd
 ;             Arg6: Splitter limit 2 within parent window.
 ; Return:     Nothing.
 
-Method Splitter.Init, uses xsi, pOwner:POINTER, hParent:HWND, dFlags:DWORD, \
+Method Splitter.Init, uses xsi, pOwner:POINTER, hParent:HWND, dFlags:DWORD, /
                                 sdPosition:SDWORD, sdLimit1:SDWORD, sdLimit2:SDWORD
   local DFB:DEF_FLIPBOX
 
@@ -129,17 +129,17 @@ Method Splitter.Init, uses xsi, pOwner:POINTER, hParent:HWND, dFlags:DWORD, \
 
   mov DFB.DEF_FLIPBOX.xCtlID, 0
   .ifBitSet dFlags, SPT_FLAG_HORIZONTAL
-    invoke CreateWindowEx, WS_EX_TOOLWINDOW, offset szSplitter, NULL, \
-                           WS_CHILD, 0, sdPosition, \
-                           SPT_DEFAULT_LENGTH, SPT_DEFAULT_WIDTH, \
+    invoke CreateWindowEx, WS_EX_TOOLWINDOW, offset szSplitter, NULL, /
+                           WS_CHILD, 0, sdPosition, /
+                           SPT_DEFAULT_LENGTH, SPT_DEFAULT_WIDTH, /
                            hParent, 0, hInstance, xsi
     mov DFB.DEF_FLIPBOX.dFlags, FBF_VERTICAL
     OCall [xsi].Flipper::FlipBox.Init, xsi, [xsi].hWnd, addr DFB
     mov xdx, $OfsCStr("CURSOR_SPLITHOR")
   .else
-    invoke CreateWindowEx, WS_EX_TOOLWINDOW, offset szSplitter, NULL, \
-                           WS_CHILD, sdPosition, 0, \
-                           SPT_DEFAULT_WIDTH, SPT_DEFAULT_LENGTH, \
+    invoke CreateWindowEx, WS_EX_TOOLWINDOW, offset szSplitter, NULL, /
+                           WS_CHILD, sdPosition, 0, /
+                           SPT_DEFAULT_WIDTH, SPT_DEFAULT_LENGTH, /
                            hParent, 0, hInstance, xsi
     mov DFB.DEF_FLIPBOX.dFlags, FBF_HORIZONTAL
     OCall [xsi].Flipper::FlipBox.Init, xsi, [xsi].hWnd, addr DFB
@@ -363,7 +363,7 @@ Method Splitter.OnMouseHover, uses xsi, wParam:WPARAM, lParam:LPARAM
       mov ecx, WndRect.bottom
       shr ecx, 1
       sub CursorPos.y, ecx
-      invoke MoveWindow, [xsi].Flipper.hWnd, CursorPos.x, CursorPos.y, \
+      invoke MoveWindow, [xsi].Flipper.hWnd, CursorPos.x, CursorPos.y, /
                                              WndRect.right, WndRect.bottom, FALSE
       invoke SetParent, [xsi].Flipper.hWnd, HWND_DESKTOP
       invoke ShowWindow, [xsi].Flipper.hWnd, SW_SHOW
@@ -595,7 +595,7 @@ Method Splitter.OnNotify, uses xsi, wParam:WPARAM, lParam:LPARAM
           .endif
 
         .endif
-        invoke MoveWindow, [xsi].hWnd, WndRect.left, WndRect.top, WndRect.right, WndRect.bottom, \
+        invoke MoveWindow, [xsi].hWnd, WndRect.left, WndRect.top, WndRect.right, WndRect.bottom, /
                            FALSE
         ;Force parent window to resize children
         invoke GetWindowRect, [xsi].hParent, addr WndRect

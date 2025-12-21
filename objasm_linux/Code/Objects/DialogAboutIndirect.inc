@@ -47,18 +47,18 @@ if IMPLEMENT
 ; Memory template
 
 .const
-DIALOGEX DIALOGABOUTINDIRECT, 0,0, 200,108,0,5, \
-            WS_CHILD or DS_MODALFRAME or DS_3DLOOK or DS_CENTER or DS_CENTERMOUSE or \
-            WS_CAPTION or WS_SYSMENU or WS_POPUP or DS_SETFONT, WS_EX_LAYERED, \
+DIALOGEX DIALOGABOUTINDIRECT, 0,0, 200,108,0,5, /
+            WS_CHILD or DS_MODALFRAME or DS_3DLOOK or DS_CENTER or DS_CENTERMOUSE or /
+            WS_CAPTION or WS_SYSMENU or WS_POPUP or DS_SETFONT, WS_EX_LAYERED, /
             0, , "About", "Segoe UI", 9, 700, FALSE, ANSI_CHARSET
 
 DEFPUSHBUTTON   "OK", IDOK, 136,80,50,16, WS_TABSTOP
 CTEXT           NULL, IDC_DAB_TEXT, 46,10,140,55
 ICON            "ICON_APP", IDC_DAB_ICON, 13,9,32,32
 CONTROL         NULL, -1, "Static", SS_BLACKFRAME or SS_SUNKEN, 45,68,143,1
-HYPERLINK       "ICON_MAIL|Send us an Email|mailto:objasm@gmx.net", \
+HYPERLINK       "ICON_MAIL|Send us an Email|mailto:objasm@gmx.net", /
                 IDC_DAB_MAIL, 10,74,100,14, WS_TABSTOP
-HYPERLINK       "ICON_LINK|Visit our Homepage|http://objasm.x10host.com/", \
+HYPERLINK       "ICON_LINK|Visit our Homepage|http://objasm.x10host.com/", /
                 IDC_DAB_LINK, 10,87,100,14, WS_TABSTOP
 
 .code

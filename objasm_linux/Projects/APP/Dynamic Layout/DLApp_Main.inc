@@ -34,7 +34,7 @@ ObjectEnd                                               ;Ends object definition
 .data
 align ALIGN_DATA
 AppChildrenInfo label DL_HEADER
-DL_HEADER     {DLF_LOAD_MIN_INISIZE or DLF_USE_MINSIZE or DLF_ADD_GRIPPER, \
+DL_HEADER     {DLF_LOAD_MIN_INISIZE or DLF_USE_MINSIZE or DLF_ADD_GRIPPER, /
                {}, {300, 200}, {}}
 DL_CHILD_INFO {{100, 100, 000, 000}}
 
@@ -57,17 +57,17 @@ Method DLApp.Init, uses xsi
   mov dWndPosX, $32($invoke(CenterForm, dWndWidth,  $32($invoke(GetSystemMetrics, SM_CXSCREEN))))
   mov dWndPosY, $32($invoke(CenterForm, dWndHeight, $32($invoke(GetSystemMetrics, SM_CYSCREEN))))
 
-  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, \
-                         offset szDLApp, offset szAppTitle, WS_OVERLAPPEDWINDOW, \
+  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, /
+                         offset szDLApp, offset szAppTitle, WS_OVERLAPPEDWINDOW, /
                          dWndPosX, dWndPosY, dWndWidth, dWndHeight, NULL, NULL, hInstance, pSelf
   invoke GetClientRect, [xsi].hWnd, addr CRect
   sub CRect.right, WATERMERK_WIDTH
   sub CRect.bottom, WATERMERK_HEIGHT
-  invoke CreateWindowEx, 0, \
-                         $OfsCStr("Static"), $OfsCStr("  The ObjAsm Company  "), \
-                         WS_VISIBLE or WS_CHILD or SS_CENTER or SS_CENTERIMAGE, \
-;                         dWndWidth, dWndHeight, WATERMERK_WIDTH, WATERMERK_HEIGHT, \
-                         CRect.right, CRect.bottom, WATERMERK_WIDTH, WATERMERK_HEIGHT, \
+  invoke CreateWindowEx, 0, /
+                         $OfsCStr("Static"), $OfsCStr("  The ObjAsm Company  "), /
+                         WS_VISIBLE or WS_CHILD or SS_CENTER or SS_CENTERIMAGE, /
+;                         dWndWidth, dWndHeight, WATERMERK_WIDTH, WATERMERK_HEIGHT, /
+                         CRect.right, CRect.bottom, WATERMERK_WIDTH, WATERMERK_HEIGHT, /
                          [xsi].hWnd, 10, hInstance, 0
 
   c2m [xsi].pDynamicLayout, offset AppChildrenInfo, xcx
@@ -87,7 +87,7 @@ MethodEnd
 .data
 align ALIGN_DATA
 DlgChildrenInfo label DL_HEADER
-DL_HEADER     {DLF_LOAD_MIN_INISIZE or DLF_USE_MINMAXSIZE or DLF_ADD_GRIPPER, \
+DL_HEADER     {DLF_LOAD_MIN_INISIZE or DLF_USE_MINMAXSIZE or DLF_ADD_GRIPPER, /
                {500, 300}, {367, 204}, {600, 400}}
 DL_CHILD_INFO {{100, 100, 000, 000}}     ;Ok Button
 DL_CHILD_INFO {{000, 000, 100, 100}}
@@ -123,7 +123,7 @@ Method DLApp.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
     xor eax, eax
 
   .elseif ax == IDM_HELP
-    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Help\ObjAsm_Reference_Volume-I.pdf"), \
+    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Help/ObjAsm_Reference_Volume-I.pdf"), /
                                      addr cBuffer, lengthof(cBuffer)
     invoke PdfView, [xsi].hWnd, addr cBuffer, $OfsCStr("Introduction")
     xor eax, eax
@@ -142,7 +142,7 @@ MethodEnd
 
 Method DLApp.OnClose, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
-  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), \
+  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), /
                      MB_YESNO or MB_ICONQUESTION
   .if eax == IDNO
     xor eax, eax

@@ -152,7 +152,7 @@ MethodEnd
 ;                   accelerators are to be sent.
 ; Return:     eax = HRESULT.
 
-Method I_OcxCont_OleInPlaceFrame.SetMenu,, hMenuShared:HANDLE, hOleMenu:HANDLE, \
+Method I_OcxCont_OleInPlaceFrame.SetMenu,, hMenuShared:HANDLE, hOleMenu:HANDLE, /
                                            hEndActiveObject:HANDLE
   DbgText "I_OcxCont_OleInPlaceFrame.SetMenu", "I_OcxCont_OleInPlaceFrame"
   xor eax, eax                                          ;S_OK

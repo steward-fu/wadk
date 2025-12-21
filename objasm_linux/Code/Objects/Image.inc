@@ -14,8 +14,8 @@
 ;             images from files and resources.
 ; Notes:      - Required files:
 ;               % include &COMPath&COM.inc
-;               % include &IncPath&Windows\IImgCtx.inc
-;               % includelib &LibPath&Windows\Ole32.lib
+;               % include &IncPath&Windows/IImgCtx.inc
+;               % includelib &LibPath&Windows/Ole32.lib
 ;             - Initialization:   invoke CoInitialize, 0
 ;               Finalization:     invoke CoUninitialize
 ;             - This object is based on the ImgCtx functionality. There is very little information
@@ -38,7 +38,7 @@
 ;               are both NULL.
 ;             - Loading a resorce from the current file requires that the image resource is tagged
 ;               as resource 2110. Example:
-;                  MyBMP IMAGE DISCARDABLE "BMP\Spiderman.bmp"
+;                  MyBMP IMAGE DISCARDABLE "BMP/Spiderman.bmp"
 ;               where IMAGE = 2110.
 ;             - The second argument of IImgCtx.Load can be one of the following constants:
 ;                 DWN_COLORMODE    = Explicit color mode requested
@@ -132,8 +132,8 @@ Method Image.AlphaDraw, uses xsi, hDC:HDC, dSrcAlpha:DWORD, pDstRect:PRECT
       mov bfn.SourceConstantAlpha, al
       mov bfn.AlphaFormat, AC_SRC_ALPHA
       mov xax, pDstRect
-      invoke AlphaBlend, hDC, [xax].RECT.left, [xax].RECT.top, \
-                              [xax].RECT.right, [xax].RECT.bottom, \
+      invoke AlphaBlend, hDC, [xax].RECT.left, [xax].RECT.top, /
+                              [xax].RECT.right, [xax].RECT.bottom, /
                          hTmpDC, 0, 0, [xsi].ImgSize.x, [xsi].ImgSize.y, bfn
       .if eax != FALSE
         mov dReturn, 0
@@ -173,10 +173,10 @@ Method Image.AlphaStretch, uses xbx xsi, hDC:HDC, dSrcAlpha:DWORD, pDstRect:PREC
       mov bfn.AlphaFormat, AC_SRC_ALPHA
       mov xax, pDstRect
       mov xbx, pSrcRect
-      invoke AlphaBlend, hDC, [xax].RECT.left, [xax].RECT.top, \
-                              [xax].RECT.right, [xax].RECT.bottom, \
-                         hTmpDC, [xbx].RECT.left, [xbx].RECT.top, \
-                              [xbx].RECT.right, [xbx].RECT.bottom, \
+      invoke AlphaBlend, hDC, [xax].RECT.left, [xax].RECT.top, /
+                              [xax].RECT.right, [xax].RECT.bottom, /
+                         hTmpDC, [xbx].RECT.left, [xbx].RECT.top, /
+                              [xbx].RECT.right, [xbx].RECT.bottom, /
                          bfn
       .if eax != FALSE
         mov dReturn, 0
@@ -199,7 +199,7 @@ MethodEnd
 ;             Arg5: -> Size SIZE_ (cx, cy).
 ; Return:     eax = 0 if succeeded, otherwise -1.
 
-Method Image.AlphaTile, uses xsi, hDC:HDC, dSrcAlpha:DWORD, pOrigin:PPOINT, pClipRect:PRECT, \
+Method Image.AlphaTile, uses xsi, hDC:HDC, dSrcAlpha:DWORD, pOrigin:PPOINT, pClipRect:PRECT, /
                                   pSize:PSIZE
   local hTmpDC:HDC, hTmpBmp:HBITMAP, hPrvBmp:HBITMAP
   local BmpRect:RECT, DstPos:SIZE_, bfn:BLENDFUNCTION, dReturn:DWORD
@@ -225,10 +225,10 @@ Method Image.AlphaTile, uses xsi, hDC:HDC, dSrcAlpha:DWORD, pOrigin:PPOINT, pCli
       mov eax, dSrcAlpha
       mov bfn.SourceConstantAlpha, al
       mov bfn.AlphaFormat, AC_SRC_ALPHA
-      invoke AlphaBlend, hDC, DstPos.cx_, DstPos.cy, \
-                              BmpRect.right, BmpRect.bottom, \
-                         hTmpDC, 0, 0, \
-                              BmpRect.right, BmpRect.bottom, \
+      invoke AlphaBlend, hDC, DstPos.cx_, DstPos.cy, /
+                              BmpRect.right, BmpRect.bottom, /
+                         hTmpDC, 0, 0, /
+                              BmpRect.right, BmpRect.bottom, /
                          bfn
       .if eax != FALSE
         mov dReturn, 0
@@ -334,7 +334,7 @@ MethodEnd
 Method Image.Init, uses xsi, pOwner:POINTER
   SetObject xsi
   ACall xsi.Init, pOwner
-  invoke CoCreateInstance, offset CLSID_IImgCtx, 0, CLSCTX_ALL, offset IID_IImgCtx, \
+  invoke CoCreateInstance, offset CLSID_IImgCtx, 0, CLSCTX_ALL, offset IID_IImgCtx, /
                            addr [xsi].pIImgCtx
 ;  .if eax == 0
 ;    ICall [xsi].pIImgCtx::IImgCtx.SetCallback, offset ImgCtxCallback, xsi
@@ -523,8 +523,8 @@ Method Image.Stretch, uses xbx xsi, hDC:HDC, pDstRect:PRECT, pSrcRect:PRECT
 
       mov xax, pDstRect
       mov xbx, pSrcRect
-      invoke StretchBlt, hDC, [xax].RECT.left, [xax].RECT.top, [xax].RECT.right, [xax].RECT.bottom, \
-                         hTmpDC, [xbx].RECT.left, [xbx].RECT.top, [xbx].RECT.right,[xbx].RECT.bottom,\
+      invoke StretchBlt, hDC, [xax].RECT.left, [xax].RECT.top, [xax].RECT.right, [xax].RECT.bottom, /
+                         hTmpDC, [xbx].RECT.left, [xbx].RECT.top, [xbx].RECT.right,[xbx].RECT.bottom,/
                          SRCCOPY
 
       invoke SetStretchBltMode, hDC, dPrvStretchMode

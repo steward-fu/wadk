@@ -37,7 +37,7 @@
 ;
 ;             Configure your firewalls according to the "dynamic client port range" (49152 - 65535).
 ;
-;             ServiceNames: look at %WINDIR%\system32\drivers\etc\services
+;             ServiceNames: look at %WINDIR%/system32/drivers/etc/services
 ;
 ;             Version C.1.0, October 2017
 ;               - First release.
@@ -448,7 +448,7 @@ DbgSockError macro WarningText:req, InfoText, Dest
   if DEBUGGING
     DbgSaveContext
     DbgSetDestWnd Dest
-    invoke DbgOutTextA, $OfsCStrA($Esc(<WarningText>)), DbgColorWarning, DbgColorBackground, DBG_EFFECT_NORMAL, \
+    invoke DbgOutTextA, $OfsCStrA($Esc(<WarningText>)), DbgColorWarning, DbgColorBackground, DBG_EFFECT_NORMAL, /
                         ??DbgDstWnd
     invoke WSAGetLastError
     $$Buffersize = 1024

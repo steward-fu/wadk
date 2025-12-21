@@ -124,7 +124,7 @@ Method Statusbar.Init, uses xbx xdi xsi, pOwner:POINTER, hParent:HWND, pDefStruc
   mrm [xsi].pDefStruc, pDefStruc, xbx
 
   assume xbx:PDEF_STATUSBAR
-  invoke CreateWindowEx, [xbx].dExStyle, $OfsCStr("msctls_statusbar32"), NULL, \
+  invoke CreateWindowEx, [xbx].dExStyle, $OfsCStr("msctls_statusbar32"), NULL, /
                          [xbx].dStyle, 0, 0, 0, 0, hParent, [xbx].xCtlID, hInstance, 0
   ACall xsi.Init, pOwner, xax
   Subclass Statusbar                                    ;Uses xsi

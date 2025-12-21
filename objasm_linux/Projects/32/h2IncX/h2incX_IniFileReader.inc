@@ -58,7 +58,7 @@ Method IniFileReader.Init, uses edi esi, pOwner:POINTER
     lea ecx, szName
     lea eax, [ecx + eax - 1]
     .while eax >= ecx
-      .break .if (CHRA ptr [eax] == "\") || (CHRA ptr [eax] == "/") || (CHRA ptr [eax] == ":")
+      .break .if (CHRA ptr [eax] == "/") || (CHRA ptr [eax] == "/") || (CHRA ptr [eax] == ":")
       dec eax
     .endw
     inc eax

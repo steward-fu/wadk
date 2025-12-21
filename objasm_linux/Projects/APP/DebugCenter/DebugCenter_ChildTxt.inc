@@ -6,8 +6,8 @@
 ; ==================================================================================================
 
 
-EDTSTYLE    equ     WS_CHILD or WS_VISIBLE or WS_TABSTOP or \
-                    WS_VSCROLL or WS_HSCROLL or ES_AUTOVSCROLL or ES_AUTOHSCROLL or \
+EDTSTYLE    equ     WS_CHILD or WS_VISIBLE or WS_TABSTOP or /
+                    WS_VSCROLL or WS_HSCROLL or ES_AUTOVSCROLL or ES_AUTOHSCROLL or /
                     ES_MULTILINE or ES_WANTRETURN or ES_NOHIDESEL
 
 RICHEDITID  equ     250
@@ -243,7 +243,7 @@ RE_WordBreakLUT label CHRA                              ;Word break character lo
   CHRA 000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,001h,001h,001h,001h,001h,001h  ;0..9, ?
   ;      @    A    B    C    D    E    F    G    H    I    J    K    L    M    N    O
   CHRA 000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h  ;@, A..O
-  ;      P    Q    R    S    T    U    V    W    X    Y    Z    [    \    ]    ^    _
+  ;      P    Q    R    S    T    U    V    W    X    Y    Z    [    /    ]    ^    _
   CHRA 000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,001h,001h,001h,001h,000h  ;P..Z, _
   ;      `    a    b    c    d    e    f    g    h    i    j    k    l    m    n    o
   CHRA 001h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h  ;a..o
@@ -251,7 +251,7 @@ RE_WordBreakLUT label CHRA                              ;Word break character lo
   CHRA 000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,001h,001h,001h,001h,000h  ;p..z
 
 .code
-DbgMdiChildTxt_WordBreak_Callback proc uses xbx xsi pCharBuffer:POINTER, \
+DbgMdiChildTxt_WordBreak_Callback proc uses xbx xsi pCharBuffer:POINTER, /
                                            dCharIndex:DWORD, dByteCount:DWORD, dCode:DWORD
   .if dCode == WB_LEFT                                  ;0
     xor eax, eax
@@ -341,8 +341,8 @@ Method DbgMdiChildTxt.Init, uses xbx xdi xsi, pOwner:POINTER, pTitle:PSTRINGW, h
   ACall xsi.Init, pOwner, NULL                          ;hWnd is set in WndProc
 
   mov xdi, pOwner
-  invoke CreateMDIWindow, offset szDbgMdiChildTxtClass, pTitle, 0, \
-                          CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateMDIWindow, offset szDbgMdiChildTxtClass, pTitle, 0, /
+                          CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                           [xdi].$Obj(DbgMdiClient).hWnd, hInstance, pSelf
   .if xax != 0
     invoke SendMessage, [xsi].hEdit, EM_SETBKGNDCOLOR, 0, dBackColor
@@ -356,7 +356,7 @@ Method DbgMdiChildTxt.Init, uses xbx xdi xsi, pOwner:POINTER, pTitle:PSTRINGW, h
     mov xbx, [xdi].$Obj(DbgMdiClient).pOwner
     .if [xdi].$Obj(DbgMdiClient).dChildCount == 1       ;First child window ?
       invoke SendMessage, [xbx].$Obj(DebugCenter).hWnd, WM_CANCELMODE, 0, 0 ;Close any opened submenu
-      invoke SendMessage, [xdi].$Obj(DbgMdiClient).hWnd, WM_MDISETMENU, \
+      invoke SendMessage, [xdi].$Obj(DbgMdiClient).hWnd, WM_MDISETMENU, /
                           [xbx].$Obj(DebugCenter).hMenuChild, [xbx].$Obj(DebugCenter).hMenuChildWnd
       OCall xbx::DebugCenter.EnableActions, TRUE
       invoke DrawMenuBar, [xbx].$Obj(DebugCenter).hWnd  ;Redraw the new menu bar
@@ -372,7 +372,7 @@ Method DbgMdiChildTxt.Init, uses xbx xdi xsi, pOwner:POINTER, pTitle:PSTRINGW, h
     mov edx, $ObjTmpl(DebugCenter).dLanguage
     add edx, 125
     invoke LoadString, hInstance, edx, addr cMsg, lengthof cMsg - 1
-    invoke MessageBox, [xbx].$Obj(DebugCenter).hWnd, addr cMsg, offset szError, \
+    invoke MessageBox, [xbx].$Obj(DebugCenter).hWnd, addr cMsg, offset szError, /
                        MB_OK or MB_ICONERROR
   .endif
 MethodEnd
@@ -388,8 +388,8 @@ ES_EX_ZOOMABLE equ 0010h
 
 Method DbgMdiChildTxt.OnCreate, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
-  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_CLIENTEDGE or WS_EX_ACCEPTFILES or ES_EX_ZOOMABLE, \
-                         offset szRichEdit20, NULL, EDTSTYLE, \
+  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_CLIENTEDGE or WS_EX_ACCEPTFILES or ES_EX_ZOOMABLE, /
+                         offset szRichEdit20, NULL, EDTSTYLE, /
                          0, 0, 10, 10, [xsi].hWnd, RICHEDITID, hInstance, NULL
   mov [xsi].hEdit, xax
   invoke SendMessage, [xsi].hEdit, EM_SETEVENTMASK, 0, ENM_SELCHANGE
@@ -499,7 +499,7 @@ Method DbgMdiChildTxt.Open, uses xsi, pFileName:PSTRING
     mov edx, $ObjTmpl(DebugCenter).dLanguage
     add edx, 121
     invoke LoadString, hInstance, edx, addr cMsg, lengthof cMsg - 1
-    invoke MessageBox, [xsi].hWnd, addr cMsg, offset szDebugCenter, \
+    invoke MessageBox, [xsi].hWnd, addr cMsg, offset szDebugCenter, /
                        MB_OK or MB_ICONERROR
   .endif
   Destroy pStream
@@ -642,7 +642,7 @@ Method DbgMdiChildTxt.Print, uses xbx xdi xsi
       mov edx, $ObjTmpl(DebugCenter).dLanguage
       add edx, 124
       invoke LoadString, hInstance, edx, addr cMsg, lengthof cMsg - 1
-      invoke MessageBox, [xsi].hWnd, addr cMsg, offset szDebugCenter, \
+      invoke MessageBox, [xsi].hWnd, addr cMsg, offset szDebugCenter, /
                          MB_OK or MB_ICONERROR
     .endif
   .endif
@@ -687,7 +687,7 @@ Method DbgMdiChildTxt.SaveTo, uses xsi, pFileName:PSTRING
     mov edx, $ObjTmpl(DebugCenter).dLanguage
     add edx, 122
     invoke LoadString, hInstance, edx, addr cMsg, lengthof cMsg - 1
-    invoke MessageBox, [xsi].hWnd, addr cMsg, offset szDebugCenter, \
+    invoke MessageBox, [xsi].hWnd, addr cMsg, offset szDebugCenter, /
                        MB_OK or MB_ICONERROR
   .endif
   Destroy pStream
@@ -815,7 +815,7 @@ Method REdtIptor.OnDropFiles, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
     mov edx, $ObjTmpl(DebugCenter).dLanguage
     add edx, 120
     invoke LoadString, hInstance, edx, addr cMsg, lengthof cMsg - 1
-    invoke MessageBox, $ObjTmpl(DebugCenter).hWnd, addr cMsg, offset szDebugCenter, \
+    invoke MessageBox, $ObjTmpl(DebugCenter).hWnd, addr cMsg, offset szDebugCenter, /
                        MB_OK or MB_ICONEXCLAMATION
   .endif
   invoke DragQueryFile, wParam, 0, NULL, 0
@@ -837,13 +837,13 @@ Method REdtIptor.OnDropFiles, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
     mov edx, $ObjTmpl(DebugCenter).dLanguage
     add edx, 121
     invoke LoadString, hInstance, edx, addr cMsg, lengthof cMsg - 1
-    invoke MessageBox, [xsi].hWnd, addr cMsg, \
+    invoke MessageBox, [xsi].hWnd, addr cMsg, /
                        offset szDebugCenter, MB_OK or MB_ICONERROR
   .else
     mov edx, $ObjTmpl(DebugCenter).dLanguage
     add edx, 126
     invoke LoadString, hInstance, edx, addr cMsg, lengthof cMsg - 1
-    invoke MessageBox, [xsi].hWnd, addr cMsg, \
+    invoke MessageBox, [xsi].hWnd, addr cMsg, /
                        offset szDebugCenter, MB_OK or MB_ICONERROR
   .endif
 
@@ -889,7 +889,7 @@ Method REdtIptor.OnRButtonDown,, wParam:WPARAM, lParam:LPARAM
   SetObject xdx
   mov xax, [xdx].pOwner                                 ;xax -> DbgMdiChildTxt
   mov xcx, [xax].$Obj(DbgMdiChildTxt).pOwner            ;xcx -> DbgMdiClient
-  invoke SendMessage, [xcx].$Obj(DbgMdiClient).hWnd, WM_MDIACTIVATE, \
+  invoke SendMessage, [xcx].$Obj(DbgMdiClient).hWnd, WM_MDIACTIVATE, /
                       [xax].$Obj(DbgMdiChildTxt).hWnd, 0
   xor eax, eax
 MethodEnd
@@ -966,7 +966,7 @@ Method REdtIptor.OpenSciCalc, uses xbx xsi
       OCall pIDL::IDL.GetPath, xbx
       Destroy pIDL
       ;Open Win.ini
-      invoke StrCCat, xbx, $OfsCStr("\Win.ini"), lengthof cBuffer - 1
+      invoke StrCCat, xbx, $OfsCStr("/Win.ini"), lengthof cBuffer - 1
       New IniFile
       .if xax != NULL
         mov pIniFile, xax
@@ -998,7 +998,7 @@ Method REdtIptor.OpenSciCalc, uses xbx xsi
     .if eax == FALSE || PInfo.hProcess == 0           ;Faild
       invoke StrCopy, addr cMessage, $OfsCStr("Can't start '")
       invoke StrCCat, addr cMessage, xbx, lengthof cMessage - 1
-      invoke StrCCat, addr cMessage, $OfsCStr($Esc("' \:")), sizeof(cMessage) - 1
+      invoke StrCCat, addr cMessage, $OfsCStr($Esc("' /:")), sizeof(cMessage) - 1
       invoke MessageBox, [xsi].hWnd, addr cMessage, offset szError, MB_OK or MB_ICONERROR
       xor eax, eax
       mov [xsi].hCalcWnd, xax
@@ -1013,7 +1013,7 @@ Method REdtIptor.OpenSciCalc, uses xbx xsi
       .elseif eax == WAIT_TIMEOUT
         invoke StrCopy, addr cMessage, $OfsCStr("Waiting for '")
         invoke StrCCat, addr cMessage, xbx, lengthof cMessage - 1
-        invoke StrCCat, addr cMessage, $OfsCStr($Esc("' timeout \:")), lengthof cMessage - 1
+        invoke StrCCat, addr cMessage, $OfsCStr($Esc("' timeout /:")), lengthof cMessage - 1
         invoke MessageBox, [xsi].hWnd, addr cMessage, offset szError, MB_OK or MB_ICONERROR
         xor eax, eax
         mov [xsi].hCalcWnd, xax
@@ -1022,7 +1022,7 @@ Method REdtIptor.OpenSciCalc, uses xbx xsi
       .else
         invoke StrCopy, addr cMessage, $OfsCStr("'")
         invoke StrCCat, addr cMessage, xbx, lengthof cMessage - 1
-        invoke StrCCat, addr cMessage, $OfsCStr($Esc("' didn't start correctly \:")), \
+        invoke StrCCat, addr cMessage, $OfsCStr($Esc("' didn't start correctly /:")), /
                         lengthof cMessage - 1
         invoke MessageBox, [xsi].hWnd, addr cMessage, offset szError, MB_OK or MB_ICONERROR
         xor eax, eax

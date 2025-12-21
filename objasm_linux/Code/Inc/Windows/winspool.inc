@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.01, 19/04/2018 10:43
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\winspool.h', last modified: 19/04/2018 10:43
+;Source file: '/ObjAsm/Projects/h2IncX/header/winspool.h', last modified: 19/04/2018 10:43
 ;Creation parameters: 
 
 ifndef _WINSPOOL_
@@ -2145,7 +2145,7 @@ ifndef _WINSPOOL_
       SPLREG_WEBSHAREMGMT equ <TEXT("WebShareMgmt")>
     endif
     if (NTDDI_VERSION ge NTDDI_WIN7)
-      SPLREG_PRINT_DRIVER_ISOLATION_GROUPS_SEPARATOR equ <L'\\'>
+      SPLREG_PRINT_DRIVER_ISOLATION_GROUPS_SEPARATOR equ <L'//'>
       SPLREG_PRINT_DRIVER_ISOLATION_GROUPS equ <TEXT("PrintDriverIsolationGroups")>
       SPLREG_PRINT_DRIVER_ISOLATION_TIME_BEFORE_RECYCLE equ <TEXT("PrintDriverIsolationTimeBeforeRecycle")>
       SPLREG_PRINT_DRIVER_ISOLATION_MAX_OBJECTS_BEFORE_RECYCLE equ <TEXT("PrintDriverIsolationMaxobjsBeforeRecycle")>

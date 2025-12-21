@@ -65,7 +65,7 @@ Method UIApplication.Init, uses xbx xsi, pOwner:POINTER, hWnd:HWND, pRibbonResNa
   OCall [xsi].Interfaces::Collection.Insert, xbx
   OCall xbx::IUIApplication.Init, xsi
 
-  invoke CoCreateInstance, offset CLSID_UIRibbonFramework, NULL, CLSCTX_INPROC_SERVER, \
+  invoke CoCreateInstance, offset CLSID_UIRibbonFramework, NULL, CLSCTX_INPROC_SERVER, /
                            offset IID_IUnknown, addr [xsi].pUIRibbonFramework
   .if SUCCEEDED(eax)
     ICall [xsi].pUIRibbonFramework::IUIFramework.Initialize, hWnd, xbx
@@ -107,7 +107,7 @@ MethodEnd
 ;             Arg4: dReasonCode. Not defined.
 ; Return:     eax = HRESULT.
 
-Method IUIApplication.OnViewChanged,, dViewID:DWORD, dTypeID:DWORD, pView:POINTER, dVerb:DWORD, \
+Method IUIApplication.OnViewChanged,, dViewID:DWORD, dTypeID:DWORD, pView:POINTER, dVerb:DWORD, /
                                       dReasonCode:DWORD
 ;  local pRibbon:POINTER, dRibbonHeight:DWORD
 ;
@@ -147,7 +147,7 @@ MethodEnd
 ;                   handler that is bound to one or more Commands.
 ; Return:     eax = HRESULT.
 
-Method IUIApplication.OnCreateUICommand, uses xbx xsi, dCommandID:DWORD, dTypeID:DWORD, \
+Method IUIApplication.OnCreateUICommand, uses xbx xsi, dCommandID:DWORD, dTypeID:DWORD, /
                                                      pCommandHandler:POINTER
 ;  DbgWarning "IUICommandHandler created", "IUICommandHandler"
 ;  DbgHex dCommandID,, "IUICommandHandler"
@@ -219,7 +219,7 @@ MethodEnd
 ;                   indices. This parameter can be NULL.
 ; Return:     eax = HRESULT.
 
-Method IUICommandHandler.Execute, uses xsi, dCommandID:DWORD, dVerb:DWORD, pKey:REFPROPERTYKEY, \
+Method IUICommandHandler.Execute, uses xsi, dCommandID:DWORD, dVerb:DWORD, pKey:REFPROPERTYKEY, /
                                             pCurValue:LPVARIANT, pCmdExecProp:POINTER
 ;  DbgText "IUICommandHandler.Execute", "IUICommandHandler"
 ;  DbgHex dCommandID,, "IUICommandHandler"
@@ -254,7 +254,7 @@ MethodEnd
 ;             Arg4: pNewValue -> on method return, contains -> the new VARIANT value for key.
 ; Return:     eax = HRESULT.
 
-Method IUICommandHandler.UpdateProperty,, dCommandID:DWORD, pKey:REFPROPERTYKEY, \
+Method IUICommandHandler.UpdateProperty,, dCommandID:DWORD, pKey:REFPROPERTYKEY, /
                                           pCurValue:LPVARIANT, pNewValue:LPVARIANT
 ;  DbgText "IUICommandHandler.UpdateProperty", "IUICommandHandler"
 ;  mov xax, pKey

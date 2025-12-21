@@ -120,7 +120,7 @@ Method ScriptHostApp.FileLoad, uses xbx xsi, pFileName:PSTRING
   SetObject xsi
   ;Open the file
   xor ebx, ebx
-  invoke CreateFile, pFileName, GENERIC_READ, FILE_SHARE_READ, 0, OPEN_EXISTING, \
+  invoke CreateFile, pFileName, GENERIC_READ, FILE_SHARE_READ, 0, OPEN_EXISTING, /
                      FILE_ATTRIBUTE_NORMAL, 0
   .if xax != INVALID_HANDLE_VALUE
     mov hFile, xax
@@ -145,7 +145,7 @@ Method ScriptHostApp.FileLoad, uses xbx xsi, pFileName:PSTRING
 
           invoke SendDlgItemMessageA, [xsi].hWnd, IDC_RED_SCRIPT, WM_SETTEXT, 0, pMemBlock
           MemFree pMemBlock
-          OCall xsi.EnableControls, SHD_CTRL_LOAD or SHD_CTRL_SAVE or SHD_CTRL_RUN or\
+          OCall xsi.EnableControls, SHD_CTRL_LOAD or SHD_CTRL_SAVE or SHD_CTRL_RUN or/
                                     SHD_CTRL_SCRIPT or SHD_CTRL_OUTPUT
           invoke StrCCopy, addr cBuffer, offset szCaption, lengthof cBuffer
           invoke StrCECat, addr cBuffer, pFileName, lengthof cBuffer
@@ -179,14 +179,14 @@ Method ScriptHostApp.FileSave, uses xsi, pFileName:PSTRING, pMemBlock:POINTER, d
   SetObject xsi
   invoke FileExist, pFileName
   .if eax != FALSE
-    invoke MessageBox, [xsi].hWnd, $OfsCStr("File already exist. Overwrite it?"), \
+    invoke MessageBox, [xsi].hWnd, $OfsCStr("File already exist. Overwrite it?"), /
                        offset szCaption, MB_OKCANCEL or MB_ICONWARNING
     .if eax == IDCANCEL
       jmp @@Exit
     .endif
   .endif
   ;Open the file
-  invoke CreateFile, pFileName, GENERIC_WRITE, FILE_SHARE_WRITE, 0, \
+  invoke CreateFile, pFileName, GENERIC_WRITE, FILE_SHARE_WRITE, 0, /
                      CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0
   .if xax != INVALID_HANDLE_VALUE
     mov hFile, xax
@@ -395,7 +395,7 @@ Method ScriptHostApp.OnError, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   .if wParam == 0
     invoke GetLastError
     lea xbx, cBuffer
-    invoke FormatMessage, FORMAT_MESSAGE_FROM_SYSTEM, 0, eax, \
+    invoke FormatMessage, FORMAT_MESSAGE_FROM_SYSTEM, 0, eax, /
                           0, xbx, sizeof cBuffer, 0
     invoke MessageBox, [xsi].hWnd, xbx, offset szError, MB_OK or MB_ICONERROR
   .else
@@ -414,7 +414,7 @@ MethodEnd
 Method ScriptHostApp.OnFinished,, wParam:WPARAM, lParam:LPARAM
 ;  DbgText "ScriptHostApp.OnFinished"
   SetObject xcx
-  OCall xcx.EnableControls, SHD_CTRL_LOAD or SHD_CTRL_SAVE or SHD_CTRL_RUN or \
+  OCall xcx.EnableControls, SHD_CTRL_LOAD or SHD_CTRL_SAVE or SHD_CTRL_RUN or /
                             SHD_CTRL_SCRIPT or SHD_CTRL_OUTPUT
 MethodEnd
 
@@ -532,7 +532,7 @@ Method ScriptHostApp.OnSize, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
     invoke MoveWindow, hControl, BORDER_HSPACE, eax, dEditWidth, ebx, FALSE
 
     ;Place horizontal Splitter control
-    invoke MoveWindow, [xsi].SplitterHor.hWnd, BORDER_HSPACE, SpHorRect.top, dEditWidth, \
+    invoke MoveWindow, [xsi].SplitterHor.hWnd, BORDER_HSPACE, SpHorRect.top, dEditWidth, /
                        SPLITTER_HEIGTH, FALSE
 
     ;Place Button controls
@@ -574,7 +574,7 @@ Method ScriptHostApp.OnSize, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
     invoke MoveWindow, hControl, edx, eax, CtlRect.right, CtlRect.bottom, FALSE
 
     ;Redraw all child windows
-    invoke RedrawWindow, [xsi].hWnd, NULL, NULL, \
+    invoke RedrawWindow, [xsi].hWnd, NULL, NULL, /
                          RDW_ERASE or RDW_INVALIDATE or RDW_UPDATENOW or RDW_ALLCHILDREN
 
     xor eax, eax                                        ;Return zero
@@ -604,7 +604,7 @@ Method IScriptOutput.Init, uses xsi, pOwner:POINTER, pResIndexStr:PSTRINGW, pIID
   mov [xsi].hControl, $invoke(GetDlgItem, [xax].$Obj(ScriptHost).hWnd, IDC_RED_OUTPUT)
 
   ;Fill the CHARFORMATA structure with default values
-  mov [xsi].CFD.dwMask, CFM_BOLD or CFM_COLOR  or CFM_FACE or CFM_ITALIC or CFM_SIZE \
+  mov [xsi].CFD.dwMask, CFM_BOLD or CFM_COLOR  or CFM_FACE or CFM_ITALIC or CFM_SIZE /
                                     or CFM_STRIKEOUT or CFM_UNDERLINE
   m2z [xsi].CFD.dwEffects
   mov hDC, $invoke(GetWindowDC, [xsi].hControl)

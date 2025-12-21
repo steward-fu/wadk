@@ -96,7 +96,7 @@ if IMPLEMENT
 ;             DOCHOST_E_UNKNOWN: Menu identifier is unknown. MSHTML might attempt an alternative
 ;                                identifier from a previous version
 
-Method IDocHostUIHandler.ShowContextMenu,, dwID:DWORD, pPoint:POINTER, pcmdtReserved:POINTER, \
+Method IDocHostUIHandler.ShowContextMenu,, dwID:DWORD, pPoint:POINTER, pcmdtReserved:POINTER, /
                                            pdispReserved:POINTER
   DbgText "IDocHostUIHandler.ShowContextMenu", "IDocHostUIHandler"
   SetObject xcx
@@ -133,7 +133,7 @@ MethodEnd
 ;               an alternative identifier for compatibility with a previous version,
 ;               or display its UI.
 
-Method IDocHostUIHandler.ShowUI,, dwID:DWORD, pActiveObject:POINTER, pCommandTarget:POINTER, \
+Method IDocHostUIHandler.ShowUI,, dwID:DWORD, pActiveObject:POINTER, pCommandTarget:POINTER, /
                                   pFrame:POINTER, pDoc:POINTER
   DbgText "IDocHostUIHandler.ShowUI", "IDocHostUIHandler"
   SetObject xcx

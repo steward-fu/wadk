@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.01, 10/09/2018 22:03
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\securitybaseapi.h', last modified: 19/04/2018 10:43
+;Source file: '/ObjAsm/Projects/h2IncX/header/securitybaseapi.h', last modified: 19/04/2018 10:43
 ;Creation parameters: 
 
 ifdef _MSC_VER
@@ -26,12 +26,12 @@ ifndef _APISECUREBASE_
     ifdef UNICODE
       AccessCheckByTypeAndAuditAlarm equ <AccessCheckByTypeAndAuditAlarmW>
     endif
-    ;@DefProto DllImport, AccessCheckByTypeResultListAndAuditAlarmW, WIN_STD_CALL_CONV,, \
+    ;@DefProto DllImport, AccessCheckByTypeResultListAndAuditAlarmW, WIN_STD_CALL_CONV,, /
     ;<:LPCWSTR, :LPVOID, :LPCWSTR, :LPCWSTR, :PSECURITY_DESCRIPTOR, :PSID, :DWORD, :AUDIT_EVENT_TYPE, :DWORD, :POBJECT_TYPE_LIST, :DWORD, :PGENERIC_MAPPING, :BOOL, :LPDWORD, :LPDWORD, :LPBOOL>, 64
     ifdef UNICODE
       AccessCheckByTypeResultListAndAuditAlarm equ <AccessCheckByTypeResultListAndAuditAlarmW>
     endif
-    ;@DefProto DllImport, AccessCheckByTypeResultListAndAuditAlarmByHandleW, WIN_STD_CALL_CONV,, \
+    ;@DefProto DllImport, AccessCheckByTypeResultListAndAuditAlarmByHandleW, WIN_STD_CALL_CONV,, /
     ;<:LPCWSTR, :LPVOID, :HANDLE, :LPCWSTR, :LPCWSTR, :PSECURITY_DESCRIPTOR, :PSID, :DWORD, :AUDIT_EVENT_TYPE, :DWORD, :POBJECT_TYPE_LIST, :DWORD, :PGENERIC_MAPPING, :BOOL, :LPDWORD, :LPDWORD, :LPBOOL>, 68
     ifdef UNICODE
       AccessCheckByTypeResultListAndAuditAlarmByHandle equ <AccessCheckByTypeResultListAndAuditAlarmByHandleW>

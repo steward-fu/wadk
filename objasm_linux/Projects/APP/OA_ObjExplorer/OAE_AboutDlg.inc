@@ -66,38 +66,38 @@ endif
 
 
 .const
-%String szAboutMarkup, \
-  "{SX 540, PA 20}", \
-  "[H+1]", \
-    "{C 0}", \
-    "[FI 190]", \
-      "[H+3,B]&ABOUT_TEXT{B}[~]", \
-      "[I]Version &VER_PRODUCTVERSION_STR{P}[~]", \
-      "[C#3F3F3F]", \
-        "%s{B}", \
-        "© &COPYRIGHT{P}", \
-          $Quoted(BUILD_DATE_STR, <<  -  Build: >>, %BUILD_NUMBER, <->, \
-                  %ASSEMBLER, <->, %TARGET_MODE_STR, <->, %TARGET_BITNESS), \
-          "    [TIP ", $Quoted(INFO_BUILD), ",F'Webdings',H+1,",$Quoted(INFO_COLOR), "]{#F069}[~]", \
-        "[~]{B}", \
-      "[~]", \
+%String szAboutMarkup, /
+  "{SX 540, PA 20}", /
+  "[H+1]", /
+    "{C 0}", /
+    "[FI 190]", /
+      "[H+3,B]&ABOUT_TEXT{B}[~]", /
+      "[I]Version &VER_PRODUCTVERSION_STR{P}[~]", /
+      "[C#3F3F3F]", /
+        "%s{B}", /
+        "© &COPYRIGHT{P}", /
+          $Quoted(BUILD_DATE_STR, <<  -  Build: >>, %BUILD_NUMBER, <->, /
+                  %ASSEMBLER, <->, %TARGET_MODE_STR, <->, %TARGET_BITNESS), /
+          "    [TIP ", $Quoted(INFO_BUILD), ",F'Webdings',H+1,",$Quoted(INFO_COLOR), "]{#F069}[~]", /
+        "[~]{B}", /
+      "[~]", /
     "[~]"
-%ExtendString \
-    "{TR 280}{TL 300}", \
-    "[FI 0,H+1]{B}{LINE}{B}", \
-      "{T}[F'Webdings',C#FF5F5F,H+7]{#F07E}[~]", \
-      "  %s", \
-      "{T}[APP ",$Quoted(APP_VISIT_OBJASM), ",",$Quoted(LINK_COLOR),",U]www.objasm.x10host.com[~]{P}", \
-      "{T}[F'Wingdings',C#0000FF,H+1]{#F02A}[~]", \
-      "  %s", \
-      "{T}[APP ",$Quoted(APP_EMAIL),",",$Quoted(LINK_COLOR),",U]objasm@gmx.net[~]", \
-    "[~]", \
+%ExtendString /
+    "{TR 280}{TL 300}", /
+    "[FI 0,H+1]{B}{LINE}{B}", /
+      "{T}[F'Webdings',C#FF5F5F,H+7]{#F07E}[~]", /
+      "  %s", /
+      "{T}[APP ",$Quoted(APP_VISIT_OBJASM), ",",$Quoted(LINK_COLOR),",U]www.objasm.x10host.com[~]{P}", /
+      "{T}[F'Wingdings',C#0000FF,H+1]{#F02A}[~]", /
+      "  %s", /
+      "{T}[APP ",$Quoted(APP_EMAIL),",",$Quoted(LINK_COLOR),",U]objasm@gmx.net[~]", /
+    "[~]", /
   "[~]"
 
-%CStr szBuildInfo,    "Buildnumber:  ", 9, @CatStr(<!">, %BUILD_NUMBER, <!">), 13, \
-                      "Assembler:    ", 9, @CatStr(<!">, %ANAME, <!">), 13, \
-                      "Version:      ", 9, @CatStr(<!">, %AVERSION, <!">), 13, \
-                      "Distribution: ", 9, @CatStr(<!">, %DNAME, <!">), 13, \
+%CStr szBuildInfo,    "Buildnumber:  ", 9, @CatStr(<!">, %BUILD_NUMBER, <!">), 13, /
+                      "Assembler:    ", 9, @CatStr(<!">, %ANAME, <!">), 13, /
+                      "Version:      ", 9, @CatStr(<!">, %AVERSION, <!">), 13, /
+                      "Distribution: ", 9, @CatStr(<!">, %DNAME, <!">), 13, /
                       "Bitness:      ", 9, @CatStr(<!">, %TARGET_BITNESS, <!">)
 
 
@@ -189,15 +189,15 @@ Method DialogAbout.OnNotify, uses xdi xsi, wParam:WPARAM, lParam:LPARAM
     mov xdi, lParam
     .if [xdi].NMHDR.code == TVNMC_APP_MOUSEUP
       .if [xdi].TVNM_APP.dID == APP_VISIT_OBJASM
-        invoke ShellExecute, [xsi].hWnd, $OfsCStr("open"), \
-                             $OfsCStr("http://objasm.x10host.com/index.htm"), \
+        invoke ShellExecute, [xsi].hWnd, $OfsCStr("open"), /
+                             $OfsCStr("http://objasm.x10host.com/index.htm"), /
                              NULL, NULL, SW_SHOW
       .elseif [xdi].TVNM_APP.dID == APP_EMAIL
-        invoke ShellExecute, [xsi].hWnd, $OfsCStr("open"), \
-                             $OfsCStr("mailto:objasm@gmx.net"), \
+        invoke ShellExecute, [xsi].hWnd, $OfsCStr("open"), /
+                             $OfsCStr("mailto:objasm@gmx.net"), /
                              NULL, NULL, SW_SHOW
       .elseif [xdi].TVNM_APP.dID == APP_HELP
-        invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Help\ObjAsm_Reference_Volume-I.pdf"), \
+        invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Help/ObjAsm_Reference_Volume-I.pdf"), /
                                          addr cFileName, lengthof(cFileName)
         invoke PdfView, [xsi].hWnd, addr cFileName, $OfsCStr("Debugging")
       .endif

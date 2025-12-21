@@ -1,11 +1,11 @@
 ;Include file created by h2incX, Version B.01.01, 10/09/2018 22:03
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\rpc.h', last modified: 19/04/2018 10:43
+;Source file: '/ObjAsm/Projects/h2IncX/header/rpc.h', last modified: 19/04/2018 10:43
 ;Creation parameters: 
 
 if  not Defined(RPC_NO_WINDOWS_H) and  not Defined(MAC) and  not Defined(_MAC) and  not Defined(_KRPCENV_)
   ifndef _INC_WINDOWS
-    include windows.inc
+    include Windows.inc
   endif
 endif
 ifndef __RPC_H__

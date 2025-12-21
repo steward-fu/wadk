@@ -86,7 +86,7 @@ Method PropWnd.Done, uses xbx xsi
   OCall $ObjTmpl(Application)::Application.EnableActions
   .if [xbx].$Obj(ClientWnd).dChildCount == 0            ;No more child windows ?
     mov xax, $ObjTmpl(Application).pClientWnd
-    invoke SendMessage, [xax].$Obj(ClientWnd).hWnd, WM_MDISETMENU, \
+    invoke SendMessage, [xax].$Obj(ClientWnd).hWnd, WM_MDISETMENU, /
                         $ObjTmpl(Application).hMenuInit, NULL
     invoke DrawMenuBar, $ObjTmpl(Application).hWnd      ;Redraw the new menu bar
   .endif
@@ -104,7 +104,7 @@ MethodEnd
 ;             Arg2: -> INFORMATION.
 ; Return:     Nothing.
 
-Method PropWnd.Init, uses xbx xdi xsi, pOwner:$ObjPtr(ClientWnd), pWndClassName:PSTRING, \
+Method PropWnd.Init, uses xbx xdi xsi, pOwner:$ObjPtr(ClientWnd), pWndClassName:PSTRING, /
                                        pInfo:PINFORMATION
   local dIsMaximized:DWORD, DefTextView:DEF_TEXTVIEW
 
@@ -136,8 +136,8 @@ Method PropWnd.Init, uses xbx xdi xsi, pOwner:$ObjPtr(ClientWnd), pWndClassName:
     mov ebx, WS_MAXIMIZE
   .endif
   mov xax, pInfo
-  invoke CreateMDIWindow, pWndClassName, [xax].INFORMATION.pName, \
-                          ebx, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateMDIWindow, pWndClassName, [xax].INFORMATION.pName, /
+                          ebx, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                           [xdi].$Obj(ClientWnd).hWnd, hInstance, xsi
 
   mov DefTextView.xCtlID, VIEW_CTRL_ID
@@ -150,13 +150,13 @@ Method PropWnd.Init, uses xbx xdi xsi, pOwner:$ObjPtr(ClientWnd), pWndClassName:
   OCall $ObjTmpl(Application)::Application.EnableActions
   .if eax != 0
     .if [xdi].$Obj(ClientWnd).dChildCount == 1          ;First child window ?
-      invoke SendMessage, [xdi].$Obj(ClientWnd).hWnd, WM_MDISETMENU, \
+      invoke SendMessage, [xdi].$Obj(ClientWnd).hWnd, WM_MDISETMENU, /
                           $ObjTmpl(Application).hMenuChild, $ObjTmpl(Application).hMenuChildWnd
       invoke DrawMenuBar, $ObjTmpl(Application).hWnd    ;Redraw the new menu bar
     .endif
   .else
     invoke GetLastError
-    invoke ErrorMessageBox, $ObjTmpl(Application).hWnd, $OfsCStr("Window creation error"), \
+    invoke ErrorMessageBox, $ObjTmpl(Application).hWnd, $OfsCStr("Window creation error"), /
                             LOCALE_USER_DEFAULT, eax
   .endif
 MethodEnd
@@ -192,7 +192,7 @@ Method PropWnd.OnSize, uses xsi, wParam:WPARAM, lParam:LPARAM
   .if wParam != SIZE_MINIMIZED
     invoke GetClientRect, [xsi].hWnd, addr CRect
     .if xax != NULL
-      invoke SetWindowPos, [xsi].InfoPane.hWnd, HWND_BOTTOM, \
+      invoke SetWindowPos, [xsi].InfoPane.hWnd, HWND_BOTTOM, /
                            CRect.left, CRect.top, CRect.right, CRect.bottom, SWP_NOZORDER
     .endif
   .endif
@@ -210,14 +210,14 @@ MethodEnd
 ;             Arg6: -> Reference SysTime 2.
 ; Return:     Nothing.
 
-Method PropWnd.ShowFileInfo, uses xbx xsi, pFileName:PSTRING, dShowLink:DWORD, dLineNumber:DWORD, \
-                                           pFileTime:PFILETIME, \
+Method PropWnd.ShowFileInfo, uses xbx xsi, pFileName:PSTRING, dShowLink:DWORD, dLineNumber:DWORD, /
+                                           pFileTime:PFILETIME, /
                                            pFileTime1:PFILETIME, pFileTime2:PFILETIME
   local hFile:HANDLE, cBuffer[100]:CHR, cNumBuffer[20]:CHR
   local LocalSysTime:SYSTEMTIME, SysTimeUTC:SYSTEMTIME
 
   SetObject xsi
-  invoke CreateFile, pFileName, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, \
+  invoke CreateFile, pFileName, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, /
                      FILE_ATTRIBUTE_ARCHIVE, 0
   .if xax != INVALID_HANDLE_VALUE
     mov hFile, xax
@@ -240,8 +240,8 @@ Method PropWnd.ShowFileInfo, uses xbx xsi, pFileName:PSTRING, dShowLink:DWORD, d
     invoke FileTimeToSystemTime, pFileTime, addr SysTimeUTC
     invoke SystemTimeToTzSpecificLocalTime, NULL, addr SysTimeUTC, addr LocalSysTime
 
-    invoke wsprintf, addr cBuffer, $OfsCStr("%02hu/%02hu/%02hu %02hu:%02hu:%04hu"), \
-                     LocalSysTime.wDay, LocalSysTime.wMonth, LocalSysTime.wYear, \
+    invoke wsprintf, addr cBuffer, $OfsCStr("%02hu/%02hu/%02hu %02hu:%02hu:%04hu"), /
+                     LocalSysTime.wDay, LocalSysTime.wMonth, LocalSysTime.wYear, /
                      LocalSysTime.wHour, LocalSysTime.wMinute, LocalSysTime.wSecond
     OCall [xsi].MarkupStream::MemoryStream.BinWrite, addr cBuffer, 19*sizeof(CHR)
     OCall [xsi].MarkupStream::MemoryStream.BinWrite, $OfsSze(MTXT_TAB)

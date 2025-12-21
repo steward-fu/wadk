@@ -135,7 +135,7 @@ JsonEscDecode proc uses xbx xdi xsi pInputStr:PSTRINGW, pBuffer:PSTRINGW, dCount
     endif
 
 @@0:
-    .if ax == "\"
+    .if ax == "/"
       mov ecx, 1
     .else
       stosw
@@ -147,7 +147,7 @@ JsonEscDecode proc uses xbx xdi xsi pInputStr:PSTRINGW, pBuffer:PSTRINGW, dCount
     .if ax == '"'
       stosw
       dec ebx
-    .elseif ax == '\'
+    .elseif ax == '/'
       stosw
       dec ebx
     .elseif ax == '/'
@@ -234,7 +234,7 @@ JsonEscEncode proc uses xbx xdi xsi pInputStr:PSTRINGW, pBuffer:PSTRINGW, dCount
   POINTER @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?
   ;        @    A    B    C    D    E    F    G    H    I    J    K    L    M    N    O
   POINTER @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?
-  ;       P    Q    R    S    T    U    V    W    X    Y    Z    [    \    ]    ^    _
+  ;       P    Q    R    S    T    U    V    W    X    Y    Z    [    /    ]    ^    _
   POINTER @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@1, @@?, @@?, @@?
   ;       `    a    b    c    d    e    f    g    h    i    j    k    l    m    n    o
   POINTER @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?, @@?
@@ -256,7 +256,7 @@ JsonEscEncode proc uses xbx xdi xsi pInputStr:PSTRINGW, pBuffer:PSTRINGW, dCount
 
     .if ax > 127
       movzx edx, ax
-      mov eax, 'u'*65536 + '\'
+      mov eax, 'u'*65536 + '/'
       stosd
       xor eax, eax
       mov al, dh
@@ -281,37 +281,37 @@ JsonEscEncode proc uses xbx xdi xsi pInputStr:PSTRINGW, pBuffer:PSTRINGW, dCount
     .break .if ax == 0
     .continue
 @@1:
-    mov eax, '\'*65536 + '\'
+    mov eax, '/'*65536 + '/'
     stosd
     sub ebx, 2
     .continue
 @@2:
-    mov eax, '/'*65536 + '\'
+    mov eax, '/'*65536 + '/'
     stosd
     sub ebx, 2
     .continue
 @@b:
-    mov eax, 'b'*65536 + '\'
+    mov eax, 'b'*65536 + '/'
     stosd
     sub ebx, 2
     .continue
 @@f:
-    mov eax, 'f'*65536 + '\'
+    mov eax, 'f'*65536 + '/'
     stosd
     sub ebx, 2
     .continue
 @@n:
-    mov eax, 'n'*65536 + '\'
+    mov eax, 'n'*65536 + '/'
     stosd
     sub ebx, 2
     .continue
 @@r:
-    mov eax, 'r'*65536 + '\'
+    mov eax, 'r'*65536 + '/'
     stosd
     sub ebx, 2
     .continue
 @@t:
-    mov eax, 't'*65536 + '\'
+    mov eax, 't'*65536 + '/'
     stosd
     sub ebx, 2
   .endw
@@ -341,7 +341,7 @@ JsonEscEncodeSize proc uses xsi pInputStr:PSTRINGW
   BYTE      1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1
   ;        @    A    B    C    D    E    F    G    H    I    J    K    L    M    N    O
   BYTE      1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1
-  ;       P    Q    R    S    T    U    V    W    X    Y    Z    [    \    ]    ^    _
+  ;       P    Q    R    S    T    U    V    W    X    Y    Z    [    /    ]    ^    _
   BYTE      1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   2,   1,   1,   1
   ;       `    a    b    c    d    e    f    g    h    i    j    k    l    m    n    o
   BYTE      1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1,   1
@@ -1014,7 +1014,7 @@ IndentNow macro
   .endw
 endm
 
-Method Json.WriteProperty, uses xbx xdi xsi, pStream:$ObjPtr(Stream), pProperty:PJSON_PROPERTY, \
+Method Json.WriteProperty, uses xbx xdi xsi, pStream:$ObjPtr(Stream), pProperty:PJSON_PROPERTY, /
                                              pIndentation:POINTER
   mov xbx, pProperty
   mov xdi, pIndentation

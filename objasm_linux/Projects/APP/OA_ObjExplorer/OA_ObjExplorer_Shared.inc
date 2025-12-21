@@ -131,7 +131,7 @@ IDS_FIND_OBJ                  equ       122
 IDS_FIND_INT                  equ       123
 IDS_FIND_HELP                 equ       124
 
-;Res\ObjExplorer_SetupDlg.rc
+;Res/ObjExplorer_SetupDlg.rc
 IDD_SETUP_DLG                 equ       5000
 IDC_SETUP_VIEWER_GRP          equ       2001
 IDC_SETUP_VIEWER_STC          equ       2002
@@ -142,7 +142,7 @@ IDC_SETUP_PROP_GRP            equ       2010
 IDC_SETUP_PROP_CHK_MTD        equ       2011
 IDC_SETUP_PROP_CHK_VAR        equ       2012
 
-;Res\ObjExplorer_FindDlg.rc
+;Res/ObjExplorer_FindDlg.rc
 IDD_FIND_DLG                  equ       6000
 IDC_FIND_EDIT                 equ       1001
 IDC_FIND_BTN_SEARCH           equ       1002

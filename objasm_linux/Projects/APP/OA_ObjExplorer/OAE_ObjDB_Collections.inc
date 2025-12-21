@@ -431,7 +431,7 @@ MethodEnd
 ;             Arg4: -> Files collection.
 ; Return:     Nothing.
 
-Method ObjMtdInfoCollection.Init,, pOwner:POINTER, dLimit:DWORD, dDelta:DWORD, \
+Method ObjMtdInfoCollection.Init,, pOwner:POINTER, dLimit:DWORD, dDelta:DWORD, /
                                    pFilesColl:$ObjPtr(FilesCollection)
   SetObject xcx
   m2m [xcx].pFilesColl, pFilesColl, xdx
@@ -534,7 +534,7 @@ MethodEnd
 ;             Arg4: -> Files collection.
 ; Return:     Nothing.
 
-Method ObjVarInfoCollection.Init,, pOwner:POINTER, dLimit:DWORD, dDelta:DWORD, \
+Method ObjVarInfoCollection.Init,, pOwner:POINTER, dLimit:DWORD, dDelta:DWORD, /
                                    pFilesColl:$ObjPtr(FilesCollection)
   SetObject xcx
   m2m [xcx].pFilesColl, pFilesColl, xdx
@@ -659,7 +659,7 @@ MethodEnd
 ;             Arg4: -> Files collection.
 ; Return:     Nothing.
 
-Method IntInfoCollection.Init,, pOwner:POINTER, dLimit:DWORD, dDelta:DWORD, \
+Method IntInfoCollection.Init,, pOwner:POINTER, dLimit:DWORD, dDelta:DWORD, /
                                 pFilesColl:$ObjPtr(FilesCollection)
   SetObject xcx
   m2m [xcx].pFilesColl, pFilesColl, xdx
@@ -762,7 +762,7 @@ MethodEnd
 ;             Arg4: -> Files collection.
 ; Return:     Nothing.
 
-Method IntMtdInfoCollection.Init,, pOwner:POINTER, dLimit:DWORD, dDelta:DWORD, \
+Method IntMtdInfoCollection.Init,, pOwner:POINTER, dLimit:DWORD, dDelta:DWORD, /
                                    pFilesColl:$ObjPtr(FilesCollection)
   SetObject xcx
   m2m [xcx].pFilesColl, pFilesColl, xdx
@@ -864,7 +864,7 @@ MethodEnd
 ;             Arg4: -> Files collection.
 ; Return:     Nothing.
 
-Method ImpMtdInfoCollection.Init,, pOwner:POINTER, dLimit:DWORD, dDelta:DWORD, \
+Method ImpMtdInfoCollection.Init,, pOwner:POINTER, dLimit:DWORD, dDelta:DWORD, /
                                    pFilesColl:$ObjPtr(FilesCollection)
   SetObject xcx
   m2m [xcx].pFilesColl, pFilesColl, xdx

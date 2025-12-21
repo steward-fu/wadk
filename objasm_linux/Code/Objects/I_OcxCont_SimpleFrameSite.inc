@@ -56,8 +56,8 @@ if IMPLEMENT
 ;                   in this parameter.
 ; Return:     eax = HRESULT.
 
-Method I_OcxCont_SimpleFrameSite.PreMessageFilter,, hWnd:HWND, dMsg:DWORD, \
-                                                    wParam:WPARAM, lParam:LPARAM, \
+Method I_OcxCont_SimpleFrameSite.PreMessageFilter,, hWnd:HWND, dMsg:DWORD, /
+                                                    wParam:WPARAM, lParam:LPARAM, /
                                                     pResult:POINTER, pCookie:POINTER
   DbgText "I_OcxCont_SimpleFrameSite.PreMessageFilter", "I_OcxCont_SimpleFrameSite"
   xor eax, eax                                          ;S_OK
@@ -76,8 +76,8 @@ MethodEnd
 ;                   pCookie parameter.
 ; Return:     eax = HRESULT.
 
-Method I_OcxCont_SimpleFrameSite.PostMessageFilter,, hWnd:HWND, dMsg:DWORD, \
-                                                     wParam:WPARAM, lParam:LPARAM, \
+Method I_OcxCont_SimpleFrameSite.PostMessageFilter,, hWnd:HWND, dMsg:DWORD, /
+                                                     wParam:WPARAM, lParam:LPARAM, /
                                                      pResult:POINTER, dCookie:DWORD
   DbgText "I_OcxCont_SimpleFrameSite.PostMessageFilter", "I_OcxCont_SimpleFrameSite"
   xor eax, eax                                          ;S_OK

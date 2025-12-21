@@ -53,7 +53,7 @@ SPF_IS_NOT_XML              equ 16
 SPF_PERSIST_XML             equ 32
 SPF_NLP_SPEAK_PUNC          equ 64
 SPF_NLP_MASK                equ SPF_NLP_SPEAK_PUNC
-SPF_VOICE_MASK              equ SPF_ASYNC or SPF_PURGEBEFORESPEAK or SPF_IS_FILENAME or  \
+SPF_VOICE_MASK              equ SPF_ASYNC or SPF_PURGEBEFORESPEAK or SPF_IS_FILENAME or  /
                                 SPF_IS_XML or SPF_IS_NOT_XML or SPF_NLP_MASK or SPF_PERSIST_XML
 SPF_UNUSED_FLAGS            equ NOT SPF_VOICE_MASK
 
@@ -67,16 +67,16 @@ SPDUI_AudioProperties                 textequ <"AudioProperties">
 SPDUI_AudioVolume                     textequ <"AudioVolume">
 
 ;SpeechStringConstants WIDE strings (UNICODE)
-SpeechRegistryUserRoot                textequ <"HKEY_CURRENT_USER\SOFTWARE\Microsoft\Speech">
-SpeechRegistryLocalMachineRoot        textequ <"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech">
-SpeechCategoryAudioOut                textequ <"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\AudioOutput">
-SpeechCategoryAudioIn                 textequ <"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\AudioInput">
-SpeechCategoryVoices                  textequ <"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices">
-SpeechCategoryRecognizers             textequ <"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Recognizers">
-SpeechCategoryAppLexicons             textequ <"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\AppLexicons">
-SpeechCategoryPhoneConverters         textequ <"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\PhoneConverters">
-SpeechCategoryRecoProfiles            textequ <"HKEY_CURRENT_USER\SOFTWARE\Microsoft\Speech\RecoProfiles">
-SpeechTokenIdUserLexicon              textequ <"HKEY_CURRENT_USER\SOFTWARE\Microsoft\Speech\CurrentUserLexicon">
+SpeechRegistryUserRoot                textequ <"HKEY_CURRENT_USER/SOFTWARE/Microsoft/Speech">
+SpeechRegistryLocalMachineRoot        textequ <"HKEY_LOCAL_MACHINE/SOFTWARE/Microsoft/Speech">
+SpeechCategoryAudioOut                textequ <"HKEY_LOCAL_MACHINE/SOFTWARE/Microsoft/Speech/AudioOutput">
+SpeechCategoryAudioIn                 textequ <"HKEY_LOCAL_MACHINE/SOFTWARE/Microsoft/Speech/AudioInput">
+SpeechCategoryVoices                  textequ <"HKEY_LOCAL_MACHINE/SOFTWARE/Microsoft/Speech/Voices">
+SpeechCategoryRecognizers             textequ <"HKEY_LOCAL_MACHINE/SOFTWARE/Microsoft/Speech/Recognizers">
+SpeechCategoryAppLexicons             textequ <"HKEY_LOCAL_MACHINE/SOFTWARE/Microsoft/Speech/AppLexicons">
+SpeechCategoryPhoneConverters         textequ <"HKEY_LOCAL_MACHINE/SOFTWARE/Microsoft/Speech/PhoneConverters">
+SpeechCategoryRecoProfiles            textequ <"HKEY_CURRENT_USER/SOFTWARE/Microsoft/Speech/RecoProfiles">
+SpeechTokenIdUserLexicon              textequ <"HKEY_CURRENT_USER/SOFTWARE/Microsoft/Speech/CurrentUserLexicon">
 SpeechTokenValueCLSID                 textequ <"CLSID">
 SpeechTokenKeyFiles                   textequ <"Files">
 SpeechTokenKeyUI                      textequ <"UI">

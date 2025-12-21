@@ -172,7 +172,7 @@ Method SpinningThrobber.Animate
       mov eax, [xsi].dAlpha
       mov bfn.SourceConstantAlpha, al
       s2s PtSize, [xsi].BmpSize, xax, xcx, xmm0
-      invoke UpdateLayeredWindow, [xsi].hWnd, hDstDC, NULL, addr PtSize, \
+      invoke UpdateLayeredWindow, [xsi].hWnd, hDstDC, NULL, addr PtSize, /
                                   hModDC, addr PtZero, $RGB(0,0,0), addr bfn, ULW_ALPHA
       invoke SelectObject, hSrcDC, hPrvSrcBmp
       invoke DeleteDC, hSrcDC
@@ -215,8 +215,8 @@ Method SpinningThrobber.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefSt
   assume xbx:PDEF_STHROBBER
   mov ecx, [xbx].dExStyle
   or ecx, WS_EX_LAYERED
-  invoke CreateWindowEx, ecx, offset(szSpinningThrobberClass), [xbx].pTitle, \
-                         [xbx].dStyle, [xbx].sdPosX, [xbx].sdPosY, 1, 1, \
+  invoke CreateWindowEx, ecx, offset(szSpinningThrobberClass), [xbx].pTitle, /
+                         [xbx].dStyle, [xbx].sdPosX, [xbx].sdPosY, 1, 1, /
                          hParent, [xbx].xCtlID, hInstance, pSelf
   ACall xsi.Init, pOwner, xax
   .if [xbx].pResName != NULL
@@ -229,7 +229,7 @@ Method SpinningThrobber.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefSt
   m2m [xsi].dInterval, [xbx].dInterval, xax
 
   BitClr [xsi].dFlags, TBR_FLAG_ANIMATION_THREAD_STOP
-  invoke CreateThread, 0, 0, $MethodAddr(SpinningThrobber.Animate), \
+  invoke CreateThread, 0, 0, $MethodAddr(SpinningThrobber.Animate), /
                        xsi, CREATE_SUSPENDED, NULL
   mov [xsi].hThread, xax
   invoke ResumeThread, xax
@@ -251,7 +251,7 @@ Method SpinningThrobber.InitRes, uses xsi, pOwner:POINTER, hWnd:HWND
   BitSet eax, TBR_FLAG_SELF_INST
   BitClr eax, TBR_FLAG_ANIMATION_THREAD_STOP
   mov [xsi].dFlags, eax
-  invoke CreateThread, 0, 0, $MethodAddr(SpinningThrobber.Animate), \
+  invoke CreateThread, 0, 0, $MethodAddr(SpinningThrobber.Animate), /
                        xsi, CREATE_SUSPENDED, NULL
   mov [xsi].hThread, xax
   invoke ResumeThread, xax

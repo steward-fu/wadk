@@ -14,7 +14,7 @@
 ; Purpose:    This object is a thin wrapper around the GetPrivateProfileXXX and SetPrivateProfileXXX
 ;             APIs. It stores internaly the ini file name to facilitate subsequent calls.
 ;             OS remapping to the registry is done using the following registry key:
-;             HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\IniFileMapping.
+;             HKEY_LOCAL_MACHINE/SOFTWARE/Microsoft/Windows NT/CurrentVersion/IniFileMapping.
 ; Links:      - Mapping rules and example
 ;               http://msdn.microsoft.com/en-us/library/ms725501(VS.85).aspx
 ; Note:       Section and key strings are not case-sensitive.

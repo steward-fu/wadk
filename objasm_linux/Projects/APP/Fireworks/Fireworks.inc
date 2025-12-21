@@ -12,9 +12,9 @@ FRAMERATE       equ   30                    ;Target framerate in frames per seco
 FireworksID     equ   123456                ;Random number
 FWK_OUTOFMEMORY equ   1256987               ;Random number
 
-FWK_Mode  record  FWK_Unused:29 = 0,   \    ;Unused bits
-                  FWK_GMode:1 = 0,     \    ;Atmosphere or outer-space
-                  FWK_CMode:1 = 0,     \    ;Color shifter
+FWK_Mode  record  FWK_Unused:29 = 0,   /    ;Unused bits
+                  FWK_GMode:1 = 0,     /    ;Atmosphere or outer-space
+                  FWK_CMode:1 = 0,     /    ;Color shifter
                   FWK_EMode:1 = 0           ;Special effects
 
 
@@ -68,10 +68,10 @@ ObjectEnd
 if IMPLEMENT
 
 .const
-Fireworks_ChemTable DWORD $RGB(000h, 0E0h, 0A0h, 0FFh), \
-                          $RGB(000h, 0F0h, 080h, 030h), \
-                          $RGB(000h, 0E6h, 0C0h, 080h), \
-                          $RGB(000h, 040h, 0B0h, 070h), \
+Fireworks_ChemTable DWORD $RGB(000h, 0E0h, 0A0h, 0FFh), /
+                          $RGB(000h, 0F0h, 080h, 030h), /
+                          $RGB(000h, 0E6h, 0C0h, 080h), /
+                          $RGB(000h, 040h, 0B0h, 070h), /
                           $RGB(000h, 0AAh, 0D5h, 080h)
 
 Spark struc
@@ -487,17 +487,17 @@ Method Fireworks.FireThread, uses xbx xdi xsi
           OCall xsi.Blur                                ; current chemical in fire
         .endif
         OCall xsi.Flash, [xsi].LightPosition.x, [xsi].LightPosition.y, [xsi].dFlashIntensity
-        invoke SetDIBitsToDevice, [xsi].hDC, [xsi].OutputRect.left, [xsi].OutputRect.top, \
-                                  [xsi].OutputRect.right, [xsi].OutputRect.bottom, \
-                                  0, 0, 0, [xsi].dHeight, \
+        invoke SetDIBitsToDevice, [xsi].hDC, [xsi].OutputRect.left, [xsi].OutputRect.top, /
+                                  [xsi].OutputRect.right, [xsi].OutputRect.bottom, /
+                                  0, 0, 0, [xsi].dHeight, /
                                   [xsi].pPixelfield2, addr [xsi].BmpInfo, DIB_RGB_COLORS
         .ifBitClr [xsi].dMode, mask FWK_CMode
           OCall xsi.Blur
         .endif
       .else
-        invoke SetDIBitsToDevice, [xsi].hDC, [xsi].OutputRect.left, [xsi].OutputRect.top, \
-                                  [xsi].OutputRect.right, [xsi].OutputRect.bottom, \
-                                  0, 0, 0, [xsi].dHeight, \
+        invoke SetDIBitsToDevice, [xsi].hDC, [xsi].OutputRect.left, [xsi].OutputRect.top, /
+                                  [xsi].OutputRect.right, [xsi].OutputRect.bottom, /
+                                  0, 0, 0, [xsi].dHeight, /
                                   [xsi].pPixelfield1, addr [xsi].BmpInfo, DIB_RGB_COLORS
         mov eax, [xsi].dWidth
         imul [xsi].dHeight

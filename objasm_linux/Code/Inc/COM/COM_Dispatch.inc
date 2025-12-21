@@ -50,7 +50,7 @@ GetMethodDispatchID macro InterfacePointer:req, InterfaceName:req, MethodName:re
   .const
     OfsMtdName  POINTER  $OfsCStrW(MethodName)          ;;Allocate method name and store its offset
   .code
-  ICall InterfacePointer::InterfaceName.GetIDsOfNames, offset IID_NULL, addr OfsMtdName, 1, \
+  ICall InterfacePointer::InterfaceName.GetIDsOfNames, offset IID_NULL, addr OfsMtdName, 1, /
                                                        $$ArgLCID, $$ArgDest
 endm
 
@@ -112,7 +112,7 @@ COM_AutoDispatch macro Cast:req, Args:vararg
     exitm
   endif
 
-  invoke ExecDispatch, $$PName, @CatStr(<DISPATCH_INFO_>, %$$IName, <_>, %$$MName), \
+  invoke ExecDispatch, $$PName, @CatStr(<DISPATCH_INFO_>, %$$IName, <_>, %$$MName), /
                        @CatStr(<DISPATCH_TYPE_>, %$$IName, <_>, %$$MName), Args
 endm
 

@@ -529,13 +529,13 @@ MethodEnd
 ;             Arg8: Control ID.
 ; Return:     Nothing.
 
-Method GifPlayer.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pResName:POINTER, \
-                                     sdPosX:SDWORD, sdPosY:SDWORD, dWidth:DWORD, dHeight:DWORD, \
+Method GifPlayer.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pResName:POINTER, /
+                                     sdPosX:SDWORD, sdPosY:SDWORD, dWidth:DWORD, dHeight:DWORD, /
                                      xID:XWORD
   SetObject xsi
   ACall xsi.Init, pOwner, 0
   mov xbx, xID
-  invoke CreateWindowEx, 0, offset szGifPlayer, pResName, GIFPLAYSERSTYLE, \
+  invoke CreateWindowEx, 0, offset szGifPlayer, pResName, GIFPLAYSERSTYLE, /
                          sdPosX, sdPosY, dWidth, dHeight, hParent, xbx, hInstance, pSelf
   mov [xsi].hWnd, xax
 MethodEnd
@@ -756,7 +756,7 @@ Method GifPlayer.OnPaint, uses xsi, wParam:WPARAM, lParam:LPARAM
       invoke PostMessage, [xsi].hWnd, WM_TIMER, GIF_TIMER_ID, NULL
     .endif
   .else
-    invoke BitBlt, PS.hdc, PS.rcPaint.left, PS.rcPaint.top, PS.rcPaint.right, PS.rcPaint.bottom, \
+    invoke BitBlt, PS.hdc, PS.rcPaint.left, PS.rcPaint.top, PS.rcPaint.right, PS.rcPaint.bottom, /
                    [xsi].hMemDC, PS.rcPaint.left, PS.rcPaint.top, SRCCOPY
   .endif
   invoke EndPaint, [xsi].hWnd, addr PS
@@ -808,12 +808,12 @@ Method GifPlayer.OnTimer, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
         .if [xdi].bHasTransparency != FALSE
 ;            invoke BitBlt, [xsi].hMemDC, 0, 0, [xsi].ClientRect.right, [xsi].ClientRect.bottom,
 ;                           [xsi].hBackDC, 0, 0, SRCCOPY
-          invoke DrawTransparentBitmap, [xsi].hMemDC, [xdi].hBmp, [xdi].dLeft, [xdi].dTop, \
+          invoke DrawTransparentBitmap, [xsi].hMemDC, [xdi].hBmp, [xdi].dLeft, [xdi].dTop, /
                                         [xdi].TransparentColor
         .else
           mov [xsi].hPrevGifBmp, $invoke(SelectObject, [xsi].hGifDC, [xdi].hBmp)
-          invoke BitBlt, [xsi].hMemDC, [xdi].dLeft, [xdi].dTop, [xsi].ClientRect.right, \
-                         [xsi].ClientRect.bottom, \
+          invoke BitBlt, [xsi].hMemDC, [xdi].dLeft, [xdi].dTop, [xsi].ClientRect.right, /
+                         [xsi].ClientRect.bottom, /
                          [xsi].hGifDC, 0, 0, SRCCOPY
           invoke SelectObject, [xsi].hGifDC, [xsi].hPrevGifBmp
         .endif

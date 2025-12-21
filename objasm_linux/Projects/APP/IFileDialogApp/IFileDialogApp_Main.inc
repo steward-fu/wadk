@@ -53,8 +53,8 @@ Method Application.Init, uses xsi
   mov dWndPosX, $32($invoke(CenterForm, dWndWidth,  $32($invoke(GetSystemMetrics, SM_CXSCREEN))))
   mov dWndPosY, $32($invoke(CenterForm, dWndHeight, $32($invoke(GetSystemMetrics, SM_CYSCREEN))))
 
-  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, \
-                         offset szIFileDialogApp, offset szAppTitle, WS_OVERLAPPEDWINDOW, \
+  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, /
+                         offset szIFileDialogApp, offset szAppTitle, WS_OVERLAPPEDWINDOW, /
                          dWndPosX, dWndPosY, dWndWidth, dWndHeight, NULL, NULL, hInstance, pSelf
 
   invoke ShowWindow, [xsi].hWnd, SW_SHOWNORMAL          ;Show the window
@@ -82,7 +82,7 @@ Method Application.OnCommand, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
   mov xax, wParam
   .if ax == IDM_OPEN
-    invoke CoCreateInstance, offset CLSID_FileOpenDialog, NULL, CLSCTX_INPROC_SERVER, \
+    invoke CoCreateInstance, offset CLSID_FileOpenDialog, NULL, CLSCTX_INPROC_SERVER, /
                              offset IID_IFileOpenDialog, addr pIFODlg
     .if SUCCEEDED(eax)
       c2m MFS.FS0.pszName, $OfsCStrW("All"), xax
@@ -94,7 +94,7 @@ Method Application.OnCommand, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
       c2m MFS.FS3.pszName, $OfsCStrW("Text"), xax
       c2m MFS.FS3.pszSpec, $OfsCStrW("*.txt"), xcx
 
-      ICall pIFODlg::IFileOpenDialog.SetFileTypes, sizeof(MultiFileSpec)/sizeof(COMDLG_FILTERSPEC), \
+      ICall pIFODlg::IFileOpenDialog.SetFileTypes, sizeof(MultiFileSpec)/sizeof(COMDLG_FILTERSPEC), /
                                                    addr MFS
       ICall pIFODlg::IFileOpenDialog.SetFileTypeIndex, 2
       ICall pIFODlg::IFileOpenDialog.SetOptions, FOS_ALLOWMULTISELECT
@@ -139,7 +139,7 @@ Method Application.OnCommand, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
     xor eax, eax
 
   .elseif ax == IDM_HELP
-    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Help\ObjAsm_Reference_Volume-I.pdf"), \
+    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Help/ObjAsm_Reference_Volume-I.pdf"), /
                                      addr cBuffer, lengthof(cBuffer)
     invoke PdfView, [xsi].hWnd, addr cBuffer, NULL
     xor eax, eax
@@ -158,7 +158,7 @@ MethodEnd
 
 Method Application.OnClose, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
-  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), \
+  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), /
                      MB_YESNO or MB_ICONQUESTION
   .if eax == IDNO
     xor eax, eax

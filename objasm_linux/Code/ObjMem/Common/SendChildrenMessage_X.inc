@@ -26,7 +26,7 @@ PCHILD_MSG typedef ptr CHILD_MSG
 align ALIGN_CODE
 SendChildMessage proc hWnd:HWND, lParam:PCHILD_MSG
   mov xax, lParam
-  invoke SendMessage, hWnd, [xax].CHILD_MSG.dMsgID, \
+  invoke SendMessage, hWnd, [xax].CHILD_MSG.dMsgID, /
                       [xax].CHILD_MSG.wParam, [xax].CHILD_MSG.lParam
   mov eax, TRUE
   ret

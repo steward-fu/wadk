@@ -59,8 +59,8 @@ if IMPLEMENT
 ;             Arg6: [out] -> Cancel flag.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.AxisLabelActivated2, uses xsi, pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, \
-                                                     pLabelsetIndex:ptr SWORD, pLabelIndex:ptr SWORD, \
+Method IMSChartEvents.AxisLabelActivated2, uses xsi, pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, /
+                                                     pLabelsetIndex:ptr SWORD, pLabelIndex:ptr SWORD, /
                                                      pMouseFlags:ptr SWORD, pCancel:ptr SWORD
   local AxisFormatDlg:$Obj(MSChartAxisFormatDlg)
 
@@ -92,7 +92,7 @@ MethodEnd
 ;  invoke GetClientRect, [xbx].MSChart.hWnd, addr CRect
 ;  ;This call to show the chart properties only work if the container is in design mode.
 ;  ;Design mode is checked when the control is created inspecting the container.
-;  ICall [xbx].MSChart.pIOleObject::IOleObject.DoVerb, 1, NULL, NULL, 0, [xbx].MSChart.hWnd, \
+;  ICall [xbx].MSChart.pIOleObject::IOleObject.DoVerb, 1, NULL, NULL, 0, [xbx].MSChart.hWnd, /
 ;                                                      addr CRect
 ;  DbgComError eax
 ;  xor eax, eax                                          ;S_OK
@@ -140,8 +140,8 @@ Method MSChartDemoApp.Init, uses xbx xsi
   mov dWndPosX, $32($invoke(CenterForm, dWndWidth, $32($invoke(GetSystemMetrics, SM_CXSCREEN))))
   mov dWndPosY, $32($invoke(CenterForm, dWndHeight, $32($invoke(GetSystemMetrics, SM_CYSCREEN))))
 
-  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, \
-                         offset szMSChartDemoApp, offset szAppTitle, WS_OVERLAPPEDWINDOW, \
+  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, /
+                         offset szMSChartDemoApp, offset szAppTitle, WS_OVERLAPPEDWINDOW, /
                          dWndPosX, dWndPosY, dWndWidth, dWndHeight, NULL, NULL, hInstance, pSelf
 
   OCall [xsi].Chart::MSChart.Init, xsi
@@ -151,7 +151,7 @@ Method MSChartDemoApp.Init, uses xbx xsi
 
     ;We redefine the AxisLabelActivated method of this MSChart instance
     ;  to provide a new functionality... Axis scale setting.
-    Override [xsi].Chart.pIChartEvents::IMSChartEvents.AxisLabelActivated, \
+    Override [xsi].Chart.pIChartEvents::IMSChartEvents.AxisLabelActivated, /
                                         IMSChartEvents.AxisLabelActivated2
 
     ;To define the data of the Chart, we have to pass to the Chart object a
@@ -237,7 +237,7 @@ Method MSChartDemoApp.Init, uses xbx xsi
     ICall [xsi].Chart.pIChart::_DMSChart.Refresh
 
   .else
-    invoke MessageBox, 0, $OfsCStr("MSChart is not able to initialize"), offset szError, \
+    invoke MessageBox, 0, $OfsCStr("MSChart is not able to initialize"), offset szError, /
                        MB_OK or MB_ICONERROR
   .endif
   invoke ShowWindow, [xsi].hWnd, SW_SHOWNORMAL          ;Show the window
@@ -269,7 +269,7 @@ Method MSChartDemoApp.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
     xor eax, eax
 
   .elseif ax == IDM_HELP
-    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Help\ObjAsm_Reference_Volume-I.pdf"), \
+    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Help/ObjAsm_Reference_Volume-I.pdf"), /
                                      addr cBuffer, lengthof(cBuffer)
     invoke PdfView, [xsi].hWnd, addr cBuffer, NULL
     xor eax, eax
@@ -288,7 +288,7 @@ MethodEnd
 
 Method MSChartDemoApp.OnClose, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
-  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), \
+  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), /
                      MB_YESNO or MB_ICONQUESTION
   .if eax == IDNO
     xor eax, eax

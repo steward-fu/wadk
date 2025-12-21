@@ -185,8 +185,8 @@ GetRegisters macro
     .break .if xax == NULL                              ;It is not a register!
 
     ;"uses" only accept registers where size = bitness
-    .if !(([xax].RegInfo.bSize == 00) && ([xsi].dFlags & OATF_TEST_MX)) || \
-        !(([xax].RegInfo.bSize == 64) && ([xsi].dFlags & OATF_TEST_64)) || \
+    .if !(([xax].RegInfo.bSize == 00) && ([xsi].dFlags & OATF_TEST_MX)) || /
+        !(([xax].RegInfo.bSize == 64) && ([xsi].dFlags & OATF_TEST_64)) || /
         !(([xax].RegInfo.bSize == 32) && ([xsi].dFlags & OATF_TEST_32))
       .break
     .endif
@@ -562,7 +562,7 @@ CheckIfRegisterWasUsed endp
 ;             Arg3: -> UsedRegNames SortedStrCollectionA.
 ; Return:     Nothing.
 
-OutputIfRegisterWasNotUsed proc uses xbx pRegName:PSTRINGA, pOutput:PSTRINGA, \
+OutputIfRegisterWasNotUsed proc uses xbx pRegName:PSTRINGA, pOutput:PSTRINGA, /
                                          pUsedRegNames:$ObjPtr(SortedStrCollectionA)
   mov xbx, pRegName
   .repeat
@@ -591,7 +591,7 @@ OutputIfRegisterWasNotUsed endp
 ;             Arg3: -> UsedRegNames SortedStrCollectionA.
 ; Return:     Nothing.
 
-OutputIfRegisterWasUsed proc uses xbx pRegName:PSTRINGA, pOutput:PSTRINGA, \
+OutputIfRegisterWasUsed proc uses xbx pRegName:PSTRINGA, pOutput:PSTRINGA, /
                                       pUsedRegNames:$ObjPtr(SortedStrCollectionA)
   mov xbx, pRegName
   .repeat
@@ -619,9 +619,9 @@ OutputIfRegisterWasUsed endp
 ;             Arg4: -> PrsvRegNames SortedStrCollectionA.
 ; Return:     Nothing.
 
-OutputIfRegisterWasNotPreservedButUsed proc pRegName:PSTRINGA, \
-                                            pOutput:PSTRINGA, \
-                                            pUsedRegNames:$ObjPtr(SortedStrCollectionA), \
+OutputIfRegisterWasNotPreservedButUsed proc pRegName:PSTRINGA, /
+                                            pOutput:PSTRINGA, /
+                                            pUsedRegNames:$ObjPtr(SortedStrCollectionA), /
                                             pPrsvRegNames:$ObjPtr(SortedStrCollectionA)
   OCall pPrsvRegNames::SortedStrCollectionA.Search, pRegName
   .if eax == FALSE
@@ -663,7 +663,7 @@ SeparatorLUT label BYTE
   db 000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,001h,001h,001h,001h,001h,000h
   ;    @    A    B    C    D    E    F    G    H    I    J    K    L    M    N    O
   db 000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h
-  ;    P    Q    R    S    T    U    V    W    X    Y    Z    [    \    ]    ^    _
+  ;    P    Q    R    S    T    U    V    W    X    Y    Z    [    /    ]    ^    _
   db 000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,001h,001h,001h,001h,000h
   ;    `    a    b    c    d    e    f    g    h    i    j    k    l    m    n    o
   db 001h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h,000h
@@ -727,7 +727,7 @@ GetNextWord proc uses xbx pStart:PSTRINGA, dSkipStrings:DWORD
                 ret
               .else
                 ;A dot is allowed only if it is the first character of a variable name.
-                .if al == "." && xbx > pStart && \
+                .if al == "." && xbx > pStart && /
                     (CHRA ptr [xbx - 1] == " " || CHRA ptr [xbx - 1] == 9)
                   inc xcx
                 .endif

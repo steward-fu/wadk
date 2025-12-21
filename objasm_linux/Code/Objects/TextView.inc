@@ -109,7 +109,7 @@
 ; ****************** NOT IMPLEMENTED YET *******************
 ; TVO_RTLREADING:    Not implemented.
 ; TVO_PATH_ELLIPSIS: Replaces characters in the middle of the string with ellipses so that the
-;                    result fits in the specified rectangle. If the string contains backslash (\)
+;                    result fits in the specified rectangle. If the string contains backslash (/)
 ;                    characters, TV_PATH_ELLIPSIS preserves as much as possible of the text after
 ;                    the last backslash.
 ; TVO_WORD_ELLIPSIS: If the end of a string does not fit in the rectangle, it is truncated and
@@ -244,8 +244,8 @@ ObjectEnd
 ; Layout:
 ;
 ;           ———————————————————————————————————————————————————————————————
-;          |           /\  Top                                             |<--Extent
-;          |           \/  Padding                                         |
+;          |           //  Top                                             |<--Extent
+;          |           //  Padding                                         |
 ;          |     —————————————————————————————————————————————————————     |
 ;          |    |    <-------------- Line Length -------------------->|    |
 ;          |    |<-->Lorem ipsum dolor sit amet, consetetur sadipscing|<-------DrawExtent
@@ -262,8 +262,8 @@ ObjectEnd
 ;          |    |                                                     |    |
 ;          |    |                                                     |    |
 ;          |     —————————————————————————————————————————————————————     |
-;          |           /\ Bottom                                           |
-;          |           \/ Padding                                          |
+;          |           // Bottom                                           |
+;          |           // Padding                                          |
 ;           ———————————————————————————————————————————————————————————————
 ;
 ;
@@ -811,7 +811,7 @@ Method TextView.Calc, uses xbx xdi xsi
       .endif
 
       invoke SelectObject, [xsi].hMemDC, hFont
-      invoke DrawTextW, [xsi].hMemDC, [xdi].TVENTRY.pString, -1, addr [xdi].TVENTRY.Extent, \
+      invoke DrawTextW, [xsi].hMemDC, [xdi].TVENTRY.pString, -1, addr [xdi].TVENTRY.Extent, /
                         DT_CALCRECT or DT_NOPREFIX or DT_SINGLELINE
       mov xax, [xdi].TVENTRY.pStyle
       mov ecx, [xax].TVSTYLE.TextMetric.tmOverhang
@@ -858,7 +858,7 @@ Method TextView.Calc, uses xbx xdi xsi
       ; Arguments:  xsi -> TextView
       ;             xdi -> TVENTRY
       ; Note:       ebx can be used in the command routines.
-      ;##\
+      ;##/
 
     TVCCH_TAB::
 ;      DbgText "TAB"
@@ -902,7 +902,7 @@ Method TextView.Calc, uses xbx xdi xsi
         ;Get the size of dTab2Spaces spaces
         mov xax, [xdi].TVENTRY.pStyle
         invoke SelectObject, [xsi].hMemDC, [xax].TVSTYLE.hFont
-        invoke DrawTextW, [xsi].hMemDC, $OfsCStr(" "), -1, addr [xdi].TVENTRY.Extent, \
+        invoke DrawTextW, [xsi].hMemDC, $OfsCStr(" "), -1, addr [xdi].TVENTRY.Extent, /
                           DT_CALCRECT or DT_NOPREFIX or DT_SINGLELINE
         mov xdx, [xdi].TVENTRY.pStyle
         mov eax, [xdi].TVENTRY.Extent.right
@@ -1335,7 +1335,7 @@ Method TextView.Draw, uses xbx xdi xsi
       ; Arguments:  xsi -> TextView
       ;             xdi -> TVENTRY
       ; Note:       ebx can be used in the command routines.
-      ;##\
+      ;##/
 
     TVCDH_DRAW::
 ;      DbgText "BACKDRAW"
@@ -1428,13 +1428,13 @@ Method TextView.Draw, uses xbx xdi xsi
           mov xcx, [xdi].TVENTRY.pString
         .endif
 
-;        invoke Rectangle, [xsi].hMemDC, [xdi].TVENTRY.Area.left, [xdi].TVENTRY.Area.top, \
+;        invoke Rectangle, [xsi].hMemDC, [xdi].TVENTRY.Area.left, [xdi].TVENTRY.Area.top, /
 ;                                        [xdi].TVENTRY.Area.right, [xdi].TVENTRY.Area.bottom
-        invoke DrawTextW, [xsi].hMemDC, [xdi].TVENTRY.pString, -1, addr OutRect, \
+        invoke DrawTextW, [xsi].hMemDC, [xdi].TVENTRY.pString, -1, addr OutRect, /
                           DT_NOPREFIX or DT_SINGLELINE
         .ifBitSet [xbx].TVSTYLE.dFlags, TVSF_ACTIVE
           ;Uncomment to show the active area
-;          invoke Rectangle, [xsi].hMemDC, [xdi].TVENTRY.Area.left, [xdi].TVENTRY.Area.top, \
+;          invoke Rectangle, [xsi].hMemDC, [xdi].TVENTRY.Area.left, [xdi].TVENTRY.Area.top, /
 ;                                          [xdi].TVENTRY.Area.right, [xdi].TVENTRY.Area.bottom
           OCall [xsi].ActiveAreas::XWCollection.Insert, xdi
           mov eax, [xbx].TVSTYLE.dID
@@ -1443,7 +1443,7 @@ Method TextView.Draw, uses xbx xdi xsi
 
         .ifBitSet [xbx].TVSTYLE.dFlags, TVSF_TIP
           ;Uncomment to show the info area
-;          invoke Rectangle, [xsi].hMemDC, [xdi].TVENTRY.Area.left, [xdi].TVENTRY.Area.top, \
+;          invoke Rectangle, [xsi].hMemDC, [xdi].TVENTRY.Area.left, [xdi].TVENTRY.Area.top, /
 ;                                          [xdi].TVENTRY.Area.right, [xdi].TVENTRY.Area.bottom
           OCall [xsi].InfoAreas::XWCollection.Insert, xdi
           mov eax, [xbx].TVSTYLE.dID
@@ -1541,8 +1541,8 @@ Method TextView.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefStruc:PDEF
   assume xbx:PDEF_TEXTVIEW
   mov eax, [xbx].dStyle
   or eax, WS_CHILD or WS_VISIBLE
-  %invoke CreateWindowEx, [xbx].dExStyle, offset cTextViewClass&TARGET_STR_AFFIX, [xbx].pText, \
-                         eax, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, \
+  %invoke CreateWindowEx, [xbx].dExStyle, offset cTextViewClass&TARGET_STR_AFFIX, [xbx].pText, /
+                         eax, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, /
                          hParent, [xbx].xCtlID, hInstance, pSelf
   assume xbx:NOTHING
   ACall xsi.Init, pOwner, xax
@@ -1682,14 +1682,14 @@ Method TextView.OnCreate, uses xsi, wParam:WPARAM, lParam:LPARAM
   mov [xsi].dLogPixY, $32($invoke(GetDeviceCaps, [xsi].hMemDC, LOGPIXELSY))
 
   ;Create a ToolTip window to display popup information when hoovering over an TIP area
-  invoke CreateWindowEx, WS_EX_TOPMOST, $OfsCStr("tooltips_class32"), NULL, \
-                         WS_POPUP or TTS_NOPREFIX or TTS_ALWAYSTIP, \
-                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateWindowEx, WS_EX_TOPMOST, $OfsCStr("tooltips_class32"), NULL, /
+                         WS_POPUP or TTS_NOPREFIX or TTS_ALWAYSTIP, /
+                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                          [xsi].hWnd, 0, hInstance, NULL
   mov [xsi].hToolTip, xax
   invoke SendMessage, [xsi].hToolTip, TTM_ACTIVATE, FALSE, 0
   BitClr [xsi].dFlags, TVIF_TOOLTIP_ACTIVE
-  invoke SetWindowPos, [xsi].hToolTip, HWND_TOPMOST, 0, 0, 0, 0, \
+  invoke SetWindowPos, [xsi].hToolTip, HWND_TOPMOST, 0, 0, 0, 0, /
                        SWP_NOMOVE or SWP_NOSIZE or SWP_NOACTIVATE
   invoke SendMessage, [xsi].hToolTip, TTM_SETMAXTIPWIDTH, 0, 500    ;Set max width to
                                                                     ;enable line breaks
@@ -1709,7 +1709,7 @@ Method TextView.OnCreate, uses xsi, wParam:WPARAM, lParam:LPARAM
   mov [xax].GESTURECONFIG.dwBlock, 0
   add xax, sizeof GESTURECONFIG
   mov [xax].GESTURECONFIG.dwID, GID_PAN
-  mov [xax].GESTURECONFIG.dwWant, GC_PAN_WITH_SINGLE_FINGER_VERTICALLY or \
+  mov [xax].GESTURECONFIG.dwWant, GC_PAN_WITH_SINGLE_FINGER_VERTICALLY or /
                                   GC_PAN_WITH_SINGLE_FINGER_HORIZONTALLY or GC_PAN_WITH_INERTIA
   mov [xax].GESTURECONFIG.dwBlock, GC_PAN_WITH_GUTTER
   add xax, sizeof GESTURECONFIG
@@ -1725,7 +1725,7 @@ Method TextView.OnCreate, uses xsi, wParam:WPARAM, lParam:LPARAM
   mov [xax].GESTURECONFIG.dwWant, 0
   mov [xax].GESTURECONFIG.dwBlock, GC_PRESSANDTAP
   add xax, sizeof GESTURECONFIG
-;  invoke SetGestureConfig, [xsi].hWnd, 0, sizeof(GestConf)/sizeof(GESTURECONFIG), \
+;  invoke SetGestureConfig, [xsi].hWnd, 0, sizeof(GestConf)/sizeof(GESTURECONFIG), /
 ;                           addr GestConf, sizeof(GESTURECONFIG)
 
   OCall xsi.Parse                                       ;Always parse the markup string
@@ -2168,7 +2168,7 @@ Method TextView.OnPaint, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
   sub ebx, [xsi].Padding.top
   sub ebx, [xsi].Padding.bottom                         ;ebx = visible y-extent of the DC
 
-  invoke BitBlt, hDC, [xsi].Padding.left, [xsi].Padding.top, edi, ebx, \
+  invoke BitBlt, hDC, [xsi].Padding.left, [xsi].Padding.top, edi, ebx, /
                  [xsi].hMemDC, [xsi].Origin.x, [xsi].Origin.y, SRCCOPY
 
   mov FRect.top, 0
@@ -2255,7 +2255,7 @@ Method TextView.OnPrintClient, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
     sub ebx, [xsi].Padding.top
     sub ebx, [xsi].Padding.bottom                         ;ebx = visible y-extent of the DC
 
-    invoke BitBlt, wParam, [xsi].Padding.left, [xsi].Padding.top, edi, ebx, \
+    invoke BitBlt, wParam, [xsi].Padding.left, [xsi].Padding.top, edi, ebx, /
                            [xsi].hMemDC, [xsi].Origin.x, [xsi].Origin.y, SRCCOPY
 
     ;Fill the left vertical padding strip
@@ -2829,20 +2829,20 @@ DefineTextViewState macro StateName:req
   POINTER offset TVSTATE_&StateName
 endm
 
-IsStyleNameChar textequ <((cCurChr !>= "A" && cCurChr !<= "Z") || \
-                          (cCurChr !>= "a" && cCurChr !<= "z") || \
+IsStyleNameChar textequ <((cCurChr !>= "A" && cCurChr !<= "Z") || /
+                          (cCurChr !>= "a" && cCurChr !<= "z") || /
                            cCurChr == "." || cCurChr == "_")>
 IsCmdNameChar   textequ IsStyleNameChar
-IsHexChar       textequ <((cCurChr !>= "A" && cCurChr !<= "F") || \
-                          (cCurChr !>= "a" && cCurChr !<= "f") || \
+IsHexChar       textequ <((cCurChr !>= "A" && cCurChr !<= "F") || /
+                          (cCurChr !>= "a" && cCurChr !<= "f") || /
                           (cCurChr !>= "0" && cCurChr !<= "9"))>
 IsDecChar       textequ <(cCurChr !>= "0" && cCurChr !<= "9")>
 IsBlankChar     textequ <(cCurChr == " " || cCurChr == 9)>
-IsDelimiterChar textequ <(cCurChr == " " || cCurChr == 9 || \
-                          cCurChr == "'" || cCurChr == '"' || \
-                          cCurChr == "+" || cCurChr == '-' || \
-                          cCurChr == "#" || cCurChr == '@' || \
-                          cCurChr == ',' || \
+IsDelimiterChar textequ <(cCurChr == " " || cCurChr == 9 || /
+                          cCurChr == "'" || cCurChr == '"' || /
+                          cCurChr == "+" || cCurChr == '-' || /
+                          cCurChr == "#" || cCurChr == '@' || /
+                          cCurChr == ',' || /
                           (cCurChr !>= "0" && cCurChr !<= "9"))>
 
 .code
@@ -3861,7 +3861,7 @@ MethodEnd
 ; Return:     eax = Indicates what was changed and needs to be updated:
 ;                   TVSC_NOTHING, TVSC_FONT, TVSC_BACKCOLOR
 
-;##\
+;##/
 TVSH_APP proc pBuffer:POINTER
 ;  DbgText "APP"
   ?mov xcx, pBuffer

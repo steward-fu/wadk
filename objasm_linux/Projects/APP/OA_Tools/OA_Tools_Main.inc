@@ -9,13 +9,13 @@
 
 CLSSTYLE  equ   CS_BYTEALIGNWINDOW or CS_BYTEALIGNCLIENT or CS_VREDRAW or CS_HREDRAW
 
-TBSTYLE   equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or \
+TBSTYLE   equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or /
                 CCS_NORESIZE or CCS_NODIVIDER or CCS_ADJUSTABLE or TBSTYLE_FLAT or TBSTYLE_LIST
 
 SBSTYLE   equ   WS_CHILD or WS_VISIBLE or SBARS_TOOLTIPS or SBARS_SIZEGRIP
 
 .const
-ToolbarEdit DEF_TOOLBAR {IDC_TOOLBAR_EDIT, TBSTYLE, TBSTYLE_EX_MIXEDBUTTONS, \
+ToolbarEdit DEF_TOOLBAR {IDC_TOOLBAR_EDIT, TBSTYLE, TBSTYLE_EX_MIXEDBUTTONS, /
                          $OfsTStr("Edit commands"), {<0,0,0,0>}, 6}
   TBBUTTON {IDB_EDIT_CUT,         IDM_EDIT_CUT,         TBSTATE_ENABLED, TBSTYLE_BUTTON}
   TBBUTTON {IDB_EDIT_COPY,        IDM_EDIT_COPY,        TBSTATE_ENABLED, TBSTYLE_BUTTON}
@@ -24,7 +24,7 @@ ToolbarEdit DEF_TOOLBAR {IDC_TOOLBAR_EDIT, TBSTYLE, TBSTYLE_EX_MIXEDBUTTONS, \
   TBBUTTON {-1,                   -1,                   TBSTATE_ENABLED, TBSTYLE_SEP}
   TBBUTTON {IDB_OPEN_EDITOR,      IDM_OPEN_EDITOR,      TBSTATE_ENABLED, TBSTYLE_BUTTON}
 
-ToolbarWindow DEF_TOOLBAR {IDC_TOOLBAR_WINDOW, TBSTYLE, TBSTYLE_EX_MIXEDBUTTONS, \
+ToolbarWindow DEF_TOOLBAR {IDC_TOOLBAR_WINDOW, TBSTYLE, TBSTYLE_EX_MIXEDBUTTONS, /
                            $OfsTStr("Window commands"), {<0,0,0,0>}, 10}
   TBBUTTON {IDB_WINDOW_CASCADE,   IDM_WINDOW_CASCADE,   TBSTATE_ENABLED, TBSTYLE_BUTTON}
   TBBUTTON {IDB_WINDOW_TILE_HOR,  IDM_WINDOW_TILE_HOR,  TBSTATE_ENABLED, TBSTYLE_BUTTON}
@@ -372,7 +372,7 @@ Method OAT_App.CheckDroppedFiles, uses xbx xdi xsi, dFlags:DWORD
   mov xax, [xsi].pClientWnd
   invoke SendMessage, [xax].$Obj(OAT_Client).hWnd, WM_MDICASCADE, 0, 0
   invoke SendMessage, [xsi].hWnd, WM_SETREDRAW, TRUE, 0
-  invoke RedrawWindow, [xsi].hWnd, NULL, NULL, \
+  invoke RedrawWindow, [xsi].hWnd, NULL, NULL, /
                        RDW_ERASE or RDW_FRAME or RDW_INVALIDATE or RDW_ALLCHILDREN
   xor eax, eax
 MethodEnd
@@ -400,7 +400,7 @@ Method OAT_App.CheckSelectedFiles, uses xbx xdi xsi, dFlags:DWORD
   local cBuffer[MAX_PATH]:CHR, MenuBkColor:RGBQUAD
 
   SetObject xsi
-  invoke CoCreateInstance, offset CLSID_FileOpenDialog, NULL, CLSCTX_INPROC_SERVER, \
+  invoke CoCreateInstance, offset CLSID_FileOpenDialog, NULL, CLSCTX_INPROC_SERVER, /
                            offset IID_IFileOpenDialog, addr pIFODlg
   .if SUCCEEDED(eax)
     lea xdi, cBuffer
@@ -416,7 +416,7 @@ Method OAT_App.CheckSelectedFiles, uses xbx xdi xsi, dFlags:DWORD
     mov MFS.FS2.pszName, $invoke(StrNew, xdi)
     c2m MFS.FS2.pszSpec, $OfsCStr("*.*"), xax
   
-    ICall pIFODlg::IFileOpenDialog.SetFileTypes, sizeof(MultiFileSpec_OAT_App)/sizeof(COMDLG_FILTERSPEC), \
+    ICall pIFODlg::IFileOpenDialog.SetFileTypes, sizeof(MultiFileSpec_OAT_App)/sizeof(COMDLG_FILTERSPEC), /
                                                  addr MFS
     ICall pIFODlg::IFileOpenDialog.SetFileTypeIndex, 0
     ICall pIFODlg::IFileOpenDialog.SetOptions, FOS_ALLOWMULTISELECT or FOS_FILEMUSTEXIST
@@ -435,7 +435,7 @@ Method OAT_App.CheckSelectedFiles, uses xbx xdi xsi, dFlags:DWORD
       ICall pIFileDialog2::IFileDialog2.Release
     .endif
     
-    invoke SHCreateItemFromParsingName, [xsi].pWorkDirectoryW, NULL, \
+    invoke SHCreateItemFromParsingName, [xsi].pWorkDirectoryW, NULL, /
                                         offset IID_IShellItem, addr pIShellItem
     ICall pIFODlg::IFileOpenDialog.SetDefaultFolder, pIShellItem
     ICall pIShellItem::IShellItem.Release
@@ -464,7 +464,7 @@ Method OAT_App.CheckSelectedFiles, uses xbx xdi xsi, dFlags:DWORD
       mov xax, [xsi].pClientWnd
       invoke SendMessage, [xax].$Obj(OAT_Client).hWnd, WM_MDICASCADE, 0, 0
       invoke SendMessage, [xsi].hWnd, WM_SETREDRAW, TRUE, 0
-      invoke RedrawWindow, [xsi].hWnd, NULL, NULL, \
+      invoke RedrawWindow, [xsi].hWnd, NULL, NULL, /
                            RDW_ERASE or RDW_FRAME or RDW_INVALIDATE or RDW_ALLCHILDREN
       ICall pIFODlg::IFileOpenDialog.GetFolder, addr pIShellItem
       ICall pIShellItem::IShellItem.GetDisplayName, SIGDN_FILESYSPATH, addr pFileName
@@ -606,7 +606,7 @@ Method OAT_App.Init, uses xbx xdi xsi
   mov [xsi].pCommandLine, $invoke(GetCommandLine)
 
   ;Rebar + Statusbar + ListView + TabControl + ComboBoxEx
-  invoke LoadCommonControls, ICC_COOL_CLASSES or ICC_BAR_CLASSES or \
+  invoke LoadCommonControls, ICC_COOL_CLASSES or ICC_BAR_CLASSES or /
                              ICC_LISTVIEW_CLASSES or ICC_TAB_CLASSES or ICC_USEREX_CLASSES
 
   ;Load application & menu icons
@@ -706,7 +706,7 @@ Method OAT_App.Init, uses xbx xdi xsi
   .else
     OCall xsi.ErrorClear
     m2z CHRW ptr [cBuffer]
-    invoke GetEnvironmentVariableW, $OfsCStrW("ProgramFiles"), addr cBuffer, \
+    invoke GetEnvironmentVariableW, $OfsCStrW("ProgramFiles"), addr cBuffer, /
                                     sizeof(cBuffer)/sizeof(CHRW)
     mov [xsi].pWorkDirectoryW, $invoke(StrNewW, addr cBuffer)
   .endif
@@ -725,13 +725,13 @@ Method OAT_App.Init, uses xbx xdi xsi
   ReadDW MainZoomfactor, dZoomfactor, ZOOM_BASE
   ReadDW MainLineTerminator, dLineTerminator, 0
   ReadDW MainFontSize, dFontSize, 10
-  OCall pRegKey::RegKey.ValueGetStr, offset szMainFontFaceName, addr [xsi].Setup.cFontFaceName, \
+  OCall pRegKey::RegKey.ValueGetStr, offset szMainFontFaceName, addr [xsi].Setup.cFontFaceName, /
                                      LF_FULLFACESIZE
   .if [xsi].dErrorCode != OBJ_OK
     OCall xsi.ErrorClear
     invoke StrCCopy, addr [xsi].Setup.cFontFaceName, $OfsCStr("Courier New"), LF_FULLFACESIZE
   .endif
-  ReadStr <ExternalEditor>, <!%SystemRoot!%\System32\notepad.exe>
+  ReadStr <ExternalEditor>, <!%SystemRoot!%/System32/notepad.exe>
   ReadToolData 0
   ReadToolData 1
   ReadToolData 2
@@ -755,9 +755,9 @@ Method OAT_App.Init, uses xbx xdi xsi
   OCall pRegKey::RegKey.Close
   Destroy pRegKey
 
-  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, \
-                         offset szOAT_App, offset szAppTitle, WS_OVERLAPPEDWINDOW, \
-                         0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT, \
+  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, /
+                         offset szOAT_App, offset szAppTitle, WS_OVERLAPPEDWINDOW, /
+                         0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT, /
                          NULL, [xsi].hMenuInit, hInstance, xsi
 
   ;Create and Initialize Client window
@@ -768,7 +768,7 @@ Method OAT_App.Init, uses xbx xdi xsi
 
   ;Create and initialize XMenu
   m2m pSBHelp, $MethodAddr(OAT_App.StatusbarHelp), xax
-  OCall [xsi].Menu::XMenu.Init, xsi, [xsi].hWnd, xdi, [xsi].hMenuChildWnd, \
+  OCall [xsi].Menu::XMenu.Init, xsi, [xsi].hWnd, xdi, [xsi].hMenuChildWnd, /
                                 xbx, pSBHelp, [xsi].dLanguage
 
   OCall xsi.ChangeMnuLanguage, [xsi].dLanguage
@@ -803,7 +803,7 @@ Method OAT_App.ExecuteCommand, uses xbx xsi, pCommand:PSTRING, pChild:$ObjPtr(OA
   mov SecAtt.bInheritHandle, TRUE
   invoke CreatePipe, addr hRead, addr hWrite, addr SecAtt, NULL
   .if eax == NULL
-    invoke MessageBox, [xsi].hWnd, $OfsCStr("CreatePipe Error") , offset szAppTitle, \
+    invoke MessageBox, [xsi].hWnd, $OfsCStr("CreatePipe Error") , offset szAppTitle, /
                        MB_ICONERROR + MB_OK
   .else
     mov StartupInfo.cb, sizeof STARTUPINFO
@@ -813,10 +813,10 @@ Method OAT_App.ExecuteCommand, uses xbx xsi, pCommand:PSTRING, pChild:$ObjPtr(OA
     mov StartupInfo.hStdError, xax
     mov StartupInfo.dwFlags, STARTF_USESHOWWINDOW + STARTF_USESTDHANDLES
     mov StartupInfo.wShowWindow, SW_HIDE
-    invoke CreateProcess, NULL, pCommand, NULL, NULL, TRUE, NULL, NULL, NULL, \
+    invoke CreateProcess, NULL, pCommand, NULL, NULL, TRUE, NULL, NULL, NULL, /
                           addr StartupInfo, addr ProcessInfo
     .if eax == NULL
-      invoke MessageBox, [xsi].hWnd, $OfsCStr("CreateProcess Error"), offset szAppTitle, \
+      invoke MessageBox, [xsi].hWnd, $OfsCStr("CreateProcess Error"), offset szAppTitle, /
                          MB_ICONERROR + MB_OK
     .else
       invoke CloseHandle, hWrite
@@ -1215,7 +1215,7 @@ Method OAT_App.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
       OCall xbx::OAT_Child.Run
 
       invoke SendMessage, [xsi].hWnd, WM_SETREDRAW, TRUE, 0
-      invoke RedrawWindow, [xsi].hWnd, NULL, NULL, \
+      invoke RedrawWindow, [xsi].hWnd, NULL, NULL, /
                            RDW_ERASE or RDW_FRAME or RDW_INVALIDATE or RDW_ALLCHILDREN
     .endif
     xor eax, eax
@@ -1326,17 +1326,17 @@ Method OAT_App.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
 
   ;Messages for help menu
   .elseif ax == IDM_HELP_SYSINFO
-    invoke ShellExecute, [xsi].hWnd, offset szOpen, $OfsCStr("MSInfo32.exe"), \
+    invoke ShellExecute, [xsi].hWnd, offset szOpen, $OfsCStr("MSInfo32.exe"), /
                          NULL, NULL, SW_SHOWNORMAL
     xor eax, eax
   .elseif ax == IDM_HELP_HELP
     lea xbx, cBuffer
     invoke GetModuleFileName, 0, xbx, lengthof cBuffer
     invoke PathRemoveFileSpec, xbx
-    invoke StrCCat, xbx, $OfsCStr("\OA_Tools.pdf"), lengthof cBuffer
+    invoke StrCCat, xbx, $OfsCStr("/OA_Tools.pdf"), lengthof cBuffer
     invoke PdfView, [xsi].hWnd, xbx, $OfsCStr("Introduction")
     .if eax <= 32
-      invoke MessageBox, [xsi].hWnd, $OfsCStr("PDF viewer failed to show the document"), \
+      invoke MessageBox, [xsi].hWnd, $OfsCStr("PDF viewer failed to show the document"), /
                          offset szError, MB_ICONERROR or MB_OK
     .endif
     xor eax, eax
@@ -1370,13 +1370,13 @@ Method OAT_App.OnCreate, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   ;Create rebar, toolbars
   OCall [xsi].RBar::Rebar.Init, xsi, [xsi].hWnd
 
-  OCall [xsi].TbWindow::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarWindow, \
+  OCall [xsi].TbWindow::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarWindow, /
              addr [xsi].IconImageList, NULL, NULL
   mov ebx, $32($OCall([xsi].TbWindow::Toolbar.GetHeight))
   OCall [xsi].TbWindow::Toolbar.GetWidth
   OCall [xsi].RBar::Rebar.InsertBand, [xsi].TbWindow.hWnd, eax, ebx
 
-  OCall [xsi].TbEdit::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarEdit, \
+  OCall [xsi].TbEdit::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarEdit, /
                                     addr [xsi].IconImageList, NULL, NULL
   mov ebx, $32($OCall([xsi].TbEdit::Toolbar.GetHeight))
   OCall [xsi].TbEdit::Toolbar.GetWidth
@@ -1593,7 +1593,7 @@ Method OAT_App.OnSize, uses xsi, wParam:WPARAM, lParam:LPARAM
     .endif
 
     ;Redraw all child windows
-    invoke RedrawWindow, [xsi].hWnd, NULL, NULL, \
+    invoke RedrawWindow, [xsi].hWnd, NULL, NULL, /
                          RDW_ERASE or RDW_INVALIDATE or RDW_UPDATENOW or RDW_ALLCHILDREN
     xor eax, eax                                        ;Return zero
   .endif

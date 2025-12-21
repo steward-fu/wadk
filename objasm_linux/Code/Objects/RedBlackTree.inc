@@ -78,24 +78,24 @@ RBT_COLOR_TEXT  equ   $RGB(170,170,170)
 ;                                     ———
 ;                                    | 4 |     Root Node (always black)
 ;                                     ———
-;                                   /     \
-;                                  /       \
-;                                 /         \
-;                           / ...             ... \
-;             Parent Node  /                       \
-;                         /                         \
+;                                   /     /
+;                                  /       /
+;                                 /         /
+;                           / ...             ... /
+;             Parent Node  /                       /
+;                         /                         /
 ;                       ———                         ———
 ;   Node with key = 2  | 2 |                       | 6 |
 ;                       ———                         ———
-;                     /     \                     /     \
-;         Left Node  /       \  Right Node       /       \
-;                   /         \                 /         \
-;                  /           \               /           \
+;                     /     /                     /     /
+;         Left Node  /       /  Right Node       /       /
+;                   /         /                 /         /
+;                  /           /               /           /
 ;                ———           ———           ———           ———
 ;               | 1 |         | 3 |         | 5 |         | 7 |
 ;                ———           ———           ———           ———
-;              /     \       /     \       /     \       /     \
-;             /       \     /       \     /       \     /       \
+;              /     /       /     /       /     /       /     /
+;             /       /     /       /     /       /     /       /
 ;           NULL     NULL NULL     NULL NULL     NULL NULL     NULL    Leave Nodes (always black)
 ;
 
@@ -179,7 +179,7 @@ ShowRBSubtree proc uses xbx pNode:PRBT_NODE, dIndent:DWORD        ;xsi and xdi a
   sub xdx, [xsi].$Obj(RedBlackTree).xNodeOffset
   invoke xword2hexA, addr bNumBuffer, xdx
   invoke DbgOutTextA, addr bNumBuffer, dColor, DbgColorBackground, DBG_EFFECT_NORMAL, offset DestWindow
-  invoke DbgOutTextA, $OfsCStrA($Esc(" =\] Key = ")), dColor, DbgColorBackground, DBG_EFFECT_NORMAL, offset DestWindow
+  invoke DbgOutTextA, $OfsCStrA($Esc(" =/] Key = ")), dColor, DbgColorBackground, DBG_EFFECT_NORMAL, offset DestWindow
   mov xdx, xbx
   sub xdx, [xsi].$Obj(RedBlackTree).xNodeOffset         ;Host object addr
   add xdx, xdi                                          ;Key addr

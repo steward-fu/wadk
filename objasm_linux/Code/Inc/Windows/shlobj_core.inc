@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.01, 10/09/2018 22:03
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\shlobj_core.h', last modified: 19/04/2018 10:46
+;Source file: '/ObjAsm/Projects/h2IncX/header/shlobj_core.h', last modified: 19/04/2018 10:46
 ;Creation parameters: 
 
 include winapifamily.inc
@@ -425,7 +425,7 @@ if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
     @DefProto DllImport, SHOpenFolderAndSelectItems, WIN_STD_CALL_CONV,, <:PCIDLIST_ABSOLUTE, :UINT, :PCUITEMID_CHILD_ARRAY, :DWORD>, 16
     @DefProto DllImport, SHCreateShellItem, WIN_STD_CALL_CONV,, <:PCIDLIST_ABSOLUTE, :ptr IShellFolder, :PCUITEMID_CHILD, :ptr ptr IShellItem>, 16
   endif
-  REGSTR_PATH_SPECIAL_FOLDERS equ <REGSTR_PATH_EXPLORER TEXT("\Shell Folders")>
+  REGSTR_PATH_SPECIAL_FOLDERS equ <REGSTR_PATH_EXPLORER TEXT("/Shell Folders")>
   CSIDL_DESKTOP equ 0000h
   CSIDL_INTERNET equ 0001h
   CSIDL_PROGRAMS equ 0002h

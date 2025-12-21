@@ -23,7 +23,7 @@ MemReAlloc_UEFI proc uses xbx pMemBlock:POINTER, dMemSize:DWORD, dNewMemSize:DWO
   mov eax, dNewMemSize
   .if eax != dMemSize
     mov xbx, pBootServices
-    invoke [xbx].EFI_BOOT_SERVICES.AllocatePool, EFI_MEMORY_TYPE_EfiBootServicesData, \
+    invoke [xbx].EFI_BOOT_SERVICES.AllocatePool, EFI_MEMORY_TYPE_EfiBootServicesData, /
                                                  dNewMemSize, addr pNewMemBlock
     mov xcx, EFI_ERROR
     .ifBitSet xax, xcx

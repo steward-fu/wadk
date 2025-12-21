@@ -50,7 +50,7 @@ MethodEnd
 Method DialogModal.Show, uses xsi
   SetObject xsi
   mov xax, $MethodAddr(Dialog.DlgProc)
-  invoke DialogBoxParam, hInstance, [xsi].pTemplate, [xsi].hParent, \
+  invoke DialogBoxParam, hInstance, [xsi].pTemplate, [xsi].hParent, /
                          xax, xsi                       ;lParam in WM_INITDIALOG
   if DEBUGGING
     .if eax == -1

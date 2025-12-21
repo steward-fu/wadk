@@ -61,7 +61,7 @@ ObjectEnd
 
 Object XMenuItem, XMenuItemID, Primer
   RedefineMethod    Done
-  RedefineMethod    Init,               POINTER, HMENU, DWORD, DWORD, \
+  RedefineMethod    Init,               POINTER, HMENU, DWORD, DWORD, /
                                         PSTRING, PSTRING, PSTRING, DWORD
 
   DefineVariable    dID,                DWORD,      0                 ;Menu item ID
@@ -178,7 +178,7 @@ Object XMenu, XMenuID, MsgInterceptor
   DynamicMethod     DrawSidebarBkgnd,   PDRAWITEMSTRUCT
   DynamicMethod     DrawSidebarText,    PDRAWITEMSTRUCT
   VirtualMethod     FlashMenuBar,       RGBQUAD, DWORD
-  RedefineMethod    Init,               POINTER, HWND, HWND, HMENU, \
+  RedefineMethod    Init,               POINTER, HWND, HWND, HMENU, /
                                         $ObjPtr(MaskedImageList), POINTER, DWORD
   VirtualMethod     IsMenuBarSubMenu,   HMENU
   VirtualMethod     SendHelp,           PSTRING
@@ -228,15 +228,15 @@ XMENU_SELECTLISTBOX_ID  equ   100
 XMF_FLASHING  equ   BIT00
 
 .const
-DIALOGEX XMENUSELECTION, 0, 0, 250, 250, 0, 2, \
-              WS_CHILD or DS_MODALFRAME or DS_3DLOOK or DS_CENTER or DS_CENTERMOUSE or \
-              WS_CAPTION or WS_SYSMENU or WS_POPUP or DS_SETFONT, 0, 0, \
+DIALOGEX XMENUSELECTION, 0, 0, 250, 250, 0, 2, /
+              WS_CHILD or DS_MODALFRAME or DS_3DLOOK or DS_CENTER or DS_CENTERMOUSE or /
+              WS_CAPTION or WS_SYSMENU or WS_POPUP or DS_SETFONT, 0, 0, /
               NULL, "Select a Window", "Segoe UI", 9
 
 DEFPUSHBUTTON "OK", IDOK, 195,232,50,14, WS_TABSTOP
-CONTROL       NULL, XMENU_SELECTLISTBOX_ID, "ListBox", \
-              WS_TABSTOP or WS_VSCROLL or WS_HSCROLL or \
-              LBS_NOTIFY or LBS_HASSTRINGS or LBS_SORT or LBS_NOINTEGRALHEIGHT, \
+CONTROL       NULL, XMENU_SELECTLISTBOX_ID, "ListBox", /
+              WS_TABSTOP or WS_VSCROLL or WS_HSCROLL or /
+              LBS_NOTIFY or LBS_HASSTRINGS or LBS_SORT or LBS_NOINTEGRALHEIGHT, /
               2,2,246,226, WS_EX_STATICEDGE
 
 .code
@@ -291,8 +291,8 @@ MethodEnd
 ;             Arg9: Image index into image list.
 ; Return:     Nothing.
 
-Method XMenuItem.Init,, pOwner:POINTER, hMenu:HMENU, dID:DWORD, dType:DWORD, \
-                        pMenuStr:PSTRING, pSCutStr:PSTRING, pHelpStr:PSTRING, \
+Method XMenuItem.Init,, pOwner:POINTER, hMenu:HMENU, dID:DWORD, dType:DWORD, /
+                        pMenuStr:PSTRING, pSCutStr:PSTRING, pHelpStr:PSTRING, /
                         dIconIndex:DWORD
 ;  DbgText "XMenuItem.Init"
   SetObject xcx
@@ -442,7 +442,7 @@ Method XMenu.Convert, uses xbx xdi xsi, hMenu:HMENU, dIsMenuBar:DWORD
 
         ;Extract icon index
         mov dIconIndex, NO_IMAGE
-        .if (pChar != NULL) && ((dType == MENU_TYPE_MAINBAR) || \
+        .if (pChar != NULL) && ((dType == MENU_TYPE_MAINBAR) || /
             (dType == MENU_TYPE_NORMAL) || (dType == MENU_TYPE_SUBMENU))
           .if $invoke(StrLength, addr cBuffer) != 0
             invoke dec2dword, addr cBuffer
@@ -521,7 +521,7 @@ Method XMenu.Convert, uses xbx xdi xsi, hMenu:HMENU, dIsMenuBar:DWORD
         .if xax != NULL
           mov MenuInfo.dwItemData, xax                  ;Store XMenuItem POINTER here
           OCall [xsi].MenuItemColl::Collection.Insert, xax
-          OCall xax::XMenuItem.Init, xsi, hMenu, MenuInfo.wID, dType, \
+          OCall xax::XMenuItem.Init, xsi, hMenu, MenuInfo.wID, dType, /
                                           pMenuStr, pSCutStr, pHelpStr, dIconIndex
 
           ;Modify menu
@@ -560,7 +560,7 @@ Method XMenu.Convert, uses xbx xdi xsi, hMenu:HMENU, dIsMenuBar:DWORD
       mov eax, [xbx].$Obj(XMenuItem).dType 
       .if eax == MENU_TYPE_MAINBAR
         invoke SelectObject, hDC, [xsi].hFontTxtNorm
-        invoke DrawText, hDC, [xbx].$Obj(XMenuItem).pMenuStr, -1, \
+        invoke DrawText, hDC, [xbx].$Obj(XMenuItem).pMenuStr, -1, /
                          addr Rect, DT_CALCRECT or DT_SINGLELINE
         m2m [xbx].$Obj(XMenuItem).dMaxTextWidth, Rect.right, eax
         m2z [xbx].$Obj(XMenuItem).dMaxSCutWidth
@@ -569,7 +569,7 @@ Method XMenu.Convert, uses xbx xdi xsi, hMenu:HMENU, dIsMenuBar:DWORD
       .elseif eax == MENU_TYPE_SEPARATOR
         .if [xbx].$Obj(XMenuItem).pMenuStr != NULL
           invoke SelectObject, hDC, [xsi].hFontSep
-          invoke DrawText, hDC, [xbx].$Obj(XMenuItem).pMenuStr, -1, \
+          invoke DrawText, hDC, [xbx].$Obj(XMenuItem).pMenuStr, -1, /
                            addr Rect, DT_CALCRECT or DT_SINGLELINE
           mov eax, Rect.right
           .if SDWORD ptr eax > sdMaxRegTextWidth
@@ -596,7 +596,7 @@ Method XMenu.Convert, uses xbx xdi xsi, hMenu:HMENU, dIsMenuBar:DWORD
         .if [xbx].$Obj(XMenuItem).pMenuStr == NULL
           xor eax, eax
         .else
-          invoke DrawText, hDC, [xbx].$Obj(XMenuItem).pMenuStr, -1, \
+          invoke DrawText, hDC, [xbx].$Obj(XMenuItem).pMenuStr, -1, /
                            addr Rect, DT_CALCRECT or DT_LEFT or DT_SINGLELINE
           mov [xbx].$Obj(XMenuItem).dHeight, eax
           mov eax, Rect.right
@@ -617,7 +617,7 @@ Method XMenu.Convert, uses xbx xdi xsi, hMenu:HMENU, dIsMenuBar:DWORD
         .if xax == NULL
           xor eax, eax
         .else
-          invoke DrawText, hDC, [xbx].$Obj(XMenuItem).pSCutStr, -1, \
+          invoke DrawText, hDC, [xbx].$Obj(XMenuItem).pSCutStr, -1, /
                            addr Rect, DT_CALCRECT or DT_RIGHT or DT_SINGLELINE
           mov eax, Rect.right
         .endif
@@ -773,7 +773,7 @@ Method XMenu.DrawMenuBarText, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
     mov dPrevColor, eax
     mov xdx, [xbx].$Obj(XMenuItem).pMenuStr 
     .if xdx != NULL
-      invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, xdx, -1, \
+      invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, xdx, -1, /
                        addr Rect, DT_CENTER or DT_VCENTER or DT_SINGLELINE
     .endif
   .else
@@ -791,7 +791,7 @@ Method XMenu.DrawMenuBarText, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
 
       mov xdx, [xbx].$Obj(XMenuItem).pMenuStr 
       .if xdx != NULL
-        invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, xdx, -1, \
+        invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, xdx, -1, /
                          addr Rect, DT_CENTER or DT_VCENTER or DT_SINGLELINE
       .endif
     .else
@@ -800,7 +800,7 @@ Method XMenu.DrawMenuBarText, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
       mov dPrevColor, $32($invoke(SetTextColor, [xdi].DRAWITEMSTRUCT.hDC, eax))
       mov xdx, [xbx].$Obj(XMenuItem).pMenuStr 
       .if xdx != NULL
-        invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, [xbx].$Obj(XMenuItem).pMenuStr, -1, \
+        invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, [xbx].$Obj(XMenuItem).pMenuStr, -1, /
                          addr Rect, DT_CENTER or DT_VCENTER or DT_SINGLELINE
       .endif
     .endif
@@ -907,8 +907,8 @@ Method XMenu.DrawPopupCheck, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
   add Rect.left, eax
   mov hMemDC, $invoke(CreateCompatibleDC, [xdi].DRAWITEMSTRUCT.hDC)
   mov hPrevBmp, $invoke(SelectObject, hMemDC, hBmpRadioMask)
-  invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, Rect.left, Rect.top, \
-                 BmpSize, BmpSize, hMemDC, \
+  invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, Rect.left, Rect.top, /
+                 BmpSize, BmpSize, hMemDC, /
                  0, 0, MERGEPAINT
 
   invoke SelectObject, hMemDC, hBmpCheck
@@ -922,7 +922,7 @@ Method XMenu.DrawPopupCheck, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
       lea esi, [2*edx]
       lea ebx, [esi + edx]
     .endif
-    invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, Rect.left, Rect.top, \
+    invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, Rect.left, Rect.top, /
                    BmpSize, BmpSize, hMemDC, ebx, esi, SRCCOPY
   .else
     .ifBitSet [xdi].DRAWITEMSTRUCT.itemState, ODS_SELECTED
@@ -932,7 +932,7 @@ Method XMenu.DrawPopupCheck, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
       .else
         mov ebx, BmpSize
       .endif
-      invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, Rect.left, Rect.top, \
+      invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, Rect.left, Rect.top, /
                      BmpSize, BmpSize, hMemDC, ebx, 0, SRCCOPY
     .else
       .if dChecked == FALSE
@@ -940,7 +940,7 @@ Method XMenu.DrawPopupCheck, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
       .else
         mov ebx, BmpSize
       .endif
-      invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, Rect.left, Rect.top, \
+      invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, Rect.left, Rect.top, /
                      BmpSize, BmpSize, hMemDC, ebx, 0, SRCCOPY
     .endif
 
@@ -979,8 +979,8 @@ Method XMenu.DrawPopupIcon, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
     mov Rect.right, eax
     .ifBitSet [xdi].DRAWITEMSTRUCT.itemState, ODS_GRAYED
       ;Disabled
-      OCall [xsi].pImgList::MaskedImageList.DrawEmbossed, [xbx].$Obj(XMenuItem).dIconIndex, \
-                                                          [xdi].DRAWITEMSTRUCT.hDC, \
+      OCall [xsi].pImgList::MaskedImageList.DrawEmbossed, [xbx].$Obj(XMenuItem).dIconIndex, /
+                                                          [xdi].DRAWITEMSTRUCT.hDC, /
                                                           Rect.left, Rect.top
     .else
       .ifBitSet [xdi].DRAWITEMSTRUCT.itemState, ODS_SELECTED
@@ -989,8 +989,8 @@ Method XMenu.DrawPopupIcon, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
         invoke DrawEdge, [xdi].DRAWITEMSTRUCT.hDC, addr Rect, BDR_RAISEDINNER, BF_RECT or BF_MIDDLE
         GrowRect Rect, -MENU_ICON_BORDER
       .endif
-      OCall [xsi].pImgList::MaskedImageList.Draw, [xbx].$Obj(XMenuItem).dIconIndex, \
-                                                  [xdi].DRAWITEMSTRUCT.hDC, \
+      OCall [xsi].pImgList::MaskedImageList.Draw, [xbx].$Obj(XMenuItem).dIconIndex, /
+                                                  [xdi].DRAWITEMSTRUCT.hDC, /
                                                   Rect.left, Rect.top
     .endif
   .endif
@@ -1039,8 +1039,8 @@ Method XMenu.DrawPopupRadio, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
   add Rect.left, eax
   mov hMemDC, $invoke(CreateCompatibleDC, [xdi].DRAWITEMSTRUCT.hDC)
   mov hPrevBmp, $invoke(SelectObject, hMemDC, hBmpRadioMask)
-  invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, Rect.left, Rect.top, \
-                 BmpSize, BmpSize, hMemDC, \
+  invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, Rect.left, Rect.top, /
+                 BmpSize, BmpSize, hMemDC, /
                  0, 0, MERGEPAINT
   invoke SelectObject, hMemDC, hBmpCheck
   .ifBitSet [xdi].DRAWITEMSTRUCT.itemState, ODS_GRAYED
@@ -1052,10 +1052,10 @@ Method XMenu.DrawPopupRadio, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
       lea esi, [2*ecx + ecx]
     .endif
     mov ebx, ecx
-    invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, Rect.left, Rect.top, \
+    invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, Rect.left, Rect.top, /
                    BmpSize, BmpSize, hMemDC, esi, ebx, SRCAND
     add ebx, ebx
-    invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, Rect.left, Rect.top, \
+    invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, Rect.left, Rect.top, /
                    BmpSize, BmpSize, hMemDC, BmpSize, ebx, SRCPAINT
   .else
     .ifBitSet [xdi].DRAWITEMSTRUCT.itemState, ODS_SELECTED
@@ -1065,7 +1065,7 @@ Method XMenu.DrawPopupRadio, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
       .else
         mov esi, BmpSize
       .endif
-      invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, Rect.left, Rect.top, \
+      invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, Rect.left, Rect.top, /
                      BmpSize, BmpSize, hMemDC, esi, BmpSize, SRCAND
     .else
       .if dChecked == FALSE
@@ -1073,7 +1073,7 @@ Method XMenu.DrawPopupRadio, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
       .else
         mov esi, BmpSize
       .endif
-      invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, Rect.left, Rect.top, \
+      invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, Rect.left, Rect.top, /
                      BmpSize, BmpSize, hMemDC, esi, BmpSize, SRCAND
     .endif
   .endif
@@ -1126,7 +1126,7 @@ Method XMenu.DrawPopupSeparator, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
     invoke SetTextColor, [xdi].DRAWITEMSTRUCT.hDC, eax
     mov dPrevColor, eax
     CloneRect Rect, [xdi].DRAWITEMSTRUCT.rcItem
-    invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, pText, -1, \
+    invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, pText, -1, /
                      addr Rect, DT_CENTER or DT_SINGLELINE or DT_VCENTER
 
     invoke SetBkMode, [xdi].DRAWITEMSTRUCT.hDC, TRANSPARENT
@@ -1136,7 +1136,7 @@ Method XMenu.DrawPopupSeparator, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
     dec Rect.bottom
     dec Rect.left
     dec Rect.right
-    invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, pText, -1, \
+    invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, pText, -1, /
                      addr Rect, DT_CENTER or DT_SINGLELINE or DT_VCENTER
 
     invoke SetTextColor, [xdi].DRAWITEMSTRUCT.hDC, dPrevColor
@@ -1185,7 +1185,7 @@ Method XMenu.DrawPopupText, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
 
     .if [xbx].$Obj(XMenuItem).pMenuStr != NULL
       ;Menu text
-      invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, [xbx].$Obj(XMenuItem).pMenuStr, -1, \
+      invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, [xbx].$Obj(XMenuItem).pMenuStr, -1, /
                        addr Rect, DT_LEFT or DT_VCENTER or DT_SINGLELINE
     .endif
     .if [xbx].$Obj(XMenuItem).pSCutStr != NULL
@@ -1193,7 +1193,7 @@ Method XMenu.DrawPopupText, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
       mov eax, [xbx].$Obj(XMenuItem).dMaxTextWidth
       add Rect.left, eax
       sub Rect.right, MENU_POPUP_RIGHT_MARGIN
-      invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, [xbx].$Obj(XMenuItem).pSCutStr, -1, \
+      invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, [xbx].$Obj(XMenuItem).pSCutStr, -1, /
                        addr Rect, DT_RIGHT or DT_VCENTER or DT_SINGLELINE
     .endif
   .else
@@ -1202,7 +1202,7 @@ Method XMenu.DrawPopupText, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
     mov dPrevColor, $32($invoke(SetTextColor, [xdi].DRAWITEMSTRUCT.hDC, eax))
     .if [xbx].$Obj(XMenuItem).pMenuStr != NULL
       ;Menu text
-      invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, [xbx].$Obj(XMenuItem).pMenuStr, -1, \
+      invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, [xbx].$Obj(XMenuItem).pMenuStr, -1, /
                        addr Rect, DT_LEFT or DT_VCENTER or DT_SINGLELINE
     .endif
     .if [xbx].$Obj(XMenuItem).pSCutStr != NULL
@@ -1214,7 +1214,7 @@ Method XMenu.DrawPopupText, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
 
       invoke GetSysColor, COLOR_GRAYTEXT
       invoke SetTextColor, [xdi].DRAWITEMSTRUCT.hDC, eax
-      invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, [xbx].$Obj(XMenuItem).pSCutStr, -1, \
+      invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, [xbx].$Obj(XMenuItem).pSCutStr, -1, /
                        addr Rect, DT_RIGHT or DT_VCENTER or DT_SINGLELINE
 
     .endif
@@ -1248,11 +1248,11 @@ Method XMenu.DrawSidebarBkgnd, uses xbx xdi xsi, pDIS:PDRAWITEMSTRUCT
     add eax, [xbx].$Obj(XMenuItem).dHeight
     sub eax, BmpInfo.bmHeight
     mov ebx, eax
-    invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, \
-             [xdi].DRAWITEMSTRUCT.rcItem.left, eax, MENU_SIDEBAR_WIDTH, BmpInfo.bmHeight, \
+    invoke BitBlt, [xdi].DRAWITEMSTRUCT.hDC, /
+             [xdi].DRAWITEMSTRUCT.rcItem.left, eax, MENU_SIDEBAR_WIDTH, BmpInfo.bmHeight, /
              hMemDC, 0, 0, SRCCOPY
-    invoke StretchBlt, [xdi].DRAWITEMSTRUCT.hDC, \
-             [xdi].DRAWITEMSTRUCT.rcItem.left, [xdi].DRAWITEMSTRUCT.rcItem.top, \
+    invoke StretchBlt, [xdi].DRAWITEMSTRUCT.hDC, /
+             [xdi].DRAWITEMSTRUCT.rcItem.left, [xdi].DRAWITEMSTRUCT.rcItem.top, /
              MENU_SIDEBAR_WIDTH, ebx,
              hMemDC, 0, 0, MENU_SIDEBAR_WIDTH, 1, SRCCOPY
     invoke DeleteObject, $invoke(SelectObject, hMemDC, hMemPrvBmp)
@@ -1332,9 +1332,9 @@ MethodEnd
 ;             Arg7: Menu language identifier.
 ; Return:     Nothing.
 
-Method XMenu.Init, uses xsi, pOwner:POINTER, hWnd:HWND, \
-                           hMdiClientWnd:HWND, hMdiWindowMenu:HMENU, \
-                           pImgList:$ObjPtr(MaskedImageList), \
+Method XMenu.Init, uses xsi, pOwner:POINTER, hWnd:HWND, /
+                           hMdiClientWnd:HWND, hMdiWindowMenu:HMENU, /
+                           pImgList:$ObjPtr(MaskedImageList), /
                            pHelpCallback:POINTER, dLanguage:DWORD
 ;  DbgText "XMenu.Init"
   SetObject xsi

@@ -29,8 +29,8 @@ XTVF_DISABLE_DEL_KEY          equ   BIT07
 XTVF_USE_USER_BKGND_COLOR     equ   BIT08
 
 
-XTV_FLAGS                     equ   XTVF_SHOW_LINES or XTVF_SHOW_TOGGLER or \
-                                    XTVF_EXPAND_PARENT_ON_DROP or \
+XTV_FLAGS                     equ   XTVF_SHOW_LINES or XTVF_SHOW_TOGGLER or /
+                                    XTVF_EXPAND_PARENT_ON_DROP or /
                                     XTVF_COLLAPSE_ON_DRAG or XTVF_KEEP_COLLAPSED_ON_DRAG
 
 ;XTreeViewNode states
@@ -97,13 +97,13 @@ PXTVN_DISP_INFO typedef ptr XTVN_DISP_INFO
 ;
 ;
 ;   覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧     覧覧覧覧覧・sdNodeTop
-;  |       ｦ      ｦ      ｦ     覧覧覧覧覧覧覧覧覧覧覧覧           |     /ｦ\
+;  |       ｦ      ｦ      ｦ     覧覧覧覧覧覧覧覧覧覧覧覧           |     /ｦ/
 ;  |       ｦ      ｦ      ｦ    |  Con-   覧覧覧覧覧覧   |          |      ｦ
 ;  |       ｦ      ｦ     [-]---|  tent  |  TextRect  |  |          |      Node height
 ;  |       ｦ      ｦ   Toggler |  Rect   覧覧覧覧覧覧   |          |      ｦ
-;  |       ｦ      ｦ    Rect    覧覧覧覧覧覧覧覧覧覧覧覧           |     \ｦ/
+;  |       ｦ      ｦ    Rect    覧覧覧覧覧覧覧覧覧覧覧覧           |     /ｦ/
 ;  |       ｦ      ｦ             ｦ     覧覧覧覧覧覧覧覧覧覧覧      |    覧覧覧覧覧  sdNodeBot
-;  |       ｦ      ｦ             ｦ    |                      |     |     /ｦ\
+;  |       ｦ      ｦ             ｦ    |                      |     |     /ｦ/
 ;  |       ｦ      ｦ             ｦ----|      First Child     |     |      ｦ
 ;  |       ｦ      ｦ             ｦ    |                      |     |      ｦ
 ;  |       ｦ      ｦ             ｦ     覧覧覧覧覧覧覧覧覧覧覧      |      ｦ
@@ -116,7 +116,7 @@ PXTVN_DISP_INFO typedef ptr XTVN_DISP_INFO
 ;  |       ｦ      ｦ             ｦ    |                      |     |      ｦ
 ;  |       ｦ      ｦ              ----|      Last Child      |     |      ｦ
 ;  |       ｦ      ｦ                  |                      |     |      ｦ
-;  |       ｦ      ｦ                   覧覧覧覧覧覧覧覧覧覧覧      |     \ｦ/
+;  |       ｦ      ｦ                   覧覧覧覧覧覧覧覧覧覧覧      |     /ｦ/
 ;   覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧     覧覧・
 ;
 ;
@@ -299,8 +299,8 @@ Object XTreeView, XTreeViewID, WinPrimer
   DefineVariable    hCursorNext,        HCURSOR,            0
   DefineVariable    dScrollActivation,  DWORD,              XTV_SCROLL_ACTIVATION
   DefineVariable    dDragMouseButton,   DWORD,              0
-;  DefineVariable    LogFontText,        LOGFONT,            {0, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, \
-;                                                            OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, \
+;  DefineVariable    LogFontText,        LOGFONT,            {0, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, /
+;                                                            OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, /
 ;                                                            DEFAULT_PITCH or FF_DONTCARE, {"A","R","I","A","L",0}}
 
   Embed   DispInfoColl,   XWCollection   ;XTVN_DISP_INFO structure collection of nodes in view
@@ -442,7 +442,7 @@ endm
 ; Return:     Expression to be used in an .if directive.
 
 XTV_IsCollapsed macro pNode:req
-  exitm <([pNode].$Obj(XTreeViewNode).pFirstChild !!= NULL) && \
+  exitm <([pNode].$Obj(XTreeViewNode).pFirstChild !!= NULL) && /
          !!([pNode].$Obj(XTreeViewNode).dState & XTVNS_EXPANDED)>
 endm
 
@@ -453,7 +453,7 @@ endm
 ; Return:     Expression to be used in an .if directive.
 
 XTV_IsExpanded macro pNode:req
-  exitm <([pNode].$Obj(XTreeViewNode).pFirstChild !!= NULL) && \
+  exitm <([pNode].$Obj(XTreeViewNode).pFirstChild !!= NULL) && /
          ([pNode].$Obj(XTreeViewNode).dState & XTVNS_EXPANDED)>
 endm
 
@@ -466,9 +466,9 @@ endm
 ; Return:     Expression to be used in an .if directive.
 
 XTV_IsPointInRect macro XReg:req, YReg:req, Rct:req
-  exitm <(SDWORD ptr YReg !>= Rct.top) && \             ;;Check first for y coords
-         (SDWORD ptr YReg !< Rct.bottom) && \
-         (SDWORD ptr XReg !>= Rct.left) && \            ;;and then for x coords
+  exitm <(SDWORD ptr YReg !>= Rct.top) && /             ;;Check first for y coords
+         (SDWORD ptr YReg !< Rct.bottom) && /
+         (SDWORD ptr XReg !>= Rct.left) && /            ;;and then for x coords
          (SDWORD ptr XReg !< Rct.right)>
 endm
 
@@ -481,8 +481,8 @@ CStr szXTV_Class, "XTreeView"
 
 .data
 
-XTV_LogFontText LOGFONT <0, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, \
-                         OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, \
+XTV_LogFontText LOGFONT <0, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, /
+                         OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, /
                          DEFAULT_PITCH or FF_DONTCARE, {"A","R","I","A","L"}>
 
 .code
@@ -491,7 +491,7 @@ XTV_LogFontText LOGFONT <0, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHA
 ;     DispInfoColl
 ; ==================================================================================================
 
-;##\
+;##/
 
 ; 覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧
 ; Method:     DisplayInfoColl.DestroyItem
@@ -512,7 +512,7 @@ MethodEnd
 ;     XTreeViewNode
 ; ==================================================================================================
 
-;##\
+;##/
 
 ; 覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧
 ; Method:     XTreeViewNode.CanDragMe
@@ -536,7 +536,7 @@ MethodEnd
 ;                     3 : drop before reference sibling node (XTVN_INSERT_AS_PREV_SIBLING).
 ;                     4 : drop behind reference sibling node (XTVN_INSERT_AS_NEXT_SIBLING).
 
-Method XTreeViewNode.CanDropHere, uses xsi, pNode:$ObjPtr(XTreeViewNode), dKeyFlags:DWORD, \
+Method XTreeViewNode.CanDropHere, uses xsi, pNode:$ObjPtr(XTreeViewNode), dKeyFlags:DWORD, /
                                             dCursorPos:DWORD
   local CursorPos:POINT
 
@@ -655,7 +655,7 @@ MethodEnd
 ;             Arg4: Key flags (MK_CONTROL, MK_LBUTTON, MK_MBUTTON, MK_RBUTTON, MK_SHIFT).
 ; Return:     eax = TRUE if and action was triggered, otherwise FALSE.
 
-Method XTreeViewNode.MouseHit, uses xbx xdi xsi, dButton:DWORD, pPoint:PPOINT, \
+Method XTreeViewNode.MouseHit, uses xbx xdi xsi, dButton:DWORD, pPoint:PPOINT, /
                                                  pDispInfo:PXTVN_DISP_INFO, dKeyFlags:DWORD
   local CRect:RECT, pSlectedDispInfo:PXTVN_DISP_INFO
 
@@ -685,7 +685,7 @@ Method XTreeViewNode.MouseHit, uses xbx xdi xsi, dButton:DWORD, pPoint:PPOINT, \
         .endif
       .endif
 
-      .if !([xbx].dState & \
+      .if !([xbx].dState & /
             (XTVS_DRAGGING or XTVS_DRAGGINGABORTED or XTVS_DRAGGINGSTARTED))
         .if $OCall(xsi.CanDragMe, dKeyFlags)
           BitSet [xbx].dState, XTVS_DRAGGINGSTARTED
@@ -698,8 +698,8 @@ Method XTreeViewNode.MouseHit, uses xbx xdi xsi, dButton:DWORD, pPoint:PPOINT, \
       mov eax, TRUE
 
     ;Check for toggler hit
-    .elseif XTV_IsPointInRect(eax, ecx, [xdx].TogglerRect) && \
-            !(([xbx].dFlags & XTVF_KEEP_COLLAPSED_ON_DRAG) && \
+    .elseif XTV_IsPointInRect(eax, ecx, [xdx].TogglerRect) && /
+            !(([xbx].dFlags & XTVF_KEEP_COLLAPSED_ON_DRAG) && /
             (([xbx].dState & XTVS_DRAGGING) && (xsi == [xbx].pSelectedNode)))
 ;      DbgText "Hit on Toggler"
       OCall xsi::XTreeViewNode.Toggle
@@ -766,7 +766,7 @@ MethodEnd
 ;             Arg4: Key flags (MK_CONTROL, MK_LBUTTON, MK_MBUTTON, MK_RBUTTON, MK_SHIFT).
 ; Return:     eax = TRUE if and action was triggered, otherwise FALSE.
 
-Method XTreeViewNode.MouseHitDbl,, dButton:DWORD, pPoint:PPOINT, \
+Method XTreeViewNode.MouseHitDbl,, dButton:DWORD, pPoint:PPOINT, /
                                            pDispInfo:PXTVN_DISP_INFO, dKeyFlags:DWORD
   xor eax, eax
 MethodEnd
@@ -857,8 +857,8 @@ Method XTreeViewNode.RenderContent, uses xbx xdi xsi, pDispInfo:PXTVN_DISP_INFO
         invoke CreateHatchBrush, HS_BDIAGONAL, $RGB(0,0,0)
       .endif
       mov pPrevDC, $invoke(SelectObject, [xbx].hMemDC, xax)
-      invoke Rectangle, [xbx].hMemDC, \
-                        [xdi].ContentRect.left, [xdi].ContentRect.top, \
+      invoke Rectangle, [xbx].hMemDC, /
+                        [xdi].ContentRect.left, [xdi].ContentRect.top, /
                         [xdi].ContentRect.right, [xdi].ContentRect.bottom
       invoke SelectObject, [xbx].hMemDC, pPrevDC
       invoke DeleteObject, xax
@@ -888,7 +888,7 @@ Method XTreeViewNode.RenderText, uses xbx xdi xsi, pDispInfo:PXTVN_DISP_INFO, pT
     assume xbx:PXTVN_DISP_INFO
     m2z [xbx].TextRect.top
 
-    invoke DrawText, [xdi].hMemDC, pText , -1, addr [xbx].TextRect, \
+    invoke DrawText, [xdi].hMemDC, pText , -1, addr [xbx].TextRect, /
                  DT_SINGLELINE or DT_LEFT or DT_CALCRECT
 
     mov ecx, [xbx].ContentRect.bottom
@@ -903,7 +903,7 @@ Method XTreeViewNode.RenderText, uses xbx xdi xsi, pDispInfo:PXTVN_DISP_INFO, pT
 
     ;Set max right size to draw the elipsis
     m2m [xbx].TextRect.right, [xdi].ClientSize.x, eax
-    invoke DrawText, [xdi].hMemDC, pText , -1, addr [xbx].TextRect, \
+    invoke DrawText, [xdi].hMemDC, pText , -1, addr [xbx].TextRect, /
                      DT_SINGLELINE or DT_LEFT or DT_VCENTER or DT_END_ELLIPSIS
 
     mov [xbx].TextRect.right, esi                       ;Restore right coord
@@ -994,8 +994,8 @@ Method XTreeViewNode.RenderTreeStruc, uses xbx xdi xsi, pDispInfo:PXTVN_DISP_INF
 
       ;Draw the toggler rectangle
       mov hPenPrev, $invoke(SelectObject, [xdi].hMemDC, [xdi].hPenToggler)
-      invoke Rectangle, [xdi].hMemDC, \
-                        [xbx].TogglerRect.left, [xbx].TogglerRect.top, \
+      invoke Rectangle, [xdi].hMemDC, /
+                        [xbx].TogglerRect.left, [xbx].TogglerRect.top, /
                         [xbx].TogglerRect.right, [xbx].TogglerRect.bottom
 
       ;Draw the content of the toggler [+] or [-]
@@ -1144,7 +1144,7 @@ MethodEnd
 ;     XTreeView
 ; ==================================================================================================
 
-;##\
+;##/
 
 ; 覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧
 ; Procedure:  XTV_IsPointInContent
@@ -1231,9 +1231,9 @@ Method XTreeView.CanDropHere,, pNode:$ObjPtr(XTreeViewNode), dKeyFlags:DWORD, dC
   mov edx, CursorPos.y
   mov eax, CursorPos.x
   ;Check if the cursor is inside the client rect
-  .if (SDWORD ptr edx >= 0) && \                      ;Check first for y coords
-      (SDWORD ptr edx < [xcx].ClientSize.y) && \
-      (SDWORD ptr eax >= 0) && \                      ;and then for x coords
+  .if (SDWORD ptr edx >= 0) && /                      ;Check first for y coords
+      (SDWORD ptr edx < [xcx].ClientSize.y) && /
+      (SDWORD ptr eax >= 0) && /                      ;and then for x coords
       (SDWORD ptr eax < [xcx].ClientSize.x)
     mov edx, [xcx].ClientSize.y
     shr edx, 1
@@ -1471,7 +1471,7 @@ MethodEnd
 ;                     - XTVN_INSERT_AS_NEXT_SIBLING
 ; Return:     Nothing.
 
-Method XTreeView.Drop, uses xsi, pNode:$ObjPtr(XTreeViewNode), pRefNode:$ObjPtr(XTreeViewNode), \
+Method XTreeView.Drop, uses xsi, pNode:$ObjPtr(XTreeViewNode), pRefNode:$ObjPtr(XTreeViewNode), /
                                  dHowToInsert:DWORD
   SetObject xsi
   mov xax, pNode
@@ -1511,12 +1511,12 @@ MethodEnd
 ;
 ;                                                        ｦ   ebx              ｦ
 ;                                                        ｦ                    ｦ
-;        ｦ                                              \ｦ/                   ｦ Total Offset
+;        ｦ                                              /ｦ/                   ｦ Total Offset
 ;        ｦ     覧覧覧覧覧覧覧覧覧覧覧覧   覧覧覧覧覧覧覧覧・                  ｦ
-;        ｦ    |                        |                /ｦ\  First Offset     ｦ
-;       [-]---|   First Visible Node   |                 ｦ                   \ｦ/
+;        ｦ    |                        |                /ｦ/  First Offset     ｦ
+;       [-]---|   First Visible Node   |                 ｦ                   /ｦ/
 ;   覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧   覧覧覧覧覧覧覧覧覧覧覧覧覧覧
-;  |           覧覧覧覧覧覧覧覧覧覧覧覧           |     /ｦ\
+;  |           覧覧覧覧覧覧覧覧覧覧覧覧           |     /ｦ/
 ;  |            ｦ     覧覧覧覧覧覧覧覧覧覧覧      |      ｦ
 ;  |            ｦ    |                      |     |      ｦ
 ;  |            ｦ----|                      |     |      ｦ
@@ -1531,7 +1531,7 @@ MethodEnd
 ;  |            ｦ    |                      |     |      ｦ          at least one part shown in
 ;  |             ----|                      |     |      ｦ          XTreeView window
 ;  |                 |                      |     |      ｦ
-;  |                  覧覧覧覧覧覧覧覧覧覧覧      |     \ｦ/
+;  |                  覧覧覧覧覧覧覧覧覧覧覧      |     /ｦ/
 ;   覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧覧    覧覧覧・
 
 
@@ -1655,7 +1655,7 @@ Method XTreeView.GetDispInfo,, pNode:$ObjPtr(XTreeViewNode)
   SetObject xcx
   
 ;  m2z dData
-  OCall [xcx].DispInfoColl::XWCollection.FirstThat, \
+  OCall [xcx].DispInfoColl::XWCollection.FirstThat, /
                             offset XTV_IsNodeInDispData, pNode, addr dIndex
   .if xax == NULL
     mov ecx, -1
@@ -1694,8 +1694,8 @@ Method XTreeView.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefStruc:PDE
   assume xbx:PDEF_XTV
   mov eax, [xbx].dStyle
   or eax, WS_CHILD or WS_VISIBLE or WS_TABSTOP
-  invoke CreateWindowEx, [xbx].dExStyle, offset szXTV_Class, [xbx].pTitle, \
-                         eax, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, \
+  invoke CreateWindowEx, [xbx].dExStyle, offset szXTV_Class, [xbx].pTitle, /
+                         eax, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, /
                          hParent, [xbx].xCtlID, hInstance, pSelf
   assume xbx:NOTHING
 
@@ -1723,17 +1723,17 @@ MethodEnd
 ;             Arg3: Insertion mode. See "XTreeViewNode.CanDropHere" method for valid values.
 ; Return:     xax -> Inserted node.
 
-Method XTreeView.Insert, uses xbx xdi xsi, pNode:$ObjPtr(XTreeViewNode), pRefNode:$ObjPtr(XTreeViewNode), \
+Method XTreeView.Insert, uses xbx xdi xsi, pNode:$ObjPtr(XTreeViewNode), pRefNode:$ObjPtr(XTreeViewNode), /
                                            dHowToInsert:DWORD
   SetObject xsi
   mov xax, pNode
   .if xax != NULL
 
     ;Set the correct parent node
-    .if (dHowToInsert == XTVN_INSERT_AS_FIRST_CHILD) || \
+    .if (dHowToInsert == XTVN_INSERT_AS_FIRST_CHILD) || /
         (dHowToInsert == XTVN_INSERT_AS_LAST_CHILD)
       m2m [xax].$Obj(XTreeViewNode).pParent, pRefNode, xdx
-    .elseif (dHowToInsert == XTVN_INSERT_AS_PREV_SIBLING) || \
+    .elseif (dHowToInsert == XTVN_INSERT_AS_PREV_SIBLING) || /
             (dHowToInsert == XTVN_INSERT_AS_NEXT_SIBLING)
       mov xcx, pRefNode
       .if xcx != NULL
@@ -2786,7 +2786,7 @@ Method XTreeView.OnMouseMove, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
       .endif
       mov xax, wParam
       and eax, MK_LBUTTON or MK_MBUTTON or MK_RBUTTON
-      .if (eax == [xsi].dDragMouseButton) && (xbx != [xsi].pSelectedNode) && \
+      .if (eax == [xsi].dDragMouseButton) && (xbx != [xsi].pSelectedNode) && /
           ([xsi].dState & XTVS_DRAGGINGSTARTED) && !([xsi].dState & XTVS_DRAGGING)
         BitClr [xsi].dState, XTVS_DRAGGINGSTARTED
         BitSet [xsi].dState, XTVS_DRAGGING
@@ -2934,7 +2934,7 @@ Method XTreeView.OnMouseWheel, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
 
       mov ecx, [xsi].TotalSize.x
       mov edx, [xsi].TotalSize.y
-      .if (ecx > [xsi].ClientSize.x) && \
+      .if (ecx > [xsi].ClientSize.x) && /
           ((WORD ptr [wParam] & MK_CONTROL) || (edx <= [xsi].ClientSize.y))
         mov ebx, ecx
         sub ecx, [xsi].ClientSize.x
@@ -2984,7 +2984,7 @@ Method XTreeView.OnMouseWheel, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
 
       invoke GetCursorPos, addr CursorPos
       invoke ScreenToClient, [xsi].hWnd, addr CursorPos
-      OCall [xsi].DispInfoColl::XWCollection.FirstThat, addr XTV_IsPointInContent, \
+      OCall [xsi].DispInfoColl::XWCollection.FirstThat, addr XTV_IsPointInContent, /
                                                         CursorPos.x, CursorPos.y
       .if xax != NULL
         mov xcx, [xax].XTVN_DISP_INFO.pNode
@@ -3060,7 +3060,7 @@ Method XTreeView.OnPaint, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
         mov ebx, PS.rcPaint.bottom
         sub ebx, PS.rcPaint.top
         .if !ZERO?
-          invoke BitBlt, PS.hdc, PS.rcPaint.left, PS.rcPaint.top, eax, ebx, \
+          invoke BitBlt, PS.hdc, PS.rcPaint.left, PS.rcPaint.top, eax, ebx, /
                          [xsi].hMemDC, PS.rcPaint.left, PS.rcPaint.top, SRCCOPY
         .endif
       .endif
@@ -3082,7 +3082,7 @@ Method XTreeView.OnPrintClient, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
   .ifBitSet lParam, PRF_CLIENT or PRF_CHECKVISIBLE
     .ifBitSet [xsi].dState, XTVS_VISIBLE
-      invoke BitBlt, wParam, 0, 0, [xsi].ClientSize.x, [xsi].ClientSize.y, \
+      invoke BitBlt, wParam, 0, 0, [xsi].ClientSize.x, [xsi].ClientSize.y, /
                      [xsi].hMemDC, 0, 0, SRCCOPY
     .endif
   .endif
@@ -3648,7 +3648,7 @@ Method XTreeView.Startup
   local WC:WNDCLASSEX
 
   mov WC.cbSize, sizeof WNDCLASSEX
-  mov WC.style, CS_HREDRAW or CS_VREDRAW or CS_PARENTDC or CS_BYTEALIGNWINDOW or \
+  mov WC.style, CS_HREDRAW or CS_VREDRAW or CS_PARENTDC or CS_BYTEALIGNWINDOW or /
                 CS_BYTEALIGNCLIENT
   m2m WC.lpfnWndProc, $MethodAddr(XTreeView.WndProc), xax
   m2z WC.cbClsExtra

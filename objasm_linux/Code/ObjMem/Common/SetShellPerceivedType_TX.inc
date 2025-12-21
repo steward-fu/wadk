@@ -8,8 +8,8 @@
 ; ==================================================================================================
 
 
-% include &IncPath&Windows\shlwapi.inc
-% include &IncPath&Windows\shlobj_core.inc
+% include &IncPath&Windows/shlwapi.inc
+% include &IncPath&Windows/shlobj_core.inc
 
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————
 ; Procedure:  SetShellPerceivedTypeA / SetShellPerceivedTypeW
@@ -32,11 +32,11 @@ ProcName proc uses xbx dGlobal:DWORD, pExtension:POINTER, pPerceivedType:POINTER
     ;HKCR settings take precedence over HKLM settings
     mov hHive, HKEY_CURRENT_USER
   .endif
-  FillString cBuffer, <Software\Classes\.>
+  FillString cBuffer, <Software/Classes/.>
   lea xbx, cBuffer
   invoke StrCCat, xbx, pExtension, lengthof cBuffer
   ;Buffer = ".Extension"
-  invoke RegCreateKeyEx, hHive, xbx, 0, NULL, REG_OPTION_NON_VOLATILE, \
+  invoke RegCreateKeyEx, hHive, xbx, 0, NULL, REG_OPTION_NON_VOLATILE, /
                          KEY_ALL_ACCESS, NULL, addr hKey, NULL
   .if eax == ERROR_SUCCESS
     invoke StrSize, pPerceivedType

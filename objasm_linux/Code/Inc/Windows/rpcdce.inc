@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.01, 01/10/2012 08:50
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\rpcdce.h', last modified: 19/04/2018 10:43
+;Source file: '/ObjAsm/Projects/h2IncX/header/rpcdce.h', last modified: 19/04/2018 10:43
 ;Creation parameters: 
 
 include winapifamily.inc
@@ -30,7 +30,7 @@ ifndef __RPCDCE_H__
         DECLSPEC_NORETURN equ <>
       endif
     endif
-    include specstrings.inc
+    include SpecStrings.inc
     RPC_CSTR typedef ptr BYTE
     if Defined(RPC_USE_NATIVE_WCHAR) and Defined(_NATIVE_WCHAR_T_DEFINED)
       RPC_WSTR typedef ptr wchar_t

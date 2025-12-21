@@ -60,27 +60,27 @@ VIEW_CTRL_ID  equ 165874
 ; Arguments:  None.
 ; Return:     Nothing.
 
-CStr cErrMsg, "{PA20}", \
-              "[FI55]",\
-                "[B,H+6,C#FF4F4F]Warning{#21}[~]{P}", \
-                "[H+2]Critical system failure   - ERRID 521 -  [~]", \
-                "[TIP0,F'Webdings',H+1]{#69}[~]{P}", \
-                "[C#5F4FFF]", \
-                  "[I]Read the instruction manual for more information  [~]", \
-                  "[TIP1,F'Webdings',H+1]{#69}[~]", \
-                "[~]", \
+CStr cErrMsg, "{PA20}", /
+              "[FI55]",/
+                "[B,H+6,C#FF4F4F]Warning{#21}[~]{P}", /
+                "[H+2]Critical system failure   - ERRID 521 -  [~]", /
+                "[TIP0,F'Webdings',H+1]{#69}[~]{P}", /
+                "[C#5F4FFF]", /
+                  "[I]Read the instruction manual for more information  [~]", /
+                  "[TIP1,F'Webdings',H+1]{#69}[~]", /
+                "[~]", /
               "[~]"
 
 CStr cAppMsg, "Application message"
 
-CStr cHlpMsg, "{PA20}", \
-              "[B,H+6,C#007F00]Chapter 2[~]{P}", \
-              "[H+2]Critical system failure   - ERRID 521 -  [~]{P}", \
-              "[U]Description:[~]{P}", \ 
-              "[FI25]", \
-                "The systen is unable to perform an operation due to low{B}", \
-                "system resources. Try to free some memory closing parallel{B}", \
-                "running applications or install more memory.", \
+CStr cHlpMsg, "{PA20}", /
+              "[B,H+6,C#007F00]Chapter 2[~]{P}", /
+              "[H+2]Critical system failure   - ERRID 521 -  [~]{P}", /
+              "[U]Description:[~]{P}", / 
+              "[FI25]", /
+                "The systen is unable to perform an operation due to low{B}", /
+                "system resources. Try to free some memory closing parallel{B}", /
+                "running applications or install more memory.", /
               "[~]"
 
 CStr cAppHlp, "Application help"
@@ -97,16 +97,16 @@ Method Application.Init, uses xsi
   mov dWndPosX, $32($invoke(CenterForm, dWndWidth,  $32($invoke(GetSystemMetrics, SM_CXSCREEN))))
   mov dWndPosY, $32($invoke(CenterForm, dWndHeight, $32($invoke(GetSystemMetrics, SM_CYSCREEN))))
 
-  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, \
-                         offset szApplication, offset szAppTitle, \
-                         WS_CAPTION or WS_SYSMENU or WS_MINIMIZEBOX, \
-                         dWndPosX, dWndPosY, dWndWidth, dWndHeight, \
+  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, /
+                         offset szApplication, offset szAppTitle, /
+                         WS_CAPTION or WS_SYSMENU or WS_MINIMIZEBOX, /
+                         dWndPosX, dWndPosY, dWndWidth, dWndHeight, /
                          NULL, NULL, hInstance, pSelf
   invoke GetClientRect, [xsi].hWnd, addr CRect
 
-  %invoke CreateWindowEx, 0, offset cTextViewClass&TARGET_STR_AFFIX, offset szMarkupText, \
-                         WS_CHILD or WS_VISIBLE, \
-                         CRect.left, CRect.top, CRect.right, CRect.bottom, \
+  %invoke CreateWindowEx, 0, offset cTextViewClass&TARGET_STR_AFFIX, offset szMarkupText, /
+                         WS_CHILD or WS_VISIBLE, /
+                         CRect.left, CRect.top, CRect.right, CRect.bottom, /
                          [xsi].hWnd, VIEW_CTRL_ID, hInstance, 0
   .if xax != 0
     invoke SendMessage, xax, WM_GETOBJECTINSTANCE, 0, 0
@@ -116,7 +116,7 @@ Method Application.Init, uses xsi
   invoke ShowWindow, [xsi].hWnd, SW_SHOWNORMAL          ;Show the window
   invoke UpdateWindow, [xsi].hWnd                       ;Update if necessary
   
-  invoke MsgBox, [xsi].hWnd, offset cErrMsg, offset cAppMsg, \
+  invoke MsgBox, [xsi].hWnd, offset cErrMsg, offset cAppMsg, /
                  MB_ABORTRETRYIGNORE or MB_HELP or MB_ICONERROR
 
   invoke wsprintf, addr cBuffer, $OfsCStr("You pressed the button with an ID = %u"), eax
@@ -148,7 +148,7 @@ Method Application.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
     xor eax, eax
 
   .elseif ax == IDM_HELP
-    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Help\ObjAsm_Reference_Volume-I.pdf"), \
+    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Help/ObjAsm_Reference_Volume-I.pdf"), /
                                      addr cBuffer, lengthof(cBuffer)
     invoke PdfView, [xsi].hWnd, addr cBuffer, $OfsCStr("Introduction")
     xor eax, eax
@@ -167,7 +167,7 @@ MethodEnd
 
 Method Application.OnClose, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
-  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), \
+  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), /
                      MB_YESNO or MB_ICONQUESTION
   .if eax == IDNO
     xor eax, eax
@@ -221,11 +221,11 @@ Method Application.OnNotify, uses xdi xsi, wParam:WPARAM, lParam:LPARAM
     mov xdi, lParam
     .if [xdi].NMHDR.code == TVNMC_TIP
       .if [xdi].TVNM_TIP.dID == 0
-        c2m [xdi].TVNM_TIP.pText, $OfsCStr("ERRID 521", 13, \
-                                           "The system is not able to perform this ", \
+        c2m [xdi].TVNM_TIP.pText, $OfsCStr("ERRID 521", 13, /
+                                           "The system is not able to perform this ", /
                                            "operation due to low system resources"), xax
       .elseif [xdi].TVNM_TIP.dID == 1
-        c2m [xdi].TVNM_TIP.pText, $OfsCStr("Press the help button to open the", 13, \
+        c2m [xdi].TVNM_TIP.pText, $OfsCStr("Press the help button to open the", 13, /
                                            "instruction manual at chapter 2"), xax
       .endif
     .endif
@@ -281,7 +281,7 @@ Method Application.OnSize, uses xsi, wParam:WPARAM, lParam:LPARAM
   invoke GetClientRect, [xsi].hWnd, addr CRect
   mov xcx, [xsi].pTextView
   .if xcx != NULL
-    invoke SetWindowPos, [xcx].$Obj(TextView).hWnd, HWND_BOTTOM, \
+    invoke SetWindowPos, [xcx].$Obj(TextView).hWnd, HWND_BOTTOM, /
                          CRect.left, CRect.top, CRect.right, CRect.bottom, SWP_NOZORDER
   .endif  
   xor eax, eax

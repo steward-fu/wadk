@@ -23,7 +23,7 @@ Object IDispatch, IDispatchID, IUnknown
   InterfaceMethod   GetTypeInfoCount,     POINTER
   InterfaceMethod   GetTypeInfo,          DWORD, DWORD, POINTER
   InterfaceMethod   GetIDsOfNames,        POINTER, POINTER, DWORD, DWORD, POINTER
-  InterfaceMethod   Invoke,               DWORD, REFIID, DWORD, WORD, ptr DISPPARAMS, LPVARIANT, \
+  InterfaceMethod   Invoke,               DWORD, REFIID, DWORD, WORD, ptr DISPPARAMS, LPVARIANT, /
                                           POINTER, POINTER
 
   RedefineVariable  pIID,                 offset IID_IDispatch
@@ -63,7 +63,7 @@ Method IDispatch.Init, uses xsi, pOwner:POINTER, pDispInterface:POINTER, pTypeLi
     invoke LoadRegTypeLib, pTypeLibGUID, 1, 0, LOCALE_USER_DEFAULT, addr pITypeLib
     .if SUCCEEDED(eax)
       mov xdx, [xsi].pDispInterface
-      ICall pITypeLib::ITypeLib.GetTypeInfoOfGuid, [xdx].$Obj(IUnknown).pIID, \
+      ICall pITypeLib::ITypeLib.GetTypeInfoOfGuid, [xdx].$Obj(IUnknown).pIID, /
                                                    addr [xsi].pITypeInfo
       ICall pITypeLib::ITypeLib.Release
     if DEBUGGING eq TRUE
@@ -151,7 +151,7 @@ MethodEnd
 ;               DISPIDs contains DISPID_UNKNOWN for each entry that corresponds to an unknown name.
 ;             DISP_E_UNKNOWNLCID: the locale identifier (LCID) was not recognized.
 
-Method IDispatch.GetIDsOfNames,, pIID:POINTER, pNames:POINTER, dNameCnt:DWORD, dLCID:DWORD, \
+Method IDispatch.GetIDsOfNames,, pIID:POINTER, pNames:POINTER, dNameCnt:DWORD, dLCID:DWORD, /
                                  pNameIDs:POINTER
   DbgText "IDispatch.GetIDsOfNames", "IDispatch"
   SetObject xcx
@@ -210,8 +210,8 @@ MethodEnd
 
 $$PDspMtd typedef proto :POINTER, :ptr DISPPARAMS, :LPVARIANT
 
-Method IDispatch.Invoke, uses xbx xsi, dMethodID:DWORD, pIID:REFIID, dLCID:DWORD, \
-                                       wFlags:WORD, pParams:ptr DISPPARAMS, pResult:LPVARIANT, \
+Method IDispatch.Invoke, uses xbx xsi, dMethodID:DWORD, pIID:REFIID, dLCID:DWORD, /
+                                       wFlags:WORD, pParams:ptr DISPPARAMS, pResult:LPVARIANT, /
                                        pExcepInfo:POINTER, pArgErrIdx:POINTER
   DbgText "IDispatch.Invoke", "IDispatch"
   DbgHex dMethodID,, "IDispatch"
@@ -340,7 +340,7 @@ Method IDispatch.Invoke, uses xbx xsi, dMethodID:DWORD, pIID:REFIID, dLCID:DWORD
     endif
   .else
     invoke SetErrorInfo, 0, 0
-    ICall [xsi].pITypeInfo::ITypeInfo.Invoke, [xsi].pDispInterface, dMethodID, \
+    ICall [xsi].pITypeInfo::ITypeInfo.Invoke, [xsi].pDispInterface, dMethodID, /
                                               wFlags, pParams, pResult, pExcepInfo, pArgErrIdx
     if DEBUGGING eq TRUE
       .if FAILED(eax)

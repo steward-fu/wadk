@@ -179,7 +179,7 @@ Method OAT_Setup.GetFileName, uses xbx xdi xsi
   local cBuffer[MAX_PATH]:CHR
 
   SetObject xsi
-  invoke CoCreateInstance, offset CLSID_FileOpenDialog, NULL, CLSCTX_INPROC_SERVER, \
+  invoke CoCreateInstance, offset CLSID_FileOpenDialog, NULL, CLSCTX_INPROC_SERVER, /
                            offset IID_IFileOpenDialog, addr pIFODlg
   .if SUCCEEDED(eax)
     lea xdi, cBuffer
@@ -199,7 +199,7 @@ Method OAT_Setup.GetFileName, uses xbx xdi xsi
     mov MFS.FS3.pszName, $invoke(StrNew, xdi)
     c2m MFS.FS3.pszSpec, $OfsCStr("*.*"), xax
 
-    ICall pIFODlg::IFileOpenDialog.SetFileTypes, sizeof(ToolMultiFileSpec)/sizeof(COMDLG_FILTERSPEC), \
+    ICall pIFODlg::IFileOpenDialog.SetFileTypes, sizeof(ToolMultiFileSpec)/sizeof(COMDLG_FILTERSPEC), /
                                                  addr MFS
     ICall pIFODlg::IFileOpenDialog.SetFileTypeIndex, 0
     ICall pIFODlg::IFileOpenDialog.SetOptions, FOS_FILEMUSTEXIST
@@ -219,7 +219,7 @@ Method OAT_Setup.GetFileName, uses xbx xdi xsi
     .endif
 
     mov xcx, [xsi].pOwner                                 ;xcx -> OAT_App
-    invoke SHCreateItemFromParsingName, [xcx].$Obj(OAT_App).pWorkDirectoryW, NULL, \
+    invoke SHCreateItemFromParsingName, [xcx].$Obj(OAT_App).pWorkDirectoryW, NULL, /
                                         offset IID_IShellItem, addr pIShellItem
     ICall pIFODlg::IFileOpenDialog.SetDefaultFolder, pIShellItem
     ICall pIShellItem::IShellItem.Release
@@ -321,17 +321,17 @@ Method OAT_Setup.OnInitDialog, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
   invoke MapDialogRect, [xsi].hWnd, addr CtrlSetup.sdPosX
   OCall xbx::TabCtrl.Init, xsi, [xsi].hWnd, addr [xsi].IconImageList, addr CtrlSetup
 
-  OCall [xsi].TabDialog1::Tab1.Init, xbx, [xbx].$Obj(TabCtrl).hWnd, SETUP_TAB_MAIN, \
+  OCall [xsi].TabDialog1::Tab1.Init, xbx, [xbx].$Obj(TabCtrl).hWnd, SETUP_TAB_MAIN, /
                                           addr $ObjTmpl(OAT_App).hActiveMlsDlg
   OCall [xsi].TabDialog1::Tab1.Show
   invoke ShowWindow, [xsi].TabDialog1.hWnd, SW_SHOWDEFAULT
 
-  OCall [xsi].TabDialog2::Tab2.Init, xbx, [xbx].$Obj(TabCtrl).hWnd, SETUP_TAB_TOOLS, \
+  OCall [xsi].TabDialog2::Tab2.Init, xbx, [xbx].$Obj(TabCtrl).hWnd, SETUP_TAB_TOOLS, /
                                           addr $ObjTmpl(OAT_App).hActiveMlsDlg
   OCall [xsi].TabDialog2::Tab2.Show
   invoke ShowWindow, [xsi].TabDialog2.hWnd, SW_HIDE
 
-  OCall [xsi].TabDialog3::Tab3.Init, xbx, [xbx].$Obj(TabCtrl).hWnd, SETUP_TAB_COLORS, \
+  OCall [xsi].TabDialog3::Tab3.Init, xbx, [xbx].$Obj(TabCtrl).hWnd, SETUP_TAB_COLORS, /
                                           addr $ObjTmpl(OAT_App).hActiveMlsDlg
   OCall [xsi].TabDialog3::Tab3.Show
   invoke ShowWindow, [xsi].TabDialog3.hWnd, SW_HIDE

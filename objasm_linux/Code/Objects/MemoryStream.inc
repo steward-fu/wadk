@@ -450,14 +450,14 @@ Method MemoryStream.FileLoad, uses xsi, pFileName:PSTRING
   local hFile:HANDLE, dBytesRead:DWORD, dNewLimit:DWORD
 
   SetObject xsi
-  invoke CreateFile, pFileName, GENERIC_READ, 0, NULL, \
+  invoke CreateFile, pFileName, GENERIC_READ, 0, NULL, /
                      OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL
   .if xax == INVALID_HANDLE_VALUE
     OCall xsi.ErrorReport, NULL, STM_FILE_NOT_FOUND
     ExitMethod
   .endif
   mov hFile, xax
-  invoke ReadFile, hFile, addr [xsi].dErrorCode, sizeof $Obj(MemoryStream).dErrorCode, \
+  invoke ReadFile, hFile, addr [xsi].dErrorCode, sizeof $Obj(MemoryStream).dErrorCode, /
                    addr dBytesRead, NULL
   test eax, eax
   je @@Error
@@ -473,11 +473,11 @@ Method MemoryStream.FileLoad, uses xsi, pFileName:PSTRING
   OCall xsi.SetCapacity, eax
   cmp [xsi].dErrorCode, OBJ_OK
   jne @@Error
-  invoke ReadFile, hFile, addr [xsi].dCurrSize, sizeof $Obj(MemoryStream).dCurrSize, \
+  invoke ReadFile, hFile, addr [xsi].dCurrSize, sizeof $Obj(MemoryStream).dCurrSize, /
          addr dBytesRead, NULL
   test eax, eax
   je @@Error
-  invoke ReadFile, hFile, addr [xsi].dPosition, sizeof $Obj(MemoryStream).dPosition, \
+  invoke ReadFile, hFile, addr [xsi].dPosition, sizeof $Obj(MemoryStream).dPosition, /
          addr dBytesRead, NULL
   test eax, eax
   je @@Error
@@ -500,22 +500,22 @@ Method MemoryStream.FileSave, uses xsi, pFileName:PSTRING
   local hFile:HANDLE, dBytesWritten:DWORD
 
   SetObject xsi
-  invoke CreateFile, pFileName, GENERIC_WRITE, 0, NULL, \
+  invoke CreateFile, pFileName, GENERIC_WRITE, 0, NULL, /
                      CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL
   mov hFile, xax
-  invoke WriteFile, hFile, addr [xsi].dErrorCode, sizeof $Obj(MemoryStream).dErrorCode, \
+  invoke WriteFile, hFile, addr [xsi].dErrorCode, sizeof $Obj(MemoryStream).dErrorCode, /
                            addr dBytesWritten, NULL
   test eax, eax
   je @@Error
-  invoke WriteFile, hFile, addr [xsi].dLimit, sizeof $Obj(MemoryStream).dLimit, \
+  invoke WriteFile, hFile, addr [xsi].dLimit, sizeof $Obj(MemoryStream).dLimit, /
                     addr dBytesWritten, NULL
   test eax, eax
   je @@Error
-  invoke WriteFile, hFile, addr [xsi].dCurrSize, sizeof $Obj(MemoryStream).dCurrSize, \
+  invoke WriteFile, hFile, addr [xsi].dCurrSize, sizeof $Obj(MemoryStream).dCurrSize, /
                     addr dBytesWritten, NULL
   test eax, eax
   je @@Error
-  invoke WriteFile, hFile, addr [xsi].dPosition, sizeof $Obj(MemoryStream).dPosition, \
+  invoke WriteFile, hFile, addr [xsi].dPosition, sizeof $Obj(MemoryStream).dPosition, /
                     addr dBytesWritten, NULL
   test eax, eax
   je @@Error

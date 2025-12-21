@@ -42,7 +42,7 @@ if IMPLEMENT
 
 PROJTVSTYLE   equ   TVS_HASBUTTONS or TVS_HASLINES or TVS_LINESATROOT
 
-PROJTBSTYLE   equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or \
+PROJTBSTYLE   equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or /
                     CCS_NORESIZE or CCS_NODIVIDER or CCS_ADJUSTABLE or TBSTYLE_FLAT
 
 CStr szProjectWnd, "ProjectWnd"
@@ -81,8 +81,8 @@ MethodEnd
 Method ProjectWnd.Init, uses xsi, pOwner:POINTER, hParent:HWND
   SetObject xsi
   ACall xsi.Init, pOwner, NULL                          ;hWnd is set in WndProc
-  invoke CreateWindowEx, WS_EX_CLIENTEDGE, offset szProjectWnd, $OfsCStr("Project"), \
-                         WS_CHILD, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateWindowEx, WS_EX_CLIENTEDGE, offset szProjectWnd, $OfsCStr("Project"), /
+                         WS_CHILD, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                          hParent, NULL, hInstance, pSelf
   invoke ShowWindow, [xsi].hWnd, SW_SHOWNORMAL
 MethodEnd

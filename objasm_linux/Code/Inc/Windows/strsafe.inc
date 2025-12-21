@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version C.01.00, 30/03/2019 18:59
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: 'D:\ObjAsm\Projects\32\h2IncX\header\strsafe.h', last modified: 22/10/2018 20:36
+;Source file: 'D:/ObjAsm/Projects/32/h2IncX/header/strsafe.h', last modified: 22/10/2018 20:36
 ;Creation parameters: 
 
 ifndef _STRSAFE_H_INCLUDED_
@@ -10,7 +10,7 @@ ifndef _STRSAFE_H_INCLUDED_
   include stdio.inc
   include string.inc
   include stdarg.inc
-  include specstrings.inc
+  include SpecStrings.inc
   include winapifamily.inc
   if  not Defined(_W64)
     if  not Defined(__midl) and (Defined(_X86_) or Defined(_M_IX86) or Defined(_ARM_) or Defined(_M_ARM)) and (_MSC_VER ge 1300)

@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.01, 01/10/2012 08:50
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\kernelspecs.h', last modified: 19/04/2018 10:43
+;Source file: '/ObjAsm/Projects/h2IncX/header/kernelspecs.h', last modified: 19/04/2018 10:43
 ;Creation parameters: 
 
 ifndef KERNELSPECS_H
@@ -59,7 +59,7 @@ ifndef KERNELSPECS_H
   _IRQL_saves_ equ <_SAL2_Source_(_IRQL_saves_,, _Post_ _SA_annotes0(SAL_saveIRQL))>
   __drv_savesIRQL equ <_SAL1_Source_(__drv_savesIRQL,, _IRQL_saves_)>
   _IRQL_saves_global_ macro kind, param
-    exitm <_SAL2_Source_(_IRQL_saves_global_, (kind, param), _Post_ _SA_annotes2(SAL_saveIRQLGlobal, # kind, param\t))>
+    exitm <_SAL2_Source_(_IRQL_saves_global_, (kind, param), _Post_ _SA_annotes2(SAL_saveIRQLGlobal, # kind, param/t))>
   endm
   __drv_savesIRQLGlobal macro kind, param
     exitm <_SAL1_Source_(__drv_savesIRQLGlobal,, _IRQL_saves_global_(kind, param))>
@@ -67,7 +67,7 @@ ifndef KERNELSPECS_H
   _IRQL_restores_ equ <_SAL2_Source_(_IRQL_restores_,, _Post_ _SA_annotes0(SAL_restoreIRQL))>
   __drv_restoresIRQL equ <_SAL1_Source_(__drv_restoresIRQL,, _IRQL_restores_)>
   _IRQL_restores_global_ macro kind, param
-    exitm <_SAL2_Source_(_IRQL_restores_global_, (kind, param), _Post_ _SA_annotes2(SAL_restoreIRQLGlobal, # kind, param\t))>
+    exitm <_SAL2_Source_(_IRQL_restores_global_, (kind, param), _Post_ _SA_annotes2(SAL_restoreIRQLGlobal, # kind, param/t))>
   endm
   __drv_restoresIRQLGlobal macro kind, param
     exitm <_SAL1_Source_(__drv_restoresIRQLGlobal,, _IRQL_restores_global_(kind, param))>

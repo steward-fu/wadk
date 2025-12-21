@@ -58,8 +58,8 @@ Method IconButton.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefStruc:PD
   assume xbx:PDEF_BUTTON
   mov eax, [xbx].dStyle
   or eax, WS_CHILD or WS_VISIBLE or WS_TABSTOP
-  invoke CreateWindowEx, [xbx].dExStyle, offset(szIconButton), [xbx].pTitle, \
-                         eax, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, \
+  invoke CreateWindowEx, [xbx].dExStyle, offset(szIconButton), [xbx].pTitle, /
+                         eax, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, /
                          hParent, [xbx].xCtlID, hInstance, pSelf
   assume xbx:NOTHING
   ACall xsi.Init, pOwner, xax
@@ -173,7 +173,7 @@ Method IconButton.OnPaint, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
       .endif
     .else
       .ifBitSet [xsi].dFlags, BTF_PRESSED
-        invoke DrawFrameControl, [xsi].hMemDC, addr Rct, DFC_BUTTON, \
+        invoke DrawFrameControl, [xsi].hMemDC, addr Rct, DFC_BUTTON, /
                                                          DFCS_BUTTONPUSH or DFCS_PUSHED
       .else
         invoke DrawFrameControl, [xsi].hMemDC, addr Rct, DFC_BUTTON, DFCS_BUTTONPUSH
@@ -219,7 +219,7 @@ Method IconButton.OnPaint, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
       invoke GetSysColor, COLOR_BTNTEXT
       mov dPrevColor, $32($invoke(SetTextColor, [xsi].hMemDC, eax))
       .ifBitSet [xsi].dFlags, BTF_SHOW_SHORTCUT
-        invoke DrawTextEx, [xsi].hMemDC, [xsi].pTextBuffer, -1, \
+        invoke DrawTextEx, [xsi].hMemDC, [xsi].pTextBuffer, -1, /
                            addr [xsi].TextRect, DT_CENTER or DT_VCENTER or DT_SINGLELINE, NULL
       .else
         invoke StrCCopy, addr cBuffer, [xsi].pTextBuffer, lengthof(cBuffer) - 1
@@ -229,12 +229,12 @@ Method IconButton.OnPaint, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
           add xax, sizeof(CHR)
           invoke StrCat, addr cBuffer, xax
         .endif
-        invoke DrawTextEx, [xsi].hMemDC, addr cBuffer, -1, \
+        invoke DrawTextEx, [xsi].hMemDC, addr cBuffer, -1, /
                            addr [xsi].TextRect, DT_CENTER or DT_VCENTER or DT_SINGLELINE, NULL
       .endif
       .ifBitSet [xsi].dFlags, BTF_FOCUSED
         invoke MemClone, addr Rct, addr [xsi].TextRect, sizeof(RECT)
-        invoke DrawTextEx, [xsi].hMemDC, [xsi].pTextBuffer, -1, \
+        invoke DrawTextEx, [xsi].hMemDC, [xsi].pTextBuffer, -1, /
                            addr Rct, DT_CALCRECT or DT_CENTER or DT_VCENTER or DT_SINGLELINE, NULL
         mov eax, [xsi].TextRect.right
         sub eax, Rct.right
@@ -249,11 +249,11 @@ Method IconButton.OnPaint, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
       invoke GetSysColor, COLOR_BTNHILIGHT
       mov dPrevColor, $32($invoke(SetTextColor, [xsi].hMemDC, eax))
       MoveRect [xsi].TextRect, 1
-      invoke DrawTextEx, [xsi].hMemDC, [xsi].pTextBuffer, -1, \
+      invoke DrawTextEx, [xsi].hMemDC, [xsi].pTextBuffer, -1, /
                          addr [xsi].TextRect, DT_CENTER or DT_VCENTER or DT_SINGLELINE, NULL
       MoveRect [xsi].TextRect, -1
       invoke SetTextColor, [xsi].hMemDC, $32($invoke(GetSysColor, COLOR_BTNSHADOW))
-      invoke DrawTextEx, [xsi].hMemDC, [xsi].pTextBuffer, -1, \
+      invoke DrawTextEx, [xsi].hMemDC, [xsi].pTextBuffer, -1, /
                          addr [xsi].TextRect, DT_CENTER or DT_VCENTER or DT_SINGLELINE, NULL
     .endif
     invoke SetTextColor, [xsi].hMemDC, dPrevColor
@@ -262,7 +262,7 @@ Method IconButton.OnPaint, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
 
   ;Now, copy the content of the memory DC to the drawing DC.
   invoke BeginPaint, [xsi].hWnd, addr PS
-  invoke BitBlt, PS.hdc, 0, 0, [xsi].FaceRect.right, [xsi].FaceRect.bottom, \
+  invoke BitBlt, PS.hdc, 0, 0, [xsi].FaceRect.right, [xsi].FaceRect.bottom, /
                  [xsi].hMemDC, 0, 0, SRCCOPY
   invoke EndPaint, [xsi].hWnd, addr PS
   xor eax, eax

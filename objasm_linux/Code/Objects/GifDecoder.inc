@@ -393,8 +393,8 @@ GifDecoder_Reset endp
 ;       )
 ;   [7] go to [5];
 
-Method GifDecoder.Decode, uses xbx xdi xsi, pDataStream:POINTER, pBuffer:POINTER, \
-                          dImageWidthAln:DWORD, dImageWidth:DWORD, dImageHeight:DWORD, \
+Method GifDecoder.Decode, uses xbx xdi xsi, pDataStream:POINTER, pBuffer:POINTER, /
+                          dImageWidthAln:DWORD, dImageWidth:DWORD, dImageHeight:DWORD, /
                           dImageFormat:DWORD
   local bChar:BYTE, dPrefix:DWORD
 

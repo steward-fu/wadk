@@ -761,10 +761,10 @@ if IMPLEMENT
 
 % include &ObjPath&DB_Routines.inc
 
-% include \OA_Dev\Code\Objects\Closed Source\DB_Field.inc
-% include \OA_Dev\Code\Objects\Closed Source\DB_Table.inc
-% include \OA_Dev\Code\Objects\Closed Source\DB_Index.inc
-% include \OA_Dev\Code\Objects\Closed Source\DB_Memo.inc
-% include \OA_Dev\Code\Objects\Closed Source\DB_Query.inc
+% include /OA_Dev/Code/Objects/Closed Source/DB_Field.inc
+% include /OA_Dev/Code/Objects/Closed Source/DB_Table.inc
+% include /OA_Dev/Code/Objects/Closed Source/DB_Index.inc
+% include /OA_Dev/Code/Objects/Closed Source/DB_Memo.inc
+% include /OA_Dev/Code/Objects/Closed Source/DB_Query.inc
 
 endif

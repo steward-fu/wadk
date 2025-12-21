@@ -9,11 +9,11 @@
 
 
 GDIPVER equ 0100h
-% include &IncPath&Windows\GdiplusPixelFormats.inc
-% include &IncPath&Windows\GdiplusInit.inc
-% include &IncPath&Windows\GdiplusEnums.inc
-% include &IncPath&Windows\GdiplusGpStubs.inc
-% include &IncPath&Windows\GdiPlusFlat.inc
+% include &IncPath&Windows/GdiplusPixelFormats.inc
+% include &IncPath&Windows/GdiplusInit.inc
+% include &IncPath&Windows/GdiplusEnums.inc
+% include &IncPath&Windows/GdiplusGpStubs.inc
+% include &IncPath&Windows/GdiPlusFlat.inc
 
 
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————

@@ -57,12 +57,12 @@ MethodEnd
 ;             Arg4: access rights (FILE_MAP_WRITE, FILE_MAP_READ, ... , FILE_MAP_ALL_ACCESS).
 ; Return:     eax = SMO_OPENED_EXISTING, SMO_OPENED_NEW or FALSE.
 
-Method SharedMemoryObject.Init, uses xbx xsi, pOwner:POINTER, pName:POINTER, \
+Method SharedMemoryObject.Init, uses xbx xsi, pOwner:POINTER, pName:POINTER, /
                                               dSize:DWORD, dAccess:DWORD
   SetObject xsi
   ACall xsi.Init, pOwner
 
-  invoke CreateFileMapping, INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, \
+  invoke CreateFileMapping, INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, /
                             0, dSize, pName
   .if xax != NULL
     mov xbx, xax

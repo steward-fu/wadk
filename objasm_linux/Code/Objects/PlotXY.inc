@@ -853,7 +853,7 @@ Method PlotXY.Frame, uses xbx xdi xsi, hDC:HDC, bUseColor:BYTE
       endif
       invoke VarBstrFromDate, r8TimeCurrent, 0, LOCALE_NOUSEROVERRIDE, xax
       if TARGET_STR_TYPE eq STR_TYPE_ANSI
-        invoke WideCharToMultiByte, CP_ACP, 0, pTimeCurrent, -1, \
+        invoke WideCharToMultiByte, CP_ACP, 0, pTimeCurrent, -1, /
                                     addr cBuffer, lengthof cBuffer, NULL, NULL
         invoke SysFreeString, pTimeCurrent
       endif
@@ -1350,14 +1350,14 @@ Method PlotXY.OnLButtonDblClk, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
   add DblClkPnt.y, 20                                   ;Place the Dialog 20 px below
   invoke ClientToScreen, [xsi].hWnd, addr DblClkPnt     ;Transform to screen coordiantes
   ;Check if X scale was double clicked
-  .if (ebx >= [xsi].PlotRect.left) && (ebx <= [xsi].OutputRect.right) && \
+  .if (ebx >= [xsi].PlotRect.left) && (ebx <= [xsi].OutputRect.right) && /
       (edi >= [xsi].PlotRect.bottom) && (edi <= [xsi].OutputRect.bottom)
     mov pDlg, $New(DialogSetupScale)
     OCall pDlg::DialogSetupScale.Init, xsi, [xsi].hWnd, addr [xsi].PlotXYData.ScaleX
     OCall pDlg::DialogSetupScale.ShowAt, DblClkPnt.x, DblClkPnt.y
     Destroy pDlg
   ;Check if Y scale was double clicked
-  .elseif (ebx >= [xsi].OutputRect.left) && (ebx <= [xsi].PlotRect.left) && \
+  .elseif (ebx >= [xsi].OutputRect.left) && (ebx <= [xsi].PlotRect.left) && /
           (edi >= [xsi].OutputRect.top) && (edi <= [xsi].PlotRect.bottom)
     mov pDlg, $New(DialogSetupScale)
     OCall pDlg::DialogSetupScale.Init, xsi, [xsi].hWnd, addr [xsi].PlotXYData.ScaleY
@@ -1386,17 +1386,17 @@ Method PlotXY.OnLButtonDown, uses xsi, wParam:WPARAM, lParam:LPARAM
   mov [xsi].MovedLastPoint.y, ecx
 
   ;Check if X scale was clicked
-  .if (eax >= [xsi].PlotRect.left) && (eax <= [xsi].OutputRect.right) && \
+  .if (eax >= [xsi].PlotRect.left) && (eax <= [xsi].OutputRect.right) && /
     (ecx >= [xsi].PlotRect.bottom) && (ecx <= [xsi].OutputRect.bottom)
     mov [xsi].bMovingOn, SCALEX
     invoke SetCapture, [xsi].hWnd
   ;Check if Y scale was clicked
-  .elseif (eax >= [xsi].OutputRect.left) && (eax <= [xsi].PlotRect.left) && \
+  .elseif (eax >= [xsi].OutputRect.left) && (eax <= [xsi].PlotRect.left) && /
     (ecx >= [xsi].OutputRect.top) && (ecx <= [xsi].PlotRect.bottom)
     mov [xsi].bMovingOn, SCALEY
     invoke SetCapture, [xsi].hWnd
   ;Check if plot was clicked
-  .elseif (eax >= [xsi].PlotRect.left) && (eax <= [xsi].PlotRect.right) && \
+  .elseif (eax >= [xsi].PlotRect.left) && (eax <= [xsi].PlotRect.right) && /
     (ecx >= [xsi].PlotRect.top) && (ecx <= [xsi].PlotRect.bottom)
     mov [xsi].bMovingOn, PLOT
     invoke SetCapture, [xsi].hWnd
@@ -1436,7 +1436,7 @@ Method PlotXY.Plot, uses xbx xdi xsi, hDC:HDC, bUseColor:BYTE
   SetObject xsi
 
   invoke GetClipRgn, hDC, hPrevRgn
-  mov hRgn, $invoke(CreateRectRgn, [xsi].PlotRect.left,  [xsi].PlotRect.top, \
+  mov hRgn, $invoke(CreateRectRgn, [xsi].PlotRect.left,  [xsi].PlotRect.top, /
                                    [xsi].PlotRect.right, [xsi].PlotRect.bottom)
   invoke SelectClipRgn, hDC, hRgn
 
@@ -1452,7 +1452,7 @@ Method PlotXY.Plot, uses xbx xdi xsi, hDC:HDC, bUseColor:BYTE
     m2m dCount, DWORD ptr [xax], edx
 
     mov xdi, pDataBufferY
-    invoke CreatePen, PS_SOLID, [xdi].$Obj(DataBufferXY).dLineWidth, \
+    invoke CreatePen, PS_SOLID, [xdi].$Obj(DataBufferXY).dLineWidth, /
                                 [xdi].$Obj(DataBufferXY).dLineColor
     mov hPrvPen, $invoke(SelectObject, hDC, xax)
 
@@ -1591,7 +1591,7 @@ Method PlotXY.Show, uses xbx xsi, hDC:HDC, pRect:PRECT
 
   ;Copy plot to hDC
   mov xbx, pRect
-  invoke BitBlt, hDC, [xbx].RECT.left, [xbx].RECT.top, [xbx].RECT.right, [xbx].RECT.bottom, \
+  invoke BitBlt, hDC, [xbx].RECT.left, [xbx].RECT.top, [xbx].RECT.right, [xbx].RECT.bottom, /
                  hMemDC, [xbx].RECT.left, [xbx].RECT.top, SRCCOPY
   invoke DeleteObject, $invoke(SelectObject, hMemDC, hPrevBmp)    ;Deletes hMemBmp
   invoke DeleteDC, hMemDC

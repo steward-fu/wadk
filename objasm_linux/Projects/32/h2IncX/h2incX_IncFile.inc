@@ -107,7 +107,7 @@ PP_CMD_HANDLER_ENTRY struct
 PP_CMD_HANDLER_ENTRY ends
 PPRE_PROC_CMD typedef ptr PP_CMD_HANDLER_ENTRY
 
-MakeObjects .\h2incX_Evaluator
+MakeObjects ./h2incX_Evaluator
 
 .code
 include h2incX_IncFile_Mac.inc
@@ -168,10 +168,10 @@ OpConvTabEntries equ ($ - offset g_OpConvTab) / sizeof OP_CONV_ENTRY
 .const
 
 ;Delimiters known by parser
-bDelim  db ",;:()[]{}|*<>!~-+=/&#%^"      ;Excluded "?"   "\"?
+bDelim  db ",;:()[]{}|*<>!~-+=/&#%^"      ;Excluded "?"   "/"?
 
 ;2-BYTE opcodes known by parser
-w2CharOps dw ">>", "<<", "&&", "||", ">=", "<=", "==", "!=", "->", "::", "##", "++", "--", \
+w2CharOps dw ">>", "<<", "&&", "||", ">=", "<=", "==", "!=", "->", "::", "##", "++", "--", /
              "+=", "-=", "*=", "/=", "%=", "&=", "|=", "^=", "?:"
 
 d3CharOps dd ">>=", "<<="
@@ -206,7 +206,7 @@ Method IncFile.Analyse, uses ebx edi esi
     mrm [ebx].pStmInpPos, [ebx].pStmBuffer1, edi
 
 ;    if DEBUGGING
-;      invoke CreateFile, $OfsCStrA("~parsed.tmp"), GENERIC_WRITE, FILE_SHARE_WRITE, NULL, \
+;      invoke CreateFile, $OfsCStrA("~parsed.tmp"), GENERIC_WRITE, FILE_SHARE_WRITE, NULL, /
 ;                         CREATE_ALWAYS, FILE_ATTRIBUTE_ARCHIVE, 0
 ;      .if eax != INVALID_HANDLE_VALUE
 ;        mov esi, eax
@@ -244,7 +244,7 @@ Method IncFile.Analyse, uses ebx edi esi
     movzx esi, SysTime.wDay
     movzx ecx, SysTime.wHour
     movzx edi, SysTime.wMinute
-    OCall ebx::IncFile.StmWriteF, $OfsCStrA(", last modified: %02u/%02u/%02u %02u:%02u"),\
+    OCall ebx::IncFile.StmWriteF, $OfsCStrA(", last modified: %02u/%02u/%02u %02u:%02u"),/
                                   esi, edx, eax, ecx, edi
     OCall ebx::IncFile.StmWriteEOL
 
@@ -311,7 +311,7 @@ Method IncFile.CreateDefFile, uses ebx esi, pFileName:PSTRINGA
       mov pFileName, ecx
       mov DWORD ptr [ecx + eax - 3], "fed"
 
-      invoke CreateFile, pFileName,GENERIC_WRITE, FILE_SHARE_WRITE, NULL, CREATE_ALWAYS, \
+      invoke CreateFile, pFileName,GENERIC_WRITE, FILE_SHARE_WRITE, NULL, CREATE_ALWAYS, /
                          FILE_ATTRIBUTE_ARCHIVE, 0
       .if eax != INVALID_HANDLE_VALUE
         mov hFile, eax
@@ -394,7 +394,7 @@ Method IncFile.GetNextToken, uses ebx edi
         jmp @TryAgain                                   ;Take the next Token
       .endif
 
-      .if CHRA ptr [eax] == "\"                         ;Check for C continuation => combine lines
+      .if CHRA ptr [eax] == "/"                         ;Check for C continuation => combine lines
         inc [ebx].dLineNbr                              ;  This should happen while tokenizing
         mov [ebx].bNewLine, TRUE                        ;Set StreamIn new line maker
         .if [ebx].bStmOutEOL != FALSE                   ;Check Stream out EOL
@@ -590,7 +590,7 @@ MethodEnd
 ;             + numeric literals (numbers) are converted to ASM already
 ;             + comments are marked as such
 ;             example:
-;             input stream: "#define VAR1 0xA+2"\r\n
+;             input stream: "#define VAR1 0xA+2"/r/n
 ;             output stream: "#",0,"define",0,"VAR1",0,"0Ah",0,"+",0,"2",0,PCT_EOL,0
 ; Arguments: None.
 ; Return:    eax -> End of Stream.
@@ -604,7 +604,7 @@ Method IncFile.ParseHeaderFile, uses ebx edi esi
     .repeat
       ;Parse a line
       ;  1. skip any white spaces at the beginning
-      ;  2. check '\' for preprocessor lines (weak EOL)
+      ;  2. check '/' for preprocessor lines (weak EOL)
       ;  3. call parseline
       ;  4. adjust [ebx].pStmInpPos
 
@@ -635,7 +635,7 @@ Method IncFile.ParseHeaderFile, uses ebx edi esi
         mov ecx, edi
         .while ecx >= edx
           mov al, [ecx]
-          .if al == '\'
+          .if al == '/'
             .while CHRA ptr [ecx]
               mov CHRA ptr [ecx], " "
               inc ecx
@@ -666,7 +666,7 @@ MethodEnd
 ; Method:    IncFile.ParseHeaderLine
 ; Purpose:   Get a source text line and
 ;             1. skip any white spaces at the beginning
-;             2. check '\' for preprocessor lines (weak EOL)
+;             2. check '/' for preprocessor lines (weak EOL)
 ;             3. call parseline
 ;             4. adjust [ebx].$Obj(IncFile).pStmInpPos
 ; Arguments: Arg1 -> Text line into input buffer.
@@ -798,7 +798,7 @@ Method IncFile.Save, uses ebx edi, pFileName:PSTRINGA
     invoke StrSizeA, [ebx].pStmBuffer2
     .if eax != 0
       mov edi, eax
-      invoke CreateFile, pFileName, GENERIC_WRITE, FILE_SHARE_WRITE, NULL, \
+      invoke CreateFile, pFileName, GENERIC_WRITE, FILE_SHARE_WRITE, NULL, /
                          CREATE_ALWAYS, FILE_ATTRIBUTE_ARCHIVE, 0
       .if eax != INVALID_HANDLE_VALUE
         mov hFile, eax

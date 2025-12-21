@@ -48,7 +48,7 @@ Method FireworksApp.Init, uses esi
     SetObject esi
     ACall esi.Init
     
-    invoke CreateWindowEx, WND_STYLE_EX, offset szFireworksApp, offset szAppTitle, WND_STYLE, \
+    invoke CreateWindowEx, WND_STYLE_EX, offset szFireworksApp, offset szAppTitle, WND_STYLE, /
            CW_USEDEFAULT, CW_USEDEFAULT, DEFAULT_WIDTH, DEFAULT_HEIGHT, NULL, NULL, hInstance, esi
     invoke ShowWindow, [esi].hWnd, SW_SHOWNORMAL
     invoke UpdateWindow, [esi].hWnd
@@ -69,7 +69,7 @@ MethodEnd
 
 Method FireworksApp.OnClose, uses esi, wParam:dword, lParam:dword
     SetObject esi
-    invoke MessageBox, [esi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), \
+    invoke MessageBox, [esi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), /
                        MB_YESNO or MB_ICONQUESTION
     .if eax == IDNO
       xor eax, eax

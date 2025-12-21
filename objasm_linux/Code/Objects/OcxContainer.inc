@@ -328,10 +328,10 @@ Method OcxClientSite.Connect, uses xdi xsi
   invoke dword2hexW, addr cStorageName, esi
   DbgStrW cStorageName
   m2z [xsi].pIStorage
-  ICall [xdi].pIStorageRoot::IStorage.OpenStorage, addr cStorageName, NULL, SHAREFLAGS, 0, 0, \
+  ICall [xdi].pIStorageRoot::IStorage.OpenStorage, addr cStorageName, NULL, SHAREFLAGS, 0, 0, /
                                                    addr [xsi].pIStorage
   .if eax == STG_E_FILENOTFOUND
-    ICall [xdi].pIStorageRoot::IStorage.CreateStorage, addr cStorageName, SHAREFLAGS, 0, 0, \
+    ICall [xdi].pIStorageRoot::IStorage.CreateStorage, addr cStorageName, SHAREFLAGS, 0, 0, /
                                                        addr [xsi].pIStorage
     .if eax != S_OK
       DbgComError eax
@@ -348,7 +348,7 @@ Method OcxClientSite.Connect, uses xdi xsi
   .endif
 
   .if [xsi].pIOleObject != NULL
-    ICall [xsi].pIOleObject::IOleObject.SetHostNames, $OfsCStrW("ObjAsm OCX Control Container"), \
+    ICall [xsi].pIOleObject::IOleObject.SetHostNames, $OfsCStrW("ObjAsm OCX Control Container"), /
                                                       NULL
   .endif
 
@@ -377,8 +377,8 @@ Method OcxClientSite.Connect, uses xdi xsi
 
   ;Establish a connection between a server (control) ConnectionPoint and IPropertyNotifySink
 
-  invoke ComEventsAdvice, [xsi].pIUnknown, \
-                          [xsi].pIPropertyNotifySink, offset IID_IPropertyNotifySink, \
+  invoke ComEventsAdvice, [xsi].pIUnknown, /
+                          [xsi].pIPropertyNotifySink, offset IID_IPropertyNotifySink, /
                           addr [xsi].pIPNS_ConnectionPoint, addr [xsi].dPNS_Cookie
   ;if the cookie went lost, the connection could not be established and
   ;we doesn't need the ConnectionPoint anymore
@@ -446,7 +446,7 @@ Method OcxClientSite.DoVerb, uses xbx xsi, dVerb:DWORD
   SetObject xsi
   .if [xsi].pIOleObject != NULL
     SetOwner xbx, OcxContainer, xsi
-    ICall [xsi].pIOleObject::IOleObject.DoVerb, dVerb, 0, [xsi].pIOleClientSite, 0, \
+    ICall [xsi].pIOleObject::IOleObject.DoVerb, dVerb, 0, [xsi].pIOleClientSite, 0, /
                                                 [xbx].hWndSite, addr [xsi].CtrlRect
     if DEBUGGING
       .if FAILED(eax)
@@ -532,7 +532,7 @@ Method OcxClientSite.GetName, uses xsi
   endif
 
   SetObject xsi
-  FillWordW cText, <CLSID\>
+  FillWordW cText, <CLSID/>
   lea xdx, [cText + 12]
   invoke StringFromGUID2, [xsi].pCtrlClsID, xdx, lengthof(cText) - 6
   IF TARGET_STR_TYPE eq STR_TYPE_ANSI
@@ -584,7 +584,7 @@ MethodEnd
 ;             Arg3: -> ClientSite to be used to connect to the control.
 ; Return:     eax = OBJ_OK if succeeded.
 
-Method OcxContainer.CreateControl, uses xbx xsi, pCtrlClsID:REFGUID, dClsCtx:DWORD, \
+Method OcxContainer.CreateControl, uses xbx xsi, pCtrlClsID:REFGUID, dClsCtx:DWORD, /
                                                  pClientSite:POINTER
   SetObject xsi
   .if pClientSite != NULL
@@ -618,7 +618,7 @@ MethodEnd
 ;             Arg4: -> ClientSite to be used to connect to the control.
 ; Return:     eax = OBJ_OK if succeeded.
 
-Method OcxContainer.CreateControlEx, uses xbx xsi, pCtrlClsID:REFGUID, dClsCtx:DWORD, \
+Method OcxContainer.CreateControlEx, uses xbx xsi, pCtrlClsID:REFGUID, dClsCtx:DWORD, /
                                                    pMachine:BSTR, pClientSite:POINTER
   local csi:COSERVERINFO, dExeContext:DWORD, mqi[1]:MULTI_QI
 
@@ -666,7 +666,7 @@ MethodEnd
 ;             Arg4: -> ClientSite to be used to connect to the control.
 ; Return:     eax = OBJ_OK if succeeded.
 
-Method OcxContainer.CreateControlLic, uses xbx xsi, pCtrlClsID:REFGUID, dClsCtx:DWORD, \
+Method OcxContainer.CreateControlLic, uses xbx xsi, pCtrlClsID:REFGUID, dClsCtx:DWORD, /
                                                     pLicKey:BSTR, pClientSite:POINTER
   local pClassFactory2:POINTER, LicInfo:LICINFO, bInternalLicKey:BOOL
 
@@ -691,7 +691,7 @@ Method OcxContainer.CreateControlLic, uses xbx xsi, pCtrlClsID:REFGUID, dClsCtx:
         .endif
       .endif
 
-      ICall pClassFactory2::IClassFactory2.CreateInstanceLic, NULL, NULL, offset IID_IUnknown, \
+      ICall pClassFactory2::IClassFactory2.CreateInstanceLic, NULL, NULL, offset IID_IUnknown, /
                                                               pLicKey, addr [xbx].pIUnknown
       .if SUCCEEDED(eax)
         ;Cleanup

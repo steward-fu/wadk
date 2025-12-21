@@ -282,13 +282,13 @@ MethodEnd
 Method ChartTabScale.Init, uses xbx xsi, pOwner:POINTER, pScaleData:PCHT_SCALE_DATA
   SetObject xsi
   mov xbx, pOwner
-  ACall xsi.Init, xbx, [xbx].$Obj(TabCtrl).hWnd, IDD_CHT_SCL_TAB, \
+  ACall xsi.Init, xbx, [xbx].$Obj(TabCtrl).hWnd, IDD_CHT_SCL_TAB, /
                   offset $ObjTmpl(Application).hActiveMlsDlg
   mrm [xsi].pScaleData, pScaleData, xbx
 
   ;Create local copies
   assume xbx:PCHT_SCALE_DATA
-  invoke MemClone, addr [xsi].LocalScaleData, xbx, \
+  invoke MemClone, addr [xsi].LocalScaleData, xbx, /
                    sizeof(CHT_SCALE_BASIC_DATA) - sizeof(CHT_SCALE_STRINGS)
   mov [xsi].pLocalDescription, $invoke(StrNew, [xbx].pDescription)
   mov [xsi].pLocalUnit, $invoke(StrNew, [xbx].pUnit)
@@ -384,7 +384,7 @@ Method ChartTabScale.Restore, uses xbx xsi
   ;Restore from local copies
   mov xbx, [xsi].pScaleData
   assume xbx:PCHT_SCALE_BASIC_DATA
-  invoke MemClone, xbx, addr [xsi].LocalScaleData, \
+  invoke MemClone, xbx, addr [xsi].LocalScaleData, /
                    sizeof(CHT_SCALE_BASIC_DATA) - sizeof(CHT_SCALE_STRINGS)
   invoke StrDispose, [xbx].pDescription
   mov [xbx].pDescription, $invoke(StrNew, [xsi].pLocalDescription)

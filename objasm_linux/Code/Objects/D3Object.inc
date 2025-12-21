@@ -81,7 +81,7 @@ MethodEnd
 ;             Arg5: RGB color value of the rectangle.
 ; Return:     Nothing.
 
-Method D3Object.AddRectangle, uses xbx xdi xsi, pVector1:PD3Vector, pVector2:PD3Vector, \
+Method D3Object.AddRectangle, uses xbx xdi xsi, pVector1:PD3Vector, pVector2:PD3Vector, /
                                                 pVector3:PD3Vector, pVector4:PD3Vector, dColor:DWORD
   SetObject xsi
   mov xbx, $New(D3Triangle)
@@ -122,7 +122,7 @@ MethodEnd
 ;             Arg4: RGB color value of the triangle.
 ; Return:     Nothing.
 
-Method D3Object.AddTriangle, uses xbx xsi, pVector1:PD3Vector, pVector2:PD3Vector, \
+Method D3Object.AddTriangle, uses xbx xsi, pVector1:PD3Vector, pVector2:PD3Vector, /
                                            pVector3:PD3Vector, dColor:DWORD
   SetObject xsi
   mov xbx, $New(D3Triangle)

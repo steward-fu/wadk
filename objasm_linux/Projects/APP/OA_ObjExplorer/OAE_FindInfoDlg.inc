@@ -49,7 +49,7 @@ Method FindInfoDlg.Init, uses xsi, pOwner:POINTER, hParent:HANDLE
   mov [xsi].pActiveDlgHandle, xax
   ACall xsi.Init, pOwner, hParent, IDD_FIND_DLG
   ;We create here the Modeless Dialog but without showing it. WS_VISIBLE must not be set!
-  invoke CreateDialogParam, hInstance, [xsi].pTemplate, [xsi].hParent, \
+  invoke CreateDialogParam, hInstance, [xsi].pTemplate, [xsi].hParent, /
                             $MethodAddr(FindInfoDlg.DlgProc), xsi   ;lParam passed WM_INITDIALOG
 MethodEnd
 
@@ -129,7 +129,7 @@ Method FindInfoDlg.OnCommand, uses xdi xbx xsi, wParam:WPARAM, lParam:LPARAM
 
   SetObject xsi
   mov xax, wParam
-  .if (ax == IDC_FIND_BTN_SEARCH) || (ax == IDOK) || \
+  .if (ax == IDC_FIND_BTN_SEARCH) || (ax == IDOK) || /
       (ax == IDC_FIND_RBN_OBJ) || (ax == IDC_FIND_RBN_INT)
     lea xdi, cBuffer
     invoke GetDlgItem, [xsi].hWnd, IDC_FIND_EDIT

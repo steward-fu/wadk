@@ -184,8 +184,8 @@ Method GridView.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefStruc:PDEF
   assume xbx:PDEF_GRIDVIEW
   mov eax, [xbx].dStyle
   or eax, WS_CHILD or WS_VISIBLE
-  invoke CreateWindowEx, [xbx].dExStyle, offset(szGridViewClass), [xbx].pTitle, \
-                         eax, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, \
+  invoke CreateWindowEx, [xbx].dExStyle, offset(szGridViewClass), [xbx].pTitle, /
+                         eax, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, /
                          hParent, [xbx].xCtlID, hInstance, pSelf
   assume xbx:NOTHING
   ACall xsi.Init, pOwner, xax
@@ -314,12 +314,12 @@ Method GridView.OnCreate, uses xsi, wParam:WPARAM, lParam:LPARAM
 ;  mov [xsi].dLogPixY, $32($invoke(GetDeviceCaps, [xsi].hMemDC, LOGPIXELSY))
 
   ;Create a ToolTip window to display popup information when hoovering over an INFO area
-  invoke CreateWindowEx, WS_EX_TOPMOST, $OfsCStr("tooltips_class32"), NULL, \
-                         WS_POPUP or TTS_NOPREFIX or TTS_ALWAYSTIP, \
-                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateWindowEx, WS_EX_TOPMOST, $OfsCStr("tooltips_class32"), NULL, /
+                         WS_POPUP or TTS_NOPREFIX or TTS_ALWAYSTIP, /
+                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                          [xsi].hWnd, NULL, hInstance, NULL
   mov [xsi].hToolTip, xax
-  invoke SetWindowPos, [xsi].hToolTip, HWND_TOPMOST, 0, 0, 0, 0, \
+  invoke SetWindowPos, [xsi].hToolTip, HWND_TOPMOST, 0, 0, 0, 0, /
                        SWP_NOMOVE or SWP_NOSIZE or SWP_NOACTIVATE
   invoke SendMessage, [xsi].hToolTip, TTM_SETMAXTIPWIDTH, 0, 1000
 

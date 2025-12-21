@@ -15,7 +15,7 @@ Object DB_SeekDlg,, DialogModal
   RedefineMethod    CtlsGet
   RedefineMethod    CtlsSet
   RedefineMethod    Done
-  RedefineMethod    Init,           POINTER, HWND, \
+  RedefineMethod    Init,           POINTER, HWND, /
                                     $ObjPtr(DB_Table), $ObjPtr(DB_Index), PDB_DATA_LINK_TYPE
   RedefineMethod    OnCommand,      WPARAM, LPARAM
   RedefineMethod    OnInitDialog,   WPARAM, LPARAM
@@ -120,7 +120,7 @@ Method DB_SeekDlg.CtlsSet, uses xbx xdi xsi
       .if xdx == [xax].$Obj(DB_Field).pIndex
         m2m dSelectedIndex, dCurrentIndex, edx
       .endif
-      invoke SendDlgItemMessageA, [xsi].hWnd, IDC_SEEK_CBO_INDEX, CB_ADDSTRING, \
+      invoke SendDlgItemMessageA, [xsi].hWnd, IDC_SEEK_CBO_INDEX, CB_ADDSTRING, /
                                   0, addr [xax].$Obj(DB_Field).Descriptor.bName
       inc dCurrentIndex
     .endif
@@ -169,8 +169,8 @@ DL_CHILD_INFO {{000, 100, 000, 000}}  ;BTN Edit
 DL_CHILD_INFO {{000, 100, 100, 000}}  ;SBR
 
 .code
-Method DB_SeekDlg.Init,, pOwner:POINTER, hParent:HWND, \
-                         pTable:$ObjPtr(DB_Table), pActiveIndex:$ObjPtr(DB_Index), \
+Method DB_SeekDlg.Init,, pOwner:POINTER, hParent:HWND, /
+                         pTable:$ObjPtr(DB_Table), pActiveIndex:$ObjPtr(DB_Index), /
                          pRecNo:PDB_DATA_LINK_TYPE
   SetObject xcx
   m2m [xcx].pTable, pTable, xdx
@@ -214,9 +214,9 @@ Method DB_SeekDlg.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
         inc eax                                         ;Include ZTC
         mov dSize, eax
         if TARGET_STR_TYPE eq STR_TYPE_WIDE
-          invoke SendDlgItemMessage, [xsi].hWnd, IDC_SEEK_EDT_SEEK_FOR, WM_GETTEXT, \
+          invoke SendDlgItemMessage, [xsi].hWnd, IDC_SEEK_EDT_SEEK_FOR, WM_GETTEXT, /
                                      dSize, addr cBufferCtrl
-          invoke WideCharToMultiByte, CP_ACP, 0, addr cBufferCtrl, -1, xbx, LOCAL_BUFFER_SIZE, \
+          invoke WideCharToMultiByte, CP_ACP, 0, addr cBufferCtrl, -1, xbx, LOCAL_BUFFER_SIZE, /
                                       NULL, NULL
           ;eax = written bytes including ZTC
           dec eax
@@ -244,7 +244,7 @@ Method DB_SeekDlg.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
           invoke SendDlgItemMessage, [xsi].hWnd, IDC_SEEK_EDT_SEEK_FOR, WM_GETTEXT, eax, xbx
           ;eax = written chars without ZTC
         else
-          invoke SendDlgItemMessage, [xsi].hWnd, IDC_SEEK_EDT_SEEK_FOR, WM_GETTEXT, \
+          invoke SendDlgItemMessage, [xsi].hWnd, IDC_SEEK_EDT_SEEK_FOR, WM_GETTEXT, /
                                      dSize, addr cBufferCtrl
           invoke MultiByteToWideChar, CP_ACP, 0, addr cBufferCtrl, -1, xbx, LOCAL_BUFFER_SIZE
           ;eax = written chars including ZTC
@@ -265,13 +265,13 @@ Method DB_SeekDlg.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
         inc eax                                         ;Include ZTC
         mov dSize, eax
         if TARGET_STR_TYPE eq STR_TYPE_WIDE
-          invoke SendDlgItemMessage, [xsi].hWnd, IDC_SEEK_EDT_SEEK_FOR, WM_GETTEXT, \
+          invoke SendDlgItemMessage, [xsi].hWnd, IDC_SEEK_EDT_SEEK_FOR, WM_GETTEXT, /
                                      dSize, addr cBufferCtrl
         else
           invoke SendDlgItemMessage, [xsi].hWnd, IDC_SEEK_EDT_SEEK_FOR, WM_GETTEXT, dSize, xbx
           invoke MultiByteToWideChar, CP_ACP, 0, xbx, -1, addr cBufferCtrl, LOCAL_BUFFER_SIZE
         endif
-        invoke WideCharToMultiByte, CP_UTF8, 0, addr cBufferCtrl, -1, xbx, LOCAL_BUFFER_SIZE, \
+        invoke WideCharToMultiByte, CP_UTF8, 0, addr cBufferCtrl, -1, xbx, LOCAL_BUFFER_SIZE, /
                                     NULL, NULL
         ;Fill the rest of the buffer with WIDE spaces
         .if eax < dSize
@@ -285,29 +285,29 @@ Method DB_SeekDlg.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
           mov CHRA ptr [xdi], 0
         .endif
       .elseif cl == FDT_DATE
-        invoke SendDlgItemMessage, [xsi].hWnd, IDC_SEEK_EDT_SEEK_FOR, WM_GETTEXT, \
+        invoke SendDlgItemMessage, [xsi].hWnd, IDC_SEEK_EDT_SEEK_FOR, WM_GETTEXT, /
                                    LOCAL_BUFFER_SIZE/sizeof(CHR), xbx
         lea xcx, DateBuffer
         mov xax, [xsi].pOwner                           ;-> Application
         invoke DB_StrToDate, xcx, xbx, [xax].$Obj(Application).AppSetup.bDateFormat
         lea xbx, DateBuffer
       .elseif cl == FDT_SDWORD || cl == FDT_AUTOINC
-        invoke SendDlgItemMessage, [xsi].hWnd, IDC_SEEK_EDT_SEEK_FOR, WM_GETTEXT, \
+        invoke SendDlgItemMessage, [xsi].hWnd, IDC_SEEK_EDT_SEEK_FOR, WM_GETTEXT, /
                                    LOCAL_BUFFER_SIZE/sizeof(CHR), xbx
         invoke dec2dword, xbx
         mov DWORD ptr [cBuffer], eax
       .elseif cl == FDT_REAL4
-        invoke SendDlgItemMessage, [xsi].hWnd, IDC_SEEK_EDT_SEEK_FOR, WM_GETTEXT, \
+        invoke SendDlgItemMessage, [xsi].hWnd, IDC_SEEK_EDT_SEEK_FOR, WM_GETTEXT, /
                                    LOCAL_BUFFER_SIZE/sizeof(CHR), xbx
         invoke StrToSt0, xbx
         fstp REAL4 ptr [cBuffer]
       .elseif cl == FDT_REAL8 || cl == FDT_CURRENCY
-        invoke SendDlgItemMessage, [xsi].hWnd, IDC_SEEK_EDT_SEEK_FOR, WM_GETTEXT, \
+        invoke SendDlgItemMessage, [xsi].hWnd, IDC_SEEK_EDT_SEEK_FOR, WM_GETTEXT, /
                                    LOCAL_BUFFER_SIZE/sizeof(CHR), xbx
         invoke StrToSt0, xbx
         fstp REAL8 ptr [cBuffer]
       .elseif cl == FDT_REAL10
-        invoke SendDlgItemMessage, [xsi].hWnd, IDC_SEEK_EDT_SEEK_FOR, WM_GETTEXT, \
+        invoke SendDlgItemMessage, [xsi].hWnd, IDC_SEEK_EDT_SEEK_FOR, WM_GETTEXT, /
                                    LOCAL_BUFFER_SIZE/sizeof(CHR), xbx
         invoke StrToSt0, xbx
         fstp REAL10 ptr [cBuffer]
@@ -317,7 +317,7 @@ Method DB_SeekDlg.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
 
       OCall [xsi].pActiveIndex::DB_Index.Seek, xbx
       .if eax == 0
-        invoke MessageBox, [xsi].hWnd, $OfsCStr("No match found."), $OfsCStr("Notification"), \
+        invoke MessageBox, [xsi].hWnd, $OfsCStr("No match found."), $OfsCStr("Notification"), /
                                        MB_OK or MB_ICONINFORMATION
       .else
         mov xcx, [xsi].pRecNo

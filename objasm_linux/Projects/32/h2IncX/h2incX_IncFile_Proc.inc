@@ -1605,7 +1605,7 @@ GetStringLiteral proc uses ecx
     mov ch, 2
     .repeat
       lodsb
-      .if al == "\"
+      .if al == "/"
         lodsb
         .if al >= "0" && al <= "7"
           .if ch == 0

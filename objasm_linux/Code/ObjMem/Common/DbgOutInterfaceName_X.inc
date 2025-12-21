@@ -22,7 +22,7 @@ DbgOutInterfaceName proc uses xbx pIID:ptr GUID, dForeColor:DWORD, dBackColor:DW
   local hKey:HANDLE, SubKey[260]:CHRA, dSubKeyLenght:DWORD
 
   lea xbx, SubKey
-	FillStringA [xbx], <Interface\{>
+	FillStringA [xbx], <Interface/{>
 	invoke GUID2StrA, addr SubKey[11], pIID
   invoke DbgOutTextA, addr SubKey[11] , dForeColor, dBackColor, DBG_EFFECT_NORMAL, pDestWnd
   mov CHRA ptr [xbx + 47], "}"

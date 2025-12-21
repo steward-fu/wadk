@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version C.01.00, 16/11/2022 19:46
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: 'D:\ObjAsm\Projects\32\h2IncX - Kopie\.h\wininet.h', last modified: 11/09/2021 16:30
+;Source file: 'D:/ObjAsm/Projects/32/h2IncX - Kopie/.h/wininet.h', last modified: 11/09/2021 16:30
 ;Creation parameters: 
 
 include winapifamily.inc

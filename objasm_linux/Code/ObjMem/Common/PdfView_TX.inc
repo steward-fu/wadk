@@ -24,7 +24,7 @@ ProcName proc uses xbx hParent:HWND, pFileName:POINTER, pDestination:POINTER
 
   .if pFileName != NULL
     mov dChrCnt, lengthof(cApplication)                   ;ZTC Included
-    invoke AssocQueryString, 0, ASSOCSTR_EXECUTABLE, $OfsCStr(".pdf"), $OfsCStr("open"), \
+    invoke AssocQueryString, 0, ASSOCSTR_EXECUTABLE, $OfsCStr(".pdf"), $OfsCStr("open"), /
                              addr cApplication, addr dChrCnt
     .if eax == S_OK
       .if pDestination != NULL
@@ -44,7 +44,7 @@ ProcName proc uses xbx hParent:HWND, pFileName:POINTER, pDestination:POINTER
           lea xcx, [xax + 2*sizeof(CHR)]
           .if xcx < xbx
             FillString [xax], <">
-            invoke ShellExecute, hParent, $OfsCStr("open"), addr cApplication, \
+            invoke ShellExecute, hParent, $OfsCStr("open"), addr cApplication, /
                                  addr cCommand, NULL, SW_SHOW
           .else
             xor eax, eax
@@ -53,7 +53,7 @@ ProcName proc uses xbx hParent:HWND, pFileName:POINTER, pDestination:POINTER
           xor eax, eax
         .endif
       .else
-        invoke ShellExecute, hParent, $OfsCStr("open"), addr cApplication, \
+        invoke ShellExecute, hParent, $OfsCStr("open"), addr cApplication, /
                              pFileName, NULL, SW_SHOW
       .endif
     .endif

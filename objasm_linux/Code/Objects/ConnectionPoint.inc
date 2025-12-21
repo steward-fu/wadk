@@ -254,7 +254,7 @@ MethodEnd
 Method ConnectionPoint.FireEvent, uses xsi, dParameter:DWORD
   DbgText "ConnectionPoint.FireEvent", "ConnectionPoint"
   SetObject xsi
-  OCall [xsi].ConnectedInterfaces::DataCollection.ForEach, $MethodAddr(xsi.FireNow), \
+  OCall [xsi].ConnectedInterfaces::DataCollection.ForEach, $MethodAddr(xsi.FireNow), /
                                                            XWORD ptr dParameter, NULL
 MethodEnd
 
@@ -362,7 +362,7 @@ Method IEnumConnections.Clone, uses xsi, pEnumInt:POINTER
   OCall xax::EnumConnections.Init, [xsi].pOwner
   mov xcx, [xsi].pOwner                                 ;xcx -> original EnumConnections
   mov xax, pEnuCon
-  m2m [xax].$Obj(EnumConnections).dCurrentIndex, \
+  m2m [xax].$Obj(EnumConnections).dCurrentIndex, /
       [xcx].$Obj(EnumConnections).dCurrentIndex, edx
   OCall xax::EnumConnections.GetInterface, offset IID_IEnumConnections, pEnumInt
 MethodEnd

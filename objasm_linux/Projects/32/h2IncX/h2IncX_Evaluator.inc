@@ -209,7 +209,7 @@ Method Evaluator.Evaluate, uses edi esi
             mov edx, [ecx].EVAL_TOKEN.pOperator
             mov ecx, [edx].EVAL_OPTOR.dPrece
             mov edi, [eax].EVAL_TOKEN.pOperator
-            .if (ecx < [edi].EVAL_OPTOR.dPrece || \
+            .if (ecx < [edi].EVAL_OPTOR.dPrece || /
                 (ecx == [edi].EVAL_OPTOR.dPrece && [edx].EVAL_OPTOR.dAssoc == ASO_LEFT))
               mov edi, pAuxToken
               .if CHRA ptr [edi] != "("

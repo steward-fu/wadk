@@ -143,8 +143,8 @@ Method FlipBox.Init, uses xbx xdi xsi, pOwner:POINTER, hParent:HWND, pDefStruc:P
     mov eax, WS_CHILD or SBS_VERT
   .endif
 
-  invoke CreateWindowEx, WS_EX_TOOLWINDOW, $OfsCStr("ScrollBar"), NULL, eax, \
-                         0, 0, SysSize.x, SysSize.y, \
+  invoke CreateWindowEx, WS_EX_TOOLWINDOW, $OfsCStr("ScrollBar"), NULL, eax, /
+                         0, 0, SysSize.x, SysSize.y, /
                          xdi, [xbx].xCtlID, hInstance, 0
   assume xbx:NOTHING
   ACall xsi.Init, pOwner, xax

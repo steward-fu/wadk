@@ -28,14 +28,14 @@ __NO_NOISE__      equ   1                               ;Supress Windows.inc bab
 
 ;Paths used to locate objects, libraries, resources, etc. They are statically linked!
 
-OA_PATH       CatStr    @Environ(OBJASM_PATH), <\>      ;Stored in HKEY_CURRENT_USER\Environment
+OA_PATH       CatStr    @Environ(OBJASM_PATH), </>      ;Stored in HKEY_CURRENT_USER/Environment
 
-IncPath       CatStr    OA_PATH, <Code\Inc\>
-LibPath       CatStr    OA_PATH, <Code\Lib\32\>
-ObjPath       CatStr    OA_PATH, <Code\Objects\>
-MacPath       CatStr    OA_PATH, <Code\Macros\>
-COMPath       CatStr    OA_PATH, <Code\Inc\COM\>
-RadPath       CatStr    OA_PATH, <Code\RadASM\>
-ObjMemPath    CatStr    OA_PATH, <Code\ObjMem\>
-ResPath       CatStr    OA_PATH, <Resources\>
-HelpPath      CatStr    OA_PATH, <Help\>
+IncPath       CatStr    OA_PATH, <Code/Inc/>
+LibPath       CatStr    OA_PATH, <Code/Lib/32/>
+ObjPath       CatStr    OA_PATH, <Code/Objects/>
+MacPath       CatStr    OA_PATH, <Code/Macros/>
+COMPath       CatStr    OA_PATH, <Code/Inc/COM/>
+RadPath       CatStr    OA_PATH, <Code/RadASM/>
+ObjMemPath    CatStr    OA_PATH, <Code/ObjMem/>
+ResPath       CatStr    OA_PATH, <Resources/>
+HelpPath      CatStr    OA_PATH, <Help/>

@@ -19,8 +19,8 @@
 
 % include &MacPath&WinHelpers.inc
 % include &MacPath&ConstDiv.inc
-% include &IncPath&Windows\CommCtrl.inc
-% include &IncPath&Windows\richedit.inc
+% include &IncPath&Windows/CommCtrl.inc
+% include &IncPath&Windows/richedit.inc
 
 LoadObjects Primer, Stream
 LoadObjects Collection, DataCollection, SortedCollection, SortedDataCollection, XWCollection
@@ -218,9 +218,9 @@ MBX_WndProc proc private uses xbx xdi xsi hDlg:HWND, uMsg:DWORD, wParam:WPARAM, 
       mov ecx, CtlOfs.y
       add [xsi].MBX_ButtonInfo.Rect.left, eax
       add [xsi].MBX_ButtonInfo.Rect.top,  ecx
-      invoke MoveWindow, [xsi].MBX_ButtonInfo.hWnd, \
-                         [xsi].MBX_ButtonInfo.Rect.left, [xsi].MBX_ButtonInfo.Rect.top, \
-                         [xsi].MBX_ButtonInfo.Rect.right, [xsi].MBX_ButtonInfo.Rect.bottom, \
+      invoke MoveWindow, [xsi].MBX_ButtonInfo.hWnd, /
+                         [xsi].MBX_ButtonInfo.Rect.left, [xsi].MBX_ButtonInfo.Rect.top, /
+                         [xsi].MBX_ButtonInfo.Rect.right, [xsi].MBX_ButtonInfo.Rect.bottom, /
                          FALSE
       add ebx, 1
     .endw

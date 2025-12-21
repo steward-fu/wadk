@@ -67,7 +67,7 @@ PBT_ENUM            equ   2       ;enum
 
 ;Parser output ctrl codes
 PCT_EOL             equ   0E0h    ;(à) End of Line
-PCT_WEAKEOL         equ   0E1h    ;(á) "\" at the end of preprocessor lines
+PCT_WEAKEOL         equ   0E1h    ;(á) "/" at the end of preprocessor lines
 PCT_COMMENT         equ   0E2h    ;(â) Comment token
 PCT_IGNORE          equ   0E3h    ;(ã) Ignore token
 PCT_MACRO           equ   0E4h    ;(ä) Is a macro

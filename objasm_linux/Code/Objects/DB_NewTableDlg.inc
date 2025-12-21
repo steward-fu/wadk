@@ -76,7 +76,7 @@ Method DB_NewTableDlg.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
     xor eax, eax
 
   .elseif eax == IDOK
-    invoke SendMessage, [xsi].hEdtFileName, WM_GETTEXT, \
+    invoke SendMessage, [xsi].hEdtFileName, WM_GETTEXT, /
                         LOCAL_BUFFER_SIZE/sizeof(CHR), [xsi].pFileName
     OCall xsi.DestroyDialog, wParam
     xor eax, eax

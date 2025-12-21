@@ -154,16 +154,16 @@ Method Api3DEngApp.Init, uses xbx xdi xsi
   mov dWndPosY, eax
 
   invoke CreateWindowEx, WS_EX_APPWINDOW or WS_EX_WINDOWEDGE,
-                         offset szApi3DEngApp, offset szAppTitle, \
-                         WS_OVERLAPPEDWINDOW or WS_CLIPCHILDREN, \
-                         dWndPosX, dWndPosY, dWndWidth, dWndHeight, \
+                         offset szApi3DEngApp, offset szAppTitle, /
+                         WS_OVERLAPPEDWINDOW or WS_CLIPCHILDREN, /
+                         dWndPosX, dWndPosY, dWndWidth, dWndHeight, /
                          NULL, [xsi].hMenuInit, hInstance, pSelf
   mov [xsi].hWnd, xax
 
   ;Create XMenu
   mov [xsi].pXMenu, $New(XMenu)
   mov xdi, $MethodAddr(Api3DEngApp.StatusbarHelp)
-  OCall [xsi].pXMenu::XMenu.Init, xsi, [xsi].hWnd, 0, [xsi].hMenuInit, xbx, \
+  OCall [xsi].pXMenu::XMenu.Init, xsi, [xsi].hWnd, 0, [xsi].hMenuInit, xbx, /
                                   xdi, IDLANG_ENGLISH
 
   ;-------------------------------------------------------------------------------------
@@ -204,7 +204,7 @@ MethodEnd
 
 Method Api3DEngApp.OnClose, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
-  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), \
+  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), /
                  MB_YESNO or MB_ICONQUESTION
   .if eax == IDNO
     xor eax, eax
@@ -227,7 +227,7 @@ Method Api3DEngApp.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
   mov xax, wParam
   .if ax ==  IDM_HELP_HELP
-    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Help\ObjAsm_Reference_Volume-I.pdf"), \
+    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Help/ObjAsm_Reference_Volume-I.pdf"), /
                                      addr cBuffer, lengthof(cBuffer)
     invoke PdfView, [xsi].hWnd, addr cBuffer, NULL
     xor eax, eax
@@ -276,14 +276,14 @@ Method Api3DEngApp.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
 
             invoke RedrawWindow, [xsi].hWnd, 0, 0, RDW_ERASE or RDW_INVALIDATE or RDW_UPDATENOW
           .else
-            invoke MessageBox, [xsi].hWnd, \
-                               $OfsCStr("Failed to load scene from stream", 33, 10, 13, \
-                                        "Application will be closed."), \
+            invoke MessageBox, [xsi].hWnd, /
+                               $OfsCStr("Failed to load scene from stream", 33, 10, 13, /
+                                        "Application will be closed."), /
                                $OfsCStr("Error"), MB_OK or  MB_ICONEXCLAMATION
           .endif
         .else
-          invoke MessageBox, [xsi].hWnd, \
-                             $OfsCStr("Wrong stream wordsize", 33), \
+          invoke MessageBox, [xsi].hWnd, /
+                             $OfsCStr("Wrong stream wordsize", 33), /
                              $OfsCStr("Error"), MB_OK or  MB_ICONEXCLAMATION
         .endif
       .endif

@@ -10,12 +10,12 @@ include TextViewDemo_Shared.inc
 
 CStr szIcoName,     "ICON_APP"
 %CStr szAppTitle,   "&APP_TITLE"
-%CStr szAboutText,  "&ABOUT_TEXT", 13, 10, \
-                    "Version &VER_PRODUCTVERSION_STR", 13, 10, \
-                    "Designed with ObjAsm", 13, 10, \
-                    "© &COPYRIGHT", 13, 10, 13, 10, \
-                    @CatStr(<!">, %BUILD_DATE_STR, \
-                            <  -  Build: >, %BUILD_NUMBER, <->, %ASSEMBLER, <->, \
+%CStr szAboutText,  "&ABOUT_TEXT", 13, 10, /
+                    "Version &VER_PRODUCTVERSION_STR", 13, 10, /
+                    "Designed with ObjAsm", 13, 10, /
+                    "© &COPYRIGHT", 13, 10, 13, 10, /
+                    @CatStr(<!">, %BUILD_DATE_STR, /
+                            <  -  Build: >, %BUILD_NUMBER, <->, %ASSEMBLER, <->, /
                             %TARGET_MODE_STR, <->, %TARGET_BITNESS, <!">)
                     
 
@@ -28,33 +28,33 @@ INFO_UPDATE   equ   1
 
 
 .const
-String szMarkupText,  "{Padding 20}", \
-                      "[Height +1]", \
-                        "{COVER 0}", \
-                        "[Indent 150, Align.left]", \
-                          "[Height +3, Bold]&ABOUT_TEXT{B}[~]", \
-                          "[Italic]Version &VER_PRODUCTVERSION_STR{P}[~]", \
-                          "[Color #3F3F3F]", \
-                            "Designed with ObjAsm{B}", \
-                            "© &COPYRIGHT{P}", \
-                            "[Color #5F4FFF]", \
-                              @CatStr(<!">, %BUILD_DATE_STR, \
-                                      <  -  Build: >, %BUILD_NUMBER, <->, %ASSEMBLER, <->, \
-                                      %TARGET_MODE_STR, <->, %TARGET_BITNESS, <    !">), \
-                              "[TIP ", @CatStr(<!">, %INFO_BUILD, <!">), ", Font 'Webdings', Height +1, Color @26]{#F069}[~]", \
-                            "[~]{B}{B}", \
-                          "[~]", \
+String szMarkupText,  "{Padding 20}", /
+                      "[Height +1]", /
+                        "{COVER 0}", /
+                        "[Indent 150, Align.left]", /
+                          "[Height +3, Bold]&ABOUT_TEXT{B}[~]", /
+                          "[Italic]Version &VER_PRODUCTVERSION_STR{P}[~]", /
+                          "[Color #3F3F3F]", /
+                            "Designed with ObjAsm{B}", /
+                            "© &COPYRIGHT{P}", /
+                            "[Color #5F4FFF]", /
+                              @CatStr(<!">, %BUILD_DATE_STR, /
+                                      <  -  Build: >, %BUILD_NUMBER, <->, %ASSEMBLER, <->, /
+                                      %TARGET_MODE_STR, <->, %TARGET_BITNESS, <    !">), /
+                              "[TIP ", @CatStr(<!">, %INFO_BUILD, <!">), ", Font 'Webdings', Height +1, Color @26]{#F069}[~]", /
+                            "[~]{B}{B}", /
+                          "[~]", /
                         "[~]"
-ExtendString            "[Indent 0, Align.Center]", \
-                          "[Font 'Webdings', Color #FF5F5F, Height +7]{#F07E}[~]", \
-                          "  Visit us at  ", \
-                          "[APP ", @CatStr(<!">, %APP_VISIT, <!">), ", Color @26, U]www.objasm.x10host.com[~]{B}", \
-                          "[Font 'Wingdings', Color #408090, Height +1]{#F02A}[~]", \
-                          "   Email us to  ", \
-                          "[APP ", @CatStr(<!">, %APP_EMAIL, <!">), ", Color @26, U]objasm@gmx.net[~]{P}", \
-                          "[APP ", @CatStr(<!">, %APP_CHECK, <!">), ", Color @26, U]Check for updates[~]", \
-                          "[TIP ", @CatStr(<!">, %INFO_UPDATE, <!">), ", Font 'Webdings', Height +1, Color @26]  {#F069}[~]", \
-                        "[~]", \
+ExtendString            "[Indent 0, Align.Center]", /
+                          "[Font 'Webdings', Color #FF5F5F, Height +7]{#F07E}[~]", /
+                          "  Visit us at  ", /
+                          "[APP ", @CatStr(<!">, %APP_VISIT, <!">), ", Color @26, U]www.objasm.x10host.com[~]{B}", /
+                          "[Font 'Wingdings', Color #408090, Height +1]{#F02A}[~]", /
+                          "   Email us to  ", /
+                          "[APP ", @CatStr(<!">, %APP_EMAIL, <!">), ", Color @26, U]objasm@gmx.net[~]{P}", /
+                          "[APP ", @CatStr(<!">, %APP_CHECK, <!">), ", Color @26, U]Check for updates[~]", /
+                          "[TIP ", @CatStr(<!">, %INFO_UPDATE, <!">), ", Font 'Webdings', Height +1, Color @26]  {#F069}[~]", /
+                        "[~]", /
                       "[~]"
 
 ifdef __UASM__
@@ -79,8 +79,8 @@ endif
 
 CStr szUpdateInfo,  "Verifies the availability of a new software update."
                     
-%CStr szBuildInfo,  "Build number: ", 9, @CatStr(<!">, %BUILD_NUMBER, <!">), 13, \
-                    "Assembler:    ", 9, @CatStr(<!">, %ANAME, <!">), 13, \
-                    "Version:      ", 9, @CatStr(<!">, %AVERSION, <!">), 13, \
-                    "Distribution: ", 9, @CatStr(<!">, %DNAME, <!">), 13, \
+%CStr szBuildInfo,  "Build number: ", 9, @CatStr(<!">, %BUILD_NUMBER, <!">), 13, /
+                    "Assembler:    ", 9, @CatStr(<!">, %ANAME, <!">), 13, /
+                    "Version:      ", 9, @CatStr(<!">, %AVERSION, <!">), 13, /
+                    "Distribution: ", 9, @CatStr(<!">, %DNAME, <!">), 13, /
                     "Bitness:      ", 9, @CatStr(<!">, %TARGET_BITNESS, <!">)

@@ -20,8 +20,8 @@ Object ArduinoApp, MySdiAppID, SdiApp
   VirtualEvent      OnPaint,    WM_PAINT
 
   DefineVariable    hComPort,     HANDLE,         INVALID_HANDLE_VALUE
-  DefineVariable    ComPortSetup, COMPORT_SETUP,  {{0}, \
-                                                   9600, 8, 0, 0, COM_FLOWCTRL_NONE, \  ;8N1 default
+  DefineVariable    ComPortSetup, COMPORT_SETUP,  {{0}, /
+                                                   9600, 8, 0, 0, COM_FLOWCTRL_NONE, /  ;8N1 default
                                                    {-1, 0, 0, 0, 0}}
 
 ObjectEnd
@@ -50,8 +50,8 @@ Method ArduinoApp.Init, uses xsi
   mov dWndPosX, $32($invoke(CenterForm, dWndWidth,  $32($invoke(GetSystemMetrics, SM_CXSCREEN))))
   mov dWndPosY, $32($invoke(CenterForm, dWndHeight, $32($invoke(GetSystemMetrics, SM_CYSCREEN))))
 
-  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, \
-                         offset szArduinoApp, offset szAppTitle, WS_OVERLAPPEDWINDOW, \
+  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, /
+                         offset szArduinoApp, offset szAppTitle, WS_OVERLAPPEDWINDOW, /
                          dWndPosX, dWndPosY, dWndWidth, dWndHeight, NULL, NULL, hInstance, pSelf
   mov [xsi].hAccelerators, $invoke(LoadAccelerators, hInstance, $OfsCStr("ACCEL_APP"))
 
@@ -89,7 +89,7 @@ Method ArduinoApp.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
       mov [xsi].hComPort, INVALID_HANDLE_VALUE
     .endif
     .if [xsi].ComPortSetup.cName != 0
-      FillString cBuffer, <\.\>
+      FillString cBuffer, </./>
       lea xcx, [cBuffer + 3*sizeof(CHR)]
       invoke StrCopy, xcx, addr [xsi].ComPortSetup.cName
       invoke CreateFile, addr cBuffer, GENERIC_READ or GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL
@@ -109,7 +109,7 @@ Method ArduinoApp.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
         m2m ComDCB.StopBits, [xsi].ComPortSetup.bStopBits, cl
 
         mov eax, ComDCB.fBits
-        BitClr eax, MASK DCB??1_fInX or MASK DCB??1_fOutX or \
+        BitClr eax, MASK DCB??1_fInX or MASK DCB??1_fOutX or /
                     MASK DCB??1_fRtsControl or MASK DCB??1_fOutxCtsFlow
         BitSet eax, MASK DCB??1_fBinary
         .if [xsi].ComPortSetup.COMPORT_SETUP.bFlowControl == COM_FLOWCTRL_XON_XOFF
@@ -123,11 +123,11 @@ Method ArduinoApp.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
         invoke SetCommTimeouts, [xsi].hComPort, addr [xsi].ComPortSetup.ComTimeouts
         
       .else
-        invoke MessageBox, [xsi].hWnd, $OfsCStr("COM connection failed."), $OfsCStr("Error"), \
+        invoke MessageBox, [xsi].hWnd, $OfsCStr("COM connection failed."), $OfsCStr("Error"), /
                            MB_OK or MB_ICONERROR
       .endif
     .else
-      invoke MessageBox, [xsi].hWnd, $OfsCStr("COM Port not defined."), $OfsCStr("Error"), \
+      invoke MessageBox, [xsi].hWnd, $OfsCStr("COM Port not defined."), $OfsCStr("Error"), /
                          MB_OK or MB_ICONERROR
     .endif
     xor eax, eax
@@ -147,10 +147,10 @@ Method ArduinoApp.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
       lea xdx, cBuffer
       mov eax, dBytesRead
       mov CHRA ptr [xdx + xax], 0                       ;Set ZTC
-      invoke MessageBoxA, [xsi].hWnd, xdx, $OfsCStrA("Recieved string"), \
+      invoke MessageBoxA, [xsi].hWnd, xdx, $OfsCStrA("Recieved string"), /
                           MB_OK or MB_ICONINFORMATION
     .else 
-      invoke MessageBox, [xsi].hWnd, $OfsCStr("No string recieved."), $OfsCStr("Error"), \
+      invoke MessageBox, [xsi].hWnd, $OfsCStr("No string recieved."), $OfsCStr("Error"), /
                          MB_OK or MB_ICONERROR
     .endif
     xor eax, eax
@@ -168,7 +168,7 @@ Method ArduinoApp.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
     xor eax, eax
 
   .elseif ax == IDM_HELP
-    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Help\ObjAsm_Reference_Volume-I.pdf"), \
+    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Help/ObjAsm_Reference_Volume-I.pdf"), /
                                      addr cBuffer, lengthof(cBuffer)
     invoke PdfView, [xsi].hWnd, addr cBuffer, $OfsCStr("Introduction")
     xor eax, eax
@@ -187,7 +187,7 @@ MethodEnd
 
 Method ArduinoApp.OnClose, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
-  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), \
+  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), /
                      MB_YESNO or MB_ICONQUESTION
   .if eax == IDNO
     xor eax, eax

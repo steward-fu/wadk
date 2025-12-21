@@ -391,8 +391,8 @@ MethodEnd
 ;             Arg8: Template file HANDLE.
 ; Return:     Nothing.
 
-Method DiskStream.Init, uses xsi, pOwner:POINTER, pFileName:PSTRING, dAccessMode:DWORD, \
-                                  dShareMode:DWORD, pSecurityAttr:POINTER, dCreationFlags:DWORD, \
+Method DiskStream.Init, uses xsi, pOwner:POINTER, pFileName:PSTRING, dAccessMode:DWORD, /
+                                  dShareMode:DWORD, pSecurityAttr:POINTER, dCreationFlags:DWORD, /
                                   dAttr:DWORD, hTemp:HANDLE
   SetObject xsi
 

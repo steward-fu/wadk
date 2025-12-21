@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version C.01.00, 02/05/2019 09:11
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: 'C:\ObjAsm\Projects\32\h2IncX\Header_10.0.17763.0\Vfw.h', last modified: 22/10/2018 21:35
+;Source file: 'C:/ObjAsm/Projects/32/h2IncX/Header_10.0.17763.0/Vfw.h', last modified: 22/10/2018 21:35
 ;Creation parameters: 
 
 ifndef _INC_VFW

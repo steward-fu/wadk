@@ -47,16 +47,16 @@ Method Application.Init, uses xsi
   mov dWndPosX, $32($invoke(CenterForm, dWndWidth,  $32($invoke(GetSystemMetrics, SM_CXSCREEN))))
   mov dWndPosY, $32($invoke(CenterForm, dWndHeight, $32($invoke(GetSystemMetrics, SM_CYSCREEN))))
 
-  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, \
-                         offset szApplication, offset szAppTitle, \
-                         WS_CAPTION or WS_SYSMENU or WS_MINIMIZEBOX, \
-                         dWndPosX, dWndPosY, dWndWidth, dWndHeight, \
+  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, /
+                         offset szApplication, offset szAppTitle, /
+                         WS_CAPTION or WS_SYSMENU or WS_MINIMIZEBOX, /
+                         dWndPosX, dWndPosY, dWndWidth, dWndHeight, /
                          NULL, NULL, hInstance, pSelf
   invoke GetClientRect, [xsi].hWnd, addr CRect
 
-  %invoke CreateWindowEx, 0, offset cTextViewClass&TARGET_STR_AFFIX, offset szMarkupText, \
-                          WS_CHILD or WS_VISIBLE, \
-                          CRect.left, CRect.top, CRect.right, CRect.bottom, \
+  %invoke CreateWindowEx, 0, offset cTextViewClass&TARGET_STR_AFFIX, offset szMarkupText, /
+                          WS_CHILD or WS_VISIBLE, /
+                          CRect.left, CRect.top, CRect.right, CRect.bottom, /
                           [xsi].hWnd, VIEW_CTRL_ID, hInstance, 0
   .if xax != 0
     invoke SendMessage, xax, WM_GETOBJECTINSTANCE, 0, 0
@@ -91,7 +91,7 @@ Method Application.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
     xor eax, eax
 
   .elseif ax == IDM_HELP
-    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Help\ObjAsm_Reference_Volume-I.pdf"), \
+    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Help/ObjAsm_Reference_Volume-I.pdf"), /
                                      addr cBuffer, lengthof(cBuffer)
     invoke PdfView, [xsi].hWnd, addr cBuffer, $OfsCStr("Introduction")
     xor eax, eax
@@ -110,7 +110,7 @@ MethodEnd
 
 Method Application.OnClose, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
-  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), \
+  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), /
                      MB_YESNO or MB_ICONQUESTION
   .if eax == IDNO
     xor eax, eax
@@ -148,16 +148,16 @@ Method Application.OnNotify, uses xdi xsi, wParam:WPARAM, lParam:LPARAM
     mov xdi, lParam
     .if [xdi].NMHDR.code == TVNMC_APP_MOUSEUP
       .if [xdi].TVNM_APP.dID == APP_VISIT
-        invoke ShellExecute, [xsi].hWnd, $OfsCStr("open"), \
-                             $OfsCStr("http:/objasm.x10host.com/index.htm"), \
+        invoke ShellExecute, [xsi].hWnd, $OfsCStr("open"), /
+                             $OfsCStr("http:/objasm.x10host.com/index.htm"), /
                              NULL, NULL, SW_SHOW
       .elseif [xdi].TVNM_APP.dID == APP_EMAIL
-        invoke ShellExecute, [xsi].hWnd, $OfsCStr("open"), \
-                             $OfsCStr("mailto:objasm@gmx.net"), \
+        invoke ShellExecute, [xsi].hWnd, $OfsCStr("open"), /
+                             $OfsCStr("mailto:objasm@gmx.net"), /
                              NULL, NULL, SW_SHOW
       .elseif [xdi].TVNM_APP.dID == APP_CHECK
-        invoke MessageBox, [xsi].hWnd, $OfsCStr("No update available."), \
-                                       $OfsCStr("Information"), \
+        invoke MessageBox, [xsi].hWnd, $OfsCStr("No update available."), /
+                                       $OfsCStr("Information"), /
                                        MB_ICONINFORMATION or MB_OK
       .endif
 

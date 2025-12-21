@@ -59,8 +59,8 @@ Method HttpServerApp.Init, uses xsi
   mov dWndPosX, $32($invoke(CenterForm, dWndWidth,  $32($invoke(GetSystemMetrics, SM_CXSCREEN))))
   mov dWndPosY, $32($invoke(CenterForm, dWndHeight, $32($invoke(GetSystemMetrics, SM_CYSCREEN))))
 
-  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, \
-                         offset szHttpServerApp, offset szAppTitle, WS_OVERLAPPEDWINDOW, \
+  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, /
+                         offset szHttpServerApp, offset szAppTitle, WS_OVERLAPPEDWINDOW, /
                          dWndPosX, dWndPosY, dWndWidth, dWndHeight, NULL, NULL, hInstance, pSelf
 
   invoke ShowWindow, [xsi].hWnd, SW_SHOWNORMAL          ;Show the window
@@ -71,7 +71,7 @@ Method HttpServerApp.Init, uses xsi
   OCall [xsi].Server::HttpServer.AddURL, $OfsCStrW("http://+:8080/")  ;Current PC IP-address
 ;  OCall [xsi].Server::HttpServer.AddURL, $OfsCStrW("http://+:8080/service/")
   .if eax != NO_ERROR
-    invoke MessageBox, [xsi].hWnd, $OfsCStr("Failed to register the URL."), $OfsCStr("Error"), \
+    invoke MessageBox, [xsi].hWnd, $OfsCStr("Failed to register the URL."), $OfsCStr("Error"), /
                        MB_ICONERROR + MB_OK
   .endif
   OCall [xsi].Server::HttpServer.Run
@@ -102,7 +102,7 @@ Method HttpServerApp.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
     xor eax, eax
 
   .elseif ax == IDM_HELP
-    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Help\ObjAsm_Reference_Volume-I.pdf"), \
+    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Help/ObjAsm_Reference_Volume-I.pdf"), /
                                      addr cBuffer, lengthof(cBuffer)
     invoke PdfView, [xsi].hWnd, addr cBuffer, $OfsCStr("Introduction")
     xor eax, eax
@@ -121,7 +121,7 @@ MethodEnd
 
 Method HttpServerApp.OnClose, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
-  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), \
+  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), /
                      MB_YESNO or MB_ICONQUESTION
   .if eax == IDNO
     xor eax, eax

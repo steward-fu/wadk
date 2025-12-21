@@ -11,12 +11,12 @@
 include DebugCenter_Shared.inc
 
 %CStr szAppTitle, "&APP_TITLE"
-%CStr szAboutText,"&ABOUT_TEXT", 13, 10, \
-                  "Version &VER_PRODUCTVERSION_STR", 13, 10, \
-                  "%s", 13, 10, \
-                  "© &COPYRIGHT", 13, 10, 13, 10, \ 
-                  @CatStr(<!">, %BUILD_DATE_STR, \
-                          <  -  Build: >, %BUILD_NUMBER, <->, %ASSEMBLER, <->, \
+%CStr szAboutText,"&ABOUT_TEXT", 13, 10, /
+                  "Version &VER_PRODUCTVERSION_STR", 13, 10, /
+                  "%s", 13, 10, /
+                  "© &COPYRIGHT", 13, 10, 13, 10, / 
+                  @CatStr(<!">, %BUILD_DATE_STR, /
+                          <  -  Build: >, %BUILD_NUMBER, <->, %ASSEMBLER, <->, /
                           %TARGET_MODE_STR, <->, %BUILD_BITNESS, <!">)
 
 if TARGET_STR_TYPE eq STR_TYPE_ANSI
@@ -26,7 +26,7 @@ else
 endif
 
 ;Don't change the order of the next 3 lines
-CStr szLoadFilter,      "Debug Center files (*.rtf, *.bmp)", 0, "*.rtf", 3Bh, "*.bmp", 0, \
+CStr szLoadFilter,      "Debug Center files (*.rtf, *.bmp)", 0, "*.rtf", 3Bh, "*.bmp", 0, /
                         "Rich Text Format files (*.rtf)", 0, "*.rtf"
 CStr szBmpFilter,       "Bitmap files (*.bmp)", 0, "*.bmp", 0
 CStr szRtfFilter,       "Rich Text Format files (*.rtf)", 0, "*.rtf", 0
@@ -47,12 +47,12 @@ CStr szOAPath,          "OBJASM_PATH"
 
 CStr szCalcClass,       "SciCalc"
 CStr szEditClass,       "Edit"
-CStr szCalcPath,        "\Calc.exe"
+CStr szCalcPath,        "/Calc.exe"
 
 <<<<<<< HEAD
-CStr szHelpPath,        "\Help\ObjAsm.pdf"
+CStr szHelpPath,        "/Help/ObjAsm.pdf"
 =======
-CStr szHelpPath,        "\Help\ObjAsm_Reference_Volume-I.pdf"
+CStr szHelpPath,        "/Help/ObjAsm_Reference_Volume-I.pdf"
 >>>>>>> 8d2d38cd8bdb1efa33cde2e2c978d5419f2baa29
 
 CStr szState,           "State"
@@ -63,7 +63,7 @@ CStr szBottomPos,       "Bottom"
 CStr szDirectory,       "Directory"
 CStr szVersion,         "Version"
 CStr szPath,            "Path"
-CStr szDefDirectory,    "C:\"
+CStr szDefDirectory,    "C:/"
 CStr szLanguage,        "Language"
 CStr szTxtZoom,         "TxtZoom"
 CStr szBmpZoom,         "BmpZoom"

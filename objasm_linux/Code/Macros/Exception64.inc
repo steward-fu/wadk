@@ -2,7 +2,7 @@
 ; Title:      Exception64.inc
 ; Author:     G. Friedrich
 ; Version:    C.1.1
-; Purpose:    ObjAsm 64 bit Exception Handling. See ...Code\ObjMem\64\EHandler.asm
+; Purpose:    ObjAsm 64 bit Exception Handling. See ...Code/ObjMem/64/EHandler.asm
 ; Notes:      Version C.1.1, March 2021
 ;               - .endc replaced by .endcatch and .endfy by .endfinally (HSE)
 ; Notes:      Version 1.0.0, October 2017

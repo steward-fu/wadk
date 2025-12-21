@@ -76,8 +76,8 @@ Method OcxContainerDemo.Init, uses xsi
   invoke CenterForm, dWndHeight, eax
   mov dWndPosY, eax
 
-  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, \
-                         offset szOcxContainerDemoApp, offset szAppTitle, WS_OVERLAPPEDWINDOW, \
+  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, /
+                         offset szOcxContainerDemoApp, offset szAppTitle, WS_OVERLAPPEDWINDOW, /
                          dWndPosX, dWndPosY, dWndWidth, dWndHeight, NULL, NULL, hInstance, pSelf
 
   mov [xsi].pContainer, $New(OcxContainer)
@@ -101,17 +101,17 @@ Method OcxContainerDemo.CreateCtrl, uses xbx xsi
   OCall [xsi].pContainer::OcxContainer.CreateClientSite
   .if xax != NULL
     mov pClientSite, xax
-    OCall [xsi].pContainer::OcxContainer.CreateControl, offset CLSID_Control, \
+    OCall [xsi].pContainer::OcxContainer.CreateControl, offset CLSID_Control, /
                                                         CLSCTX_INPROC_SERVER, xax
     .if eax == OBJ_OK
       lea xax, [xsi].pIControl
       mov xcx, pClientSite
-      ICall [xcx].$Obj(OcxClientSite).pIUnknown::IUnknown.QueryInterface, \
+      ICall [xcx].$Obj(OcxClientSite).pIUnknown::IUnknown.QueryInterface, /
                                                                     offset IID_IShockwaveFlash, xax
       .if SUCCEEDED(eax)
         lea xbx, cBuffer
         invoke GetModuleFileNameW, 0, xbx, lengthof cBuffer
-        invoke StrRScanW, xbx, "\"
+        invoke StrRScanW, xbx, "/"
         FillStringW CHRW ptr [xax + sizeof CHRW], <Test.swf>
         ICall [xsi].pIControl::IShockwaveFlash.LoadMovie, 0, xbx
         ICall [xsi].pIControl::IShockwaveFlash.Play
@@ -151,7 +151,7 @@ Method OcxContainerDemo.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
     xor eax, eax
 
   .elseif ax == IDM_HELP
-    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Help\ObjAsm_Reference_Volume-I.pdf"), \
+    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Help/ObjAsm_Reference_Volume-I.pdf"), /
                                      addr cBuffer, lengthof(cBuffer)
     invoke PdfView, [xsi].hWnd, addr cBuffer, NULL
     xor eax, eax
@@ -170,7 +170,7 @@ MethodEnd
 
 Method OcxContainerDemo.OnClose, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
-  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), \
+  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), /
                      MB_YESNO or MB_ICONQUESTION
   .if eax == IDNO
     xor eax, eax

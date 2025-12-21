@@ -81,7 +81,7 @@ MethodEnd
 ;             Arg2: Parent window HANDLE.
 ; Return:     Nothing.
 
-Method DialogPassword.Init,, pOwner:POINTER, hParent:HWND, \
+Method DialogPassword.Init,, pOwner:POINTER, hParent:HWND, /
                              pTitle:PSTRING, pPassword:PSTRING, dMaxTries:DWORD
   SetObject xcx
   m2m [xcx].pTitle, pTitle, xax

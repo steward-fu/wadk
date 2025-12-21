@@ -98,8 +98,8 @@ Method NetComClient.Init, uses xsi
   sub dWndPosX, 300
   mov dWndPosY, $32($invoke(CenterForm, dWndHeight, $32($invoke(GetSystemMetrics, SM_CYSCREEN))))
 
-  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, \
-                         offset szNetComClient, offset szAppTitle, WS_OVERLAPPEDWINDOW, \
+  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, /
+                         offset szNetComClient, offset szAppTitle, WS_OVERLAPPEDWINDOW, /
                          dWndPosX, dWndPosY, dWndWidth, dWndHeight, NULL, NULL, hInstance, xsi
 
   invoke ShowWindow, [xsi].hWnd, SW_SHOWNORMAL          ;Show the window
@@ -118,9 +118,9 @@ Method NetComClient.Init, uses xsi
   ;Set application caption
   mov dLength, lengthof(cAddrStr)
   lea xcx, [xsi].Client
-  invoke GetNameInfo, addr [xcx].$Obj(NetComEngine).LocalHostAddr, sizeof NETCOMADDR, \
-                      addr cAddrStr, lengthof cAddrStr, \
-                      NULL, 0, \
+  invoke GetNameInfo, addr [xcx].$Obj(NetComEngine).LocalHostAddr, sizeof NETCOMADDR, /
+                      addr cAddrStr, lengthof cAddrStr, /
+                      NULL, 0, /
                       NI_NUMERICHOST
   invoke StrECopy, addr cCaption, offset szAppTitle
   invoke StrECopy, xax, $OfsCStr(" - ")
@@ -165,7 +165,7 @@ Method NetComClient.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
     xor eax, eax
 
   .elseif ax == IDM_HELP
-    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Help\ObjAsm_Reference_Volume-I.pdf"), \
+    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Help/ObjAsm_Reference_Volume-I.pdf"), /
                                      addr cBuffer, lengthof(cBuffer)
     invoke PdfView, [xsi].hWnd, addr cBuffer, $OfsCStr("Introduction")
     xor eax, eax
@@ -184,7 +184,7 @@ MethodEnd
 
 Method NetComClient.OnClose, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
-  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), \
+  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), /
                      MB_YESNO or MB_ICONQUESTION
   .if eax == IDNO
     xor eax, eax
@@ -310,7 +310,7 @@ Method SendDlg.CtlsGet, uses xsi
   mov Hints.ai_next, NULL
   invoke GetAddrInfo, addr cAddress, addr cServiceName, addr Hints, addr pResult
   mov xax, pResult
-  invoke MemClone, addr [xsi].ServerAddr, [xax].ADDRINFOT.ai_addr, \
+  invoke MemClone, addr [xsi].ServerAddr, [xax].ADDRINFOT.ai_addr, /
                    DWORD ptr [xax].ADDRINFOT.ai_addrlen
   invoke FreeAddrInfo, pResult
   invoke StrDispose, $ObjTmpl(NetComClientProtocol).pServiceName
@@ -332,9 +332,9 @@ Method SendDlg.CtlsSet, uses xsi
   local cAddrStr[100]:CHR
 
   SetObject xsi
-  invoke GetNameInfo, addr [xsi].ServerAddr, sizeof NETCOMADDR, \
-                      addr cAddrStr, lengthof cAddrStr, \
-                      NULL, 0, \
+  invoke GetNameInfo, addr [xsi].ServerAddr, sizeof NETCOMADDR, /
+                      addr cAddrStr, lengthof cAddrStr, /
+                      NULL, 0, /
                       NI_NUMERICHOST
   invoke SetDlgItemText, [xsi].hWnd, IDC_EDT_ADDRESS, addr cAddrStr
   invoke SetDlgItemText, [xsi].hWnd, IDC_EDT_PORT, $ObjTmpl(NetComClientProtocol).pServiceName
@@ -405,8 +405,8 @@ Method SendDlg.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
       mov ebx, [xsi].dConnections
       test ebx, ebx
       .while !ZERO?
-        OCall [xdi].$Obj(NetComClient).Client::NetComEngine.ConnectTo, \
-                                                          offset $ObjTmpl(NetComClientProtocol), \
+        OCall [xdi].$Obj(NetComClient).Client::NetComEngine.ConnectTo, /
+                                                          offset $ObjTmpl(NetComClientProtocol), /
                                                           addr [xsi].ServerAddr
         OCall [xsi].Connections::Collection.Insert, xax
         dec ebx

@@ -129,8 +129,8 @@ Method NetComServerProtocol.OnAccept, uses xbx xsi, pConnection:$ObjPtr(NetComCo
     DbgText "RemoteHost is OK; connection granded..."
     
     mov dLength, lengthof(cAddrStr)
-    invoke WSAAddressToString, addr [xbx].$Obj(NetComConnection).LocalHostAddr, sizeof(sockaddr_in), \
-                               NULL, \
+    invoke WSAAddressToString, addr [xbx].$Obj(NetComConnection).LocalHostAddr, sizeof(sockaddr_in), /
+                               NULL, /
                                addr cAddrStr, addr dLength
     DbgStr cAddrStr
     mov eax, PROT_CMD_ACCEPT_CONNECTION
@@ -161,7 +161,7 @@ MethodEnd
 ;             Positive INT32     - This many bytes were cleanly processed and should be removed
 ;                                  from the IOJob buffers.
 
-Method NetComServerProtocol.ProcessData,, pConnection:$ObjPtr(NetComConnection), \
+Method NetComServerProtocol.ProcessData,, pConnection:$ObjPtr(NetComConnection), /
                                           dDelimiterIndex:dword
   DbgHex pConnection, "NetComServerProtocol.ProcessData", "&PROTOCOL_WND_NAME"
   mov eax, dDelimiterIndex

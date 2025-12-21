@@ -10,12 +10,12 @@ include OA_Tools_Shared.inc
 
 %CStr szAppTitle,             "&APP_TITLE"
 %CStr szAboutVersion,         "&VER_PRODUCTVERSION_STR"
-%CStr szAboutCopyright,       "© &COPYRIGHT ", 10, 13, \
-                               @CatStr(<!">, %BUILD_DATE_STR, \
-                               <  -  Build: >, %BUILD_NUMBER, <->, %ASSEMBLER, <->, \
+%CStr szAboutCopyright,       "© &COPYRIGHT ", 10, 13, /
+                               @CatStr(<!">, %BUILD_DATE_STR, /
+                               <  -  Build: >, %BUILD_NUMBER, <->, %ASSEMBLER, <->, /
                                %TARGET_MODE_STR, <->, %BUILD_BITNESS, <!">)
                               
-CStr szRegKey,                "Software\OA_Tools"
+CStr szRegKey,                "Software/OA_Tools"
 
 if TARGET_STR_TYPE eq STR_TYPE_ANSI
   CStr szRichEdit20,          "RichEdit20A"

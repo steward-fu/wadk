@@ -173,7 +173,7 @@ Method ChartSetup.OnInitDialog, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
     OCall [xsi].TabGeneral::ChartTabGeneral.Init, xbx, [xsi].pOwner
     OCall [xsi].TabGeneral::ChartTabGeneral.Show
     invoke ShowWindow, [xsi].TabGeneral.hWnd, SW_HIDE
-    OCall [xsi].TabControl::TabCtrl.Insert, [xsi].dTabCount, [xsi].TabGeneral.hWnd, \
+    OCall [xsi].TabControl::TabCtrl.Insert, [xsi].dTabCount, [xsi].TabGeneral.hWnd, /
                                             $OfsCStr("General"), 0
     .if [xsi].dSelectedTabID == CHT_ID_NONE || [xsi].dSelectedTabID == CHT_ID_PLOT
       mov [xsi].dSelTabIndex, eax
@@ -188,7 +188,7 @@ Method ChartSetup.OnInitDialog, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
     OCall [xsi].TabScaleX::ChartTabScale.Init, xbx, addr [xdi].$Obj(ChartWnd).ScaleX
     OCall [xsi].TabScaleX::ChartTabScale.Show
     invoke ShowWindow, [xsi].TabScaleX.hWnd, SW_HIDE
-    OCall [xsi].TabControl::TabCtrl.Insert, [xsi].dTabCount, [xsi].TabScaleX.hWnd, \
+    OCall [xsi].TabControl::TabCtrl.Insert, [xsi].dTabCount, [xsi].TabScaleX.hWnd, /
                                             $OfsCStr("X"), 1
     .if [xsi].dSelectedTabID == CHT_ID_SCALEX
       mov [xsi].dSelTabIndex, eax
@@ -203,7 +203,7 @@ Method ChartSetup.OnInitDialog, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
     OCall [xsi].TabScaleY1::ChartTabScale.Init, xbx, addr [xdi].$Obj(ChartWnd).ScaleY1
     OCall [xsi].TabScaleY1::ChartTabScale.Show
     invoke ShowWindow, [xsi].TabScaleY1.hWnd, SW_HIDE
-    OCall [xsi].TabControl::TabCtrl.Insert, [xsi].dTabCount, [xsi].TabScaleY1.hWnd, \
+    OCall [xsi].TabControl::TabCtrl.Insert, [xsi].dTabCount, [xsi].TabScaleY1.hWnd, /
                                             $OfsCStr("Y1"), 2
     .if [xsi].dSelectedTabID == CHT_ID_SCALEY1
       mov [xsi].dSelTabIndex, eax
@@ -218,7 +218,7 @@ Method ChartSetup.OnInitDialog, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
     OCall [xsi].TabScaleY2::ChartTabScale.Init, xbx, addr [xdi].$Obj(ChartWnd).ScaleY2
     OCall [xsi].TabScaleY2::ChartTabScale.Show
     invoke ShowWindow, [xsi].TabScaleY2.hWnd, SW_HIDE
-    OCall [xsi].TabControl::TabCtrl.Insert, [xsi].dTabCount, [xsi].TabScaleY2.hWnd, \
+    OCall [xsi].TabControl::TabCtrl.Insert, [xsi].dTabCount, [xsi].TabScaleY2.hWnd, /
                                             $OfsCStr("Y2"), 3
     .if [xsi].dSelectedTabID == CHT_ID_SCALEY2
       mov [xsi].dSelTabIndex, eax
@@ -246,7 +246,7 @@ Method ChartSetup.OnInitDialog, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
     lea edx, [ebx + 1]
     invoke dword2dec, pBuffer, edx
     mov xax, pSeriesTab
-    OCall [xsi].TabControl::TabCtrl.Insert, [xsi].dTabCount, [xax].$Obj(ChartTabSeries).hWnd, \
+    OCall [xsi].TabControl::TabCtrl.Insert, [xsi].dTabCount, [xax].$Obj(ChartTabSeries).hWnd, /
                                             pBuffer, [xax].$Obj(ChartTabSeries).dIconIndex
     .if [xsi].dSelectedTabID == ebx
       mov [xsi].dSelTabIndex, eax

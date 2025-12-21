@@ -167,7 +167,7 @@ Method IConnectionPointContainer.FindConnectionPoint,, pReqIID:POINTER, ppConPnt
     .else
       DbgGUID pReqIID
       mov xcx, pSelf
-      OCall [xcx].$Obj(IConnectionPointContainer).ConnectionPoints::Collection.FirstThatNot, \
+      OCall [xcx].$Obj(IConnectionPointContainer).ConnectionPoints::Collection.FirstThatNot, /
                                             offset ConnectionPoint_CheckIID, pReqIID, NULL
       .if eax == NULL                                   ;Not found!
         DbgText "ConnectionPoint not supported", "IConnectionPointContainer"
@@ -287,7 +287,7 @@ Method IEnumConnectionPoints.Clone, uses xsi, pEnumInt:POINTER
   OCall xax::EnumConnectionPoints.Init, [xsi].pOwner
   mov xcx, [xsi].pOwner                                 ;xcx -> original EnumConnectionPoints
   mov xax, pEnuConPnts
-  m2m [xax].$Obj(EnumConnectionPoints).dCurrentIndex, \
+  m2m [xax].$Obj(EnumConnectionPoints).dCurrentIndex, /
       [xcx].$Obj(EnumConnectionPoints).dCurrentIndex, edx
   OCall xax::EnumConnectionPoints.GetInterface, offset IID_IEnumConnectionPoints, pEnumInt
 MethodEnd

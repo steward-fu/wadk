@@ -70,9 +70,9 @@ WSF_DEBUG             equ   BIT00
 ;           New IMyInterface
 ;           OCall [xbx].$Obj(Component).pInterfaces::Collection.Insert, xax
 ;           OCall xax::IMyInterface.Init, xbx, $OfsCStrW("5"), offset IID_IMyInterface
-;           invoke PostThreadMessage, [xsi].WSH.dThreadID, \
-;                                     SHM_ADDCOMPONENT, \
-;                                     $OfsCStrW("MyInterface"), \
+;           invoke PostThreadMessage, [xsi].WSH.dThreadID, /
+;                                     SHM_ADDCOMPONENT, /
+;                                     $OfsCStrW("MyInterface"), /
 ;                                     xbx
 ;
 ;       The created component will be managed automatically so you don't need to worry about it.
@@ -267,7 +267,7 @@ MatchInterfaceName proc pItem:PSCRIPTSIDE_ITEMINFO, pName:PSTRINGW, xArg:XWORD
   ret
 MatchInterfaceName endp
 
-Method IActiveScriptSite.GetItemInfo, uses xsi, pItemName:POINTER, dReturnMask:DWORD, \
+Method IActiveScriptSite.GetItemInfo, uses xsi, pItemName:POINTER, dReturnMask:DWORD, /
                                                 ppIUnknown:POINTER, ppITypeInfo:POINTER
   DbgText "IActiveScriptSite.GetItemInfo"
   SetObject xsi
@@ -279,7 +279,7 @@ Method IActiveScriptSite.GetItemInfo, uses xsi, pItemName:POINTER, dReturnMask:D
       ;Give the engine a pointer to our IUnknown object.
       ;Engine will call its QueryInterface to search for an IDispatch Interface.
       DbgText "SCRIPTINFO_IUNKNOWN"
-      OCall [xax].SCRIPTSIDE_ITEMINFO.pComponent::Component.GetInterface, \
+      OCall [xax].SCRIPTSIDE_ITEMINFO.pComponent::Component.GetInterface, /
                                                             offset IID_IUnknown, ppIUnknown
       xor eax, eax                                      ;S_OK
 
@@ -356,9 +356,9 @@ Method IActiveScriptSite.OnScriptError,, pIActiveScriptError:POINTER
   DbgText "IActiveScriptSite.OnScriptError"
 
   ;Call GetSourcePosition to retrieve the line # where the error occurred in the script
-  ICall pIActiveScriptError::IActiveScriptError.GetSourcePosition, \
-                                              addr dContextCookie, \
-                                              addr dLineNumber, \
+  ICall pIActiveScriptError::IActiveScriptError.GetSourcePosition, /
+                                              addr dContextCookie, /
+                                              addr dLineNumber, /
                                               addr dCharPosition
   ;Call GetSourceLineText to retrieve the line in the script that has an error.
   m2z pDesc
@@ -368,8 +368,8 @@ Method IActiveScriptSite.OnScriptError,, pIActiveScriptError:POINTER
   ICall pIActiveScriptError::IActiveScriptError.GetExceptionInfo, addr ExceptionInfo
   .if ExceptionInfo.scode != 80004005h
     ;Format the message we'll display to the user
-    invoke wsprintfW, addr wOutput, $OfsCStrW($Esc("%s\nLine %u: %s\n%s")), \
-                      ExceptionInfo.bstrSource, \
+    invoke wsprintfW, addr wOutput, $OfsCStrW($Esc("%s/nLine %u: %s/n%s")), /
+                      ExceptionInfo.bstrSource, /
                       dLineNumber, ExceptionInfo.bstrDescription, pDesc
 
     if TARGET_STR_TYPE eq STR_TYPE_ANSI
@@ -494,18 +494,18 @@ MethodEnd
 ;             Arg4: The document context corresponding to this character-position range.
 ; Return:     eax = HRESULT.
 
-Method IActiveScriptSiteDebug.GetDocumentContextFromPosition, uses xsi, dSourceContext:DWORD, \
+Method IActiveScriptSiteDebug.GetDocumentContextFromPosition, uses xsi, dSourceContext:DWORD, /
                             dCharacterOffset:DWORD, dNumChars:DWORD, ppIDebugDocumentContext:POINTER
   local dStartPos:DWORD
 
   DbgText "IActiveScriptSiteDebug.GetDocumentContextFromPosition"
   SetObject xsi
   .if [xsi].pIDebugDocHelper != NULL
-    ICall [xsi].pIDebugDocHelper::IDebugDocumentHelper.GetScriptBlockInfo, \
+    ICall [xsi].pIDebugDocHelper::IDebugDocumentHelper.GetScriptBlockInfo, /
                                     dSourceContext, NULL, addr dStartPos, NULL
     mov edx, dStartPos
     add edx, dCharacterOffset
-    ICall [xsi].pIDebugDocHelper::IDebugDocumentHelper.CreateDebugDocumentContext, \
+    ICall [xsi].pIDebugDocHelper::IDebugDocumentHelper.CreateDebugDocumentContext, /
                                     edx, dNumChars, ppIDebugDocumentContext
   .else
     mov eax, E_NOTIMPL
@@ -562,7 +562,7 @@ MethodEnd
 ;                   decides to continue without debugging.
 ; Return:     eax = HRESULT.
 
-Method IActiveScriptSiteDebug.OnScriptErrorDebug,, pIActiveScriptErrorDebug:POINTER, \
+Method IActiveScriptSiteDebug.OnScriptErrorDebug,, pIActiveScriptErrorDebug:POINTER, /
                  pEnterDebugger:POINTER, pCallOnScriptErrorWhenContinuing:POINTER
   DbgText "IActiveScriptSiteDebug.OnScriptErrorDebug"
   .if pEnterDebugger != NULL
@@ -701,7 +701,7 @@ Method ScriptHost.Run, uses xbx xdi xsi
 
   m2z [xsi].pIActiveScriptSiteDebug
   .ifBitSet [xsi].dFlags, WSF_DEBUG
-    invoke CoCreateInstance, offset CLSID_ProcessDebugManager, NULL, CLSCTX_INPROC_SERVER, \
+    invoke CoCreateInstance, offset CLSID_ProcessDebugManager, NULL, CLSCTX_INPROC_SERVER, /
                              offset IID_IProcessDebugManager, addr [xsi].pIProcessDebugManager
 
     .if SUCCEEDED(eax)
@@ -710,30 +710,30 @@ Method ScriptHost.Run, uses xbx xdi xsi
       OCall xdi::IActiveScriptSiteDebug.Init, xbx
       OCall [xbx].$Obj(Component).Interfaces::Collection.Insert, xdi
 
-      ICall [xsi].pIProcessDebugManager::IProcessDebugManager.CreateApplication, \
+      ICall [xsi].pIProcessDebugManager::IProcessDebugManager.CreateApplication, /
                                           addr [xdi].$Obj(IActiveScriptSiteDebug).pIDebugApplication
-      ICall [xdi].$Obj(IActiveScriptSiteDebug).pIDebugApplication::IDebugApplication.SetName, \
+      ICall [xdi].$Obj(IActiveScriptSiteDebug).pIDebugApplication::IDebugApplication.SetName, /
                                           $OfsCStrW("Scripting Application")
-      ICall [xsi].pIProcessDebugManager::IProcessDebugManager.AddApplication, \
-                                          [xdi].$Obj(IActiveScriptSiteDebug).pIDebugApplication, \
+      ICall [xsi].pIProcessDebugManager::IProcessDebugManager.AddApplication, /
+                                          [xdi].$Obj(IActiveScriptSiteDebug).pIDebugApplication, /
                                           addr [xdi].$Obj(IActiveScriptSiteDebug).dCookie
-      ICall [xsi].pIProcessDebugManager::IProcessDebugManager.CreateDebugDocumentHelper, \
-                                          NULL, \
+      ICall [xsi].pIProcessDebugManager::IProcessDebugManager.CreateDebugDocumentHelper, /
+                                          NULL, /
                                           addr [xdi].$Obj(IActiveScriptSiteDebug).pIDebugDocHelper
-      ICall [xdi].$Obj(IActiveScriptSiteDebug).pIDebugDocHelper::IDebugDocumentHelper.Init, \
-                                          [xdi].$Obj(IActiveScriptSiteDebug).pIDebugApplication, \
-                                          $OfsCStrW("Doc Name"), \
-                                          $OfsCStrW("Long Doc Name"), \
+      ICall [xdi].$Obj(IActiveScriptSiteDebug).pIDebugDocHelper::IDebugDocumentHelper.Init, /
+                                          [xdi].$Obj(IActiveScriptSiteDebug).pIDebugApplication, /
+                                          $OfsCStrW("Doc Name"), /
+                                          $OfsCStrW("Long Doc Name"), /
                                           TEXT_DOC_ATTR_READONLY
       ICall [xdi].$Obj(IActiveScriptSiteDebug).pIDebugDocHelper::IDebugDocumentHelper.Attach, NULL
     .endif
   .endif
 
-  invoke CoCreateInstance, [xsi].pCLSID_Engine, NULL, \ ;Create an instance of ActiveScript
-              CLSCTX_ALL, offset IID_IActiveScript, \   ;  and get -> ActiveScript Interface
+  invoke CoCreateInstance, [xsi].pCLSID_Engine, NULL, / ;Create an instance of ActiveScript
+              CLSCTX_ALL, offset IID_IActiveScript, /   ;  and get -> ActiveScript Interface
               addr [xsi].pIActiveScript                 ;  in pIActiveScript
   .if SUCCEEDED(eax)                                    ;If creation was successful
-    ICall [xsi].pIActiveScript::IActiveScript.QueryInterface, \
+    ICall [xsi].pIActiveScript::IActiveScript.QueryInterface, /
           offset IID_IActiveScriptParse, addr [xsi].pIActiveScriptParse
     .if SUCCEEDED(eax)                                  ;If creation was successful
       ICall [xsi].pIActiveScriptParse::IActiveScriptParse.InitNew
@@ -773,7 +773,7 @@ Method ScriptHost.Run, uses xbx xdi xsi
     mov xdi, [xsi].pIActiveScriptSiteDebug
     ICall [xdi].$Obj(IActiveScriptSiteDebug).pIDebugDocHelper::IDebugDocumentHelper.Detach
     SAFE_RELEASE_AND_NULLIFY [xdi].$Obj(IActiveScriptSiteDebug).pIDebugDocHelper
-    ICall [xsi].pIProcessDebugManager::IProcessDebugManager.RemoveApplication, \
+    ICall [xsi].pIProcessDebugManager::IProcessDebugManager.RemoveApplication, /
                                        [xdi].$Obj(IActiveScriptSiteDebug).dCookie
     SAFE_RELEASE_AND_NULLIFY [xdi].$Obj(IActiveScriptSiteDebug).pIDebugApplication
   .endif
@@ -805,7 +805,7 @@ Method ScriptHost.OnAddComponent, uses xbx xsi, pName:PSTRINGW, pComponent:LPARA
   lea xbx, [xax].SCRIPTSIDE_ITEMINFO.pIUnknown
   OCall pComponent::Component.GetInterface, offset IID_IUnknown, xbx
 
-  ICall [xsi].pIActiveScript::IActiveScript.AddNamedItem, \
+  ICall [xsi].pIActiveScript::IActiveScript.AddNamedItem, /
                                             pName, SCRIPTITEM_ISVISIBLE; or SCRIPTITEM_NOCODE
 MethodEnd
 
@@ -824,18 +824,18 @@ Method ScriptHost.OnExecute, uses xbx xdi xsi, pScript:PSTRINGW, lParam:LPARAM
 
   mov xdi, [xsi].pIActiveScriptSiteDebug
   .if xdi != NULL
-    ICall [xdi].$Obj(IActiveScriptSiteDebug).pIDebugDocHelper::IDebugDocumentHelper.AddDBCSText, \
+    ICall [xdi].$Obj(IActiveScriptSiteDebug).pIDebugDocHelper::IDebugDocumentHelper.AddDBCSText, /
                                                                                     pScript
     invoke StrLengthW, pScript
     lea xbx, [xdi].$Obj(IActiveScriptSiteDebug).pSourceContext
-    ICall [xdi].$Obj(IActiveScriptSiteDebug).pIDebugDocHelper::IDebugDocumentHelper.DefineScriptBlock, \
+    ICall [xdi].$Obj(IActiveScriptSiteDebug).pIDebugDocHelper::IDebugDocumentHelper.DefineScriptBlock, /
                                     0, eax, [xsi].pIActiveScript, FALSE, xbx
   .endif
 
   ICall [xsi].pIActiveScript::IActiveScript.SetScriptState, SCRIPTSTATE_CONNECTED
   ;Script is loaded and connected for sinking events.
 
-  ICall [xsi].pIActiveScriptParse::IActiveScriptParse.ParseScriptText, \
+  ICall [xsi].pIActiveScriptParse::IActiveScriptParse.ParseScriptText, /
                                    pScript, NULL, NULL, NULL, 0, 0, 0, NULL, addr ExcepInfo
   .if FAILED(eax)
     DbgWarning "IActiveScriptParse.ParseScriptText returned an error"

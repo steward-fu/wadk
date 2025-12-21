@@ -85,7 +85,7 @@ MethodEnd
 ;                   Positive INT32     - This many bytes are part of the complete packet.
 ;                   Zero               - We need more data.
 
-Method NetComProtocol.IsDataComplete?,, pConnection:$ObjPtr(NetComConnection), \
+Method NetComProtocol.IsDataComplete?,, pConnection:$ObjPtr(NetComConnection), /
                                         pIOSockJob:PIO_SOCKJOB
 ;  DbgHex pConnection, "NetComProtocol.IsDataComplete?", "&PROTOCOL_WND_NAME"
   xor eax, eax
@@ -157,7 +157,7 @@ MethodEnd
 ;             Arg3: Error code.
 ; Return:     eax = Command.
 
-Method NetComProtocol.OnError,, pConnection:$ObjPtr(NetComConnection), pIOSockJob:PIO_SOCKJOB, \
+Method NetComProtocol.OnError,, pConnection:$ObjPtr(NetComConnection), pIOSockJob:PIO_SOCKJOB, /
                                 dError:DWORD
   DbgHex pConnection, "NetComProtocol.OnError", "&PROTOCOL_WND_NAME"
   DbgDec dError,, "&PROTOCOL_WND_NAME"

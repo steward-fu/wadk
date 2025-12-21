@@ -23,7 +23,7 @@ BUILD_DATE_STR                textequ   <Tue 07/02/2024>
 BUILD_BITNESS                 equ       64
 BUILD_MODE                    equ       RLS
 
-;Res\MainDlgDlg.rc
+;Res/MainDlgDlg.rc
 IDD_DLG_MAIN                  equ       1000
 IDC_STC_MESSAGE               equ       1001
 

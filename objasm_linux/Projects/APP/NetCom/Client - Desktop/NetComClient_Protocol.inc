@@ -101,7 +101,7 @@ MethodEnd
 ;             Arg3: Error code.
 ; Return:     eax = Command.
 
-Method NetComClientProtocol.OnError, uses xbx xsi, pConnection:$ObjPtr(NetComConnection), \
+Method NetComClientProtocol.OnError, uses xbx xsi, pConnection:$ObjPtr(NetComConnection), /
                                       pIOSockJob:PIO_SOCKJOB, dError:DWORD
   DbgHex pConnection, "NetComClientProtocol.OnError", "&PROTOCOL_WND_NAME"
   SetObject xsi

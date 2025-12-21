@@ -12,12 +12,12 @@ include ML_GUI_Shared.inc
 
 CStr szIcoName,   "ICON_APP"
 %CStr szAppTitle, "&APP_TITLE"
-%CStr szAboutText,"&ABOUT_TEXT", 13, 10, \
-                  "Version &VER_PRODUCTVERSION_STR", 13, 10, \
-                  "Designed with ObjAsm", 13, 10, \
-                  "© &COPYRIGHT", 13, 10, 13, 10, \ 
-                  @CatStr(<!">, %BUILD_DATE_STR, \
-                          <  -  Build: >, %BUILD_NUMBER, <->, %ASSEMBLER, <->, \
+%CStr szAboutText,"&ABOUT_TEXT", 13, 10, /
+                  "Version &VER_PRODUCTVERSION_STR", 13, 10, /
+                  "Designed with ObjAsm", 13, 10, /
+                  "© &COPYRIGHT", 13, 10, 13, 10, / 
+                  @CatStr(<!">, %BUILD_DATE_STR, /
+                          <  -  Build: >, %BUILD_NUMBER, <->, %ASSEMBLER, <->, /
                           %TARGET_MODE_STR, <->, %TARGET_BITNESS, <!">)
 
 CStr szTranslationFile, "Translation.stm"
@@ -25,7 +25,7 @@ CStr szSrcLanguageCode, "en"
 
 
 .const
-SpinnerList0 \
+SpinnerList0 /
 POINTER $OfsTStr("SPINNER0000")
 POINTER $OfsTStr("SPINNER0001")
 POINTER $OfsTStr("SPINNER0002")

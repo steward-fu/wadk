@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.01, 29/10/2018 17:30
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\winreg.h', last modified: 19/04/2018 09:43
+;Source file: '/ObjAsm/Projects/h2IncX/header/winreg.h', last modified: 19/04/2018 09:43
 ;Creation parameters: 
 
 ifndef _WINREG_

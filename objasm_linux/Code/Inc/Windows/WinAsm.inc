@@ -56,7 +56,7 @@
 ;          INT_PTR typedef QWORD                            ??AND_001 = 1
 ;          …                                              endif
 ;        else                                           else
-;          INT_PTR typedef _W64               ---\           ??AND_001 = 1
+;          INT_PTR typedef _W64               ---/           ??AND_001 = 1
 ;          …                                  ---/      endif
 ;        endif
 ;      endif                                            if ??AND_001 eq 1

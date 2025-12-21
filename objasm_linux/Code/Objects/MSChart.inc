@@ -19,11 +19,11 @@
 ;http://msdn.microsoft.com/en-us/library/ms692780(VS.85).aspx     COM ActiveX container
 ;http://www.developersdex.com/vb/message.asp?p=640&r=6546867      Bug report
 ;http://msdn.microsoft.com/de-de/library/bb979332.aspx
-;C:\WINDOWS\HELP\MSCHRT98.chm                                     Help file
+;C:/WINDOWS/HELP/MSCHRT98.chm                                     Help file
 ;http://msdn.microsoft.com/en-us/vbrun/ms788708.aspx              MS support commitment for Win7
 ;http://www.microsoft.com/downloads/details.aspx?familyid=CB824E35-0403-45C4-9E41-459F0EB89E36&displaylang=en
 ;http://support.microsoft.com/kb/194784                           Controls shipped with VB6.0
-;regsvr32 c:\windows\system32\mschrt20.ocx
+;regsvr32 c:/windows/system32/mschrt20.ocx
 
 ;Office 2007 => {00024502-0000-0000-C000-000000000046}
 
@@ -212,7 +212,7 @@ Method MSChart.Init, uses xbx xsi, pOwner:POINTER
       mov xcx, [xsi].pOwner
       mov xbx, [xcx].$Obj(WinPrimer).hWnd
       ;The trick here is to pass the ClassID in form of a wide string as the title parameter
-      invoke CreateWindowExW, 0, $OfsCStrW("AtlAxWin110"), addr wCLSID, \
+      invoke CreateWindowExW, 0, $OfsCStrW("AtlAxWin110"), addr wCLSID, /
                               WS_CHILD or WS_VISIBLE, 0,0,0,0, xbx, 0, hInstance, 0
       .if xax != 0
         mov [xsi].hWnd, xax
@@ -232,15 +232,15 @@ Method MSChart.Init, uses xbx xsi, pOwner:POINTER
           OCall xcx::Collection.Insert, [xsi].pIChartEvents
           OCall xax::IMSChartEvents.Init, [xsi].pChartSink, NULL, NULL
 
-          ICall [xsi].pIChart::_DMSChart.QueryInterface, offset IID_IConnectionPointContainer, \
+          ICall [xsi].pIChart::_DMSChart.QueryInterface, offset IID_IConnectionPointContainer, /
                                                          addr pICPC
-          ICall pICPC::IConnectionPointContainer.FindConnectionPoint, offset IID__DMSChartEvents,\
+          ICall pICPC::IConnectionPointContainer.FindConnectionPoint, offset IID__DMSChartEvents,/
                                                                       addr [xsi].pIEventsCP
           ICall [xsi].pIEventsCP::IConnectionPoint.Advise, [xsi].pIChartEvents, addr [xsi].dEventsCookie
           ICall pICPC::IConnectionPointContainer.Release
 
           ;We also need an IOleObject interface
-          ICall [xsi].pIChart::IUnknown.QueryInterface, offset IID_IOleObject, \
+          ICall [xsi].pIChart::IUnknown.QueryInterface, offset IID_IOleObject, /
                                                         addr [xsi].pIOleObject
           mov eax, OBJ_OK
         .else
@@ -269,7 +269,7 @@ MethodEnd
 ;             Arg2: Allowed effects.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.OLEStartDrag, , pDataObject:ptr ptr DataObject, \
+Method IMSChartEvents.OLEStartDrag, , pDataObject:ptr ptr DataObject, /
                                     pAllowedEffects:ptr SDWORD
   DbgText "IMSChartEvents.OLEStartDrag"
   xor eax, eax                                          ;S_OK
@@ -319,8 +319,8 @@ MethodEnd
 ;             Arg4: -> Shift.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.OLEDragOver, , pDataObject:ptr ptr DataObject, pEffect:ptr SDWORD, \
-                                     pButton:ptr SWORD, pShift:ptr SWORD, \
+Method IMSChartEvents.OLEDragOver, , pDataObject:ptr ptr DataObject, pEffect:ptr SDWORD, /
+                                     pButton:ptr SWORD, pShift:ptr SWORD, /
                                      pX:ptr REAL4, pY:ptr REAL4, pState:ptr SWORD
   DbgText "IMSChartEvents.OLEDragOver"
   xor eax, eax                                          ;S_OK
@@ -335,8 +335,8 @@ MethodEnd
 ;             Arg4: -> Shift.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.OLEDragDrop, , pDataObject:ptr ptr DataObject, pEffect:ptr SDWORD, \
-                                     pButton:ptr SWORD, pShift:ptr SWORD, \
+Method IMSChartEvents.OLEDragDrop, , pDataObject:ptr ptr DataObject, pEffect:ptr SDWORD, /
+                                     pButton:ptr SWORD, pShift:ptr SWORD, /
                                      pX:ptr REAL4, pY:ptr REAL4
   DbgText "IMSChartEvents.OLEDragDrop"
   xor eax, eax                                          ;S_OK
@@ -411,7 +411,7 @@ MethodEnd
 ;             Arg4: [out] -> Cancel flag.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.AxisSelected, , pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, \
+Method IMSChartEvents.AxisSelected, , pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, /
                                       pMouseFlags:ptr SWORD, pCancel:ptr SWORD
   DbgText "IMSChartEvents.AxisSelected"
   xor eax, eax                                          ;S_OK
@@ -428,8 +428,8 @@ MethodEnd
 ;             Arg6: [out] -> Cancel flag.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.AxisLabelSelected, , pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, \
-                                           pLabelsetIndex:ptr SWORD, pLabelIndex:ptr SWORD, \
+Method IMSChartEvents.AxisLabelSelected, , pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, /
+                                           pLabelsetIndex:ptr SWORD, pLabelIndex:ptr SWORD, /
                                            pMouseFlags:ptr SWORD, pCancel:ptr SWORD
   DbgText "IMSChartEvents.AxisLabelSelected"
   xor eax, eax                                          ;S_OK
@@ -445,7 +445,7 @@ MethodEnd
 ;             Arg4: [out] -> Cancel flag.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.AxisTitleSelected, , pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, \
+Method IMSChartEvents.AxisTitleSelected, , pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, /
                                            pMouseFlags:ptr SWORD, pCancel:ptr SWORD
   DbgText "IMSChartEvents.AxisTitleSelected"
   xor eax, eax                                          ;S_OK
@@ -460,7 +460,7 @@ MethodEnd
 ;             Arg4: [out] -> Cancel flag.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.PointSelected, , pSeries:ptr SWORD, pDataPoint:ptr SWORD, \
+Method IMSChartEvents.PointSelected, , pSeries:ptr SWORD, pDataPoint:ptr SWORD, /
                                        pMouseFlags:ptr SWORD, pCancel:ptr SWORD
   DbgText "IMSChartEvents.PointSelected"
   xor eax, eax                                          ;S_OK
@@ -475,7 +475,7 @@ MethodEnd
 ;             Arg4: [out] -> Cancel flag.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.PointLabelSelected, , pSeries:ptr SWORD, pDataPoint:ptr SWORD, \
+Method IMSChartEvents.PointLabelSelected, , pSeries:ptr SWORD, pDataPoint:ptr SWORD, /
                                             pMouseFlags:ptr SWORD, pCancel:ptr SWORD
   DbgText "IMSChartEvents.PointLabelSelected"
   xor eax, eax                                          ;S_OK
@@ -563,7 +563,7 @@ MethodEnd
 ;             Arg4: [out] -> Cancel flag.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.AxisActivated, , pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, \
+Method IMSChartEvents.AxisActivated, , pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, /
                                        pMouseFlags:ptr SWORD, pCancel:ptr SWORD
   DbgText "IMSChartEvents.AxisActivated"
   xor eax, eax                                          ;S_OK
@@ -580,8 +580,8 @@ MethodEnd
 ;             Arg6: [out] -> Cancel flag.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.AxisLabelActivated, , pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, \
-                                            pLabelsetIndex:ptr SWORD, pLabelIndex:ptr SWORD, \
+Method IMSChartEvents.AxisLabelActivated, , pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, /
+                                            pLabelsetIndex:ptr SWORD, pLabelIndex:ptr SWORD, /
                                             pMouseFlags:ptr SWORD, pCancel:ptr SWORD
   DbgText "IMSChartEvents.AxisLabelActivated"
   xor eax, eax                                          ;S_OK
@@ -596,7 +596,7 @@ MethodEnd
 ;             Arg4: [out] -> Cancel flag.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.AxisTitleActivated, , pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, \
+Method IMSChartEvents.AxisTitleActivated, , pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, /
                                             pMouseFlags:ptr SWORD, pCancel:ptr SWORD
   DbgText "IMSChartEvents.AxisTitleActivated"
   xor eax, eax                                          ;S_OK
@@ -611,7 +611,7 @@ MethodEnd
 ;             Arg4: [out] -> Cancel flag.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.PointActivated, , pSeries:ptr SWORD, pDataPoint:ptr SWORD, \
+Method IMSChartEvents.PointActivated, , pSeries:ptr SWORD, pDataPoint:ptr SWORD, /
                                         pMouseFlags:ptr SWORD, pCancel:ptr SWORD
   DbgText "IMSChartEvents.PointActivated"
   xor eax, eax                                          ;S_OK
@@ -626,7 +626,7 @@ MethodEnd
 ;             Arg4: [out] -> Cancel flag.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.PointLabelActivated, , pSeries:ptr SWORD, pDataPoint:ptr SWORD, \
+Method IMSChartEvents.PointLabelActivated, , pSeries:ptr SWORD, pDataPoint:ptr SWORD, /
                                              pMouseFlags:ptr SWORD, pCancel:ptr SWORD
   DbgText "IMSChartEvents.PointLabelActivated"
   xor eax, eax                                          ;S_OK
@@ -640,7 +640,7 @@ MethodEnd
 ;             Arg3: [out] -> Cancel flag.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.SeriesActivated, , pSeries:ptr SWORD, pMouseFlags:ptr SWORD, \
+Method IMSChartEvents.SeriesActivated, , pSeries:ptr SWORD, pMouseFlags:ptr SWORD, /
                                          pCancel:ptr SWORD
   DbgText "IMSChartEvents.SeriesActivated"
   xor eax, eax                                          ;S_OK
@@ -654,7 +654,7 @@ MethodEnd
 ;             Arg3: [in] -> Update Flags.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.AxisUpdated, , pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, \
+Method IMSChartEvents.AxisUpdated, , pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, /
                                      pUpdateFlags:ptr SWORD
   DbgText "IMSChartEvents.AxisUpdated"
   xor eax, eax                                          ;S_OK
@@ -670,8 +670,8 @@ MethodEnd
 ;             Arg5: [in] -> Update flags.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.AxisLabelUpdated, , pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, \
-                                          pLabelsetIndex:ptr SWORD, pLabelIndex:ptr SWORD, \
+Method IMSChartEvents.AxisLabelUpdated, , pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, /
+                                          pLabelsetIndex:ptr SWORD, pLabelIndex:ptr SWORD, /
                                           pUpdateFlags:ptr SWORD
   DbgText "IMSChartEvents.AxisLabelUpdated"
   xor eax, eax                                          ;S_OK
@@ -685,7 +685,7 @@ MethodEnd
 ;             Arg3: [in] -> Update Flags.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.AxisTitleUpdated, , pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, \
+Method IMSChartEvents.AxisTitleUpdated, , pAxisID:ptr SWORD, pAxisIndex:ptr SWORD, /
                                           pUpdateFlags:ptr SWORD
   DbgText "IMSChartEvents.AxisTitleUpdated"
   xor eax, eax                                          ;S_OK
@@ -743,7 +743,7 @@ MethodEnd
 ;             Arg3: [in] -> Update Flags.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.PointUpdated, , pSeries:ptr SWORD, pDataPoint:ptr SWORD, \
+Method IMSChartEvents.PointUpdated, , pSeries:ptr SWORD, pDataPoint:ptr SWORD, /
                                       pUpdateFlags:ptr SWORD
   DbgText "IMSChartEvents.PointUpdated"
   xor eax, eax                                          ;S_OK
@@ -757,7 +757,7 @@ MethodEnd
 ;             Arg3: [in] -> Update Flags.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.PointLabelUpdated, , pSeries:ptr SWORD, pDataPoint:ptr SWORD, \
+Method IMSChartEvents.PointLabelUpdated, , pSeries:ptr SWORD, pDataPoint:ptr SWORD, /
                                            pUpdateFlags:ptr SWORD
   DbgText "IMSChartEvents.PointLabelUpdated"
   xor eax, eax                                          ;S_OK
@@ -797,8 +797,8 @@ MethodEnd
 ;             Arg6: [in] -> Update Flags.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.DataUpdated, , pRow:ptr SWORD, pColumn:ptr SWORD, pLabelRow:ptr SWORD, \
-                                     pLabelColumn:ptr SWORD, pLabelsetIndex:ptr SWORD, \
+Method IMSChartEvents.DataUpdated, , pRow:ptr SWORD, pColumn:ptr SWORD, pLabelRow:ptr SWORD, /
+                                     pLabelColumn:ptr SWORD, pLabelsetIndex:ptr SWORD, /
                                      pUdateFlags:ptr SWORD
   DbgText "IMSChartEvents.DataUpdated"
   xor eax, eax                                          ;S_OK
@@ -881,7 +881,7 @@ MethodEnd
 ;             Arg4: [in] -> y Position.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.MouseDown, , pButton:SWORD, pShift:SWORD, r4XPos:OLE_XPOS_PIXELS, \
+Method IMSChartEvents.MouseDown, , pButton:SWORD, pShift:SWORD, r4XPos:OLE_XPOS_PIXELS, /
                                    r4YPos:OLE_YPOS_PIXELS
   DbgText "IMSChartEvents.MouseDown"
   xor eax, eax                                          ;S_OK
@@ -896,7 +896,7 @@ MethodEnd
 ;             Arg4: [in] -> y Position.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.MouseMove, , pButton:SWORD, pShift:SWORD, r4XPos:OLE_XPOS_PIXELS, \
+Method IMSChartEvents.MouseMove, , pButton:SWORD, pShift:SWORD, r4XPos:OLE_XPOS_PIXELS, /
                                    r4YPos:OLE_YPOS_PIXELS
   DbgText "IMSChartEvents.MouseMove"
   xor eax, eax                                          ;S_OK
@@ -911,7 +911,7 @@ MethodEnd
 ;             Arg4: [in] -> y Position.
 ; Return:     eax = HRESULT.
 
-Method IMSChartEvents.MouseUp, , pButton:SWORD, pShift:SWORD, r4XPos:OLE_XPOS_PIXELS, \
+Method IMSChartEvents.MouseUp, , pButton:SWORD, pShift:SWORD, r4XPos:OLE_XPOS_PIXELS, /
                                  r4YPos:OLE_YPOS_PIXELS
   DbgText "IMSChartEvents.MouseUp"
   xor eax, eax                                          ;S_OK

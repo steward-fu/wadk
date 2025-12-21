@@ -78,7 +78,7 @@ Method WordHost.Init, uses esi, pOwner:Pointer
 
     invoke CLSIDFromProgID, $OfsCWStr("Word.Application"), addr ClsID
     .if SUCCEEDED(eax)
-      invoke CoCreateInstance, addr ClsID, 0, CLSCTX_SERVER, offset IID_Application, \ 
+      invoke CoCreateInstance, addr ClsID, 0, CLSCTX_SERVER, offset IID_Application, / 
                                addr [esi].pIWordApp
     .endif
 MethodEnd
@@ -113,9 +113,9 @@ Method WordHost.Open,, pFileName:BSTR, dReadOnly:dword, dIsVisible:dword
       mov vArg12.VARIANT.boolVal, ax          
       TypeMissing vArg02, vArg04, vArg05, vArg06, vArg07, vArg08, vArg09, vArg10, vArg11
 
-      ICall pDocuments::Documents.Open, addr vArg01, addr vArg02, addr vArg03, addr vArg04, \
-                                        addr vArg05, addr vArg06, addr vArg07, addr vArg08, \
-                                        addr vArg09, addr vArg10, addr vArg11, addr vArg12, \
+      ICall pDocuments::Documents.Open, addr vArg01, addr vArg02, addr vArg03, addr vArg04, /
+                                        addr vArg05, addr vArg06, addr vArg07, addr vArg08, /
+                                        addr vArg09, addr vArg10, addr vArg11, addr vArg12, /
                                         addr pDocument
 
       .if SUCCEEDED(eax)
@@ -162,8 +162,8 @@ Method WordHost.SaveAs,, pDocument:Pointer, pNewFileName:BSTR, dFormat:dword
     mov vArg11.VARIANT.boolVal, TRUE
     TypeMissing vArg04, vArg06                    ;Passwords read/write
     
-    ICall pDocument::_Document.SaveAs, addr vArg01, addr vArg02, addr vArg03, addr vArg04, \
-                                       addr vArg05, addr vArg06, addr vArg07, addr vArg08, \
+    ICall pDocument::_Document.SaveAs, addr vArg01, addr vArg02, addr vArg03, addr vArg04, /
+                                       addr vArg05, addr vArg06, addr vArg07, addr vArg08, /
                                        addr vArg09, addr vArg10, addr vArg11
     .if FAILED(eax)
       DbgComError (eax)

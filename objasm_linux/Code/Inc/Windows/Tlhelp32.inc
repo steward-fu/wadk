@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.01, 11/11/2018 12:39
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\Tlhelp32.h', last modified: 19/04/2018 09:45
+;Source file: '/ObjAsm/Projects/h2IncX/header/Tlhelp32.h', last modified: 19/04/2018 09:45
 ;Creation parameters: 
 
 ifndef _INC_TOOLHELP32

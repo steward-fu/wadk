@@ -114,7 +114,7 @@ MethodEnd
 ;             Arg4: Color
 ; Return:     xax -> New created D3Object.
 
-Method D3Scene.CreateGeoSphere, uses xbx xdi xsi, dMeridians:DWORD, dParallels:DWORD, \
+Method D3Scene.CreateGeoSphere, uses xbx xdi xsi, dMeridians:DWORD, dParallels:DWORD, /
                                                   r4Radius:REAL4, dColor:DWORD
   local dCurrParallel:DWORD, r4CurrY:REAL4, pSphere:$ObjPtr(D3Object)
   local r4DeltaAlpha:REAL4, r4DeltaBeta:REAL4, r4PhaseShift:REAL4, r4Phase:REAL4

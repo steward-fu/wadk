@@ -18,7 +18,7 @@ Object SkinnedMsgBox, SkinnedMsgBoxID, DialogModal
   RedefineMethod    CtlsSet
   RedefineMethod    Done
   VirtualMethod     DrawCaptionText
-  RedefineMethod    Init,             POINTER, HWND, DWORD, DWORD, POINTER, \
+  RedefineMethod    Init,             POINTER, HWND, DWORD, DWORD, POINTER, /
                                       POINTER, XWORD, POINTER, XWORD
   RedefineMethod    OnCommand,        WPARAM, LPARAM
   RedefineMethod    OnInitDialog,     WPARAM, LPARAM
@@ -99,7 +99,7 @@ Method SkinnedMsgBox.DrawCaptionText, uses xsi
   .endif
   invoke GetSysColor, ecx
   mov dPrvColor, $32($invoke(SetTextColor, hDC, eax))
-  invoke DrawTextEx, hDC, [xsi].pCaptionText, -1, addr [xsi].Skin.TitleRect, \
+  invoke DrawTextEx, hDC, [xsi].pCaptionText, -1, addr [xsi].Skin.TitleRect, /
                      DT_CENTER or DT_VCENTER or DT_SINGLELINE or DT_END_ELLIPSIS, NULL
   invoke SetTextColor, hDC, dPrvColor
   invoke SetBkMode, hDC, dPrvBkMode
@@ -121,9 +121,9 @@ MethodEnd
 ;             Arg9: Button 2 ID.
 ; Return:     Nothing.
 
-Method SkinnedMsgBox.Init, uses xsi, pOwner:POINTER, hParent:HWND, \
-                                     dTtlID:DWORD, dMsgID:DWORD, pGifName:POINTER, \
-                                     pBtn1Name:POINTER, xBtn1ID:XWORD, \
+Method SkinnedMsgBox.Init, uses xsi, pOwner:POINTER, hParent:HWND, /
+                                     dTtlID:DWORD, dMsgID:DWORD, pGifName:POINTER, /
+                                     pBtn1Name:POINTER, xBtn1ID:XWORD, /
                                      pBtn2Name:POINTER, xBtn2ID:XWORD
   local cBuffer[1024]:CHR
 

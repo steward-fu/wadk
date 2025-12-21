@@ -118,8 +118,8 @@ if IMPLEMENT
 ;  mov dWndPosX, $invoke(CenterForm, dWndWidth, $invoke(GetSystemMetrics, SM_CXSCREEN))
 ;  mov dWndPosY, $invoke(CenterForm, dWndHeight, $invoke(GetSystemMetrics, SM_CYSCREEN))
 ;
-;  invoke CreateWindowEx, WS_EX_OVERLAPPEDWINDOW or WS_EX_APPWINDOW, \
-;                         offset cMdiApp, offset cAppTitle, WS_OVERLAPPEDWINDOW, \
+;  invoke CreateWindowEx, WS_EX_OVERLAPPEDWINDOW or WS_EX_APPWINDOW, /
+;                         offset cMdiApp, offset cAppTitle, WS_OVERLAPPEDWINDOW, /
 ;                         dWndPosX, dWndPosY, dWndWidth, dWndHeight, NULL, NULL, hInstance, pSelf
 ;  mov [xsi].pClientWnd, $New(MdiClientWnd)
 ;  OCall [xsi].pClientWnd::MdiClientWnd).Init, xsi
@@ -249,8 +249,8 @@ Method MdiClientWnd.Init, uses xbx xsi, pOwner:POINTER
   mov xbx, pOwner
   mov ClientCreate.hWindowMenu, NULL
   mov ClientCreate.idFirstChild, IDM_FIRSTCHILD
-  invoke CreateWindowEx, WS_EX_CLIENTEDGE, $OfsCStr("MDICLIENT"), 0, \
-                         WS_CHILD or WS_CLIPCHILDREN or WS_VISIBLE or WS_VSCROLL or WS_HSCROLL, \
+  invoke CreateWindowEx, WS_EX_CLIENTEDGE, $OfsCStr("MDICLIENT"), 0, /
+                         WS_CHILD or WS_CLIPCHILDREN or WS_VISIBLE or WS_VSCROLL or WS_HSCROLL, /
                          0, 0, 0, 0, [xbx].$Obj(MdiApp).hWnd, NULL, hInstance, addr ClientCreate
   ACall xsi.Init, pOwner, xax
   Subclass MdiClientWnd                                 ;Uses xsi

@@ -50,7 +50,7 @@ Method FireworksApp.Init, uses xsi
   SetObject xsi
   ACall xsi.Init
 
-  invoke CreateWindowEx, WND_STYLE_EX, offset szFireworksApp, offset szAppTitle, WND_STYLE, \
+  invoke CreateWindowEx, WND_STYLE_EX, offset szFireworksApp, offset szAppTitle, WND_STYLE, /
          CW_USEDEFAULT, CW_USEDEFAULT, DEFAULT_WIDTH, DEFAULT_HEIGHT, NULL, NULL, hInstance, pSelf
   invoke ShowWindow, [xsi].hWnd, SW_SHOWNORMAL
   invoke UpdateWindow, [xsi].hWnd
@@ -71,7 +71,7 @@ MethodEnd
 
 Method FireworksApp.OnClose, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
-  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), \
+  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), /
                      MB_YESNO or MB_ICONQUESTION
   .if eax == IDNO
     xor eax, eax

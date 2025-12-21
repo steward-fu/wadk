@@ -79,7 +79,7 @@ MethodEnd
 
 Method RegExW.Exec, uses xsi, pSubject:POINTER, dLength:DWORD, dStartOffset:DWORD, dOptions:DWORD
   SetObject xsi
-  invoke pcre16_exec, [xsi].pPattern, [xsi].pExtra, pSubject, dLength, dStartOffset, \
+  invoke pcre16_exec, [xsi].pPattern, [xsi].pExtra, pSubject, dLength, dStartOffset, /
                     dOptions, [xsi].pOutVector, [xsi].dOutVecSize
   mov [xsi].dMatchCount, eax
 MethodEnd

@@ -1303,7 +1303,7 @@ ParseMemLayoutItem proc uses edi pToken:PTOKEN, pMemLayoutName:PSTRINGA
         .if pDupList != NULL
           OCall ebx::IncFile.StmWriteChar, " "
           invoke WriteStackList, pDupList
-          OCall ebx::IncFile.StmWrite, $OfsCStrA($Esc(" dup \{"))
+          OCall ebx::IncFile.StmWrite, $OfsCStrA($Esc(" dup /{"))
         .else
           OCall ebx::IncFile.StmWriteChar, " "
         .endif
@@ -2431,12 +2431,12 @@ ParsePrototype proc pProcName:PSTRINGA, pImportSpec:PSTRINGA, pCallConv:PSTRINGA
           mov szSuffix, 0
         .endif
 
-        OCall ebx::IncFile.StmWriteF, $OfsCStrA("externdef stdcall _imp_%s%s%s: ptr proto_%s"), \
+        OCall ebx::IncFile.StmWriteF, $OfsCStrA("externdef stdcall _imp_%s%s%s: ptr proto_%s"), /
                                       pPrefix, pProcName, addr szSuffix, pProcName
         OCall ebx::IncFile.StmWriteEOL
         invoke TranslateReservedWord, pProcName, NULL
         mov ecx, eax
-        OCall ebx::IncFile.StmWriteF, $OfsCStrA("%s equ ", 3Ch, "_imp_%s%s%s", 3Eh), \     ;"<" ">"
+        OCall ebx::IncFile.StmWriteF, $OfsCStrA("%s equ ", 3Ch, "_imp_%s%s%s", 3Eh), /     ;"<" ">"
                                       ecx, pPrefix, pProcName, addr szSuffix
         OCall ebx::IncFile.StmWriteEOL
       .endif
@@ -2482,7 +2482,7 @@ ParseMacroInvocation proc pMacroName:PSTRINGA, dMacroFlags:DWORD, bWriteLF:DWORD
 
     m2m pStmOutPos, [ebx].$Obj(IncFile).pStmOutPos, eax
 
-    DbgPrintF $RGB(0,0,0), <"%u: ParseMacroInvocation - found: %s">, \
+    DbgPrintF $RGB(0,0,0), <"%u: ParseMacroInvocation - found: %s">, /
               [ebx].$Obj(IncFile).dLineNbr, pMacroName
 
     .ifBitSet dMacroFlags, MCF_SKIP_INVOKATION
@@ -2709,7 +2709,7 @@ ParseMacroInvocation proc pMacroName:PSTRINGA, dMacroFlags:DWORD, bWriteLF:DWORD
     ret
 
 @Error:
-    DbgErrorF <"%s(%u): ParseMacroInvocation - error">, \
+    DbgErrorF <"%s(%u): ParseMacroInvocation - error">, /
               [ebx].$Obj(IncFile).pFileName, [ebx].$Obj(IncFile).dLineNbr
     Destroy@Stacklist pArgStack
     xor eax, eax
@@ -2797,7 +2797,7 @@ ParseC proc
         .endif
         jmp @Exit
       .endif
-      DbgPrintF $RGB(0,0,0), <"%u: ParseC - 'union/struct' ignored (function return type)">, \
+      DbgPrintF $RGB(0,0,0), <"%u: ParseC - 'union/struct' ignored (function return type)">, /
                 [ebx].$Obj(IncFile).dLineNbr
     .endif
 
@@ -2839,7 +2839,7 @@ ParseC proc
       mov edx, [eax - sizeof DWORD]
       mov ecx, [eax + edx]
       push ecx
-      DbgPrintF $RGB(0,0,0), <"%u: ParseC - prototype qualifier '%s' found, value = %X">, \
+      DbgPrintF $RGB(0,0,0), <"%u: ParseC - prototype qualifier '%s' found, value = %X">, /
                 [ebx].$Obj(IncFile).dLineNbr, pToken, ecx
       invoke IsMacro?, pToken
       .if eax != 0
@@ -2891,7 +2891,7 @@ ParseC proc
       .ifBitSet ecx, PTQ_IMPORT
         mov [ebx].$Obj(IncFile).pImportSpec, offset szDllImport
       .endif
-      .ifBitSet ecx, (PTQ_STDCALL or PTQ_CDECL or PTQ_SYSCALL or PTQ_PASCAL or \
+      .ifBitSet ecx, (PTQ_STDCALL or PTQ_CDECL or PTQ_SYSCALL or PTQ_PASCAL or /
                       PTQ_FASTCALL or PTQ_VECTORCALL)
         mov [ebx].$Obj(IncFile).pCallConv, eax
       .endif
@@ -2962,7 +2962,7 @@ ParseC proc
 ;        OCall ebx::IncFile.StmWrite, $OfsCStrA(";{")
 ;        OCall ebx::IncFile.StmWriteEOL
 ;      .endif
-      DbgPrintF $RGB(0,0,0), <"%u: ParseC - begin block, new level = %u">, \
+      DbgPrintF $RGB(0,0,0), <"%u: ParseC - begin block, new level = %u">, /
                 [ebx].$Obj(IncFile).dLineNbr, [ebx].$Obj(IncFile).dBraces
     .elseif CHRA ptr [eax] == "}"
       dec [ebx].$Obj(IncFile).dBraces
@@ -2971,7 +2971,7 @@ ParseC proc
 ;        OCall ebx::IncFile.StmWrite, $OfsCStrA(";}")
 ;        OCall ebx::IncFile.StmWriteEOL
 ;      .endif
-      DbgPrintF $RGB(0,0,0), <"%u: ParseC - end block, new level = %u">, \
+      DbgPrintF $RGB(0,0,0), <"%u: ParseC - end block, new level = %u">, /
                 [ebx].$Obj(IncFile).dLineNbr, [ebx].$Obj(IncFile).dBraces
       mov eax, [ebx].$Obj(IncFile).dBraces
       .if [ebx].$Obj(IncFile).pEndMacro != NULL && eax == [ebx].$Obj(IncFile).dBlockLevel

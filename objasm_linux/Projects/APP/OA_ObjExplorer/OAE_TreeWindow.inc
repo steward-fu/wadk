@@ -40,7 +40,7 @@ if IMPLEMENT
 ObjTreeDef DEF_XTV {100, WS_CLIPSIBLINGS, WS_EX_NOPARENTNOTIFY,; or WS_EX_ACCEPTFILES,
                     $OfsTStr("InfoTree"), {<0,0,200,300>}}
 
-PROJTBSTYLE   equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or \
+PROJTBSTYLE   equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or /
                     CCS_NORESIZE or CCS_NODIVIDER or CCS_ADJUSTABLE or TBSTYLE_FLAT
 
 CStr cTreeWindowClass, "TreeWindow"
@@ -92,9 +92,9 @@ Method TreeWindow.Init, uses xsi, pOwner:POINTER, hParent:HANDLE, pLanguage:POIN
   ACall xsi.Init, pOwner, NULL    ;hWnd is set in WndProc
   m2m [xsi].pLanguage, pLanguage, xax
 
-  invoke CreateWindowEx, WS_EX_CLIENTEDGE, offset cTreeWindowClass, \
-                         $OfsCStr("TreeWindow"), WS_CHILD, \
-                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateWindowEx, WS_EX_CLIENTEDGE, offset cTreeWindowClass, /
+                         $OfsCStr("TreeWindow"), WS_CHILD, /
+                         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                          hParent, NULL, hInstance, xsi
   invoke ShowWindow, [xsi].hWnd, SW_SHOWNORMAL
 MethodEnd

@@ -84,8 +84,8 @@ Method Progressbar.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefStruc:P
   SetObject xsi
   mov xbx, pDefStruc
   assume xbx:PDEF_PROGRESSBAR
-  invoke CreateWindowEx, 0, $OfsCStr("msctls_progress32"), NULL, [xbx].dStyle, \
-                         [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, \
+  invoke CreateWindowEx, 0, $OfsCStr("msctls_progress32"), NULL, [xbx].dStyle, /
+                         [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, /
                          hParent, [xbx].xCtlID, hInstance, NULL
   ACall xsi.Init, pOwner, xax
   Subclass Progressbar                      ;Uses esi

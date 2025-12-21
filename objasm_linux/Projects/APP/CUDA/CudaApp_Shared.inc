@@ -21,6 +21,6 @@ BUILD_DATE_STR                textequ   <2022-12-15>
 BUILD_BITNESS                 equ       32
 BUILD_MODE                    equ       RLS
 
-;Res\MainDlgDlg.rc
+;Res/MainDlgDlg.rc
 IDD_DLG_MAIN                  equ       1000
 IDC_STC_MESSAGE               equ       1001

@@ -7,7 +7,7 @@
 
 
 
-EDTSTYLE  equ   WS_CHILD or WS_VISIBLE or WS_BORDER or WS_TABSTOP or WS_VSCROLL or  \
+EDTSTYLE  equ   WS_CHILD or WS_VISIBLE or WS_BORDER or WS_TABSTOP or WS_VSCROLL or  /
                 WS_HSCROLL or ES_MULTILINE or ES_AUTOVSCROLL or ES_AUTOHSCROLL or ES_WANTRETURN
 
 ; ==================================================================================================
@@ -271,7 +271,7 @@ Method OAT_Child.Done, uses xbx xdi xsi
   ;Main menu update
   .if ZERO?                                             ;No more child windows ?
     OCall xbx::OAT_App.EnableActions, FALSE
-    invoke SendMessage, [xdi].$Obj(OAT_Client).hWnd, WM_MDISETMENU, \
+    invoke SendMessage, [xdi].$Obj(OAT_Client).hWnd, WM_MDISETMENU, /
                         [xbx].$Obj(OAT_App).hMenuInit, NULL
     OCall xbx::OAT_App.ChangeMnuLanguage, [xbx].$Obj(OAT_App).dLanguage
     OCall xbx::OAT_App.SetToolMenu
@@ -304,8 +304,8 @@ Method OAT_Child.Init, uses xbx xdi xsi, pOwner:POINTER, pFileName:PSTRING, dFla
   mov xdi, pOwner                                       ;xdi -> OAT_Client
 
   ;Create the Window
-  invoke CreateMDIWindow, offset szOAT_Child, pFileName, 0, \
-                          CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, \
+  invoke CreateMDIWindow, offset szOAT_Child, pFileName, 0, /
+                          CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, /
                           [xdi].$Obj(OAT_Client).hWnd, hInstance, pSelf
   .if xax != NULL
     mov xbx, [xdi].$Obj(OAT_Client).pOwner              ;xbx -> OAT_App
@@ -314,8 +314,8 @@ Method OAT_Child.Init, uses xbx xdi xsi, pOwner:POINTER, pFileName:PSTRING, dFla
     invoke MemClone, addr [xsi].Color, addr [xbx].$Obj(OAT_App).Setup.Color, sizeof ColorData
 
     .if [xdi].$Obj(OAT_Client).dChildCount == 1         ;First child window ?
-      invoke SendMessage, [xdi].$Obj(OAT_Client).hWnd, WM_MDISETMENU, \
-                          [xbx].$Obj(OAT_App).hMenuChild, \
+      invoke SendMessage, [xdi].$Obj(OAT_Client).hWnd, WM_MDISETMENU, /
+                          [xbx].$Obj(OAT_App).hMenuChild, /
                           [xbx].$Obj(OAT_App).hMenuChildWnd
       OCall xbx::OAT_App.ChangeMnuLanguage, [xbx].$Obj(OAT_App).dLanguage
       OCall xbx::OAT_App.EnableActions, TRUE
@@ -336,7 +336,7 @@ Method OAT_Child.Init, uses xbx xdi xsi, pOwner:POINTER, pFileName:PSTRING, dFla
     .endif
 
   .else
-    invoke MessageBox, [xdi].$Obj(OAT_Client).hWnd, $OfsCStr("Window creation error"), \
+    invoke MessageBox, [xdi].$Obj(OAT_Client).hWnd, $OfsCStr("Window creation error"), /
                        offset szError, MB_OK or MB_ICONERROR
     xor eax, eax
   .endif
@@ -353,8 +353,8 @@ Method OAT_Child.OnCreate, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   local LogFnt:LOGFONT, hDC:HDC
 
   SetObject xsi
-  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_CLIENTEDGE or WS_EX_ACCEPTFILES, \
-                         offset szRichEdit20, NULL, EDTSTYLE, \
+  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_CLIENTEDGE or WS_EX_ACCEPTFILES, /
+                         offset szRichEdit20, NULL, EDTSTYLE, /
                          0, 0, 10, 10, [xsi].hWnd, RICHEDITID, hInstance, NULL
   mov [xsi].hEdit, xax
   invoke SendMessage, [xsi].hEdit, EM_SETEVENTMASK, 0, ENM_SELCHANGE  ;Enable EN_SELCHANGE messages

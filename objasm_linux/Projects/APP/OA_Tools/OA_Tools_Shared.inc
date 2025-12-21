@@ -333,7 +333,7 @@ ID_MDI_LIST                   equ       50010
 
 
 ;Dialog IDs
-;Res\Tab1.dlg
+;Res/Tab1.dlg
 SETUP_TAB_MAIN                equ       1000
 IDC_GRP_APPLICATION           equ       2000
 IDC_STC_EXTERNAL_EDITOR       equ       2010
@@ -363,7 +363,7 @@ IDC_RBN_32BIT                 equ       4040
 IDC_RBN_64BIT                 equ       4050
 IDC_RBN_MIXED                 equ       4060
 
-;Res\Tab2.dlg
+;Res/Tab2.dlg
 SETUP_TAB_TOOLS               equ       2000
 IDC_STC_TOOL                  equ       2010
 IDC_STC_NAME                  equ       2020
@@ -410,7 +410,7 @@ IDC_EDT_CMD_9                 equ       3920
 IDC_BTN_SEARCH_9              equ       3930
 IDC_STC_NOTE2                 equ       4000
 
-;Res\Tab3.dlg
+;Res/Tab3.dlg
 SETUP_TAB_COLORS              equ       3000
 IDC_UDC_NOTIFICATION          equ       1000
 IDC_UDC_COMMENT               equ       1001
@@ -422,7 +422,7 @@ IDC_UDC_ARG_WARNING           equ       1006
 IDC_UDC_LOC_WARNING           equ       1007
 IDC_STC_NOTE3                 equ       4000
 
-;Res\OAT_About.dlg
+;Res/OAT_About.dlg
 IDD_DLG_ABOUT                 equ       9000
 IDC_STC_BKGROUND              equ       1010
 IDC_STC_IMAGE                 equ       1020

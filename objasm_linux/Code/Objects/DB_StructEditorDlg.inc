@@ -18,9 +18,9 @@ SDF_CTRL_APPLY_ENABLED    equ   BIT04
 SDF_CTRL_CANCEL_ENABLED   equ   BIT05
 SDF_CTRL_OK_ENABLED       equ   BIT06
 
-SRF_INIT                  equ   SDF_CTRL_EDITOR_ENABLED or \
-                                SDF_CTRL_CANCEL_ENABLED or SDF_CTRL_OK_ENABLED or \
-                                SDF_CTRL_APPLY_ENABLED or SDF_CTRL_APPEND_ENABLED or \
+SRF_INIT                  equ   SDF_CTRL_EDITOR_ENABLED or /
+                                SDF_CTRL_CANCEL_ENABLED or SDF_CTRL_OK_ENABLED or /
+                                SDF_CTRL_APPLY_ENABLED or SDF_CTRL_APPEND_ENABLED or /
                                 SDF_CTRL_DELETE_ENABLED or SDF_CTRL_UP_DOWN_ENABLED
 
 SDF_THREAD_STOP           equ   BIT06
@@ -118,7 +118,7 @@ Method DB_StructEditorDlg.CtlsEnable, uses xsi
     inc edx
   .else
     ;Reset flags temporarily
-    BitClr [xsi].dFlags, SDF_CTRL_DELETE_ENABLED or SDF_CTRL_UP_DOWN_ENABLED or \
+    BitClr [xsi].dFlags, SDF_CTRL_DELETE_ENABLED or SDF_CTRL_UP_DOWN_ENABLED or /
                          SDF_CTRL_APPEND_ENABLED or SDF_CTRL_APPLY_ENABLED
   .endif
 
@@ -512,7 +512,7 @@ Method DB_StructEditorDlg.Mutate, uses xbx xdi xsi
     MemAlloc eax
     .if xax == NULL
       OCall xsi.ErrorReport, NULL, DB_OUT_OF_MEMORY
-      DbgWarning "DB_StructEditorDlg.Mutate: Out of memory creating TaskSetups", \
+      DbgWarning "DB_StructEditorDlg.Mutate: Out of memory creating TaskSetups", /
                  offset(szDbgObjErr)
       ExitMethod
     .endif
@@ -521,11 +521,11 @@ Method DB_StructEditorDlg.Mutate, uses xbx xdi xsi
 
     ;Set Task header
     m2m [xdi].TaskHeader.dTaskCount, dTaskCount, eax
-    c2m [xdi].TaskHeader.pMainDesc, $OfsCStrA("{\rtf1\sa50\fs19\b Description:\b0", \
-        "\par\fs18 The table data are changed and/or rearrenged according to the new ", \
+    c2m [xdi].TaskHeader.pMainDesc, $OfsCStrA("{/rtf1/sa50/fs19/b Description:/b0", /
+        "/par/fs18 The table data are changed and/or rearrenged according to the new ", /
         "structure setup and affected indexes are updated.}"), xax
-    c2m [xdi].TaskHeader.pOverallDesc, $OfsCStrA("{\rtf1\b Overall progress:\b0}"), xax
-    mov [xdi].TaskHeader.hIcon, $invoke(LoadImage, hInstance, $OfsCStr("ICON_MUTATION"), \
+    c2m [xdi].TaskHeader.pOverallDesc, $OfsCStrA("{/rtf1/b Overall progress:/b0}"), xax
+    mov [xdi].TaskHeader.hIcon, $invoke(LoadImage, hInstance, $OfsCStr("ICON_MUTATION"), /
                                         IMAGE_ICON, 0, 0, LR_DEFAULTCOLOR)
     add xdi, sizeof(TaskHeader)
 
@@ -535,7 +535,7 @@ Method DB_StructEditorDlg.Mutate, uses xbx xdi xsi
       mov [xdi].TaskSetup.pOwner, xsi
       mov [xdi].TaskSetup.xParam1, 0
       mov [xdi].TaskSetup.xParam2, 0
-      ProgressText textequ <{\rtf1\b Task:\b0  Data on table \ul >
+      ProgressText textequ <{/rtf1/b Task:/b0  Data on table /ul >
       FillWordA cBuffer, <%ProgressText>
       mov xdx, [xsi].pTable
       invoke PathFindFileName, [xdx].$Obj(DB_Table).pFileName
@@ -546,7 +546,7 @@ Method DB_StructEditorDlg.Mutate, uses xbx xdi xsi
         invoke StrW2StrA, xcx, xax
         invoke StrEndA, addr cBuffer
       endif
-      FillStringA [xax], <\ul0  is being modified...}>
+      FillStringA [xax], </ul0  is being modified...}>
       mov [xdi].TaskSetup.pDescription, $invoke(StrNewA, addr cBuffer)
       mov xcx, [xsi].pTable
       m2m [xdi].TaskSetup.dPrgCntMax, [xcx].$Obj(DB_Table).Descriptor.dNumRecs, eax
@@ -565,7 +565,7 @@ Method DB_StructEditorDlg.Mutate, uses xbx xdi xsi
       invoke SendMessage, [xax].$Obj(DB_StructEditorLine).hEdtFieldIndex, WM_GETTEXTLENGTH, 0, 0
       .if eax != 0
         mov xcx, pEditorLine
-        invoke SendMessageA, [xcx].$Obj(DB_StructEditorLine).hEdtFieldIndex, WM_GETTEXT, \
+        invoke SendMessageA, [xcx].$Obj(DB_StructEditorLine).hEdtFieldIndex, WM_GETTEXT, /
                              LOCAL_BUFFER_SIZE, addr bBuffer
         invoke PathFindFileNameA, addr bBuffer
 
@@ -573,14 +573,14 @@ Method DB_StructEditorDlg.Mutate, uses xbx xdi xsi
         m2m [xdi].TaskSetup.xParam1, pEditorLine, xcx   ;-> DB_StructEditorLine
         mov [xdi].TaskSetup.xParam2, xbx                ;Index
 
-        ProgressText textequ <{\rtf1\b Task:\b0  Index \ul >
+        ProgressText textequ <{/rtf1/b Task:/b0  Index /ul >
         FillWordA bMsgBuffer, <%ProgressText>
         lea xcx, [bMsgBuffer + @SizeStr(%ProgressText)]
         invoke StrECopyA, xcx, xax
-        ProgressText textequ <\ul0  for table field >
+        ProgressText textequ </ul0  for table field >
         FillStringA [xax], <%ProgressText>
         mov xcx, pEditorLine
-        invoke SendMessageA, [xcx].$Obj(DB_StructEditorLine).hEdtFieldName, WM_GETTEXT, \
+        invoke SendMessageA, [xcx].$Obj(DB_StructEditorLine).hEdtFieldName, WM_GETTEXT, /
                              DB_FIELD_NAME_SIZE, addr [xax + @SizeStr(%ProgressText)]
         invoke StrEndA, addr bMsgBuffer
 
@@ -593,7 +593,7 @@ Method DB_StructEditorDlg.Mutate, uses xbx xdi xsi
           mov eax, [xcx].$Obj(DB_Table).Descriptor.dNumRecs
           add eax, eax                                  ;Best guess
         .else
-          FillStringA [xax], <\ul0  is being opened...}>
+          FillStringA [xax], </ul0  is being opened...}>
           m2m [xdi].TaskSetup.pTaskProc, $MethodAddr(DB_StructEditorDlg.ReopenIndex), xax
           xor eax, eax
         .endif
@@ -686,7 +686,7 @@ Method DB_StructEditorDlg.MutateData, uses xbx xdi xsi, pStatus:PTaskStatus, Arg
   MemAlloc dNewRecordLength
   .if xax == NULL
     OCall xsi.ErrorReport, NULL, DB_OUT_OF_MEMORY
-    DbgWarning "DB_StructEditorDlg.MutationJob: Out of memory creating a record buffer", \
+    DbgWarning "DB_StructEditorDlg.MutationJob: Out of memory creating a record buffer", /
                offset(szDbgObjErr)
     mov xax, pStatus
     BitSet [xax].TaskStatus.dFlags, TSF_TASK_ERROR
@@ -697,7 +697,7 @@ Method DB_StructEditorDlg.MutateData, uses xbx xdi xsi, pStatus:PTaskStatus, Arg
   invoke CreateTempFile
   .if xax == INVALID_HANDLE_VALUE
     OCall xsi.ErrorReport, NULL, DB_INVALID_TEMPFILE
-    DbgWarning "DB_StructEditorDlg.MutationJob: failed to create a temp file", \
+    DbgWarning "DB_StructEditorDlg.MutationJob: failed to create a temp file", /
                offset(szDbgObjErr)
     mov xax, pStatus
     BitSet [xax].TaskStatus.dFlags, TSF_TASK_ERROR
@@ -764,15 +764,15 @@ Method DB_StructEditorDlg.MutateData, uses xbx xdi xsi, pStatus:PTaskStatus, Arg
         OCall [xsi].pTable::DB_Table.DataGetFrom, dRecNo, eax
         .if eax != OBJ_OK
           OCall xsi.ErrorReport, NULL, DB_READ_ERROR
-          DbgWarning "DB_StructEditorDlg.MutationJob: failed to read a record", \
+          DbgWarning "DB_StructEditorDlg.MutationJob: failed to read a record", /
                      offset(szDbgObjErr)
           mov xax, pStatus
           BitSet [xax].TaskStatus.dFlags, TSF_TASK_ERROR
           jmp @@CloseTempFile
         .endif
         mov xdx, xcx                                    ;xdx -> Field data
-        .ifBitSet [xbx].$Obj(DB_StructEditorLine).dFlags, SEL_FLAG_CHANGE_TYPE or \
-                                                          SEL_FLAG_CHANGE_LENGTH or \
+        .ifBitSet [xbx].$Obj(DB_StructEditorLine).dFlags, SEL_FLAG_CHANGE_TYPE or /
+                                                          SEL_FLAG_CHANGE_LENGTH or /
                                                           SEL_FLAG_CHANGE_PARAM
           mov xax, [xdi].FIELD_MUTATION.pInProc
           .if xax != NULL
@@ -844,7 +844,7 @@ Method DB_StructEditorDlg.MutateData, uses xbx xdi xsi, pStatus:PTaskStatus, Arg
   MemAlloc COPY_BUFFER_SIZE
   .if xax == NULL
     OCall xsi.ErrorReport, NULL, DB_OUT_OF_MEMORY
-    DbgWarning "DB_StructEditorDlg.MutationJob: Out of memory creating a copy buffer", \
+    DbgWarning "DB_StructEditorDlg.MutationJob: Out of memory creating a copy buffer", /
                offset(szDbgObjErr)
     mov xax, pStatus
     BitSet [xax].TaskStatus.dFlags, TSF_TASK_ERROR
@@ -867,7 +867,7 @@ Method DB_StructEditorDlg.MutateData, uses xbx xdi xsi, pStatus:PTaskStatus, Arg
 
   .while xdi >= COPY_BUFFER_SIZE
     invoke ReadFile, hTempFile, pCopyBuffer, COPY_BUFFER_SIZE, addr dBytesRead, NULL
-    invoke WriteFile, [xbx].$Obj(DB_Table).hFile, pCopyBuffer, COPY_BUFFER_SIZE, \
+    invoke WriteFile, [xbx].$Obj(DB_Table).hFile, pCopyBuffer, COPY_BUFFER_SIZE, /
                       addr dBytesWritten, NULL
     sub xdi, COPY_BUFFER_SIZE
   .endw
@@ -899,7 +899,7 @@ Method DB_StructEditorDlg.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPA
     New DB_StructEditorLine
     .if xax == NULL
       OCall xsi.ErrorReport, NULL, DB_OUT_OF_MEMORY
-      DbgWarning "DB_StructEditorDlg.OnCommand: out of memory creating a DB_StructEditorLine", \
+      DbgWarning "DB_StructEditorDlg.OnCommand: out of memory creating a DB_StructEditorLine", /
                  offset(szDbgObjErr)
     .else
       mov xdi, xax
@@ -932,10 +932,10 @@ Method DB_StructEditorDlg.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPA
       ;Set a baloon notification
       mov EBT.cbStruct, sizeof(EDITBALLOONTIP)
       c2m EBT.pszTitle, $OfsCStrW("Field name:"), xax
-      c2m EBT.pszText, $OfsCStrW("Enter max. 10 ANSI characters.", 13, \
+      c2m EBT.pszText, $OfsCStrW("Enter max. 10 ANSI characters.", 13, /
                                  "An empty name is not allowed."), xcx
       mov EBT.ttiIcon, TTI_INFO
-      invoke SendMessage, [xdi].$Obj(DB_StructEditorLine).hEdtFieldName, EM_SHOWBALLOONTIP, \
+      invoke SendMessage, [xdi].$Obj(DB_StructEditorLine).hEdtFieldName, EM_SHOWBALLOONTIP, /
                           0, addr EBT
     .endif
     xor eax, eax
@@ -1184,8 +1184,8 @@ MethodEnd
 ;             Arg3: -> Field index.
 ; Return:     Nothing.
 
-Method DB_StructEditorDlg.RebuildIndex, uses xbx xsi, pStatus:PTaskStatus, \
-                                                      pEditorLine:$ObjPtr(DB_StructEditorLine), \
+Method DB_StructEditorDlg.RebuildIndex, uses xbx xsi, pStatus:PTaskStatus, /
+                                                      pEditorLine:$ObjPtr(DB_StructEditorLine), /
                                                       xFieldIndex:XWORD
   local pIndex:$ObjPtr(DB_Index), cBuffer[LOCAL_BUFFER_SIZE]:CHR
 
@@ -1201,7 +1201,7 @@ Method DB_StructEditorDlg.RebuildIndex, uses xbx xsi, pStatus:PTaskStatus, \
   New DB_Index
   .if xax == NULL
     OCall xsi.ErrorReport, NULL, DB_OUT_OF_MEMORY
-    DbgWarning "DB_StructEditorDlg.RebuildIndex: Out of memory creating a DB_Index", \
+    DbgWarning "DB_StructEditorDlg.RebuildIndex: Out of memory creating a DB_Index", /
                offset(szDbgObjErr)
     mov xax, pStatus
     BitSet [xax].TaskStatus.dFlags, TSF_TASK_ERROR
@@ -1229,8 +1229,8 @@ MethodEnd
 ;             Arg3: -> DB_Field.
 ; Return:     Nothing.
 
-Method DB_StructEditorDlg.ReopenIndex, uses xbx xsi, pStatus:PTaskStatus, \
-                                                     pEditorLine:$ObjPtr(DB_StructEditorLine), \
+Method DB_StructEditorDlg.ReopenIndex, uses xbx xsi, pStatus:PTaskStatus, /
+                                                     pEditorLine:$ObjPtr(DB_StructEditorLine), /
                                                      xFieldIndex:XWORD
   local pIndex:$ObjPtr(DB_Index), cBuffer[LOCAL_BUFFER_SIZE]:CHR
 
@@ -1245,7 +1245,7 @@ Method DB_StructEditorDlg.ReopenIndex, uses xbx xsi, pStatus:PTaskStatus, \
   New DB_Index
   .if xax == NULL
     OCall xsi.ErrorReport, NULL, DB_OUT_OF_MEMORY
-    DbgWarning "DB_StructEditorDlg.MutationJob: Out of memory creating a DB_Index", \
+    DbgWarning "DB_StructEditorDlg.MutationJob: Out of memory creating a DB_Index", /
                offset(szDbgObjErr)
     mov xax, pStatus
     BitSet [xax].TaskStatus.dFlags, TSF_TASK_ERROR

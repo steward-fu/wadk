@@ -32,7 +32,7 @@ Method ListenerCollection.DestroyItem, uses xbx, pListener:PLISTENER
       ;Perform an "abortive close" of the socket, just in case.
       mov MyLinger.l_onoff, 1
       m2z MyLinger.l_linger
-      invoke setsockopt, [xbx].LISTENER.hSocket, SOL_SOCKET, SO_LINGER, \
+      invoke setsockopt, [xbx].LISTENER.hSocket, SOL_SOCKET, SO_LINGER, /
                          addr MyLinger, sizeof MyLinger
       CheckSockError "ERROR on SetSockOpt SO_LINGER"
       invoke closesocket, [xbx].LISTENER.hSocket
@@ -115,7 +115,7 @@ MethodEnd
 ; Return:     xax -> New NetComConnection or NULL if failed.
 ;             ecx = Error code.
 
-Method NetComEngine.ConnectTo, uses xbx xsi, pProtocol:$ObjPtr(NetComProtocol), \
+Method NetComEngine.ConnectTo, uses xbx xsi, pProtocol:$ObjPtr(NetComProtocol), /
                                              pRemoteHostAddr:PNETCOMADDR
   SetObject xsi
   ;Allocate a NetComConnection and (re)initialize it.
@@ -204,8 +204,8 @@ MethodEnd
 ;             Arg5: IO socket buffer size, usually the MTU size.
 ; Return:     eax = Zero if succeeded, otherwise an error code.
 
-Method NetComEngine.Init, uses xbx xsi, pOwner:POINTER, dAcceptorCount:DWORD, \
-                                        dAllocConnections:DWORD, dAllocIOSockJobs:DWORD, \
+Method NetComEngine.Init, uses xbx xsi, pOwner:POINTER, dAcceptorCount:DWORD, /
+                                        dAllocConnections:DWORD, dAllocIOSockJobs:DWORD, /
                                         dSockBufferSize:DWORD
   local dThreadId:DWORD, WsaData:WSADATA, SysInfo:SYSTEM_INFO
   local cLocalHostName[256]:CHR                        ;max. 256 characters
@@ -238,7 +238,7 @@ Method NetComEngine.Init, uses xbx xsi, pOwner:POINTER, dAcceptorCount:DWORD, \
     mov Hints.ai_next, NULL
     invoke GetAddrInfo, addr cLocalHostName, NULL, addr Hints, addr pResult
     mov xax, pResult
-    invoke MemClone, addr [xsi].LocalHostAddr, [xax].ADDRINFOT.ai_addr, \
+    invoke MemClone, addr [xsi].LocalHostAddr, [xax].ADDRINFOT.ai_addr, /
                      DWORD ptr [xax].ADDRINFOT.ai_addrlen
     invoke FreeAddrInfo, pResult
 
@@ -312,7 +312,7 @@ Method NetComEngine.Listen, uses xbx xdi xsi, pProtocol:$ObjPtr(NetComProtocol)
 
       ;Set socket options: disable nagle's algorithm
       m2z dOption
-      invoke setsockopt, [xbx].LISTENER.hSocket, IPPROTO_TCP, TCP_NODELAY, \
+      invoke setsockopt, [xbx].LISTENER.hSocket, IPPROTO_TCP, TCP_NODELAY, /
                          addr dOption, sizeof dOption
       CheckSockError "ERROR on SetSockOpt TCP_NODELAY"
 
@@ -325,10 +325,10 @@ Method NetComEngine.Listen, uses xbx xdi xsi, pProtocol:$ObjPtr(NetComProtocol)
       mov Hints.ai_addr, NULL
       mov Hints.ai_next, NULL
       mov xdx, pProtocol
-      invoke GetAddrInfo, NULL, [xdx].$Obj(NetComProtocol).pServiceName, \
+      invoke GetAddrInfo, NULL, [xdx].$Obj(NetComProtocol).pServiceName, /
                           addr Hints, addr pResult
       mov xax, pResult
-      invoke bind, [xbx].LISTENER.hSocket, [xax].ADDRINFOT.ai_addr, \
+      invoke bind, [xbx].LISTENER.hSocket, [xax].ADDRINFOT.ai_addr, /
                    DWORD ptr [xax].ADDRINFOT.ai_addrlen
       mov dBindResult, eax
       invoke FreeAddrInfo, pResult
@@ -344,7 +344,7 @@ Method NetComEngine.Listen, uses xbx xdi xsi, pProtocol:$ObjPtr(NetComProtocol)
         .else
           DbgText "Socket is listening..."
           ;Bind the listening socket to the IOCP => necessary for acceptor
-          invoke CreateIoCompletionPort, [xbx].LISTENER.hSocket, [xsi].hIOCP, \
+          invoke CreateIoCompletionPort, [xbx].LISTENER.hSocket, [xsi].hIOCP, /
                                          COMPLETION_KEY_LISTENER, 0
           .if eax == NULL                               ;NULL means failure
             OCall xsi.ErrorReport, NULL, NCE_LISTENER_IOCP_BIND_FAILED
@@ -417,7 +417,7 @@ MethodEnd
 ;             Arg2: -> NetComProtocol.
 ; Return:     eax = Zero if succeeded, otherwise an error code.
 
-Method NetComEngine.QueueAcceptor, uses xbx xsi, pListener:PLISTENER, \
+Method NetComEngine.QueueAcceptor, uses xbx xsi, pListener:PLISTENER, /
                                                  pProtocol:$ObjPtr(NetComProtocol)
   SetObject xsi
   OCall [xsi].Connections::NetComConnectionPool.NewItem ;Allocate a NetComConnection
@@ -468,7 +468,7 @@ Method NetComEngine.Supervisor, uses xbx xdi xsi
 ;          .if [xbx].$Obj(NetComConnection).dRcvLastTime != -1           ;Only established connections
 ;            .if [xbx].$Obj(NetComConnection).ObjLock.dLockCount == 0    ;Skip locked connections
 ;              .ifBitClr [xbx].$Obj(NetComConnection).dFlags, NCC_ABORT  ;Not processed before?
-;                invoke getsockopt, [xbx].$Obj(NetComConnection).hSocket, SOL_SOCKET, SO_CONNECT_TIME, \
+;                invoke getsockopt, [xbx].$Obj(NetComConnection).hSocket, SOL_SOCKET, SO_CONNECT_TIME, /
 ;                                   addr dConnectionTime, addr dConnectionTimeSize
 ;                CheckSockError "ERROR on getsockopt SO_CONNECT_TIME"
 ;                mov eax, dConnectionTime
@@ -579,8 +579,8 @@ Method NetComEngine.Worker, uses xbx xdi xsi
 
       invoke EnterCriticalSection, addr [xdi].$Obj(NetComConnection).CritSect
       ;Determine whether the operation completed successfully or not
-      invoke WSAGetOverlappedResult, [xdi].$Obj(NetComConnection).hSocket, xbx, \
-                                     addr dBytesConsumed, \
+      invoke WSAGetOverlappedResult, [xdi].$Obj(NetComConnection).hSocket, xbx, /
+                                     addr dBytesConsumed, /
                                      FALSE, addr dFlags
       mov dOvrResult, eax
       ;Serialize on a per connection basis
@@ -626,7 +626,7 @@ Method NetComEngine.Worker, uses xbx xdi xsi
 
     .endif
 
-  .until ([xsi].dShuttingDown == SDN_CLOSE_WORKERS && [xsi].IOJobs.dCount == 0) || \
+  .until ([xsi].dShuttingDown == SDN_CLOSE_WORKERS && [xsi].IOJobs.dCount == 0) || /
           [xsi].dShuttingDown == SDN_QUIT_WORKERS       ;Abortive close
 
   DbgText "NetComEngine worker death"

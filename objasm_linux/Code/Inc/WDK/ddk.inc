@@ -719,22 +719,14 @@ CM_RESOURCE_LIST ENDS
 PCM_RESOURCE_LIST typedef ptr CM_RESOURCE_LIST
 
 ; Define the structures used to interpret configuration data of
-; \\Registry\machine\hardware\description tree.
+; //Registry/machine/hardware/description tree.
 ; Basically, these structures are used to interpret component
 ; sepcific data.
 
 ; Define DEVICE_FLAGS
 ; All fields prefixed with 'df' because of record fields should be unique :-(
 
-DEVICE_FLAGS RECORD \
-    dfReserved:25,        ; bits 7-31
-    dfOutput:1,            ; bit 6
-    dfInput:1,            ; bit 5
-    dfConsoleOut:1,        ; bit 4
-    dfConsoleIn:1,        ; bit 3
-    dfRemovable:1,        ; bit 2
-    dfReadOnly:1,        ; bit 1
-    dfFailed:1            ; bit 0
+DEVICE_FLAGS RECORD dfReserved:25, dfOutput:1, dfInput:1, dfConsoleOut:1, dfConsoleIn:1, dfRemovable:1, dfReadOnly:1, dfFailed:1
 
 ; Define Component Information structure
 
@@ -1641,10 +1633,10 @@ ProbeForWrite proto STDCALL :DWORD, :DWORD, :DWORD
 ;#if PRAGMA_DEPRECATED_DDK
 ;#pragma deprecated(MmGetSystemAddressForMdl)    // Use MmGetSystemAddressForMdlSafe
 ;#endif
-;#define MmGetSystemAddressForMdl(MDL)                                  \
-;     (((MDL)->MdlFlags & (MDL_MAPPED_TO_SYSTEM_VA |                    \
-;                        MDL_SOURCE_IS_NONPAGED_POOL)) ?                \
-;                             ((MDL)->MappedSystemVa) :                 \
+;#define MmGetSystemAddressForMdl(MDL)                                  /
+;     (((MDL)->MdlFlags & (MDL_MAPPED_TO_SYSTEM_VA |                    /
+;                        MDL_SOURCE_IS_NONPAGED_POOL)) ?                /
+;                             ((MDL)->MappedSystemVa) :                 /
 ;                             (MmMapLockedPages((MDL),KernelMode)))
 MmGetSystemAddressForMdlSafe macro _Mdl:REQ, _PRIORITY:REQ
     push ebx

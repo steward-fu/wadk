@@ -56,18 +56,18 @@ GetComPortNames proc uses xbx xdi xsi
           .if dStrSize > COMPORT_NAME_LEN*sizeof(CHR)
             mov dStrSize, COMPORT_NAME_LEN*sizeof(CHR)
           .endif
-          invoke RegQueryValueEx, hDeviceKey, $OfsCStr("PortName"), NULL, NULL, \
+          invoke RegQueryValueEx, hDeviceKey, $OfsCStr("PortName"), NULL, NULL, /
                                   addr [xsi].COMPORT_INFO.cName, addr dStrSize
 
           ;Get friendly name
           mov dStrSize, 0
           ;Query initially to get the buffer size required
-          invoke SetupDiGetDeviceRegistryProperty, hDevInfoSet, addr DevInfo, SPDRP_DEVICEDESC, \
+          invoke SetupDiGetDeviceRegistryProperty, hDevInfoSet, addr DevInfo, SPDRP_DEVICEDESC, /
                                                    NULL, NULL, 0, addr dStrSize
           invoke GlobalAlloc, 0, dStrSize
           mov [xsi].COMPORT_INFO.pFriendlyName, xax
-          invoke SetupDiGetDeviceRegistryProperty, hDevInfoSet, addr DevInfo, SPDRP_DEVICEDESC, \
-                                                   NULL, [xsi].COMPORT_INFO.pFriendlyName, \
+          invoke SetupDiGetDeviceRegistryProperty, hDevInfoSet, addr DevInfo, SPDRP_DEVICEDESC, /
+                                                   NULL, [xsi].COMPORT_INFO.pFriendlyName, /
                                                    dStrSize, addr dStrSize
         .endif
         invoke RegCloseKey, hDeviceKey

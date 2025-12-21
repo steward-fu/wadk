@@ -1,15 +1,15 @@
 ;Include file created by h2incX, Version B.01.01, 10/09/2018 22:03
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\driverspecs.h', last modified: 19/04/2018 10:43
+;Source file: '/ObjAsm/Projects/h2IncX/header/driverspecs.h', last modified: 19/04/2018 10:43
 ;Creation parameters: 
 
 ifndef DRIVERSPECS_H
   DRIVERSPECS_H equ <>
   ifndef SPECSTRINGS_H
-    include specstrings.inc
+    include SpecStrings.inc
   endif
   include sdv_driverspecs.inc
-  include concurrencysal.inc
+  include ConcurrencySal.inc
   if _MSC_VER gt 1000
   endif
   ifdef __cplusplus
@@ -105,13 +105,13 @@ ifndef DRIVERSPECS_H
     exitm <_SAL1_1_Source_(__drv_releasesResource, (kind), _Releases_lock_(_Curr_))>
   endm
   __drv_innerAcquiresGlobal macro kind, param
-    exitm <_SAL1_1_Source_(_drv_innerAcquiresGlobal, (# kind, param\t), _Post_ _SA_annotes2(SAL_acquireGlobal, # kind, param\t))>
+    exitm <_SAL1_1_Source_(_drv_innerAcquiresGlobal, (# kind, param/t), _Post_ _SA_annotes2(SAL_acquireGlobal, # kind, param/t))>
   endm
   __drv_acquiresResourceGlobal macro kind, param
     exitm <_SAL1_1_Source_(__drv_acquiresResourceGlobal, (kind, param), _Acquires_lock_(param))>
   endm
   __drv_innerReleasesGlobal macro kind, param
-    exitm <_SAL1_1_Source_(__drv_InnerReleasesGlobal, (# kind, param\t), _Post_ _SA_annotes2(SAL_releaseGlobal, # kind, param\t))>
+    exitm <_SAL1_1_Source_(__drv_InnerReleasesGlobal, (# kind, param/t), _Post_ _SA_annotes2(SAL_releaseGlobal, # kind, param/t))>
   endm
   __drv_releasesResourceGlobal macro kind, param
     exitm <_SAL1_1_Source_(__drv_releasesResourceGlobal, (kind, param), _Releases_lock_(param))>
@@ -123,7 +123,7 @@ ifndef DRIVERSPECS_H
     exitm <_SAL_L_Source_(_drv_mustHold, (kind), _When_(! _Arg_comp_ (# kind, "Memory"), _Requires_lock_held_(_Curr_)) _When_(_Arg_comp_ (# kind, "Memory"), _Kernel_requires_resource_held_(kind)))>
   endm
   __drv_innerMustHoldGlobal macro kind, param
-    exitm <_SAL_L_Source_(__drv_innerMustHoldGlobal, (# kind, param\t), _Pre_ _SA_annotes2(SAL_mustHoldGlobal, # kind, param\t))>
+    exitm <_SAL_L_Source_(__drv_innerMustHoldGlobal, (# kind, param/t), _Pre_ _SA_annotes2(SAL_mustHoldGlobal, # kind, param/t))>
   endm
   __drv_mustHoldGlobal macro kind, param
     exitm <_SAL1_1_Source_(__drv_mustHoldGlobal, (kind, param), _Requires_lock_held_(param))>
@@ -135,7 +135,7 @@ ifndef DRIVERSPECS_H
     exitm <_SAL1_1_Source_(__drv_neverHold, (kind), _Requires_lock_not_held_(_Curr_))>
   endm
   __drv_innerNeverHoldGlobal macro kind, param
-    exitm <_SAL_L_Source_(__drv_innterNeverHoldGlobal, (# kind, param\t), _Pre_ _SA_annotes2(SAL_neverHoldGlobal, # kind, param\t))>
+    exitm <_SAL_L_Source_(__drv_innterNeverHoldGlobal, (# kind, param/t), _Pre_ _SA_annotes2(SAL_neverHoldGlobal, # kind, param/t))>
   endm
   __drv_neverHoldGlobal macro kind, param
     exitm <_SAL1_1_Source_(__drv_neverHoldGlobal, (kind, param), _Requires_lock_not_held_(param))>

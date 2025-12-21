@@ -239,13 +239,13 @@ LOG2_RGBQUAD_SIZE         equ   $Log2(RGBQUAD_SIZE)
 HIMETRIC_INCH   equ   2540      ;25.4 mm/inch * 100
 
 .const
-PXM_CHANNEL_OFFSET_TABLE   BYTE  -1, PXM_CHANNEL_OFFSET_RED, PXM_CHANNEL_OFFSET_BLUE, -1, \
+PXM_CHANNEL_OFFSET_TABLE   BYTE  -1, PXM_CHANNEL_OFFSET_RED, PXM_CHANNEL_OFFSET_BLUE, -1, /
                                  PXM_CHANNEL_OFFSET_GREEN, -1, -1, -1, PXM_CHANNEL_OFFSET_ALPHA
-PXM_CHANNEL_MEM_MASK_TABLE DWORD PXM_MASK_MEM_ARGB, PXM_MASK_MEM_RED, PXM_MASK_MEM_BLUE, \
-                                 PXM_MASK_MEM_ARGB, PXM_MASK_MEM_GREEN, PXM_MASK_MEM_ARGB, \
+PXM_CHANNEL_MEM_MASK_TABLE DWORD PXM_MASK_MEM_ARGB, PXM_MASK_MEM_RED, PXM_MASK_MEM_BLUE, /
+                                 PXM_MASK_MEM_ARGB, PXM_MASK_MEM_GREEN, PXM_MASK_MEM_ARGB, /
                                  PXM_MASK_MEM_ARGB, PXM_MASK_MEM_ARGB, PXM_MASK_MEM_ALPHA
-PXM_CHANNEL_REG_MASK_TABLE DWORD PXM_MASK_REG_ARGB, PXM_MASK_REG_RED, PXM_MASK_REG_BLUE, \
-                                 PXM_MASK_REG_ARGB, PXM_MASK_REG_GREEN, PXM_MASK_REG_ARGB, \
+PXM_CHANNEL_REG_MASK_TABLE DWORD PXM_MASK_REG_ARGB, PXM_MASK_REG_RED, PXM_MASK_REG_BLUE, /
+                                 PXM_MASK_REG_ARGB, PXM_MASK_REG_GREEN, PXM_MASK_REG_ARGB, /
                                  PXM_MASK_REG_ARGB, PXM_MASK_REG_ARGB, PXM_MASK_REG_ALPHA
 
 DefGUID IID_IPicture, %sIID_IPicture
@@ -739,7 +739,7 @@ Method Pixelmap.Clone, uses xbx xsi
     mov xbx, xax
     OCall xbx::Pixelmap.Init, [xsi].pOwner, [xsi].dWidth, [xsi].dHeight
     .if [xbx].$Obj(Pixelmap).dErrorCode == OBJ_OK
-      invoke MemClone, [xbx].$Obj(Pixelmap).pPixels, [xsi].pPixels, \
+      invoke MemClone, [xbx].$Obj(Pixelmap).pPixels, [xsi].pPixels, /
                        [xbx].$Obj(Pixelmap).BmpInfo.BITMAPINFO.bmiHeader.biSizeImage
     .else
       xor eax, eax
@@ -1636,7 +1636,7 @@ Method Pixelmap.LoadFileA, uses xbx xdi xsi, pFileName:PSTRINGA
             .else
               mov hPrvBmp, xax
               ;Now we have our bitmap mounted onto our temporary DC, let's blit to it
-              ICall pIPicture::IPicture.Render, hTmpDC, 0, 0, [xsi].dWidth, [xsi].dHeight, 0, \
+              ICall pIPicture::IPicture.Render, hTmpDC, 0, 0, [xsi].dWidth, [xsi].dHeight, 0, /
                                                 dHmHeight, dHmWidth, dNegHmHeight, NULL
               .if FAILED(eax)
                 OCall xsi.ErrorReport, NULL, PXM_IPICTURE_FAILED
@@ -1721,7 +1721,7 @@ Method Pixelmap.LoadFileW, uses xbx xdi xsi, pFileName:PSTRINGW
             .else
               mov hPrvBmp, xax
               ;Now we have our bitmap mounted onto our temporary DC, let's blit to it
-              ICall pIPicture::IPicture.Render, hTmpDC, 0, 0, [xsi].dWidth, [xsi].dHeight, 0, \
+              ICall pIPicture::IPicture.Render, hTmpDC, 0, 0, [xsi].dWidth, [xsi].dHeight, 0, /
                                                 dHmHeight, dHmWidth, dNegHmHeight, NULL
               .if FAILED(eax)
                 OCall xsi.ErrorReport, NULL, PXM_IPICTURE_FAILED
@@ -1786,7 +1786,7 @@ Method Pixelmap.SaveFileA, uses xsi, pFileName:PSTRINGA, dFileFormat:DWORD
           .if eax == FALSE
             OCall xsi.ErrorReport, NULL, PXM_FILEWRITE_FAILED
           .else
-            invoke WriteFile, hFile, [xsi].pPixels, [xsi].BmpInfo.BITMAPINFO.bmiHeader.biSizeImage,\
+            invoke WriteFile, hFile, [xsi].pPixels, [xsi].BmpInfo.BITMAPINFO.bmiHeader.biSizeImage,/
                               addr dBytesWritten, NULL
             .if eax == FALSE
               OCall xsi.ErrorReport, NULL, PXM_FILEWRITE_FAILED
@@ -1837,7 +1837,7 @@ Method Pixelmap.SaveFileW, uses xsi, pFileName:PSTRINGW, dFileFormat:DWORD
           .if eax == FALSE
             OCall xsi.ErrorReport, NULL, PXM_FILEWRITE_FAILED
           .else
-            invoke WriteFile, hFile, [xsi].pPixels, [xsi].BmpInfo.BITMAPINFO.bmiHeader.biSizeImage,\
+            invoke WriteFile, hFile, [xsi].pPixels, [xsi].BmpInfo.BITMAPINFO.bmiHeader.biSizeImage,/
                               addr dBytesWritten, NULL
             .if eax == FALSE
               OCall xsi.ErrorReport, NULL, PXM_FILEWRITE_FAILED
@@ -2671,7 +2671,7 @@ $PXM_GetNewColor macro
   exitm <eax>
 endm
 
-Method Pixelmap.Convolve3x3, uses xbx xdi xsi, pSrcPxm:POINTER, pSrcRct:PRECT, DstPnt:POINT, \
+Method Pixelmap.Convolve3x3, uses xbx xdi xsi, pSrcPxm:POINTER, pSrcRct:PRECT, DstPnt:POINT, /
                                                pFilterData:POINTER
   local xDstSkipY:XWORD, xSrcSkipY:XWORD, xFilterSkipY:XWORD
   local dWidth:DWORD, dHeight:DWORD, pFilterFirstData:ptr REAL4
@@ -3491,8 +3491,8 @@ endm
 ;             Arg6: Rotation angle (REAL4) in radian.
 ; Return:     Nothing.
 
-Method Pixelmap.DrawStrA, uses xbx xdi xsi, pText:PSTRINGA, pt:POINT, dColor:DWORD, \
-                                            hFont:HFONT, dRenderFlags:DWORD, \
+Method Pixelmap.DrawStrA, uses xbx xdi xsi, pText:PSTRINGA, pt:POINT, dColor:DWORD, /
+                                            hFont:HFONT, dRenderFlags:DWORD, /
                                             r4Rot:REAL4
   local TextRect:RECT, hTempDC:HDC
   local BmpInfo:BITMAPINFO, hTempDIBSect:HANDLE, pTempBits:POINTER
@@ -3524,8 +3524,8 @@ MethodEnd
 ;             Arg6: Rotation angle (REAL4) in radian.
 ; Return:     Nothing.
 
-Method Pixelmap.DrawStrW, uses xbx xdi xsi, pText:PSTRINGW, pt:POINT, dColor:DWORD, \
-                                            hFont:HFONT, dRenderFlags:DWORD, \
+Method Pixelmap.DrawStrW, uses xbx xdi xsi, pText:PSTRINGW, pt:POINT, dColor:DWORD, /
+                                            hFont:HFONT, dRenderFlags:DWORD, /
                                             r4Rot:REAL4
   local TextRect:RECT, hTempDC:HDC
   local BmpInfo:BITMAPINFO, hTempDIBSect:HANDLE, pTempBits:POINTER

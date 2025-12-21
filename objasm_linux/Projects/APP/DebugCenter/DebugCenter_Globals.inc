@@ -17,7 +17,7 @@ else
 endif
 
 ;Don't change the order of the next 3 string allocations
-CStr szLoadFilter,      "Debug Center files (*.rtf, *.bmp)", 0, "*.rtf", 3Bh, "*.bmp", 0, \
+CStr szLoadFilter,      "Debug Center files (*.rtf, *.bmp)", 0, "*.rtf", 3Bh, "*.bmp", 0, /
                         "Rich Text Format files (*.rtf)", 0, "*.rtf"
 CStr szBmpFilter,       "Bitmap files (*.bmp)", 0, "*.bmp", 0
 CStr szRtfFilter,       "Rich Text Format files (*.rtf)", 0, "*.rtf", 0
@@ -30,7 +30,7 @@ CStr szOAPath,          "OBJASM_PATH"
 
 CStr szCalcClass,       "SciCalc"
 CStr szEditClass,       "Edit"
-CStr szCalcPath,        "\Calc.exe"
+CStr szCalcPath,        "/Calc.exe"
 
 CStr szState,           "State"
 CStr szLeftPos,         "Left"
@@ -40,7 +40,7 @@ CStr szBottomPos,       "Bottom"
 CStr szDirectory,       "Directory"
 CStr szVersion,         "Version"
 CStr szPath,            "Path"
-CStr szDefDirectory,    "C:\"
+CStr szDefDirectory,    "C:/"
 CStr szLanguage,        "Language"
 CStr szTxtZoom,         "TxtZoom"
 CStr szBmpZoom,         "BmpZoom"

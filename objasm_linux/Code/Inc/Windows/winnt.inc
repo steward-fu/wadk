@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.02, 22/09/2018 21:43
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\winnt.h', last modified: 22/09/2018 17:04
+;Source file: '/ObjAsm/Projects/h2IncX/header/winnt.h', last modified: 22/09/2018 17:04
 ;Creation parameters:
 
 ifndef _WINNT_
@@ -53,7 +53,7 @@ ifndef _WINNT_
       DUMMYSTRUCTNAME6 equ <>
     endif
   endif
-  include specstrings.inc
+  include SpecStrings.inc
   include kernelspecs.inc
   if Defined(STRICT_GS_ENABLED)
     ;[...]
@@ -8634,7 +8634,7 @@ ifndef _WINNT_
   RTL_BARRIER ends
   _RTL_BARRIER typedef RTL_BARRIER
   PRTL_BARRIER typedef ptr RTL_BARRIER
-  include specstrings.inc
+  include SpecStrings.inc
   FAST_FAIL_LEGACY_GS_VIOLATION equ 0
   FAST_FAIL_VTGUARD_CHECK_FAILURE equ 1
   FAST_FAIL_STACK_COOKIE_CHECK_FAILURE equ 2
@@ -9361,10 +9361,10 @@ ifndef _WINNT_
   READ_THREAD_PROFILING_FLAG_HARDWARE_COUNTERS equ 00000002h
   if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
     if (NTDDI_VERSION ge NTDDI_WINTHRESHOLD)
-      UNIFIEDBUILDREVISION_KEY equ <L("\Registry\Machine\Software\Microsoft\Windows NT\CurrentVersion")>
+      UNIFIEDBUILDREVISION_KEY equ <L("/Registry/Machine/Software/Microsoft/Windows NT/CurrentVersion")>
       UNIFIEDBUILDREVISION_VALUE equ <L("UBR")>
       UNIFIEDBUILDREVISION_MIN equ 00000000h
-      DEVICEFAMILYDEVICEFORM_KEY equ <L("\Registry\Machine\Software\Microsoft\Windows NT\CurrentVersion\OEM")>
+      DEVICEFAMILYDEVICEFORM_KEY equ <L("/Registry/Machine/Software/Microsoft/Windows NT/CurrentVersion/OEM")>
       DEVICEFAMILYDEVICEFORM_VALUE equ <L("DeviceForm")>
       DEVICEFAMILYINFOENUM_UAP equ 00000000h
       DEVICEFAMILYINFOENUM_WINDOWS_8X equ 00000001h

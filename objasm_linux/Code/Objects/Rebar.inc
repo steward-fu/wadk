@@ -124,7 +124,7 @@ Method Rebar.ChevronMenu, uses xbx xdi xsi, pNMREBARCHEVRON:PNMREBARCHEVRON
     invoke CreatePopupMenu
     mov edi, eax
     mov tbbi.cbSize, sizeof(TBBUTTONINFO)
-    mov tbbi.dwMask, TBIF_IMAGE or TBIF_STATE or TBIF_TEXT or TBIF_BYINDEX or \
+    mov tbbi.dwMask, TBIF_IMAGE or TBIF_STATE or TBIF_TEXT or TBIF_BYINDEX or /
                      TBIF_COMMAND or TBIF_SIZE or TBIF_STYLE
     lea xax, cButtonText
     mov tbbi.pszText, xax
@@ -171,8 +171,8 @@ Method Rebar.ChevronMenu, uses xbx xdi xsi, pNMREBARCHEVRON:PNMREBARCHEVRON
       mov ebx, dButtonIdx
       inc ebx
     .endw
-    invoke TrackPopupMenu, xdi, TPM_LEFTALIGN or TPM_LEFTBUTTON, \
-                           BandRect.right, BandRect.bottom, \
+    invoke TrackPopupMenu, xdi, TPM_LEFTALIGN or TPM_LEFTBUTTON, /
+                           BandRect.right, BandRect.bottom, /
                            0, [xsi].hParent, NULL
     invoke DestroyMenu, xdi
   .endif
@@ -237,11 +237,11 @@ Method Rebar.Init, uses xsi, pOwner:POINTER, hParent:HWND
 
   invoke GetClientRect, hParent, addr Rct
 
-  WndStyle equ WS_VISIBLE or WS_BORDER or WS_CHILD or WS_CLIPCHILDREN or \
-               WS_CLIPSIBLINGS or CCS_NODIVIDER or CCS_NOPARENTALIGN  or \
+  WndStyle equ WS_VISIBLE or WS_BORDER or WS_CHILD or WS_CLIPCHILDREN or /
+               WS_CLIPSIBLINGS or CCS_NODIVIDER or CCS_NOPARENTALIGN  or /
                RBS_VARHEIGHT or RBS_BANDBORDERS or RBS_DBLCLKTOGGLE; or CCS_VERT
 
-  invoke CreateWindowEx, NULL, $OfsCStr("ReBarWindow32"), NULL, WndStyle, \
+  invoke CreateWindowEx, NULL, $OfsCStr("ReBarWindow32"), NULL, WndStyle, /
                          0, 0, Rct.right, 20, hParent, NULL, hInstance, NULL
   ACall xsi.Init, pOwner, xax
   Subclass Rebar                                        ;Uses xsi
@@ -265,7 +265,7 @@ Method Rebar.InsertBand, uses xsi, hChild:HWND, dChildWidth:DWORD, dChildHeight:
 ;  DbgText "Rebar.InsertBand"
   SetObject xsi
   mov RbInfo.cbSize, sizeof(REBARBANDINFO)
-  mov RbInfo.fMask, RBBIM_STYLE or RBBIM_IDEALSIZE or RBBIM_SIZE or \
+  mov RbInfo.fMask, RBBIM_STYLE or RBBIM_IDEALSIZE or RBBIM_SIZE or /
                     RBBIM_CHILD or RBBIM_CHILDSIZE or RBBIM_LPARAM
   mov RbInfo.fStyle, RBBS_CHILDEDGE or RBBS_GRIPPERALWAYS or RBBS_USECHEVRON
   m2m RbInfo.hwndChild, hChild, xdx
@@ -307,7 +307,7 @@ Method Rebar.OnMouseMove, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
     .if eax == FALSE
       ;At this point we want to detach the Toolbar from the Rebar
       mov RbInfo.cbSize, sizeof(REBARBANDINFO)
-      mov RbInfo.fMask, RBBIM_CHILDSIZE or RBBIM_LPARAM or RBBIM_SIZE or \
+      mov RbInfo.fMask, RBBIM_CHILDSIZE or RBBIM_LPARAM or RBBIM_SIZE or /
                         RBBIM_CHILD or RBBIM_IDEALSIZE
       mov RbInfo.cch, lengthof cTextGetRbI
       lea xax, cTextGetRbI
@@ -324,7 +324,7 @@ Method Rebar.OnMouseMove, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
       invoke SendMessage, RbInfo.hwndChild, TB_GETMAXSIZE, 0, addr TotSize
       invoke GetParent, [xsi].hWnd
       dec TotSize.cy
-      OCall pBandFrame::BandFrame.Init, xsi, xax, xsi, RbInfo.hwndChild, \
+      OCall pBandFrame::BandFrame.Init, xsi, xax, xsi, RbInfo.hwndChild, /
                                         TotSize.cx_, TotSize.cy
       mov xax, pBandFrame
       mov xbx, [xax].$Obj(BandFrame).hWnd
@@ -492,7 +492,7 @@ MethodEnd
 ;             Arg6: Child window height.
 ; Return:     Nothing.
 
-Method BandFrame.Init, uses xsi, pOwner:POINTER, hParent:HWND, pSrcRebar:POINTER, \
+Method BandFrame.Init, uses xsi, pOwner:POINTER, hParent:HWND, pSrcRebar:POINTER, /
                                  hChildWnd:HWND, dWidth:DWORD, dHeight:DWORD
   local CurPos:POINT
 
@@ -507,7 +507,7 @@ Method BandFrame.Init, uses xsi, pOwner:POINTER, hParent:HWND, pSrcRebar:POINTER
   sub CurPos.x, eax
   sub CurPos.y, eax
 
-  invoke CreateWindowEx, WS_EX_TOOLWINDOW, offset szBandFrameClass, NULL, WS_VISIBLE, \
+  invoke CreateWindowEx, WS_EX_TOOLWINDOW, offset szBandFrameClass, NULL, WS_VISIBLE, /
                          CurPos.x, CurPos.y, 200, 50, hParent, 0, hInstance, xsi
   ACall xsi.Init, pOwner, xax
   invoke SetClientSize, [xsi].hWnd, dWidth, dHeight

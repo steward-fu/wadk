@@ -65,20 +65,20 @@ CRLF  equ <13,10>
 ; Return:     Processed text.
 ; Notes:      esc. seq.      code           symbol
 ;             --------------------------------------------------
-;                 \:         21h            '!'
-;                 \{         28h            '('
-;                 \}         29h            ')'
-;                 \[         3Ch            '<'
-;                 \]         3Eh            '>'
-;                 \=         22h            '"'
-;                 \,         3Bh            ';'
-;                 \0          0             zero character
-;                 \n         0Dh, 0Ah       new line
-;                 \r         0Dh            carrige return
-;                 \l         0Ah            line feed
-;                 \t         09h            horizontal tabulation
+;                 /:         21h            '!'
+;                 /{         28h            '('
+;                 /}         29h            ')'
+;                 /[         3Ch            '<'
+;                 /]         3Eh            '>'
+;                 /=         22h            '"'
+;                 /,         3Bh            ';'
+;                 /0          0             zero character
+;                 /n         0Dh, 0Ah       new line
+;                 /r         0Dh            carrige return
+;                 /l         0Ah            line feed
+;                 /t         09h            horizontal tabulation
 ;
-; Other combinations of the "\" character are treated as literals.
+; Other combinations of the "/" character are treated as literals.
 
 $Esc macro Text:req
   $$CES_Text textequ <>
@@ -95,7 +95,7 @@ $Esc macro Text:req
       $$CES_LastChar Catstr <$$CES_Character>
       if $$CES_Backslash
         $$CES_Backslash = 0
-        ifidn <&$$CES_Character>, <\>
+        ifidn <&$$CES_Character>, </>
           if $$CES_SepComma
             $$CES_Text CatStr $$CES_Text, <,>
             $$CES_SepComma = 0
@@ -117,40 +117,40 @@ $Esc macro Text:req
           endif
 
           $$CES_SepComma = 1
-          ifidn <&$$CES_Character>, <n>                 ;;  \n   = CR, LF
+          ifidn <&$$CES_Character>, <n>                 ;;  /n   = CR, LF
             $$CES_Text CatStr $$CES_Text, <0Dh,0Ah>
-          elseifidn <&$$CES_Character>, <:>             ;;  \:   = !
+          elseifidn <&$$CES_Character>, <:>             ;;  /:   = !
             $$CES_Text CatStr $$CES_Text, <21h>
-          elseifidn <&$$CES_Character>, <{>             ;;  \{   = (
+          elseifidn <&$$CES_Character>, <{>             ;;  /{   = (
             $$CES_Text CatStr $$CES_Text, <28h>
-          elseifidn <&$$CES_Character>, <}>             ;;  \}   = )
+          elseifidn <&$$CES_Character>, <}>             ;;  /}   = )
             $$CES_Text CatStr $$CES_Text, <29h>
-          elseifidn <&$$CES_Character>, <[>             ;;  \[   = <
+          elseifidn <&$$CES_Character>, <[>             ;;  /[   = <
             $$CES_Text CatStr $$CES_Text, <3Ch>
-          elseifidn <&$$CES_Character>, <]>             ;;  \]   = >
+          elseifidn <&$$CES_Character>, <]>             ;;  /]   = >
             $$CES_Text CatStr $$CES_Text, <3Eh>
-          elseifidn <&$$CES_Character>, <=>             ;;  \=   = "
+          elseifidn <&$$CES_Character>, <=>             ;;  /=   = "
             $$CES_Text CatStr $$CES_Text, <22h>
-          elseifidn <&$$CES_Character>, <,>             ;;  \,   = ;
+          elseifidn <&$$CES_Character>, <,>             ;;  /,   = ;
             $$CES_Text CatStr $$CES_Text, <3Bh>
-          elseifidn <&$$CES_Character>, <0>             ;;  \0   = 0
+          elseifidn <&$$CES_Character>, <0>             ;;  /0   = 0
             $$CES_Text CatStr $$CES_Text, <0h>
-          elseifidn <&$$CES_Character>, <r>             ;;  \r   = CR
+          elseifidn <&$$CES_Character>, <r>             ;;  /r   = CR
             $$CES_Text CatStr $$CES_Text, <0Dh>
-          elseifidn <&$$CES_Character>, <l>             ;;  \l   = LF
+          elseifidn <&$$CES_Character>, <l>             ;;  /l   = LF
             $$CES_Text CatStr $$CES_Text, <0Ah>
-          elseifidn <&$$CES_Character>, <t>             ;;  \t   = TAB
+          elseifidn <&$$CES_Character>, <t>             ;;  /t   = TAB
             $$CES_Text CatStr $$CES_Text, <9h>
-          elseifidn <&$$CES_Character>, <\>             ;;       = \
-            $$CES_Text CatStr $$CES_Text, <\>
+          elseifidn <&$$CES_Character>, </>             ;;       = /
+            $$CES_Text CatStr $$CES_Text, </>
           else
-            $$CES_Text CatStr $$CES_Text, <"\>, <&$$CES_Character>
+            $$CES_Text CatStr $$CES_Text, <"/>, <&$$CES_Character>
             $$CES_LeadingQM = 1
             $$CES_SepComma = 0
           endif
         endif
       else
-        ifidn <&$$CES_Character>, <\>
+        ifidn <&$$CES_Character>, </>
           $$CES_Backslash = 1
         else
           if $$CES_SepComma
@@ -172,8 +172,8 @@ $Esc macro Text:req
     $$CES_Text CatStr $$CES_Text, <">                   ;;"
   endif
 
-  ifidni $$CES_LastChar, <\>                            ;;If $$CES_LastChar char == "\" then add it!
-    $$CES_Text CatStr $$CES_Text, <,"\">
+  ifidni $$CES_LastChar, </>                            ;;If $$CES_LastChar char == "/" then add it!
+    $$CES_Text CatStr $$CES_Text, <,"/">
   endif
 
 % exitm <$$CES_Text>
@@ -325,7 +325,7 @@ $PCG_RndChr macro
   local r, t, x, a
 
   a = 0
-  while a gt 'z' or a lt '0' or a ge ':' and a le '>' or \
+  while a gt 'z' or a lt '0' or a ge ':' and a le '>' or /
         a ge '[' and a le '`' and a ne '_'
     PCG32_STATE = PCG32_STATE * 6364136223846793005 + 0xda3e39cb94b95bdb
 

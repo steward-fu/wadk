@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.01, 10/09/2018 22:03
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\StdIO.h', last modified: 01/10/2012 08:50
+;Source file: '/ObjAsm/Projects/h2IncX/header/StdIO.h', last modified: 01/10/2012 08:50
 ;Creation parameters: 
 
 ifndef _INC_STDIO
@@ -32,8 +32,8 @@ ifndef _INC_STDIO
   ifdef _POSIX_
     ;[...]
   else
-    _P_tmpdir equ <"\">
-    _wP_tmpdir equ <L("\")>
+    _P_tmpdir equ <"/">
+    _wP_tmpdir equ <L("/")>
   endif
   L_tmpnam equ (sizeof(_P_tmpdir) + 12)
   if __STDC_WANT_SECURE_LIB__

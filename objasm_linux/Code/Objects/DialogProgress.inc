@@ -381,7 +381,7 @@ Method DialogProgress.Run, uses xbx xdi xsi
     .if [xdi].pTaskProc != NULL
       mov [xsi].CurTaskStatus.dCurPrgCnt, 0
       BitClr [xsi].CurTaskStatus.dFlags, TSF_TASK_ALL
-      invoke PTaskProc ptr [xdi].pTaskProc, [xdi].pOwner, addr [xsi].CurTaskStatus, \
+      invoke PTaskProc ptr [xdi].pTaskProc, [xdi].pOwner, addr [xsi].CurTaskStatus, /
                            [xdi].xParam1, [xdi].xParam2
       BitSet [xsi].CurTaskStatus.dFlags, TSF_TASK_ENDED     ;Just in case we forgot to to set it
       test [xsi].CurTaskStatus.dFlags, TSF_TASK_CANCELED

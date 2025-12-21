@@ -43,18 +43,18 @@ if IMPLEMENT
 
 CStr szPropertiesWnd, "PropertiesWnd"
 
-PROPCBSTYLE     equ   CBS_DROPDOWNLIST or CBS_HASSTRINGS or CBS_NOINTEGRALHEIGHT or \
+PROPCBSTYLE     equ   CBS_DROPDOWNLIST or CBS_HASSTRINGS or CBS_NOINTEGRALHEIGHT or /
                       WS_VSCROLL; or CBS_DISABLENOSCROLL
 
-PROPLVSTYLE     equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or \
+PROPLVSTYLE     equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or /
                       LVS_REPORT or LVS_SHOWSELALWAYS; or LVS_NOCOLUMNHEADER
 
-PROPLVEXSTYLE   equ   LVS_EX_FULLROWSELECT or LVS_EX_GRIDLINES or LVS_EX_CHECKBOXES or \
+PROPLVEXSTYLE   equ   LVS_EX_FULLROWSELECT or LVS_EX_GRIDLINES or LVS_EX_CHECKBOXES or /
                       LVS_EX_HEADERDRAGDROP or LVS_EX_TRACKSELECT or LVS_EX_ONECLICKACTIVATE
 
 PROPCOLUMNFLAG  equ   LVCF_FMT or LVCF_SUBITEM or LVCF_WIDTH or LVCF_TEXT
 
-PROPTBSTYLE     equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or \
+PROPTBSTYLE     equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or /
                       CCS_NORESIZE or CCS_NODIVIDER or CCS_ADJUSTABLE or TBSTYLE_FLAT
 .data
 ;This data must be in the data segment, because it is altered by the
@@ -99,7 +99,7 @@ MethodEnd
 Method PropertiesWnd.Init, uses xsi, pOwner:POINTER, hParent:HWND
   SetObject xsi
   ACall xsi.Init, pOwner, NULL                          ;hWnd is set in WndProc
-  invoke CreateWindowEx, WS_EX_CLIENTEDGE, offset szPropertiesWnd, $OfsCStr("Properties"), \
+  invoke CreateWindowEx, WS_EX_CLIENTEDGE, offset szPropertiesWnd, $OfsCStr("Properties"), /
                          WS_CHILD, 0, 0, 0, 0, hParent, NULL, hInstance, pSelf
   invoke ShowWindow, [xsi].hWnd, SW_SHOWNORMAL
 MethodEnd

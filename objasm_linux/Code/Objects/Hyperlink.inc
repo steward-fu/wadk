@@ -131,8 +131,8 @@ Method Hyperlink.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefStruc:PDE
   assume xbx:PDEF_HYPERLINK
   mov eax, [xbx].dStyle
   or eax, WS_CHILD or WS_VISIBLE or WS_TABSTOP       ;Set additional styles
-  invoke CreateWindowEx, [xbx].dExStyle, offset szHyperlinkClassName, [xbx].pTitle, \
-                         eax, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, \
+  invoke CreateWindowEx, [xbx].dExStyle, offset szHyperlinkClassName, [xbx].pTitle, /
+                         eax, [xbx].sdPosX, [xbx].sdPosY, [xbx].dWidth, [xbx].dHeight, /
                          hParent, [xbx].xCtlID, hInstance, pSelf
   assume xbx:NOTHING
 
@@ -423,7 +423,7 @@ Method Hyperlink.OnPaint, uses xsi, wParam:WPARAM, lParam:LPARAM
     invoke DrawTextEx, [xsi].hMemDC, [xsi].pLinkText, -1, addr [xsi].TextRect, HS_STYLE, NULL
 ;    .ifBitSet [xsi].dFlags, BTF_FOCUSED
 ;      invoke MemClone, addr [xsi].TextRect, addr [xsi].TextRect, sizeof(RECT)
-;      invoke DrawTextEx, [xsi].hMemDC, [xsi].pLinkText, -1, addr [xsi].TextRect, \
+;      invoke DrawTextEx, [xsi].hMemDC, [xsi].pLinkText, -1, addr [xsi].TextRect, /
 ;                         DT_CALCRECT or HS_STYLE, NULL
 ;      GrowRect [xsi].TextRect, 1, 1
 ;      invoke DrawFocusRect, [xsi].hMemDC, addr [xsi].TextRect
@@ -446,7 +446,7 @@ Method Hyperlink.OnPaint, uses xsi, wParam:WPARAM, lParam:LPARAM
 
   ;Now, copy the content of the memory DC to the drawing DC.
   invoke BeginPaint, [xsi].hWnd, addr PS
-  invoke BitBlt, PS.hdc, 0, 0, [xsi].FaceRect.right, [xsi].FaceRect.bottom, \
+  invoke BitBlt, PS.hdc, 0, 0, [xsi].FaceRect.right, [xsi].FaceRect.bottom, /
                  [xsi].hMemDC, 0, 0, SRCCOPY
   invoke DeleteObject, hBgBrush
   invoke EndPaint, [xsi].hWnd, addr PS

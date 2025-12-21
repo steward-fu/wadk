@@ -70,7 +70,7 @@ Method ISupportErrorInfo.InterfaceSupportsErrorInfo,, pRefIID:POINTER
   DbgText "ISupportErrorInfo.InterfaceSupportsErrorInfo", "ISupportErrorInfo"
   SetObject xcx
   .if pRefIID != NULL
-    OCall [xcx].pSupportedIIDs::Collection.FirstThat, \
+    OCall [xcx].pSupportedIIDs::Collection.FirstThat, /
                                 offset MemComp, pRefIID, sizeof(GUID)  ;pRefIID
     .if xax == NULL
       mov xax, S_FALSE

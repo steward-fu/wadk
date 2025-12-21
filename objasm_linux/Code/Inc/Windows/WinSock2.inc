@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.01, 29/10/2018 18:21
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\WinSock2.h', last modified: 19/04/2018 09:44
+;Source file: '/ObjAsm/Projects/h2IncX/header/WinSock2.h', last modified: 19/04/2018 09:44
 ;Creation parameters: 
 
 ifndef _WINSOCK2API_
@@ -33,7 +33,7 @@ ifndef _WINSOCK2API_
     INCL_WINSOCK_API_TYPEDEFS equ 0
   endif
   ifndef _INC_WINDOWS
-    include windows.inc
+    include Windows.inc
   endif
   if ( not Defined(_WIN64) and  not Defined(WIN32))
     include pshpack4.inc

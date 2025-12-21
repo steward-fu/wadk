@@ -133,7 +133,7 @@ Method NetComFile.DoRead, uses xbx xsi, pIOFileJob:PIO_FILEJOB
 ;    DbgDec [xbx].IO_FILEJOB.dBytesUsed, "requesting read"
 
     ;Queue the Read request
-    invoke ReadFile, [xsi].hFile, [xbx].IO_FILEJOB.IO_Buf.pBuffer, [xbx].IO_FILEJOB.dBytesUsed, \
+    invoke ReadFile, [xsi].hFile, [xbx].IO_FILEJOB.IO_Buf.pBuffer, [xbx].IO_FILEJOB.dBytesUsed, /
                      addr [xbx].IO_FILEJOB.dBytesUsed, xbx
     .if eax != TRUE                                   ;Did read IO complete synchronously?
       invoke GetLastError                             ;No, check if it is a pending state
@@ -163,7 +163,7 @@ Method NetComFile.DoWrite, uses xbx xsi, pIOFileJob:PIO_FILEJOB
   SetObject xsi
   mov xbx, pIOFileJob
   .if [xbx].IO_FILEJOB.dBytesUsed != 0
-    invoke WriteFile, [xsi].hFile, [xbx].IO_FILEJOB.IO_Buf.pBuffer, [xbx].IO_FILEJOB.dBytesUsed, \
+    invoke WriteFile, [xsi].hFile, [xbx].IO_FILEJOB.IO_Buf.pBuffer, [xbx].IO_FILEJOB.dBytesUsed, /
                                    addr [xbx].IO_FILEJOB.dBytesUsed, xbx
     .if eax != TRUE                                   ;Did IO complete synchronously?
       invoke GetLastError                             ;No, check if it is a pending state
@@ -207,7 +207,7 @@ MethodEnd
 ; Return:     eax = 0 if succeeded otherwise an error code.
 ; Note:       Failure can be due to bad SHARE access, etc.
 
-Method NetComFile.Init, uses xsi, pOwner:POINTER, pstrPathName:POINTER, \
+Method NetComFile.Init, uses xsi, pOwner:POINTER, pstrPathName:POINTER, /
                                   dShareMode:DWORD, dAccessMode:DWORD, pEventSink:POINTER
   SetObject xsi
   m2m [xsi].pEventSink, pEventSink, xdx

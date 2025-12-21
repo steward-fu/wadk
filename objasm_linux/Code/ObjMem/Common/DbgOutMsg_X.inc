@@ -14,7 +14,7 @@ DOM struc
 DOM ends
 
 .const
-DbgWndMsgTable \
+DbgWndMsgTable /
   DOM {WM_NULL,                           $OfsTStrA("WM_NULL")}                           ;0000
   DOM {WM_CREATE,                         $OfsTStrA("WM_CREATE")}                         ;0001
   DOM {WM_DESTROY,                        $OfsTStrA("WM_DESTROY")}                        ;0002

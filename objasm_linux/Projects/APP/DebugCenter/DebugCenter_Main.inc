@@ -8,13 +8,13 @@
 
 CLSSTYLE  equ   CS_BYTEALIGNWINDOW or CS_BYTEALIGNCLIENT or CS_VREDRAW or CS_HREDRAW
 
-TBSTYLE   equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or \
+TBSTYLE   equ   WS_CHILD or WS_VISIBLE or WS_CLIPCHILDREN or TBSTYLE_TOOLTIPS or /
                 CCS_NORESIZE or CCS_NODIVIDER or CCS_ADJUSTABLE or TBSTYLE_FLAT or TBSTYLE_LIST
 
 WAIT_TIMEOUT  equ   102h
 
 .const
-ToolbarFile DEF_TOOLBAR {IDC_TOOLBARFILE, TBSTYLE, TBSTYLE_EX_MIXEDBUTTONS, \
+ToolbarFile DEF_TOOLBAR {IDC_TOOLBARFILE, TBSTYLE, TBSTYLE_EX_MIXEDBUTTONS, /
                          $OfsTStr("File operations"), {<0,0,0,0>}, 8}
   TBBUTTON {IDB_FILE_OPEN,        IDM_FILE_OPEN,        TBSTATE_ENABLED, TBSTYLE_BUTTON}
   TBBUTTON {IDB_FILE_SAVE,        IDM_FILE_SAVE,        TBSTATE_ENABLED, TBSTYLE_BUTTON}
@@ -23,10 +23,10 @@ ToolbarFile DEF_TOOLBAR {IDC_TOOLBARFILE, TBSTYLE, TBSTYLE_EX_MIXEDBUTTONS, \
   TBBUTTON {0,                    -1,                   TBSTATE_ENABLED, TBSTYLE_SEP}
   TBBUTTON {IDB_FILE_PRINT,       IDM_FILE_PRINT,       TBSTATE_ENABLED, TBSTYLE_BUTTON}
   TBBUTTON {0,                    -2,                   TBSTATE_ENABLED, TBSTYLE_SEP}
-  TBBUTTON {IDB_FILE_PIN,         IDM_FILE_PIN,         TBSTATE_ENABLED, TBSTYLE_BUTTON or \
+  TBBUTTON {IDB_FILE_PIN,         IDM_FILE_PIN,         TBSTATE_ENABLED, TBSTYLE_BUTTON or /
                                                                          TBSTYLE_CHECK}
 
-ToolbarEdit DEF_TOOLBAR {IDC_TOOLBAREDIT, TBSTYLE, TBSTYLE_EX_MIXEDBUTTONS, \
+ToolbarEdit DEF_TOOLBAR {IDC_TOOLBAREDIT, TBSTYLE, TBSTYLE_EX_MIXEDBUTTONS, /
                          $OfsTStr("Edit operations"), {<0,0,0,0>}, 7}
   TBBUTTON {IDB_EDIT_CUT,         IDM_EDIT_CUT,         TBSTATE_ENABLED, TBSTYLE_BUTTON}
   TBBUTTON {IDB_EDIT_COPY,        IDM_EDIT_COPY,        TBSTATE_ENABLED, TBSTYLE_BUTTON}
@@ -36,7 +36,7 @@ ToolbarEdit DEF_TOOLBAR {IDC_TOOLBAREDIT, TBSTYLE, TBSTYLE_EX_MIXEDBUTTONS, \
   TBBUTTON {IDB_EDIT_ERASEALL,    IDM_EDIT_ERASEALL,    TBSTATE_ENABLED, TBSTYLE_BUTTON}
   TBBUTTON {IDB_EDIT_FIND,        IDM_EDIT_FIND,        TBSTATE_ENABLED, TBSTYLE_BUTTON}
 
-ToolbarWindow DEF_TOOLBAR {IDC_TOOLBARWINDOW, TBSTYLE, TBSTYLE_EX_MIXEDBUTTONS, \
+ToolbarWindow DEF_TOOLBAR {IDC_TOOLBARWINDOW, TBSTYLE, TBSTYLE_EX_MIXEDBUTTONS, /
                            $OfsTStr("Window operations"), {<0,0,0,0>}, 8}
   TBBUTTON {IDB_WINDOW_CASCADE,   IDM_WINDOW_CASCADE,   TBSTATE_ENABLED, TBSTYLE_BUTTON}
   TBBUTTON {IDB_WINDOW_TILE_HOR,  IDM_WINDOW_TILE_HOR,  TBSTATE_ENABLED, TBSTYLE_BUTTON}
@@ -55,10 +55,10 @@ AppStatusbar DEF_STATUSBAR {IDC_STATUSBAR, SBSTYLE, 0, 4}
   DEF_STATUSBAR_PART {120,  -2, 0, SBT_SUNKEN,    NULL} ;Spring
   DEF_STATUSBAR_PART {120, 100, 2, SBT_SUNKEN,    NULL}
 
-;##\ Not used yet
-;TextFlags  record  TF_Unused:24=0, TF_FILTERACT:1=FALSE, \
-;                   TF_FILTERTEXT:1=FALSE, TF_FILTERMSGID:1=FALSE, TF_FILTERLNNR:1=FALSE, \
-;                   TF_FILTERTIME:1=FALSE, \
+;##/ Not used yet
+;TextFlags  record  TF_Unused:24=0, TF_FILTERACT:1=FALSE, /
+;                   TF_FILTERTEXT:1=FALSE, TF_FILTERMSGID:1=FALSE, TF_FILTERLNNR:1=FALSE, /
+;                   TF_FILTERTIME:1=FALSE, /
 ;                   TF_HIDEMSGID:1=FALSE, TF_HIDETIME:1=FALSE, TF_HIDELNNR:1=FALSE
 ;##/
 
@@ -178,7 +178,7 @@ Method DebugCenter.ChangeLanguage, uses xbx xdi xsi, dLangID:DWORD
   mov MenuInfo.cbSize, sizeof(MenuInfo)
   mov MenuInfo.fMask, MIIM_SUBMENU
   invoke GetMenuItemInfo, [xsi].hMenuChild, IDM_LANGUAGE, FALSE, addr MenuInfo
-  invoke CheckMenuRadioItem, MenuInfo.hSubMenu, IDM_LANGUAGE_ENGLISH, IDM_LANGUAGE_SPANISH, \
+  invoke CheckMenuRadioItem, MenuInfo.hSubMenu, IDM_LANGUAGE_ENGLISH, IDM_LANGUAGE_SPANISH, /
                              edi, MF_BYCOMMAND
 
   ;IDM_LANGUAGE popup menu has only positon 2 in the InitMenu.
@@ -450,9 +450,9 @@ Method DebugCenter.Init, uses xbx xdi xsi
 
   ;Create the MDI Frame Window
   invoke CreateWindowEx, WS_EX_APPWINDOW or WS_EX_WINDOWEDGE,
-                         offset szDbgCtrCls, \
-                         offset szAppTitle, WS_OVERLAPPEDWINDOW or WS_CLIPCHILDREN, \
-                         0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT, \
+                         offset szDbgCtrCls, /
+                         offset szAppTitle, WS_OVERLAPPEDWINDOW or WS_CLIPCHILDREN, /
+                         0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT, /
                          NULL, [xsi].hMenuInit, hInstance, pSelf
   .if eax != 0                                          ;Check if we could create the main window
     ;Create Client window
@@ -463,8 +463,8 @@ Method DebugCenter.Init, uses xbx xdi xsi
     mov [xsi].pXMenu, $New(XMenu)
     mov xdi, $MethodAddr(DebugCenter.StatusbarHelp)
     mov xax, [xsi].pClientWnd
-    OCall [xsi].pXMenu::XMenu.Init, xsi, [xsi].hWnd, [xax].$Obj(DbgMdiClient).hWnd, \
-                                    [xsi].hMenuChildWnd, xbx, \
+    OCall [xsi].pXMenu::XMenu.Init, xsi, [xsi].hWnd, [xax].$Obj(DbgMdiClient).hWnd, /
+                                    [xsi].hMenuChildWnd, xbx, /
                                     xdi, IDLANG_ENGLISH
     OCall xsi.ChangeLanguage, [xsi].dLanguage           ;Update Language menu
 
@@ -774,7 +774,7 @@ Method DebugCenter.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
           .endif
         .endif
         ;Remember this new path
-        invoke StrRScan, addr cFileName, "\"
+        invoke StrRScan, addr cFileName, "/"
         .if xax != NULL
           m2z CHR ptr [xax]
           invoke StrDispose, [xsi].pDirectory
@@ -1033,7 +1033,7 @@ Method DebugCenter.OnCommand, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
   ; %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
   .elseif ax == IDM_HELP_HELP
-    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Help\ObjAsm_Reference_Volume-I.pdf"), \
+    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Help/ObjAsm_Reference_Volume-I.pdf"), /
                                      addr cFileName, lengthof(cFileName)
     invoke PdfView, [xsi].hWnd, addr cFileName, $OfsCStr("Debugging")
     xor eax, eax
@@ -1414,7 +1414,7 @@ Method DebugCenter.OnCreate, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
 
   ;Create Window Toolbar
   mov [xsi].pToolbarWindow, $New(Toolbar)
-  OCall [xsi].pToolbarWindow::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarWindow, \
+  OCall [xsi].pToolbarWindow::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarWindow, /
              [xsi].pIconImageList, NULL, NULL
   mov ebx, $32($OCall([xsi].pToolbarWindow::Toolbar.GetWidth))
   OCall [xsi].pToolbarWindow::Toolbar.GetHeight
@@ -1423,7 +1423,7 @@ Method DebugCenter.OnCreate, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
 
   ;Create Edit Toolbar
   mov [xsi].pToolbarEdit, $New(Toolbar)
-  OCall [xsi].pToolbarEdit::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarEdit, \
+  OCall [xsi].pToolbarEdit::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarEdit, /
              [xsi].pIconImageList, NULL, NULL
   mov ebx, $32($OCall([xsi].pToolbarEdit::Toolbar.GetWidth))
   OCall [xsi].pToolbarEdit::Toolbar.GetHeight
@@ -1432,7 +1432,7 @@ Method DebugCenter.OnCreate, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
 
   ;Create File Toolbar
   mov [xsi].pToolbarFile, $New(Toolbar)
-  OCall [xsi].pToolbarFile::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarFile, \
+  OCall [xsi].pToolbarFile::Toolbar.Init, xsi, [xsi].hWnd, offset ToolbarFile, /
              [xsi].pIconImageList, NULL, NULL
   mov ebx, $32($OCall([xsi].pToolbarFile::Toolbar.GetWidth))
   OCall [xsi].pToolbarFile::Toolbar.GetHeight
@@ -1782,7 +1782,7 @@ Method DbgMdiClient.OnDropFiles, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
     mov edx, $ObjTmpl(DebugCenter).dLanguage
     add edx, 123
     invoke LoadString, hInstance, edx, addr cMsg, lengthof cMsg - 1
-    invoke MessageBox, [xsi].hWnd, addr cMsg, \
+    invoke MessageBox, [xsi].hWnd, addr cMsg, /
                        offset szDebugCenter, MB_OK or MB_ICONEXCLAMATION
   @@OK:
     invoke StrDispose, pFileName

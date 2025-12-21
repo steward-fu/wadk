@@ -401,7 +401,7 @@ Method ChartXYSeries.Draw, uses xbx xdi xsi, hDC:HDC
 
   ;Clip drawing to the plotarea
   invoke GetClipRgn, hDC, hPrevRgn
-  mov hRgn, $invoke(CreateRectRgn, [xdi].PlotRect.left,  [xdi].PlotRect.top, \
+  mov hRgn, $invoke(CreateRectRgn, [xdi].PlotRect.left,  [xdi].PlotRect.top, /
                                    [xdi].PlotRect.right, [xdi].PlotRect.bottom)
   invoke SelectClipRgn, hDC, hRgn
 

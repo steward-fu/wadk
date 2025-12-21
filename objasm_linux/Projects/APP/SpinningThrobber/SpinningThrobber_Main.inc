@@ -63,8 +63,8 @@ Method Application.Init, uses xsi
   mov dWndPosX, $32($invoke(CenterForm, dWndWidth,  $32($invoke(GetSystemMetrics, SM_CXSCREEN))))
   mov dWndPosY, $32($invoke(CenterForm, dWndHeight, $32($invoke(GetSystemMetrics, SM_CYSCREEN))))
 
-  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, \
-                         offset szApplicationClass, offset szAppTitle, WS_OVERLAPPEDWINDOW, \
+  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, /
+                         offset szApplicationClass, offset szAppTitle, WS_OVERLAPPEDWINDOW, /
                          dWndPosX, dWndPosY, dWndWidth, dWndHeight, NULL, NULL, hInstance, xsi
 
   invoke ShowWindow, [xsi].hWnd, SW_SHOWNORMAL          ;Show the window
@@ -80,8 +80,8 @@ MethodEnd
 
 Method Application.OnCreate, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
-  invoke CreateWindowEx, WS_EX_LAYERED, \
-                         offset szSpinningThrobberClass, NULL, WS_VISIBLE or WS_CHILD, \
+  invoke CreateWindowEx, WS_EX_LAYERED, /
+                         offset szSpinningThrobberClass, NULL, WS_VISIBLE or WS_CHILD, /
                          150, 100, 1, 1, [xsi].hWnd, 0, hInstance, NULL
   .if xax != 0
     invoke SendMessage, xax, WM_GETOBJECTINSTANCE, 0, 0 ;Get instance POINTER of the parent object
@@ -90,8 +90,8 @@ Method Application.OnCreate, uses xsi, wParam:WPARAM, lParam:LPARAM
     OCall [xsi].pThrobber1::SpinningThrobber.Start
   .endif
 
-  invoke CreateWindowEx, WS_EX_LAYERED, \
-                         offset szSpinningThrobberClass, NULL, WS_VISIBLE or WS_CHILD, \
+  invoke CreateWindowEx, WS_EX_LAYERED, /
+                         offset szSpinningThrobberClass, NULL, WS_VISIBLE or WS_CHILD, /
                          170, 120, 1, 1, [xsi].hWnd, 0, hInstance, NULL
   .if xax != 0
     invoke SendMessage, xax, WM_GETOBJECTINSTANCE, 0, 0 ;Get instance POINTER of the parent object
@@ -148,7 +148,7 @@ Method Application.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
     xor eax, eax
 
   .elseif ax == IDM_HELP
-    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Help\ObjAsm_Reference_Volume-I.pdf"),\
+    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Help/ObjAsm_Reference_Volume-I.pdf"),/
                                      addr cBuffer, lengthof(cBuffer)
     invoke PdfView, [xsi].hWnd, addr cBuffer, $OfsCStr("Introduction")
     xor eax, eax
@@ -167,7 +167,7 @@ MethodEnd
 
 Method Application.OnClose, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
-  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), \
+  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), /
                      MB_YESNO or MB_ICONQUESTION
   .if eax == IDNO
     xor eax, eax

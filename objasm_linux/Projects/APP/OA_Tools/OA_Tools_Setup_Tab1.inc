@@ -49,7 +49,7 @@ CB_FontData struc
   hFont       HANDLE    ?
 CB_FontData ends
 
-MyEnumFontFamExProc proc uses xbx xdi xsi, lpelfe:ptr LOGFONT, lpntme:ptr TEXTMETRIC, \
+MyEnumFontFamExProc proc uses xbx xdi xsi, lpelfe:ptr LOGFONT, lpntme:ptr TEXTMETRIC, /
                                            FontType:DWORD, lParam:LPARAM
   mov xbx, lpelfe                                       ;xbx -> ENUMLOGFONTEX structure
   mov xdi, lParam                                       ;xdi -> ArgsEnumFontFam
@@ -60,12 +60,12 @@ MyEnumFontFamExProc proc uses xbx xdi xsi, lpelfe:ptr LOGFONT, lpntme:ptr TEXTME
     .if al == FF_MODERN
       .if CHR ptr [xbx].ENUMLOGFONTEX.elfFullName != "@"
         ;If the typeface name is not already in the list
-        invoke SendMessage, [xdi].ArgsEnumFontFam.hComboBox, CB_FINDSTRINGEXACT, -1, \
+        invoke SendMessage, [xdi].ArgsEnumFontFam.hComboBox, CB_FINDSTRINGEXACT, -1, /
                             addr [xbx].ENUMLOGFONTEX.elfFullName
         .if eax == CB_ERR
           ;Add each font to the list box
           mov xsi, $MemAlloc(sizeof CB_FontData)          ;xsi -> CB_FontData
-          invoke MemClone, addr [xsi].CB_FontData.cFaceName, \
+          invoke MemClone, addr [xsi].CB_FontData.cFaceName, /
                            addr [xbx].ENUMLOGFONTEX.elfFullName, LF_FULLFACESIZE
 
           ;Setup font creation parameters
@@ -75,7 +75,7 @@ MyEnumFontFamExProc proc uses xbx xdi xsi, lpelfe:ptr LOGFONT, lpntme:ptr TEXTME
           ;Create a new font & store its handle
           invoke CreateFontIndirect, addr [xbx].ENUMLOGFONTEX.elfLogFont
           mov [xsi].CB_FontData.hFont, xax
-          invoke SendMessage, [xdi].ArgsEnumFontFam.hComboBox, CB_ADDSTRING, \
+          invoke SendMessage, [xdi].ArgsEnumFontFam.hComboBox, CB_ADDSTRING, /
                               0, addr [xsi].CB_FontData.cFaceName
         .endif
       .endif
@@ -323,7 +323,7 @@ Method Tab1.OnDrawItem, uses xbx xdi xsi, wParam:WPARAM, lParam:LPARAM
       invoke GetSysColor, eax
       mov dPrevColor, $32($invoke(SetTextColor, [xdi].DRAWITEMSTRUCT.hDC, eax))
 
-      invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, addr [xbx].CB_FontData.cFaceName, -1, \
+      invoke DrawText, [xdi].DRAWITEMSTRUCT.hDC, addr [xbx].CB_FontData.cFaceName, -1, /
                        addr [xdi].DRAWITEMSTRUCT.rcItem, DT_LEFT or DT_VCENTER or DT_SINGLELINE
 
       invoke SetTextColor, [xdi].DRAWITEMSTRUCT.hDC, dPrevColor

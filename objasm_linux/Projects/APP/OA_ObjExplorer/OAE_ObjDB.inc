@@ -29,7 +29,7 @@ CStr  cStart,               "Start"
 CStr  cYes,                 "Yes"
 
 ;Match from the beginning, skip initial blanks, capture ".xxx" patterns and skip blanks or ","
-CStr  cREXP_ListItem,       "^(\.\w*)\s*,?\s*"
+CStr  cREXP_ListItem,       "^(/./w*)/s*,?/s*"
 
 CStrA bComment,             "COMMENT"
 CStrA bMethod,              "Method"
@@ -110,7 +110,7 @@ if IMPLEMENT
 ; Return:     Nothing.
 
 align ALIGN_CODE
-DelMatchingObjVariable proc pItem:POBJVARINFORMATION, pFileInfo:PFILEINFORMATION, \
+DelMatchingObjVariable proc pItem:POBJVARINFORMATION, pFileInfo:PFILEINFORMATION, /
                             pColl:$ObjPtr(ObjVarInfoCollection)
   mov xax, pItem
   mov xcx, [xax].OBJVARINFORMATION.pFileInfo
@@ -121,7 +121,7 @@ DelMatchingObjVariable proc pItem:POBJVARINFORMATION, pFileInfo:PFILEINFORMATION
 DelMatchingObjVariable endp
 
 align ALIGN_CODE
-DelMatchingObjMethod proc pItem:POBJMTDINFORMATION, pFileInfo:PFILEINFORMATION, \
+DelMatchingObjMethod proc pItem:POBJMTDINFORMATION, pFileInfo:PFILEINFORMATION, /
                           pColl:$ObjPtr(ObjMtdInfoCollection)
   mov xax, pItem
   mov xcx, [xax].OBJMTDINFORMATION.pFileInfo
@@ -132,7 +132,7 @@ DelMatchingObjMethod proc pItem:POBJMTDINFORMATION, pFileInfo:PFILEINFORMATION, 
 DelMatchingObjMethod endp
 
 align ALIGN_CODE
-DelMatchingObject proc pItem:POBJECTINFORMATION, pFileInfo:PFILEINFORMATION, \
+DelMatchingObject proc pItem:POBJECTINFORMATION, pFileInfo:PFILEINFORMATION, /
                        pColl:$ObjPtr(ObjInfoCollection)
   mov xax, pItem
   mov xcx, [xax].OBJECTINFORMATION.pFileInfo
@@ -143,7 +143,7 @@ DelMatchingObject proc pItem:POBJECTINFORMATION, pFileInfo:PFILEINFORMATION, \
 DelMatchingObject endp
 
 align ALIGN_CODE
-DelMatchingIntMethod proc pItem:PINTMTDINFORMATION, pFileInfo:PFILEINFORMATION, \
+DelMatchingIntMethod proc pItem:PINTMTDINFORMATION, pFileInfo:PFILEINFORMATION, /
                           pColl:$ObjPtr(IntMtdInfoCollection)
   mov xax, pItem
   mov xcx, [xax].INTMTDINFORMATION.pFileInfo
@@ -154,7 +154,7 @@ DelMatchingIntMethod proc pItem:PINTMTDINFORMATION, pFileInfo:PFILEINFORMATION, 
 DelMatchingIntMethod endp
 
 align ALIGN_CODE
-DelMatchingInterface proc pItem:PINTERFACEINFORMATION, pFileInfo:PFILEINFORMATION, \
+DelMatchingInterface proc pItem:PINTERFACEINFORMATION, pFileInfo:PFILEINFORMATION, /
                           pColl:$ObjPtr(IntInfoCollection)
   mov xax, pItem
   mov xcx, [xax].INTERFACEINFORMATION.pFileInfo
@@ -165,7 +165,7 @@ DelMatchingInterface proc pItem:PINTERFACEINFORMATION, pFileInfo:PFILEINFORMATIO
 DelMatchingInterface endp
 
 align ALIGN_CODE
-DelMatchingImpMethod proc pItem:PIMPMTDINFORMATION, pFileInfo:PFILEINFORMATION, \
+DelMatchingImpMethod proc pItem:PIMPMTDINFORMATION, pFileInfo:PFILEINFORMATION, /
                           pColl:$ObjPtr(ImpMtdInfoCollection)
   mov xax, pItem
   mov xcx, [xax].IMPMTDINFORMATION.pFileInfo
@@ -482,7 +482,7 @@ FindHelpLines endp
 
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————
 ; Method:     OA_ObjDB.ScanFile
-; Purpose:    Scans a file in the ObjAsm\Code\Objects directory for object information.
+; Purpose:    Scans a file in the ObjAsm/Code/Objects directory for object information.
 ; Arguments:  Arg1: -> File name.
 ;             Arg2: Last Write Time (FILETIME).
 ;             Arg3: Info Flags: OIF_xxx (INF_PRJ, etc.).
@@ -513,7 +513,7 @@ FileNotListed proc pFileNameInCollection:PSTRING, pTestFileName:PSTRING, xDummy:
   ret
 FileNotListed endp
 
-Method OA_ObjDB.ScanFile, uses xbx xdi xsi, pFileName:PSTRING, LastWriteTime:FILETIME, \
+Method OA_ObjDB.ScanFile, uses xbx xdi xsi, pFileName:PSTRING, LastWriteTime:FILETIME, /
                                             dInfoFlags:DWORD
   local pWord:PSTRINGA, dWordLength:DWORD
   local pName:POINTER, dNameLength:DWORD

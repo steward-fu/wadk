@@ -42,7 +42,7 @@
 ; Return:     Nothing / Reference to the string.
 ; Notes:      - Quotation marks can be used as usual. See example.
 ;             - Partial input strings can be separated by commas.
-;             - Break input lines with "\".
+;             - Break input lines with "/".
 ;             - Empty input strings ("" or '') causes an error.
 ;             - Numeric inputs in word range are possible.
 ;             - sizeof and length of directives work with this macro.
@@ -66,10 +66,10 @@ StringW macro StrName, QuotedText:vararg
   $$TextSize SizeStr <QuotedText>
   $$StartPos = 1
 :SearchBackslasch
-  $$FindPos InStr $$StartPos, <QuotedText>, <\>
+  $$FindPos InStr $$StartPos, <QuotedText>, </>
   if $$FindPos ne 0
     $$AddText SubStr <QuotedText>, $$StartPos, $$FindPos - $$StartPos + 1
-    $$Text CatStr $$Text, $$AddText, <\>
+    $$Text CatStr $$Text, $$AddText, </>
     if $$FindPos lt $$TextSize
       $$StartPos = $$FindPos + 1
       goto SearchBackslasch

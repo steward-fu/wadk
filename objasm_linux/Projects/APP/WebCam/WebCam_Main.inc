@@ -53,10 +53,10 @@ Method WebCamApp.Init, uses xsi
   invoke CenterForm, TARGET_SIZE_Y, $32($invoke(GetSystemMetrics, SM_CYSCREEN))
   mov dWndPosY, eax
 
-  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, \
-                         offset szAppClassName, offset szAppTitle, \
-                         WS_OVERLAPPED or WS_MINIMIZEBOX or WS_SYSMENU, \
-                         dWndPosX, dWndPosY, TARGET_SIZE_X, TARGET_SIZE_Y, \
+  invoke CreateWindowEx, WS_EX_LEFT or WS_EX_APPWINDOW, /
+                         offset szAppClassName, offset szAppTitle, /
+                         WS_OVERLAPPED or WS_MINIMIZEBOX or WS_SYSMENU, /
+                         dWndPosX, dWndPosY, TARGET_SIZE_X, TARGET_SIZE_Y, /
                          NULL, NULL, hInstance, pSelf
 
   invoke SetClientSize, [xsi].hWnd, TARGET_SIZE_X, TARGET_SIZE_Y
@@ -127,7 +127,7 @@ Method WebCamApp.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
 
 
   .elseif ax == IDM_HELP_HELP
-    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%\Help\ObjAsm_Reference_Volume-I.pdf"), \
+    invoke ExpandEnvironmentStrings, $OfsCStr("%OBJASM_PATH%/Help/ObjAsm_Reference_Volume-I.pdf"), /
                                      addr cBuffer, lengthof(cBuffer)
     invoke PdfView, [xsi].hWnd, addr cBuffer, $OfsCStr("Introduction")
     xor eax, eax
@@ -163,7 +163,7 @@ Method WebCamApp.OnCreate, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
     invoke SendMessage, [xsi].hWebCamWnd, WM_CAP_DRIVER_CONNECT, [xsi].dCaptureIndex, 0
     .if eax == FALSE
       OCall xsi.ErrorReport, NULL, WEBCAM_NO_DEVICE_FOUND
-      invoke MessageBox, [xsi].hWnd, $OfsCStr("No WebCam found"), \
+      invoke MessageBox, [xsi].hWnd, $OfsCStr("No WebCam found"), /
                          $OfsCStr("Error"), MB_ICONEXCLAMATION or MB_OK
       .else
         invoke SendMessage, [xsi].hWebCamWnd, WM_CAP_SET_SCALE, TRUE, 0
@@ -183,7 +183,7 @@ MethodEnd
 
 Method WebCamApp.OnClose, uses xsi, wParam:WPARAM, lParam:LPARAM
   SetObject xsi
-  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), \
+  invoke MessageBox, [xsi].hWnd, $OfsCStr("Are you sure ?"), $OfsCStr("Application exit"), /
                      MB_YESNO or MB_ICONQUESTION
   .if eax == IDNO
     xor eax, eax

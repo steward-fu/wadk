@@ -13,8 +13,8 @@
 ; ==================================================================================================
 
 
-% include &IncPath&Windows\shlwapi.inc
-% include &IncPath&Windows\shlobj_core.inc
+% include &IncPath&Windows/shlwapi.inc
+% include &IncPath&Windows/shlobj_core.inc
 
 ; ——————————————————————————————————————————————————————————————————————————————————————————————————
 ; Procedure:  SetShellAssociationA / SetShellAssociationW
@@ -29,7 +29,7 @@
 ; Note:       dGlobal = TRUE requires adminitrative rights.
 
 align ALIGN_CODE
-ProcName proc uses xbx dGlobal:DWORD, pExtension:POINTER, pVerb:POINTER, pApplication:POINTER, \
+ProcName proc uses xbx dGlobal:DWORD, pExtension:POINTER, pVerb:POINTER, pApplication:POINTER, /
                        pArguments:POINTER
   local hHive:HANDLE, hClassesKey:HANDLE, hKey:HANDLE, dResult:DWORD
   local cBuffer[2*MAX_PATH]:CHR, cProgID[2*MAX_PATH]:CHR
@@ -40,13 +40,13 @@ ProcName proc uses xbx dGlobal:DWORD, pExtension:POINTER, pVerb:POINTER, pApplic
     ;HKCR settings take precedence over HKLM settings
     mov hHive, HKEY_CURRENT_USER
   .endif
-  invoke RegOpenKeyEx, hHive, $OfsCStr("Software\Classes"), 0, KEY_ALL_ACCESS, addr hClassesKey
+  invoke RegOpenKeyEx, hHive, $OfsCStr("Software/Classes"), 0, KEY_ALL_ACCESS, addr hClassesKey
   .if eax == ERROR_SUCCESS
     mov CHR ptr [cBuffer], "."
     lea xcx, [cBuffer + sizeof CHR]
     invoke StrCCopy, xcx, pExtension, lengthof cBuffer - sizeof CHR
     ;Buffer = ".Extension"
-    invoke RegCreateKeyEx, hClassesKey, addr cBuffer, 0, NULL, REG_OPTION_NON_VOLATILE, \
+    invoke RegCreateKeyEx, hClassesKey, addr cBuffer, 0, NULL, REG_OPTION_NON_VOLATILE, /
                            KEY_ALL_ACCESS, NULL, addr hKey, NULL
     .if eax == ERROR_SUCCESS
       ;ProgID = "ApplicationName.Extension"
@@ -65,10 +65,10 @@ ProcName proc uses xbx dGlobal:DWORD, pExtension:POINTER, pVerb:POINTER, pApplic
       mov eax, dResult
       .if eax == ERROR_SUCCESS
         ;Create ProgID entry
-        invoke StrCCat, xbx, $OfsCStr("\shell\"), lengthof cProgID
+        invoke StrCCat, xbx, $OfsCStr("/shell/"), lengthof cProgID
         invoke StrCCat, xbx, pVerb, lengthof cProgID
-        invoke StrCCat, xbx, $OfsCStr("\command\"), lengthof cProgID
-        invoke RegCreateKeyEx, hClassesKey, xbx, 0, NULL, REG_OPTION_NON_VOLATILE, \
+        invoke StrCCat, xbx, $OfsCStr("/command/"), lengthof cProgID
+        invoke RegCreateKeyEx, hClassesKey, xbx, 0, NULL, REG_OPTION_NON_VOLATILE, /
                                KEY_ALL_ACCESS, NULL, addr hKey, NULL
         .if eax == ERROR_SUCCESS
           lea xbx, [cBuffer]

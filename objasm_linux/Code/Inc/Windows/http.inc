@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version C.1.1, 19/12/2020 17:58
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: 'D:\ObjAsm\Projects\Experimental\h2IncX\10.0.19041.0\um\http.h', last modified: 06/12/2019 15:44
+;Source file: 'D:/ObjAsm/Projects/Experimental/h2IncX/10.0.19041.0/um/http.h', last modified: 06/12/2019 15:44
 ;Creation parameters: 
 
 ifndef __HTTP_H__

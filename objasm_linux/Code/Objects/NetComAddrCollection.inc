@@ -39,8 +39,8 @@ Method NetComAddrCollection.Compare,, pItem1:PNETCOMADDR_ENTRY, pItem2:PNETCOMAD
 ;        movsx eax, ax
 ;      .endif
     .elseif [xcx].NETCOMADDR_ENTRY.sa_family == AF_INET6
-      invoke MemComp, addr [xcx].SOCKADDR_IN6.sin6_addr, \
-                      addr [xdx].SOCKADDR_IN6.sin6_addr, \
+      invoke MemComp, addr [xcx].SOCKADDR_IN6.sin6_addr, /
+                      addr [xdx].SOCKADDR_IN6.sin6_addr, /
                       sizeof IN6_ADDR
 ;      .if eax == 0
 ;        mov xcx, pItem1
@@ -65,7 +65,7 @@ MethodEnd
 ;            Arg4: Maximum size of the collection (items).
 ; Return:    eax = Zero if succeeded, otherwise an error code.
 
-Method NetComAddrCollection.Init, uses xsi, pOwner:POINTER, dLimit:DWORD, dDelta:DWORD, \
+Method NetComAddrCollection.Init, uses xsi, pOwner:POINTER, dLimit:DWORD, dDelta:DWORD, /
                                             dMaxCapacity:DWORD
   SetObject xsi
   ACall xsi.Init, pOwner, dLimit, dDelta, dMaxCapacity

@@ -201,7 +201,7 @@ Method Dictionary.OnCollision, uses xsi, xHash:XWORD
     lea eax, [4*eax + eax + 1]
     add eax, ecx
     and eax, [xsi].dMask
-  .until POINTER ptr [xdx + sizeof(POINTER)*xax] == HMP_BUCKET_EMPTY || \
+  .until POINTER ptr [xdx + sizeof(POINTER)*xax] == HMP_BUCKET_EMPTY || /
          POINTER ptr [xdx + sizeof(POINTER)*xax] == HMP_BUCKET_TOMBSTONE
 MethodEnd
 

@@ -134,13 +134,13 @@ Method RgnButton.Init, uses xbx xsi, pOwner:POINTER, hParent:HWND, pDefStruc:PDE
   assume xbx:PDEF_REGIONBUTTON
   mov eax, [xbx].dStyle
   or eax, WS_VISIBLE or WS_CLIPSIBLINGS or WS_CHILD
-  invoke CreateWindowEx, [xbx].dExStyle, offset szRgnButton, [xbx].pResName, \
-                         eax, [xbx].sdPosX, [xbx].sdPosY, 1, 1, \
+  invoke CreateWindowEx, [xbx].dExStyle, offset szRgnButton, [xbx].pResName, /
+                         eax, [xbx].sdPosX, [xbx].sdPosY, 1, 1, /
                          hParent, [xbx].xCtlID, hInstance, pSelf
   ACall xsi.Init, pOwner, xax
 
   invoke GetObject, [xsi].hBmpEnabled, sizeof BmpInfo, addr BmpInfo
-  invoke MoveWindow, [xsi].hWnd, [xbx].sdPosX, [xbx].sdPosY, \
+  invoke MoveWindow, [xsi].hWnd, [xbx].sdPosX, [xbx].sdPosY, /
                      BmpInfo.bmWidth, BmpInfo.bmHeight, FALSE
   assume xbx:NOTHING
 
@@ -237,10 +237,10 @@ Method RgnButton.OnCreate, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
         mov [xsi].hRgnDisabled, $invoke(Bmp2Rgn, xax, [xsi].RgnColor)
       .endif
 
-      invoke LoadString, hInstance, [xbx].RGNBTNRESDATA.dButtonTextID, \
+      invoke LoadString, hInstance, [xbx].RGNBTNRESDATA.dButtonTextID, /
                          addr cTextBuffer, lengthof cTextBuffer
       mov [xsi].pButtonText, $invoke(StrNew, addr cTextBuffer)
-      invoke LoadString, hInstance, [xbx].RGNBTNRESDATA.dTooltipTextID, \
+      invoke LoadString, hInstance, [xbx].RGNBTNRESDATA.dTooltipTextID, /
                          addr cTextBuffer, lengthof cTextBuffer
       mov [xsi].pTooltipText, $invoke(StrNew, addr cTextBuffer)
     .endif
@@ -473,7 +473,7 @@ Method RgnButton.OnPaint, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   mov dPrvBkMode, $32($invoke(SetBkMode, hDC, TRANSPARENT))
   mov dPrvTextColor, $32($invoke(SetTextColor, hDC, [xsi].TextColor))
   mov hPrvFont, $invoke(SelectObject, hDC, [xsi].hFont)
-  invoke DrawText, hDC, [xsi].pButtonText, -1, addr Rct, \
+  invoke DrawText, hDC, [xsi].pButtonText, -1, addr Rct, /
                    DT_CENTER or DT_VCENTER or DT_SINGLELINE or DT_END_ELLIPSIS
   invoke SelectObject, hDC, hPrvFont
   invoke SetTextColor, hDC, dPrvTextColor

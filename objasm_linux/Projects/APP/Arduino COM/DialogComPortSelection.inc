@@ -140,7 +140,7 @@ MethodEnd
 ;             Arg3: -> COMPORT_SETUP.
 ; Return:     Nothing.
 
-Method DialogComPortSelection.Init, uses xsi, pOwner:POINTER, hParent:HWND, \
+Method DialogComPortSelection.Init, uses xsi, pOwner:POINTER, hParent:HWND, /
                                               pComPortSetup:PCOMPORT_SETUP
   SetObject xsi
   ACall xsi.Init, pOwner, hParent, IDD_DLG_COMPORT_SELECTION
@@ -208,7 +208,7 @@ Method DialogComPortSelection.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
         m2m ComCfg.dcb.StopBits, [xsi].ComPortSetup.bStopBits, cl
 
         mov eax, ComCfg.dcb.fBits
-        BitClr eax, MASK DCB??1_fInX or MASK DCB??1_fOutX or \
+        BitClr eax, MASK DCB??1_fInX or MASK DCB??1_fOutX or /
                     MASK DCB??1_fRtsControl or MASK DCB??1_fOutxCtsFlow
         BitSet eax, MASK DCB??1_fBinary
         .if [xsi].ComPortSetup.COMPORT_SETUP.bFlowControl == COM_FLOWCTRL_XON_XOFF

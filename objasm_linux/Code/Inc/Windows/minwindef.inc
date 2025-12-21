@@ -1,11 +1,11 @@
 ;Include file created by h2incX, Version B.01.01, 10/09/2018 22:03
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\minwindef.h', last modified: 19/04/2018 10:43
+;Source file: '/ObjAsm/Projects/h2IncX/header/minwindef.h', last modified: 19/04/2018 10:43
 ;Creation parameters: 
 
 ifndef _MINWINDEF_
   _MINWINDEF_ equ <>
-  include specstrings.inc
+  include SpecStrings.inc
   include winapifamily.inc
   if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP or WINAPI_PARTITION_SYSTEM)
     ifndef NO_STRICT

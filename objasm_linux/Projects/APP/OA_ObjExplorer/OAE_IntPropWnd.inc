@@ -30,7 +30,7 @@ MethodEnd
 ;             Arg2: -> PINTERFACEINFORMATION.
 ; Return:     Nothing.
 
-Method IntPropWnd.Init, uses xsi, pOwner:$ObjPtr(ClientWnd), pWndClassName:PSTRING, \
+Method IntPropWnd.Init, uses xsi, pOwner:$ObjPtr(ClientWnd), pWndClassName:PSTRING, /
                                   pInfo:PINTERFACEINFORMATION
   SetObject xsi
   OCall [xsi].Methods::DataCollection.Init, xsi, 50, 50, COL_MAX_CAPACITY
@@ -253,7 +253,7 @@ Method IntPropWnd.GatherMethods, uses xsi, pInfo:PINTERFACEINFORMATION
 
   mov xax, pInfo
   mov xcx, $ObjTmpl(Application).pObjDB
-  OCall [xcx].$Obj(OA_ObjDB).IntMethodColl::IntMtdInfoCollection.ForEach, \
+  OCall [xcx].$Obj(OA_ObjDB).IntMethodColl::IntMtdInfoCollection.ForEach, /
                                          offset GatherIntMtds, [xax].INTERFACEINFORMATION.pName, xsi
 MethodEnd
 

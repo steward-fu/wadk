@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.01, 01/09/2018 18:44
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: '\ObjAsm\Projects\h2IncX\header\Windows.h', last modified: 26/08/2018 18:51
+;Source file: '/ObjAsm/Projects/h2IncX/header/Windows.h', last modified: 26/08/2018 18:51
 ;Creation parameters: 
 
 include WinAsm.inc

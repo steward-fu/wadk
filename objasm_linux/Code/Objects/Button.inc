@@ -13,8 +13,8 @@
 BM_GETCOLOR     equ     WM_USER + 100   ;Used to get the color of the ColorButton object
 BM_SETCOLOR     equ     WM_USER + 101   ;Used to set the color of the ColorButton object
 
-;ButtonState     record  BS_Unused:2 = 0, \
-;                        BS_Resource:1 = FALSE, BS_ShowShortCut:1 = FALSE, BS_Disabled:1 = FALSE, \
+;ButtonState     record  BS_Unused:2 = 0, /
+;                        BS_Resource:1 = FALSE, BS_ShowShortCut:1 = FALSE, BS_Disabled:1 = FALSE, /
 ;                        BS_Hovered:1 = FALSE, BS_Focused:1 = FALSE, BS_Pressed:1 = FALSE
 BTF_SELF_INST       equ   BIT00                         ;Object was instanced by CreateWindowEx
 BTF_SHOW_SHORTCUT   equ   BIT01

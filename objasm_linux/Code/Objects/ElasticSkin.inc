@@ -127,14 +127,14 @@ MethodEnd
 ; Return:     Nothing.
 
 MakeSkinCornerRgn macro RgnName:req
-  invoke CreateCompatibleBitmap, [xsi].hSkinDC, \
-                                 [xsi].SkinData.&RgnName&Rect.right, \
+  invoke CreateCompatibleBitmap, [xsi].hSkinDC, /
+                                 [xsi].SkinData.&RgnName&Rect.right, /
                                  [xsi].SkinData.&RgnName&Rect.bottom
   mov xbx, xax
   mov hPrvMemBmp, $invoke(SelectObject, hMemDC, xax)
-  invoke BitBlt, hMemDC, 0, 0, \
-                 [xsi].SkinData.&RgnName&Rect.right, [xsi].SkinData.&RgnName&Rect.bottom, \
-                 [xsi].hSkinDC, \
+  invoke BitBlt, hMemDC, 0, 0, /
+                 [xsi].SkinData.&RgnName&Rect.right, [xsi].SkinData.&RgnName&Rect.bottom, /
+                 [xsi].hSkinDC, /
                  [xsi].SkinData.&RgnName&Rect.left, [xsi].SkinData.&RgnName&Rect.top, SRCCOPY
   mov [xsi].h&RgnName&Rgn, $invoke(Bmp2Rgn, xbx, [xsi].SkinData.dTransparentColor)
   invoke DeleteObject, $invoke(SelectObject, hMemDC, hPrvMemBmp)
@@ -279,7 +279,7 @@ Method ElasticSkin.OnNcHitTest, uses xsi, wParam:WPARAM, lParam:LPARAM
                       mov eax, HTLEFT
                     .else
                       ;Default processing
-                      invoke CallWindowProc, [xsi].pPrevWndProc, [xsi].hWnd, WM_NCHITTEST, \
+                      invoke CallWindowProc, [xsi].pPrevWndProc, [xsi].hWnd, WM_NCHITTEST, /
                                              wParam, lParam
                     .endif
                   .endif
@@ -311,13 +311,13 @@ Method ElasticSkin.OnNcPaint, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   invoke GetClientRect, [xsi].hWnd, addr Rct
 
   ;Draw the Top Left Corner
-  invoke BitBlt, hDC, 0, 0, [xsi].SkinData.TopLftRect.right, [xsi].SkinData.TopLftRect.bottom, \
+  invoke BitBlt, hDC, 0, 0, [xsi].SkinData.TopLftRect.right, [xsi].SkinData.TopLftRect.bottom, /
                  [xsi].hSkinDC, 0, 0, SRCCOPY
 
   ;Draw the Top Right Corner
   mov eax, Rct.right
   sub eax, [xsi].SkinData.TopRgtRect.right
-  invoke BitBlt, hDC, eax, 0, [xsi].SkinData.TopRgtRect.right, [xsi].SkinData.TopRgtRect.bottom, \
+  invoke BitBlt, hDC, eax, 0, [xsi].SkinData.TopRgtRect.right, [xsi].SkinData.TopRgtRect.bottom, /
                [xsi].hSkinDC, [xsi].SkinData.TopRgtRect.left, [xsi].SkinData.TopRgtRect.top, SRCCOPY
 
   ;Draw the Bottom Right Corner
@@ -325,11 +325,11 @@ Method ElasticSkin.OnNcPaint, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   sub edx, [xsi].SkinData.BotRgtRect.right
   mov ebx, Rct.bottom
   sub ebx, [xsi].SkinData.BotRgtRect.bottom
-  invoke BitBlt, hDC, edx, ebx, [xsi].SkinData.BotRgtRect.right, [xsi].SkinData.BotRgtRect.bottom, \
+  invoke BitBlt, hDC, edx, ebx, [xsi].SkinData.BotRgtRect.right, [xsi].SkinData.BotRgtRect.bottom, /
                [xsi].hSkinDC, [xsi].SkinData.BotRgtRect.left, [xsi].SkinData.BotRgtRect.top, SRCCOPY
 
   ;Draw the Bottom Left Corner
-  invoke BitBlt, hDC, 0, ebx, [xsi].SkinData.BotLftRect.right, [xsi].SkinData.BotLftRect.bottom, \
+  invoke BitBlt, hDC, 0, ebx, [xsi].SkinData.BotLftRect.right, [xsi].SkinData.BotLftRect.bottom, /
                [xsi].hSkinDC, [xsi].SkinData.BotLftRect.left, [xsi].SkinData.BotLftRect.top, SRCCOPY
 
   ;Draw the Top Horizontal Filler & Title background
@@ -338,8 +338,8 @@ Method ElasticSkin.OnNcPaint, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   sub eax, [xsi].SkinData.TopRgtRect.right
   mov ebx, [xsi].SkinData.TopHorRect.bottom
   add ebx, [xsi].SkinData.TitleRect.bottom
-  invoke StretchBlt, hDC, [xsi].SkinData.TopHorRect.left, [xsi].SkinData.TopHorRect.top, eax, ebx, \
-                     [xsi].hSkinDC, [xsi].SkinData.TopHorRect.left, [xsi].SkinData.TopHorRect.top, \
+  invoke StretchBlt, hDC, [xsi].SkinData.TopHorRect.left, [xsi].SkinData.TopHorRect.top, eax, ebx, /
+                     [xsi].hSkinDC, [xsi].SkinData.TopHorRect.left, [xsi].SkinData.TopHorRect.top, /
                      [xsi].SkinData.TopHorRect.right, ebx, SRCCOPY
 
   ;Draw the Bottom Horizontal Filler
@@ -348,18 +348,18 @@ Method ElasticSkin.OnNcPaint, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   sub eax, [xsi].SkinData.BotRgtRect.right
   mov ebx, Rct.bottom
   sub ebx, [xsi].SkinData.BotHorRect.bottom
-  invoke StretchBlt, hDC, [xsi].SkinData.BotHorRect.left, ebx, \
-                     eax, [xsi].SkinData.BotHorRect.bottom, \
-                     [xsi].hSkinDC, [xsi].SkinData.BotHorRect.left, [xsi].SkinData.BotHorRect.top, \
+  invoke StretchBlt, hDC, [xsi].SkinData.BotHorRect.left, ebx, /
+                     eax, [xsi].SkinData.BotHorRect.bottom, /
+                     [xsi].hSkinDC, [xsi].SkinData.BotHorRect.left, [xsi].SkinData.BotHorRect.top, /
                      [xsi].SkinData.BotHorRect.right, [xsi].SkinData.BotHorRect.bottom, SRCCOPY
 
   ;Draw the Left Vertical Filler
   mov ebx, Rct.bottom
   sub ebx, [xsi].SkinData.TopLftRect.bottom
   sub ebx, [xsi].SkinData.BotLftRect.bottom
-  invoke StretchBlt, hDC, [xsi].SkinData.LftVerRect.left, [xsi].SkinData.LftVerRect.top, \
-                     [xsi].SkinData.LftVerRect.right, ebx, \
-                     [xsi].hSkinDC, [xsi].SkinData.LftVerRect.left, [xsi].SkinData.LftVerRect.top, \
+  invoke StretchBlt, hDC, [xsi].SkinData.LftVerRect.left, [xsi].SkinData.LftVerRect.top, /
+                     [xsi].SkinData.LftVerRect.right, ebx, /
+                     [xsi].hSkinDC, [xsi].SkinData.LftVerRect.left, [xsi].SkinData.LftVerRect.top, /
                      [xsi].SkinData.LftVerRect.right, [xsi].SkinData.LftVerRect.bottom, SRCCOPY
 
   ;Draw the Right Vertical Filler
@@ -368,9 +368,9 @@ Method ElasticSkin.OnNcPaint, uses xbx xsi, wParam:WPARAM, lParam:LPARAM
   mov ebx, Rct.bottom
   sub ebx, [xsi].SkinData.TopRgtRect.bottom
   sub ebx, [xsi].SkinData.BotRgtRect.bottom
-  invoke StretchBlt, hDC, eax, [xsi].SkinData.RgtVerRect.top, \
-                     [xsi].SkinData.RgtVerRect.right, ebx, \
-                     [xsi].hSkinDC, [xsi].SkinData.RgtVerRect.left, [xsi].SkinData.RgtVerRect.top, \
+  invoke StretchBlt, hDC, eax, [xsi].SkinData.RgtVerRect.top, /
+                     [xsi].SkinData.RgtVerRect.right, ebx, /
+                     [xsi].hSkinDC, [xsi].SkinData.RgtVerRect.left, [xsi].SkinData.RgtVerRect.top, /
                      [xsi].SkinData.RgtVerRect.right, [xsi].SkinData.RgtVerRect.bottom, SRCCOPY
 
   invoke ReleaseDC, [xsi].hWnd, hDC

@@ -217,7 +217,7 @@ CO_E_WRONG_SERVER_IDENTITY equ 80004015h
 ; Use of Ole1 services requiring DDE windows is disabled
 CO_E_OLE1DDE_DISABLED equ 80004016h
 
-; A RunAs specification must be <domain name>\<user name> or simply <user name>
+; A RunAs specification must be <domain name>/<user name> or simply <user name>
 CO_E_RUNAS_SYNTAX equ 80004017h
 
 ; The server process could not be started. The pathname may be incorrect.
@@ -1696,7 +1696,7 @@ CO_E_ACCESSCHECKFAILED equ 8001012Ah
 ; Either NetAccessDel or NetAccessAdd returned an error code.
 CO_E_NETACCESSAPIFAILED equ 8001012Bh
 
-; One of the trustee strings provided by the user did not conform to the <Domain>\<Name> syntax and it was not the "*" string
+; One of the trustee strings provided by the user did not conform to the <Domain>/<Name> syntax and it was not the "*" string
 CO_E_WRONGTRUSTEENAMESYNTAX equ 8001012Ch
 
 ; One of the security identifiers provided by the user was invalid
@@ -2773,8 +2773,8 @@ CERT_E_INVALID_NAME equ 800B0114h
 ; *****************
 ; Since these error codes aren't in the standard Win32 range (i.e., 0-64K), define a
 ; macro to map either Win32 or SetupAPI error codes into an HRESULT.
-;HRESULT_FROM_SETUPAPI(x) ((((x) & (APPLICATION_ERROR_MASK|ERROR_SEVERITY_ERROR)) == (APPLICATION_ERROR_MASK|ERROR_SEVERITY_ERROR)) \
-; ? ((HRESULT) (((x) & 0x0000FFFF) | (FACILITY_SETUPAPI << 16) | 0x80000000)) \
+;HRESULT_FROM_SETUPAPI(x) ((((x) & (APPLICATION_ERROR_MASK|ERROR_SEVERITY_ERROR)) == (APPLICATION_ERROR_MASK|ERROR_SEVERITY_ERROR)) /
+; ? ((HRESULT) (((x) & 0x0000FFFF) | (FACILITY_SETUPAPI << 16) | 0x80000000)) /
 ; : HRESULT_FROM_WIN32(x))
 
 ; A non-empty line was encountered in the INF before the start of a section.

@@ -1,6 +1,6 @@
 ;Include file created by h2incX, Version B.01.01, 26/11/2018 23:24
 ;(C) 2018-today by Biterider, 2005-2009 by Japheth
-;Source file: 'D:\MASM32\ObjAsm\Projects\h2IncX\header\ws2ipdef.h', last modified: 19/04/2018 09:44
+;Source file: 'D:/MASM32/ObjAsm/Projects/h2IncX/header/ws2ipdef.h', last modified: 19/04/2018 09:44
 ;Creation parameters: 
 
 ifndef _WS2IPDEF_

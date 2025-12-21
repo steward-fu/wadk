@@ -85,11 +85,11 @@ Method DB_RecordEditorDlg.CtlsEnable, uses xsi, dOptions:DWORD
     .if edx == 0
       mov [xsi].dFlags, RDF_APPEND_ENABLED or RDF_CLOSE_ENABLED
     .elseif edx == 1
-      mov [xsi].dFlags, RDF_CLOSE_ENABLED or \
+      mov [xsi].dFlags, RDF_CLOSE_ENABLED or /
                         RDF_EDIT_ENABLED or RDF_USE_INDEX_ENABLED
     .else
-      BitSet [xsi].dFlags, RDF_TOP_ENABLED or RDF_PREV_ENABLED or \
-                           RDF_NEXT_ENABLED or RDF_BOTTOM_ENABLED or \
+      BitSet [xsi].dFlags, RDF_TOP_ENABLED or RDF_PREV_ENABLED or /
+                           RDF_NEXT_ENABLED or RDF_BOTTOM_ENABLED or /
                            RDF_EDIT_ENABLED or RDF_USE_INDEX_ENABLED
       .if [xsi].pActiveIndex == NULL
         mov eax, [xsi].dRecNo
@@ -196,7 +196,7 @@ MethodEnd
 ;             Arg4: Initially displayed RecNo.
 ; Return:     Nothing.
 
-Method DB_RecordEditorDlg.Init,, pOwner:POINTER, hParent:HWND, \
+Method DB_RecordEditorDlg.Init,, pOwner:POINTER, hParent:HWND, /
                                  pTable:$ObjPtr(DB_Table), dRecNo:DB_DATA_LINK_TYPE
   SetObject xcx
   m2m [xcx].pTable, pTable, xax
@@ -284,11 +284,11 @@ Method DB_RecordEditorDlg.OnCommand, uses xsi, wParam:WPARAM, lParam:LPARAM
   .elseif ax == IDC_RECORD_CHK_EDIT
     invoke SendDlgItemMessage, [xsi].hWnd, IDC_RECORD_CHK_EDIT, BM_GETCHECK, 0, 0
     .if eax == BST_UNCHECKED
-      BitClr [xsi].dFlags, RDF_EDIT_ENABLED or RDF_EDITOR_ENABLED or \
+      BitClr [xsi].dFlags, RDF_EDIT_ENABLED or RDF_EDITOR_ENABLED or /
                            RDF_APPEND_ENABLED or RDF_DELETE_ENABLED or RDF_RESTORE_ENABLED
 
     .else
-      BitSet [xsi].dFlags, RDF_EDIT_ENABLED or RDF_EDITOR_ENABLED or \
+      BitSet [xsi].dFlags, RDF_EDIT_ENABLED or RDF_EDITOR_ENABLED or /
                            RDF_APPEND_ENABLED or RDF_DELETE_ENABLED or RDF_RESTORE_ENABLED
     .endif
     OCall xsi.CtlsEnable, UBO_OPS_CONTROLS

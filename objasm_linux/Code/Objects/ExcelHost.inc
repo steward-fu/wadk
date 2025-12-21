@@ -94,8 +94,8 @@ XlFontStyleSubscript      equ BIT04
 XlFontStyleOutlineFont    equ BIT05
 XlFontStyleShadow         equ BIT06
 
-% include &OA_PATH&Projects\X\Office\ExcelHost\Excel.inc
-% include &OA_PATH&Projects\X\Office\ExcelHost\Excelc.inc
+% include &OA_PATH&Projects/X/Office/ExcelHost/Excel.inc
+% include &OA_PATH&Projects/X/Office/ExcelHost/Excelc.inc
 
 
 if IMPLEMENT
@@ -162,8 +162,8 @@ MethodEnd
 ;             Arg7: Shadow (TRUE, FALSE).
 ; Return:     eax = Error code.
 
-Method ExcelHost.SetChartSeriesAttr,, pIXlSeries:POINTER, dXlStyle:DWORD, dXlSize:DWORD, \
-                                      dXlForeColor:DWORD, dXlBackColor:DWORD, \
+Method ExcelHost.SetChartSeriesAttr,, pIXlSeries:POINTER, dXlStyle:DWORD, dXlSize:DWORD, /
+                                      dXlForeColor:DWORD, dXlBackColor:DWORD, /
                                       dXlSmooth:DWORD, dXlShadow:DWORD
   local vArg:VARIANT
 
@@ -210,7 +210,7 @@ MethodEnd
 ;             Arg4: -> YValue SafeArray.
 ; Return:     eax = Error code.
 
-Method ExcelHost.SetChartSeriesData,, pIXlSeries:POINTER, pXlName:BSTR, \
+Method ExcelHost.SetChartSeriesData,, pIXlSeries:POINTER, pXlName:BSTR, /
                                       pXlXArray:POINTER, pXlYArray:POINTER
   local vArg:VARIANT
 
@@ -340,7 +340,7 @@ MethodEnd
 ;             Arg6: Underline style.
 ; Return:     eax = Error code.
 
-Method ExcelHost.SetFontAttr,, pIXlFont:POINTER, pXlName:BSTR, dXlStyle:DWORD, dXlSize:DWORD, \
+Method ExcelHost.SetFontAttr,, pIXlFont:POINTER, pXlName:BSTR, dXlStyle:DWORD, dXlSize:DWORD, /
                                dXlColor:DWORD, dXlUnderlineStyle:DWORD
   local vArg:VARIANT
 
@@ -458,7 +458,7 @@ MethodEnd
 ;             Arg4: Pattern RGB color value.
 ; Return:     eax = Error code.
 
-Method ExcelHost.SetInteriorAttr,, pIXlInterior:POINTER, dXlColor:DWORD, dXlPatternStyle:DWORD, \
+Method ExcelHost.SetInteriorAttr,, pIXlInterior:POINTER, dXlColor:DWORD, dXlPatternStyle:DWORD, /
                                    dXlPatternColor:DWORD
   local vArg:VARIANT
 
@@ -760,7 +760,7 @@ Method ExcelHost.Init, uses xsi, pOwner:POINTER
     OCall xsi.ErrorReport, NULL, XLH_CLSID
   .else
 
-    invoke CoCreateInstance, addr ClsID, 0, CLSCTX_SERVER, offset IID_Application, \
+    invoke CoCreateInstance, addr ClsID, 0, CLSCTX_SERVER, offset IID_Application, /
                              addr [xsi].pIExcelApp
     .if FAILED(eax)
       OCall xsi.ErrorReport, NULL, XLH_INSTANCE
@@ -1277,7 +1277,7 @@ MethodEnd
 ;             Arg3: Maximum Value.
 ; Return:     eax = Error code.
 
-Method ExcelHost.SetChartAxisValues,, pIXlAxis:POINTER, dXlMinAuto:DWORD, r8XlMin:REAL8, \
+Method ExcelHost.SetChartAxisValues,, pIXlAxis:POINTER, dXlMinAuto:DWORD, r8XlMin:REAL8, /
                                                         dXlMaxAuto:DWORD, r8XlMax:REAL8
   local vArg:VARIANT
 
@@ -1322,8 +1322,8 @@ MethodEnd
 ;             Arg7: Major Value.
 ; Return:     eax = Error code.
 
-Method ExcelHost.SetChartAxisTicks,, pIXlAxis:POINTER, \
-                                     dXlMnrMarkStyle:DWORD, dXlMnrAuto:DWORD, r8XlMnr:REAL8, \
+Method ExcelHost.SetChartAxisTicks,, pIXlAxis:POINTER, /
+                                     dXlMnrMarkStyle:DWORD, dXlMnrAuto:DWORD, r8XlMnr:REAL8, /
                                      dXlMjrMarkStyle:DWORD, dXlMjrAuto:DWORD, r8XlMjr:REAL8
   local vArg:VARIANT
 
@@ -1373,7 +1373,7 @@ MethodEnd
 ;             Arg6: RGB color value.
 ; Return:     eax = Error code.
 
-Method ExcelHost.SetChartAxisGridlines,, pIXlAxis:POINTER, dXlGridLineType:DWORD, dXlHasLine:DWORD, \
+Method ExcelHost.SetChartAxisGridlines,, pIXlAxis:POINTER, dXlGridLineType:DWORD, dXlHasLine:DWORD, /
                                      dXlStyle:DWORD, dXlWeight:DWORD, dXlColor:DWORD
   local vArg:VARIANT, vGridlines:VARIANT
 
@@ -1418,7 +1418,7 @@ MethodEnd
 ;             Arg5: Label position (xlLow, xlHight, ...).
 ; Return:     eax = Error code.
 
-Method ExcelHost.SetChartAxisAttr,, pIXlAxis:POINTER, dXlScaleType:DWORD, dXlDispUnit:DWORD, \
+Method ExcelHost.SetChartAxisAttr,, pIXlAxis:POINTER, dXlScaleType:DWORD, dXlDispUnit:DWORD, /
                                     dXlRevOrder:DWORD, dXlLabelPosition:DWORD
   local vArg:VARIANT
 
