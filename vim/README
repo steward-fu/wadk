@@ -1,0 +1,2 @@
+$ mkdir -p ~/.vim/syntax/
+$ cp objasm.vim ~/.vim/syntax/
