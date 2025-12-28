@@ -1,0 +1,11 @@
+WRC - OW resource compiler v1.9	05/2010	Win32	wrc.zip (binary)
+WDW - modified OW Windows debugger v1.9,
+may debug Win32, Win16 and DOS apps locally	01/2013	Win32	wdw.zip (binary)
+WD - OW DOS debugger v1.9	05/2010	DOS	wd.zip (binary)
+PE - PE, COFF, AR dumper;
+may dump CV4-CV8 debug info in COFF files	03/15/2013	Win32, DOS	pe.zip (binary)
+DumpOmf - OMF dumper	10/27/2013	Win32	DumpOmf16.zip (binary & source)
+Agner Fog's ObjConv v2.09 -
+Object format converter + Disassembler	08/2009	DOS	objconv.zip (binary)
+MS OMF Linker v5.60	12/1994	Win32, DOS	lnk563.exe (MS FTP host)	lnk563.exe (MS HTTP)
+MS NMake v1.5	1994	Win32	nmake15.exe (MS FTP host)

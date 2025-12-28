@@ -1,0 +1,51 @@
+JWasm Source Samples
+Name	OS	Type	output
+format	Comment
+Dos1.asm	DOS	console	bin	"Hello world", DOS COM format
+Dos2.asm	DOS	console	mz/omf	"Hello world", real-mode or DPMI16
+Dos3.asm	DOS	console	mz	"Hello world", DPMI32
+Dos64.asm	DOS	console	mz	Switches to 64-bit and back
+OS216.asm	OS/2 16	console	omf	"Hello world"
+OS232.asm	OS/2 32	console	omf	"Hello world"
+Win16_1.asm	Win16	GUI	omf	"Hello world"
+Win16_2d.asm	Win16	dll	omf	simple dll with 2 exports
+Win32_1.asm	Win32	console	coff	"Hello world"
+Win32_2.asm	Win32	console	coff	"Hello world", uses WinInc
+Win32_3.asm	Win32	GUI	coff	"Hello world", uses Masm32
+Win32_4d.asm	Win32	dll	coff	simple dll with 2 exports
+Win32_5.asm	Win32	console	bin	"Hello world", makes a PE binary without linker
+Win32_6.asm	Win32	console	coff	demonstrates how to use Unicode
+Win32_6w.asm	Win32	console	coff	Unicode sample, uses WinInc
+Win32Drv.asm	Win32	driver	coff	Windows kernel-mode driver
+Win32DrvA.asm	Win32	console	coff	loads Win32Drv, the kernel-mode driver
+Win32_7.asm	Win32	console	coff	shows usage of OPTION DLLIMPORT
+Win32_8.asm	Win32	console	pe	"Hello world"
+Win32_8m.asm	Win32	GUI	pe	uses Masm32 includes
+Win32Tls.asm	Win32	console	coff	shows how to define static TLS
+ComDat.asm	Win32	console	coff	shows usage of COMDAT sections
+Win64_1.asm	Win64	GUI	win64	"Hello world", MessageBox
+Win64_2.asm	Win64	GUI	win64	"Hello world", Window
+Win64_3.asm	Win64	GUI	win64	"Hello world", with SEH support (Masm comp.)
+Win64_3e.asm	Win64	GUI	win64	"Hello world", with SEH support (JWasm only)
+Win64_4.asm	Win64	console	win64	"Hello world", uses WinInc v2+ (JWasm only)
+Win64_5.asm	Win64	console	win64	exception handling, uses WinInc v2+ (JWasm only)
+Win64_6.asm	Win64	console	win64	uses MSVCRT and WinInc v2+ (JWasm only)
+Win64_8.asm	Win64	GUI	pe	bitmap rendering sample
+Win64_9a.asm	Win64	console	win64	to run dll Win64_9d
+Win64_9d.asm	Win64	dll	win64	simple dll with 2 exports
+WinXX_1.asm	Win32/Win64	console		"bimodal" source (JWasm only)
+Linux1.asm	Linux 32	console	elf	"Hello world", using syscalls
+Linux2.asm	Linux 32	console	elf	"Hello world", using libc
+ncurs1.asm	Linux 32	console	elf	ncurses demonstration
+Linux3.asm	Linux 32	GUI	elf	"Hello world", X application
+Lin64_1.asm	Linux 64	console	elf64	"Hello world", using syscalls
+FreeBSD1.asm	FreeBSD 32	console	bin	"Hello world", ELF binary without linker
+Mixed116.asm	Mixed 16			hll calling assembly
+Mixed216.asm	Mixed 16	console		assembly calling CRT
+Mixed132.asm	Mixed 32			hll calling assembly
+Mixed232.asm	Mixed 32	console		assembly calling CRT
+Math1.asm	Mixed 32	console		Shows how to use FPU and CRT math functions
+html2txt.asm	Mixed 32	console		html-to-text converter
+masm2htm.asm	Mixed 32	console		masm-to-html converter
+bin2inc.asm	Mixed 32	console		binary-to-include converter
+gtk01.asm	Mixed 32	GUI		"Hello world", GTK+ application
