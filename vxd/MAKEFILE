@@ -1,0 +1,5 @@
+NAME=vxdexecute
+$(NAME).vxd:$(NAME).obj
+	link /vxd /nod /def:$(NAME).def $(NAME).obj
+$(NAME).obj:$(NAME).asm $(NAME).def
+	ml -coff -DBLD_COFF -DIS_32 -c -Cx  -Zd -DMASM6 $(NAME).asm
