@@ -1,18 +1,10 @@
-export BOX86_NOBANNER=1
-export WINEPREFIX=/home/steward/.wine_x86
-
-WINE = box86 wine
-AS   = "c:\objasm\build\tools\assembler\uasm32.exe"
-LD   = "c:\masm32\bin\link.exe"
-
 all:
-	rm -rf main.sys main.obj main.pdb cdrom.iso
-	${WINE} ${AS} /coff /c -q /less /nomlib /FwNUL /Zi /Zd main.asm
-	${WINE} ${LD} main.obj /driver /base:0x10000 /debug /debugtype:cv /pdb:main.pdb /subsystem:native /entry:DriverEntry "c:\masm32\lib\wxp\i386\ntoskrnl.lib" /OUT:main.sys
+	uasm -coff -c -q -less -nomlib -FwNUL -Zi -Zd main.asm
+	myx86 "c:\masm32\bin\link.exe" main.o /driver /base:0x10000 /subsystem:native /entry:DriverEntry "c:\masm32\lib\wxp\i386\ntoskrnl.lib" /out:main.sys
 
 run:
-	genisoimage -o cdrom.iso autorun.inf main* run.bat ../../../../../tools/sysinternals/Winobj.exe
-	myqemu.sh winxp_nano
+	genisoimage -o cdrom.iso autorun.inf main.sys run.bat /opt/wadk/tools/sc.exe
+	myqemu win2k
 
 clean:
-	rm -rf main.sys main.obj main.pdb cdrom.iso
+	rm -rf main.sys main.o cdrom.iso

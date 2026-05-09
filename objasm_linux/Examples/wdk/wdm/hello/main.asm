@@ -52,10 +52,18 @@ Method MyDriver.Unload, uses esi
 MethodEnd
 
 Method MyDevice.Init, uses esi, pPhyDevice : PDEVICE_OBJECT
-    ACall Init, $OfsCStrW("\Device\MyDriver"), FILE_DEVICE_UNKNOWN, NULL, 0, DO_BUFFERED_IO
+    ACall Init, \
+        $OfsCStrW("\Device\MyDriver"), \
+        FILE_DEVICE_UNKNOWN, \
+        NULL, \
+        0, \
+        DO_BUFFERED_IO
 
     SetObject esi
-    OCall [esi].m_pMyLowerDevice::KPnpLowerDevice.Initialize, [esi].m_pMyDevice, pPhyDevice
+    OCall [esi].m_pMyLowerDevice::KPnpLowerDevice.Initialize, \
+        [esi].m_pMyDevice, \
+        pPhyDevice
+
     OCall SetLowerDevice, addr [esi].m_pMyLowerDevice
 MethodEnd
 
