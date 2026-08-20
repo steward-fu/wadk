@@ -1,1 +1,0 @@
-I recreated this classical example from the presentation "Multiprocessing with UEFI" by Daryl McDaniel (Software and Solutions Group, Intel), UEFI Plugfest, June 22 - 24, 2010,
