@@ -7017,7 +7017,7 @@ ExfInterlockedCompareExchange64(
 
 LONG
 _InterlockedOr (
-    IN OUT PLONG Target,
+    IN OUT LONG volatile *Target,
     IN LONG Set
     );
 
@@ -7037,7 +7037,7 @@ _InterlockedAnd (
 
 LONG
 _InterlockedXor (
-    IN OUT LONG volatile Target,
+    IN OUT LONG volatile *Target,
     IN LONG Set
     );
 
@@ -7133,7 +7133,8 @@ ULONG
 NTAPI
 KeGetCurrentProcessorNumber(VOID)
 {
-    __asm {  movzx eax, _PCR KPCR.Number  }
+    //__asm {  movzx eax, _PCR KPCR.Number  }
+    return (ULONG)__readgsbyte(FIELD_OFFSET(KPCR, Number));
 }
 
 
