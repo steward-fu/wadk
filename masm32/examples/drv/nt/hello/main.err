@@ -1,0 +1,28 @@
+/opt/wadk/masm32/include/w2k/ntddk.inc(2760) : Error A2150: Missing operator in expression
+ /opt/wadk/masm32/include/w2k/ntddk.inc(2760): Included by
+  main.asm(6): Main line code
+/opt/wadk/masm32/include/w2k/ntddk.inc(5479) : Warning A4151: Unexpected literal found in expression: <>
+ /opt/wadk/masm32/include/w2k/ntddk.inc(5479): Included by
+  main.asm(6): Main line code
+/opt/wadk/masm32/include/w2k/ntddk.inc(5553) : Error A2209: Syntax error: fastcall
+ /opt/wadk/masm32/include/w2k/ntddk.inc(5553): Included by
+  main.asm(6): Main line code
+/opt/wadk/masm32/include/w2k/ntddk.inc(5555) : Error A2092: PROC, MACRO or macro loop directive must precede LOCAL
+ /opt/wadk/masm32/include/w2k/ntddk.inc(5555): Included by
+  main.asm(6): Main line code
+/opt/wadk/masm32/include/w2k/ntddk.inc(5562) : Error A2082: Must be in segment block
+ MacroLoop(1): iteration 1: Macro called from
+  /opt/wadk/masm32/include/w2k/ntddk.inc(5562): Included by
+   main.asm(6): Main line code
+/opt/wadk/masm32/include/w2k/ntddk.inc(5586) : Error A2082: Must be in segment block
+ /opt/wadk/masm32/include/w2k/ntddk.inc(5586): Included by
+  main.asm(6): Main line code
+/opt/wadk/masm32/include/w2k/ntddk.inc(5617) : Error A2082: Must be in segment block
+ /opt/wadk/masm32/include/w2k/ntddk.inc(5617): Included by
+  main.asm(6): Main line code
+/opt/wadk/masm32/include/w2k/ntddk.inc(5621) : Error A2082: Must be in segment block
+ /opt/wadk/masm32/include/w2k/ntddk.inc(5621): Included by
+  main.asm(6): Main line code
+/opt/wadk/masm32/include/w2k/ntddk.inc(5622) : Error A2162: Unmatched macro nesting
+ /opt/wadk/masm32/include/w2k/ntddk.inc(5622): Included by
+  main.asm(6): Main line code
