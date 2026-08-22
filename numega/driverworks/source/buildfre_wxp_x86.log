@@ -1,0 +1,126 @@
+BUILD: Examining z:\opt\wadk\numega\driverworks\source directory for files to compile.
+Compiling z:\opt\wadk\numega\driverworks\source directory ********************
+'nmake.exe /c BUILDMSG=Stop. -i NTTEST= UMTEST= NOLINK=1 386=1'
+1>BUILDMSG: Processing z:\opt\wadk\numega\driverworks\source
+1>cl -nologo -Ii386\ -I. -Ic:\xpddk\inc\mfc42 -IC:\numega\DriverWorks\..\common\include\stl -IC:\numega\DriverWorks\..\common\include -Ic:\xpddk\inc\crt -Ic:\xpddk\inc\ddk\wxp -Ic:\xpddk\src\hid\inc -Ic:\xpddk\src\wdm\hid\inc -IC:\numega\DriverWorks\include -IC:\numega\DriverWorks\include\dep_vxd -Iobjfre_wxp_x86\i386 -Ic:\xpddk\inc\wxp -Ic:\xpddk\inc\wxp -Ic:\xpddk\inc\ddk\wdm\wxp -Ic:\xpddk\inc\crt -D_X86_=1 -Di386=1  -DSTD_CALL -DCONDITION_HANDLING=1   -DNT_INST=0 -DWIN32=100 -D_NT1X_=100 -DWINNT=1 -D_WIN32_WINNT=0x0501 /DWINVER=0x0501 -D_WIN32_IE=0x0600    -DWIN32_LEAN_AND_MEAN=1 -DDEVL=1 -D__BUILDMACHINE__=WinDDK -DFPO=1  -DNDEBUG -DNTVERSION='WDM' -Gy     /c /Zel /Zp8 /Gy  /W3 /WX /Gz  /QIfdiv- /QIf /G6 /Gi- /Gm- /GX-  /GR- /GF   /Oxs /Oy   -FIc:\xpddk\inc\wxp\warning.h     .\cpprt.cpp .\stcinit.cpp .\dwcontrl.cpp .\kaddress.cpp .\kchecker.cpp .\kdevice.cpp .\kerrlog.cpp .\kfifo.cpp .\kfile.cpp .\kirp.cpp .\kpcicfg.cpp .\kintrupt.cpp .\klist.cpp .\kadapter.cpp .\klower.cpp .\kpnpdev.cpp .\kpnplow.cpp .\kquery.cpp .\kregkey.cpp .\kresreq.cpp .\kustring.cpp .\ksfifo.cpp .\kspin.cpp .\kunitnam.cpp .\kdevque.cpp .\ksysthrd.cpp .\ktimer.cpp .\kevent.cpp .\kmutex.cpp .\ksemaphr.cpp .\kdmqcsq.cpp .\kdmqex.cpp .\kdmaxfer.cpp .\ktrace.cpp .\kusb.cpp .\khidaux.cpp .\getnames.cpp .\kvxdintf.cpp .\kstl.cpp .\kstllmcb.cpp .\kstlphs.cpp .\kstlnphs.cpp .\kstream.cpp .\kstradpt.cpp .\util.cpp .\suballoc.cpp .\k1394.cpp .\k1394async.cpp .\k1394isoc.cpp .\kwmi.cpp .\kwmistr.cpp .\ksminidriver.cpp .\kstdwmi.cpp .\kbus.cpp .\kphysdev.cpp 
+1>cpprt.cpp
+1>stcinit.cpp
+1>dwcontrl.cpp
+1>kaddress.cpp
+1>kchecker.cpp
+1>kdevice.cpp
+1>kerrlog.cpp
+1>kfifo.cpp
+1>kfile.cpp
+1>kirp.cpp
+1>kpcicfg.cpp
+1>kintrupt.cpp
+1>klist.cpp
+1>kadapter.cpp
+1>klower.cpp
+1>kpnpdev.cpp
+1>kpnplow.cpp
+1>kquery.cpp
+1>kregkey.cpp
+1>kresreq.cpp
+1>Generating Code...
+1>Compiling...
+1>kustring.cpp
+1>ksfifo.cpp
+1>kspin.cpp
+1>kunitnam.cpp
+1>kdevque.cpp
+1>ksysthrd.cpp
+1>ktimer.cpp
+1>kevent.cpp
+1>kmutex.cpp
+1>ksemaphr.cpp
+1>kdmqcsq.cpp
+1>kdmqex.cpp
+1>kdmaxfer.cpp
+1>ktrace.cpp
+1>kusb.cpp
+1>khidaux.cpp
+1>getnames.cpp
+1>kvxdintf.cpp
+1>kstl.cpp
+1>kstllmcb.cpp
+1>Generating Code...
+1>Compiling...
+1>kstlphs.cpp
+1>kstlnphs.cpp
+1>kstream.cpp
+1>kstradpt.cpp
+1>util.cpp
+1>suballoc.cpp
+1>k1394.cpp
+1>k1394async.cpp
+1>k1394isoc.cpp
+1>kwmi.cpp
+1>kwmistr.cpp
+1>ksminidriver.cpp
+1>kstdwmi.cpp
+1>kbus.cpp
+1>kphysdev.cpp
+1>Generating Code...
+1>	lib -out:C:\numega\DriverWorks\lib\i386\vdw_wdm.lib -IGNORE:4010,4037,4039,4065,4070,4078,4087,4089,4198,4221  /WX -nodefaultlib -machine:ix86 @C:\users\steward\Temp\nma00088.
+1>Microsoft (R) Library Manager Version 7.00.9210
+1>Copyright (C) Microsoft Corporation.  All rights reserved.
+1>
+1>objfre_wxp_x86\i386\cpprt.obj 
+1>objfre_wxp_x86\i386\stcinit.obj 
+1>objfre_wxp_x86\i386\dwcontrl.obj 
+1>objfre_wxp_x86\i386\kaddress.obj 
+1>objfre_wxp_x86\i386\kchecker.obj 
+1>objfre_wxp_x86\i386\kdevice.obj 
+1>objfre_wxp_x86\i386\kerrlog.obj 
+1>objfre_wxp_x86\i386\kfifo.obj 
+1>objfre_wxp_x86\i386\kfile.obj 
+1>objfre_wxp_x86\i386\kirp.obj 
+1>objfre_wxp_x86\i386\kpcicfg.obj 
+1>objfre_wxp_x86\i386\kintrupt.obj 
+1>objfre_wxp_x86\i386\klist.obj 
+1>objfre_wxp_x86\i386\kadapter.obj 
+1>objfre_wxp_x86\i386\klower.obj 
+1>objfre_wxp_x86\i386\kpnpdev.obj 
+1>objfre_wxp_x86\i386\kpnplow.obj 
+1>objfre_wxp_x86\i386\kquery.obj 
+1>objfre_wxp_x86\i386\kregkey.obj 
+1>objfre_wxp_x86\i386\kresreq.obj 
+1>objfre_wxp_x86\i386\kustring.obj 
+1>objfre_wxp_x86\i386\ksfifo.obj 
+1>objfre_wxp_x86\i386\kspin.obj 
+1>objfre_wxp_x86\i386\kunitnam.obj 
+1>objfre_wxp_x86\i386\kdevque.obj 
+1>objfre_wxp_x86\i386\ksysthrd.obj 
+1>objfre_wxp_x86\i386\ktimer.obj 
+1>objfre_wxp_x86\i386\kevent.obj 
+1>objfre_wxp_x86\i386\kmutex.obj 
+1>objfre_wxp_x86\i386\ksemaphr.obj 
+1>objfre_wxp_x86\i386\kdmqcsq.obj 
+1>objfre_wxp_x86\i386\kdmqex.obj 
+1>objfre_wxp_x86\i386\kdmaxfer.obj 
+1>objfre_wxp_x86\i386\ktrace.obj 
+1>objfre_wxp_x86\i386\kusb.obj 
+1>objfre_wxp_x86\i386\khidaux.obj 
+1>objfre_wxp_x86\i386\getnames.obj 
+1>objfre_wxp_x86\i386\kvxdintf.obj 
+1>objfre_wxp_x86\i386\kstl.obj 
+1>objfre_wxp_x86\i386\kstllmcb.obj 
+1>objfre_wxp_x86\i386\kstlphs.obj 
+1>objfre_wxp_x86\i386\kstlnphs.obj 
+1>objfre_wxp_x86\i386\kstream.obj 
+1>objfre_wxp_x86\i386\kstradpt.obj 
+1>objfre_wxp_x86\i386\util.obj 
+1>objfre_wxp_x86\i386\suballoc.obj 
+1>objfre_wxp_x86\i386\k1394.obj 
+1>objfre_wxp_x86\i386\k1394async.obj 
+1>objfre_wxp_x86\i386\k1394isoc.obj 
+1>objfre_wxp_x86\i386\kwmi.obj 
+1>objfre_wxp_x86\i386\kwmistr.obj 
+1>objfre_wxp_x86\i386\ksminidriver.obj 
+1>objfre_wxp_x86\i386\kstdwmi.obj 
+1>objfre_wxp_x86\i386\kbus.obj 
+1>objfre_wxp_x86\i386\kphysdev.obj 
+1>
+1>Stop.
