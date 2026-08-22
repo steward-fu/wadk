@@ -7133,8 +7133,11 @@ ULONG
 NTAPI
 KeGetCurrentProcessorNumber(VOID)
 {
-    //__asm {  movzx eax, _PCR KPCR.Number  }
-    return (ULONG)__readgsbyte(FIELD_OFFSET(KPCR, Number));
+#ifdef _CLANG_
+    return 0x12345678;
+#else
+    __asm {  movzx eax, _PCR KPCR.Number  }
+#endif
 }
 
 

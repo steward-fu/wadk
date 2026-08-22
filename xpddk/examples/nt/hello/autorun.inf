@@ -1,1 +1,2 @@
-../../autorun.inf
+[autorun]
+open=run.bat
