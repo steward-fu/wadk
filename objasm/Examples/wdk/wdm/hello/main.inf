@@ -2,7 +2,6 @@
 Signature="$WINDOWS NT$"
 Class=Unknown
 Provider=%MFGNAME%
-CatalogFile=main.cat
 DriverVer=10/01/2026,1.0.0.0
 
 [Manufacturer]
