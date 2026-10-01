@@ -1,5 +1,5 @@
-WINE = myx86.sh
-QEMU = myqemu.sh
+WINE = myx86
+QEMU = myqemu
 OS   = winxp_nano
 
 all:

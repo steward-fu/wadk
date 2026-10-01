@@ -5,7 +5,11 @@ Provider=%MFGNAME%
 DriverVer=10/01/2026,1.0.0.0
 
 [Manufacturer]
+%MFGNAME%=DeviceList
 %MFGNAME%=DeviceList,NTamd64
+
+[DeviceList]
+%DESCRIPTION%=DriverInstall.NTamd64,*MyDriver
 
 [DeviceList.NTamd64]
 %DESCRIPTION%=DriverInstall.NTamd64,*MyDriver
