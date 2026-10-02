@@ -4,7 +4,7 @@ all:
 	python3 fix.py main.sys
 
 run:
-	genisoimage -R -J -o cdrom.iso autorun.inf main.sys main.inf run.bat /opt/wadk/tools/devcon.exe
+	genisoimage -R -J -o cdrom.iso autorun.inf main.sys main.inf run.bat /opt/wadk/tools/devcon.exe /opt/wadk/tools/sysinternals/winobj.exe
 	myqemu winxp
 
 clean:
