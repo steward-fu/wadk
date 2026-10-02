@@ -7,7 +7,7 @@
  
 #include <vdw.h>
 
-KDebugOnlyTrace T("MyDriver");
+KDebugOnlyTrace T("");
 
 class MyDevice : public KPnpDevice
 {
