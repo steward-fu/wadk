@@ -2,8 +2,6 @@ all:
 	clang --target=i686-pc-windows-msvc -fno-builtin -mrtd -I/opt/wadk/xpddk/inc/ddk/wxp -I/opt/wadk/xpddk/inc/wxp -I/opt/wadk/xpddk/inc/crt -D_X86_=1 -D_CLANG_=1 -c main.c -w
 	lld-link main.o /driver /base:0x10000 /subsystem:native /entry:DriverEntry /safeseh:no /opt/wadk/xpddk/lib/wxp/i386/ntoskrnl.lib /out:main.sys
 	python3 fix.py main.sys
-
-server:
 	gcc server.c -o server
 
 run:

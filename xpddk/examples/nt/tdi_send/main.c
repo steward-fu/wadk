@@ -259,7 +259,7 @@ static NTSTATUS TdiSend(const char *buf, ULONG len)
     else {
         status = irp->IoStatus.Status;
     }
-    DbgPrint("Send %lubytes\n", (ULONG)irp->IoStatus.Information);
+    DbgPrint("Sent %lu bytes\n", (ULONG)irp->IoStatus.Information);
     IoFreeIrp(irp);
     IoFreeMdl(mdl);
     ExFreePool(buffer);
