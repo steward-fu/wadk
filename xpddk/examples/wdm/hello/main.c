@@ -2,10 +2,13 @@
   
 static PDEVICE_OBJECT pNextDevice = NULL;
   
-static NTSTATUS AddDevice(PDRIVER_OBJECT pMyDriver, PDEVICE_OBJECT pPhyDevice)
+static NTSTATUS
+AddDevice(
+    PDRIVER_OBJECT pMyDriver,
+    PDEVICE_OBJECT pPhyDevice)
 {
     PDEVICE_OBJECT pMyDevice = NULL;
-    UNICODE_STRING usDeviceName = {0};
+    UNICODE_STRING usDeviceName = { 0 };
  
     DbgPrint("Hello, world!");
     RtlInitUnicodeString(&usDeviceName, L"\\Device\\MyDriver");
@@ -13,14 +16,20 @@ static NTSTATUS AddDevice(PDRIVER_OBJECT pMyDriver, PDEVICE_OBJECT pPhyDevice)
     pNextDevice = IoAttachDeviceToDeviceStack(pMyDevice, pPhyDevice);
     pMyDevice->Flags &= ~DO_DEVICE_INITIALIZING;
     pMyDevice->Flags |= DO_BUFFERED_IO;
+
     return STATUS_SUCCESS;
 }
   
-static void Unload(PDRIVER_OBJECT pMyDriver)
+static void
+Unload(
+    PDRIVER_OBJECT pMyDriver)
 {
 }
   
-static NTSTATUS IrpDispatch(PDEVICE_OBJECT pMyDevice, PIRP pIrp)
+static NTSTATUS
+IrpDispatch(
+    PDEVICE_OBJECT pMyDevice,
+    PIRP pIrp)
 {
     PIO_STACK_LOCATION pStack = IoGetCurrentIrpStackLocation(pIrp);
  
@@ -28,16 +37,22 @@ static NTSTATUS IrpDispatch(PDEVICE_OBJECT pMyDevice, PIRP pIrp)
         IoDetachDevice(pNextDevice);
         IoDeleteDevice(pMyDevice);
         IoCompleteRequest(pIrp, IO_NO_INCREMENT);
+
         return STATUS_SUCCESS;
     }
     IoSkipCurrentIrpStackLocation(pIrp);
+
     return IoCallDriver(pNextDevice, pIrp);
 }
   
-NTSTATUS DriverEntry(PDRIVER_OBJECT pMyDriver, PUNICODE_STRING pMyRegistry)
+NTSTATUS
+DriverEntry(
+    PDRIVER_OBJECT pMyDriver,
+    PUNICODE_STRING pMyRegistry)
 {
     pMyDriver->MajorFunction[IRP_MJ_PNP] = IrpDispatch;
     pMyDriver->DriverExtension->AddDevice = AddDevice;
     pMyDriver->DriverUnload = Unload;
+
     return STATUS_SUCCESS;
 }
