@@ -12,7 +12,15 @@ AddDevice(
  
     DbgPrint("Hello, world!");
     RtlInitUnicodeString(&usDeviceName, L"\\Device\\MyDriver");
-    IoCreateDevice(pMyDriver, 0, &usDeviceName, FILE_DEVICE_UNKNOWN, 0, FALSE, &pMyDevice);
+    IoCreateDevice(pMyDriver,
+        0,
+        &usDeviceName,
+        FILE_DEVICE_UNKNOWN,
+        0,
+        FALSE,
+        &pMyDevice
+    );
+
     pNextDevice = IoAttachDeviceToDeviceStack(pMyDevice, pPhyDevice);
     pMyDevice->Flags &= ~DO_DEVICE_INITIALIZING;
     pMyDevice->Flags |= DO_BUFFERED_IO;
