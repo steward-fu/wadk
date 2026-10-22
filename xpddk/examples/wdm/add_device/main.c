@@ -52,7 +52,7 @@ static NTSTATUS IrpDispatch(PDEVICE_OBJECT pMyDevice, PIRP pIrp)
   
 NTSTATUS DriverEntry(PDRIVER_OBJECT pMyDriver, PUNICODE_STRING pMyRegistry)
 {
-    DbgPrint("%s, Set calllback\n", __FUNCTION__);
+    DbgPrint("%s, pMyDriver = %p\n", __FUNCTION__, pMyDriver);
     pMyDriver->MajorFunction[IRP_MJ_PNP] = IrpDispatch;
     pMyDriver->DriverExtension->AddDevice = AddDevice;
 

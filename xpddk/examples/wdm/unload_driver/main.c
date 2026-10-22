@@ -1,5 +1,5 @@
 //
-// Add device
+// Unload driver
 // https://steward-fu.github.io/website/index.htm
 //
 
@@ -52,12 +52,12 @@ static NTSTATUS IrpDispatch(PDEVICE_OBJECT pMyDevice, PIRP pIrp)
 
 static VOID Unload(PDRIVER_OBJECT pMyDriver)
 {
-    DbgPrint("%s\n", __FUNCTION__);
+    DbgPrint("%s, pMyDriver = %p\n", __FUNCTION__, pMyDriver);
 }
  
 NTSTATUS DriverEntry(PDRIVER_OBJECT pMyDriver, PUNICODE_STRING pMyRegistry)
 {
-    DbgPrint("%s, Set calllback\n", __FUNCTION__);
+    DbgPrint("%s, pMyDriver = %p\n", __FUNCTION__, pMyDriver);
     pMyDriver->MajorFunction[IRP_MJ_PNP] = IrpDispatch;
     pMyDriver->DriverExtension->AddDevice = AddDevice;
     pMyDriver->DriverUnload = Unload;
