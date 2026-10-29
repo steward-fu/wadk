@@ -1,0 +1,25 @@
+;* Trackbar macros
+;* (C) hardCode | http://bizarrecreations.webjump.com
+
+include winextra.def
+
+TrackBar_SetRange MACRO hwnd,nMin,nMax
+ SNDMSG hwnd,TBM_SETRANGE,TRUE,((nMin AND 0FFFFh) OR (nMax SHL 16)) ;;MAKELONG(nMin,nMax)
+ENDM
+
+TrackBar_SetPageSize MACRO hwnd,pagesize
+ SNDMSG hwnd,TBM_SETPAGESIZE,0,pagesize
+ENDM
+
+TrackBar_CheckPos MACRO hwnd,newpos
+ SNDMSG hwnd,TBM_SETPOS,FALSE,newpos
+ test eax,eax
+ENDM
+
+TrackBar_SetPos MACRO hwnd,newpos
+ SNDMSG hwnd,TBM_SETPOS,TRUE,newpos
+ENDM
+
+TrackBar_GetPos MACRO hwnd
+ SNDMSG hwnd,TBM_GETPOS,NULL,NULL
+ENDM

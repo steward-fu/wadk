@@ -1,0 +1,95 @@
+;*** Fixed point support macros
+;*** Written by Sergey Chaban
+;*** (C) hardCode | http://bizarrecreations.webjump.com
+
+; These macros allow to write fixed point numbers in a form of
+; a real (pascal's terms?) numbers, i. e. numbers with a decimal
+; point. It's really inconvenient that the assemblers don't allow
+; to use the floating point math in expressions.
+; This leads me to writting of a such kewl code :)
+
+FIXPOINTMULT=32767  ; This can be redefined, sure :)
+
+
+Fixed STRUC
+ fraction dw 0
+ integer  dw 0
+Fixed ENDS
+
+Fixed8 STRUC
+ fraction db 0
+ integer  db 0
+Fixed8 ENDS
+
+Convert2Fixed MACRO Int, Frac
+ TemporalFixed=(&Int*FIXPOINTMULT+(&Frac*FIXPOINTMULT)/FixDivisor)*RealSign
+ENDM
+
+PokeFixedWord MACRO Int, Frac
+ Convert2Fixed &Int, &Frac
+ dw TemporalFixed
+ENDM
+
+PokeFixedDword MACRO Int, Frac
+ Convert2Fixed &Int, &Frac
+ dd TemporalFixed
+ENDM
+
+;* Macro to split the real number onto integer and fractional parts.
+;* It returns corresponding strings in RealInt and RealFraction vars.
+;* Sign returned in RealSign (what a surprise).
+SplitReal MACRO RealNumber
+ IFDEF TASM
+  PUSHSTATE
+  MASM51     ; Enable string macros
+ ENDIF
+  NumString EQU <RealNumber>
+  RealStrLen SIZESTR NumString
+  RealStrCount=RealStrLen
+  RealStrPos=1
+  RealIntPos=1 ; Position of the beggining of the integer part
+  ; Determine the sign of the real number
+   RealSign=1                         ; Assume plus.
+    Char SUBSTR NumString, 1, 1       ; Get the first symbol.
+     IFIDN Char, <->                  ; Is it minus?
+       RealSign=-1                    ; If so, change the sign
+       RealStrCount=RealStrCount-1    ; and advance to the next
+       RealStrPos=RealStrPos+1        ; symbol.
+       RealIntPos=RealIntPos+1
+     ENDIF
+  ;
+   FixDivisor=1
+   DotFound=FALSE
+    REPT RealStrCount
+      IF DotFound
+        FixDivisor=FixDivisor*10
+      ENDIF
+     Char SUBSTR NumString, RealStrPos, 1
+      IFIDNI Char, <.>
+         DotFound=TRUE
+         FracPos=RealStrPos+1
+         FracLen=RealStrLen-FracPos+1
+      ENDIF
+     RealStrPos=RealStrPos+1
+    ENDM
+  RealFraction SUBSTR NumString, FracPos, FracLen
+  RealInt SUBSTR NumString, RealIntPos, RealStrCount-FracLen-1
+ IFDEF TASM
+  POPSTATE
+ ENDIF
+ENDM
+
+_dfw MACRO RealNumber
+ SplitReal &RealNumber
+ PokeFixedWord %RealInt, %RealFraction
+ENDM
+
+_dfd MACRO RealNumber
+ SplitReal &RealNumber
+ PokeFixedDword %RealInt, %RealFraction
+ENDM
+
+GetTempFixed MACRO RealNumber
+ SplitReal &RealNumber
+ Convert2Fixed %RealInt, %RealFraction
+ENDM

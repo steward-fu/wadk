@@ -1,0 +1,51 @@
+;* (C) hardCode | http://bizarrecreations.webjump.com
+;* Written by Sergey Chaban
+
+; Customize prologue >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+;;_VERBOSE_PROLOG_=1
+
+myPrologue MACRO szProcName,flags,cbParams,cbLocals,rgRegs,rgUserParams
+LOCAL TouchLoop
+ IFDEF _VERBOSE_PROLOG_
+  %ECHO Requested prologue for: &szProcName(Params=&cbParams,Locals=&cbLocals)
+ ENDIF
+IF cbLocals GE 0FFEh
+ IFDEF _VERBOSE_PROLOG_
+  %ECHO Dangerous! Using stack touch!
+ ENDIF
+  push ebp
+  mov ebp,esp
+  mov eax,(cbLocals SHR 12)
+  TouchLoop:
+   sub esp,1000h
+   test esp,[esp]
+   dec eax
+   jnz TouchLoop
+   add esp,-(cbLocals AND 0FFFh)
+ELSE
+ IF NOT(cbParams EQ 0)
+  IF NOT(cbLocals EQ 0)
+   IFDEF _VERBOSE_PROLOG_
+    ECHO Enter prologue added!
+   ENDIF
+    enter cbLocals,0
+  ELSE
+   IFDEF _VERBOSE_PROLOG_
+    ECHO push/mov prologue added!
+   ENDIF
+    push ebp
+    mov ebp,esp
+  ENDIF
+ ELSEIF NOT(cbLocals EQ 0)
+   IFDEF _VERBOSE_PROLOG_
+    ECHO Enter prologue added (no params)!
+   ENDIF
+    enter cbLocals,0
+ ENDIF
+ENDIF
+ EXITM %cbLocals ;;<cbParams>
+ENDM
+
+OPTION PROLOGUE: myPrologue
+
