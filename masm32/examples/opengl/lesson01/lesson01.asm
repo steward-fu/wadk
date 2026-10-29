@@ -5,18 +5,18 @@
 .586p
 .MODEL FLAT,STDCALL
 option casemap:none
-include \masm32\include\windows.inc
-include \masm32\include\ogl\gl.def
-include \masm32\include\ogl\glu.def
-includelib \masm32\lib\opengl32.lib
-includelib \masm32\lib\glu32.lib
-include \masm32\include\ogl\kernel32.inc
-include \masm32\include\ogl\user32.inc
-include \masm32\include\ogl\gdi32.inc
-include \masm32\include\ogl\WinExtra\winextra.def
-includelib \masm32\lib\kernel32.lib
-includelib \masm32\lib\user32.lib
-includelib \masm32\lib\gdi32.lib
+include c:\masm32\include\windows.inc
+include c:\masm32\include\ogl\gl.def
+include c:\masm32\include\ogl\glu.def
+includelib c:\masm32\lib\opengl32.lib
+includelib c:\masm32\lib\glu32.lib
+include c:\masm32\include\ogl\kernel32.inc
+include c:\masm32\include\ogl\user32.inc
+include c:\masm32\include\ogl\gdi32.inc
+include c:\masm32\include\ogl\WinExtra\winextra.def
+includelib c:\masm32\lib\kernel32.lib
+includelib c:\masm32\lib\user32.lib
+includelib c:\masm32\lib\gdi32.lib
 
 CreateGLWindow  PROTO :DWORD,:DWORD,:DWORD,:DWORD,:BYTE
 WinMain         PROTO :DWORD,:DWORD,:DWORD,:DWORD
