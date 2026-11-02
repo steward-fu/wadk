@@ -18,8 +18,6 @@ all:
 	clang $(CFLAGS) -c main.c
 	lld-link main.o $(LDFLAGS) /out:main.sys
 	python3 fix.py main.sys
-
-app:
 	i686-w64-mingw32-gcc app.c -o app.exe
 
 run:

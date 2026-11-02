@@ -15,13 +15,11 @@ static NTSTATUS AddDevice(PDRIVER_OBJECT pMyDriver, PDEVICE_OBJECT pPhyDevice)
  
     RtlInitUnicodeString(&usDeviceName, L"\\Device\\MyDriver");
     IoCreateDevice(pMyDriver, 0, &usDeviceName, FILE_DEVICE_UNKNOWN, 0, FALSE, &pMyDevice);
-    DbgPrint("%s, pMyDevice = %p\n", __FUNCTION__, pMyDevice);
 
     RtlInitUnicodeString(&usSymbolName, L"\\DosDevices\\MyDriver");
     IoCreateSymbolicLink(&usSymbolName, &usDeviceName);
 
     pNextDevice = IoAttachDeviceToDeviceStack(pMyDevice, pPhyDevice);
-    DbgPrint("%s, pNextDevice = %p\n", __FUNCTION__, pNextDevice);
 
     pMyDevice->Flags &= ~DO_DEVICE_INITIALIZING;
     pMyDevice->Flags |= DO_BUFFERED_IO;
@@ -30,7 +28,6 @@ static NTSTATUS AddDevice(PDRIVER_OBJECT pMyDriver, PDEVICE_OBJECT pPhyDevice)
   
 static VOID Unload(PDRIVER_OBJECT pMyDriver)
 {
-    DbgPrint("%s, pMyDriver = %p\n", __FUNCTION__, pMyDriver);
 }
   
 static NTSTATUS IrpPnp(PDEVICE_OBJECT pMyDevice, PIRP pIrp)
@@ -38,14 +35,11 @@ static NTSTATUS IrpPnp(PDEVICE_OBJECT pMyDevice, PIRP pIrp)
     UNICODE_STRING usSymbolName = { 0 };
     PIO_STACK_LOCATION pStack = IoGetCurrentIrpStackLocation(pIrp);
 
-    DbgPrint("%s, Major = 0x%x\n", __FUNCTION__, pStack->MajorFunction);
     if (pStack->MinorFunction == IRP_MN_REMOVE_DEVICE) {
         RtlInitUnicodeString(&usSymbolName, L"\\DosDevices\\MyDriver");
         IoDeleteSymbolicLink(&usSymbolName);
-        DbgPrint("%s, Delete symbolic link\n", __FUNCTION__);
 
         IoDetachDevice(pNextDevice);
-        DbgPrint("%s, Delete device\n", __FUNCTION__);
 
         IoDeleteDevice(pMyDevice);
         IoCompleteRequest(pIrp, IO_NO_INCREMENT);
@@ -81,7 +75,6 @@ static NTSTATUS IrpFile(PDEVICE_OBJECT pMyDevice, PIRP pIrp)
   
 NTSTATUS DriverEntry(PDRIVER_OBJECT pMyDriver, PUNICODE_STRING pMyRegistry)
 {
-    DbgPrint("%s, pMyDriver = %p\n", __FUNCTION__, pMyDriver);
     pMyDriver->MajorFunction[IRP_MJ_PNP]    = IrpPnp;
     pMyDriver->MajorFunction[IRP_MJ_CREATE] = IrpFile;
     pMyDriver->MajorFunction[IRP_MJ_READ]   = IrpFile;
