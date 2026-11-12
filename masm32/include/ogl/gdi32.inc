@@ -1,7 +1,7 @@
 ;*   GDI32.LIB prototypes for MASM
 ;* (C)hardCode | http://bizarrecreations.webjump.com
 
-include WinExtra\unicode.def
+include winextra/unicode.def
 
 IFNDEF __GDI32PROTOS__
 __GDI32PROTOS__=1

@@ -1,7 +1,7 @@
 ;*   KERNEL32.LIB prototypes for MASM
 ;* (C)hardCode | http://bizarrecreations.webjump.com
 
-include WinExtra\unicode.def
+include winextra/unicode.def
 
 IFNDEF __KERN32PROTOS__
 __KERN32PROTOS__=1

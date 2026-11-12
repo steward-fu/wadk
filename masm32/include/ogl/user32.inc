@@ -1,7 +1,7 @@
 ;*   USER32.LIB prototypes for MASM
 ;* (C)hardCode | http://bizarrecreations.webjump.com
 
-include WinExtra\unicode.def
+include winextra/unicode.def
 
 IFNDEF __USER32PROTOS__
 __USER32PROTOS__=1
