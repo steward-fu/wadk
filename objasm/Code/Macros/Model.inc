@@ -175,6 +175,7 @@ PLATFORM_UEFI           equ       2
 PLATFORM_WINDOWS        equ       3
 PLATFORM_OTHER          equ       4                     ;E.g. Linux distros
 PLATFORM_WDK            equ       5
+PLATFORM_WINDOWS_OPENGL equ       6
 TARGET_PLATFORM         =         PLATFORM_WINDOWS
 
 MODE_RLS                equ       1
@@ -237,14 +238,16 @@ SysSetup macro Arguments:vararg
       TARGET_USER_INTERFACE = USER_INTERFACE_NONE
       TARGET_BITNESS = 32
       WDK_TYPE equ WDK_WDM
-
+    elseifidni <Argument>, <WIN32_OPENGL>
+      TARGET_PLATFORM = PLATFORM_WINDOWS_OPENGL
+      TARGET_USER_INTERFACE = USER_INTERFACE_GUI
+      TARGET_BITNESS = 32
     elseifidni <Argument>, <WDK_NT>
       TARGET_PLATFORM = PLATFORM_WDK
       TARGET_BIN_FORMAT = BIN_FORMAT_DLL
       TARGET_USER_INTERFACE = USER_INTERFACE_NONE
       TARGET_BITNESS = 32
       WDK_TYPE equ WDK_NT
-
     elseifidni <Argument>, <CON32>
       TARGET_PLATFORM = PLATFORM_WINDOWS
       TARGET_USER_INTERFACE = USER_INTERFACE_CLI
@@ -253,7 +256,6 @@ SysSetup macro Arguments:vararg
       TARGET_PLATFORM = PLATFORM_WINDOWS
       TARGET_USER_INTERFACE = USER_INTERFACE_CLI
       TARGET_BITNESS = 64
-
     elseifidni  <Argument>, <LIB32>
       TARGET_PLATFORM = PLATFORM_WINDOWS
       TARGET_BIN_FORMAT = BIN_FORMAT_LIB
@@ -264,7 +266,6 @@ SysSetup macro Arguments:vararg
       TARGET_BIN_FORMAT = BIN_FORMAT_LIB
       TARGET_USER_INTERFACE = USER_INTERFACE_NONE
       TARGET_BITNESS = 64
-
     elseifidni <Argument>, <DLL32>
       TARGET_PLATFORM = PLATFORM_WINDOWS
       TARGET_BIN_FORMAT = BIN_FORMAT_DLL
@@ -275,19 +276,16 @@ SysSetup macro Arguments:vararg
       TARGET_BIN_FORMAT = BIN_FORMAT_DLL
       TARGET_USER_INTERFACE = USER_INTERFACE_NONE
       TARGET_BITNESS = 64
-
     elseifidni <Argument>, <UEFI32>
       TARGET_BIN_FORMAT = BIN_FORMAT_DLL
       TARGET_USER_INTERFACE = USER_INTERFACE_CLI
       TARGET_BITNESS = 32
       TARGET_PLATFORM = PLATFORM_UEFI
-
     elseifidni <Argument>, <UEFI64>
       TARGET_BIN_FORMAT = BIN_FORMAT_DLL
       TARGET_USER_INTERFACE = USER_INTERFACE_CLI
       TARGET_BITNESS = 64
       TARGET_PLATFORM = PLATFORM_UEFI
-
     else
       echo SysSetup - Invalid argument
       echo
@@ -329,6 +327,14 @@ SysSetup macro Arguments:vararg
     % include &IncPath&ObjAsm/ObjMem.inc
     % include &IncPath&WDK/ddk.inc
     % include &IncPath&WDK/ntstatus.inc
+  elseif TARGET_PLATFORM eq PLATFORM_WINDOWS_OPENGL
+    % include &IncPath&Windows/Windows.inc
+    % include &MacPath&System.inc
+    % include &MacPath&Memory.inc
+    % include &MacPath&Strings.inc
+    % include &MacPath&WinHelpers.inc
+    % include &IncPath&ObjAsm/ObjMem.inc
+    % include &IncPath&OpenGL/gl.inc
   endif
   % include &MacPath&ConstDiv.inc
 
@@ -353,6 +359,9 @@ SysSetup macro Arguments:vararg
 
 
   if TARGET_PLATFORM eq PLATFORM_WINDOWS
+    externdef hInstance:HINSTANCE                       ;;Export hInstance symbol
+    externdef hProcessHeap:HANDLE                       ;;Export hProcessHeap symbol
+  elseif TARGET_PLATFORM eq PLATFORM_WINDOWS_OPENGL
     externdef hInstance:HINSTANCE                       ;;Export hInstance symbol
     externdef hProcessHeap:HANDLE                       ;;Export hProcessHeap symbol
   elseif TARGET_PLATFORM eq PLATFORM_UEFI
@@ -401,6 +410,8 @@ SysSetup macro Arguments:vararg
   if TARGET_PLATFORM eq PLATFORM_NONE
     echo Platform:       NONE
   elseif TARGET_PLATFORM eq PLATFORM_WINDOWS
+    echo Platform:       WINDOWS
+  elseif TARGET_PLATFORM eq PLATFORM_WINDOWS_OPENGL
     echo Platform:       WINDOWS
   elseif TARGET_PLATFORM eq PLATFORM_UEFI
     echo Platform:       UEFI
@@ -488,6 +499,10 @@ SysSetup macro Arguments:vararg
     externdef dDbgDev:DWORD                           ;;Export dDbgDev symbol
     externdef dDbgOpt:DWORD                           ;;Export dDbgOpt symbol
     if TARGET_PLATFORM eq PLATFORM_WINDOWS
+      externdef DbgCritSect:CRITICAL_SECTION          ;;Export DbgCritSect symbol
+    endif
+
+    if TARGET_PLATFORM eq PLATFORM_WINDOWS_OPENGL
       externdef DbgCritSect:CRITICAL_SECTION          ;;Export DbgCritSect symbol
     endif
 
@@ -610,6 +625,9 @@ SysInit macro Arg1, Arg2
 .data
   align ALIGN_DATA
   if TARGET_PLATFORM eq PLATFORM_WINDOWS
+    hInstance         HINSTANCE   0                     ;;Module instance
+    hProcessHeap      HANDLE      0                     ;;Process Heap HANDLE
+  elseif TARGET_PLATFORM eq PLATFORM_WINDOWS_OPENGL
     hInstance         HINSTANCE   0                     ;;Module instance
     hProcessHeap      HANDLE      0                     ;;Process Heap HANDLE
   elseif TARGET_PLATFORM eq PLATFORM_UEFI

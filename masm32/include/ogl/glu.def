@@ -247,7 +247,7 @@ gluUnProject PROTO :DWORD,:DWORD,:DWORD,:DWORD,:DWORD,:DWORD,:DWORD,:DWORD,:DWOR
 
 
 ;*****************************************************************
-include glMacros/glu.mac
+include glmacros/glu.mac
 ;*****************************************************************
 
 

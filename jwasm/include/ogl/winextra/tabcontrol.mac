@@ -1,0 +1,113 @@
+;* TAB CONTROL MACROS
+;* (C) hardCode | http://bizarrecreations.webjump.com
+
+include winextra.def
+
+TabCtrl_GetImageList MACRO hwnd
+ SNDMSG hwnd, TCM_GETIMAGELIST, 0, 0
+ENDM
+
+
+TabCtrl_SetImageList MACRO hwnd, himl
+ SNDMSG hwnd, TCM_SETIMAGELIST, 0, himl
+ENDM
+
+
+TabCtrl_GetItemCount MACRO hwnd
+ SNDMSG hwnd, TCM_GETITEMCOUNT, 0, 0
+ENDM
+
+
+TabCtrl_GetItem MACRO hwnd, iItem, pitem
+ SNDMSG hwnd, TCM_GETITEM, iItem, pitem
+ENDM
+
+
+TabCtrl_SetItem MACRO hwnd, iItem, pitem
+ SNDMSG hwnd, TCM_SETITEM, iItem, pitem
+ENDM
+
+
+TabCtrl_InsertItem MACRO hwnd, iItem, pitem
+ SNDMSG hwnd, TCM_INSERTITEM, iItem, pitem
+ENDM
+
+
+TabCtrl_DeleteItem MACRO hwnd, i
+ SNDMSG hwnd, TCM_DELETEITEM, i, NULL
+ENDM
+
+
+TabCtrl_DeleteAllItems MACRO hwnd
+ SNDMSG hwnd, TCM_DELETEALLITEMS, NULL, NULL
+ENDM
+
+
+TabCtrl_GetItemRect MACRO hwnd, i, prc
+ SNDMSG hwnd, TCM_GETITEMRECT, i, prc
+ENDM
+
+
+TabCtrl_GetCurSel MACRO hwnd
+ SNDMSG hwnd, TCM_GETCURSEL, NULL, NULL
+ENDM
+
+
+TabCtrl_SetCurSel MACRO hwnd, i
+ SNDMSG hwnd, TCM_SETCURSEL, i, NULL
+ENDM
+
+
+
+TabCtrl_HitTest MACRO hwndTC, pinfo
+ SNDMSG hwndTC, TCM_HITTEST, NULL, pinfo
+ENDM
+
+
+TabCtrl_SetItemExtra MACRO hwndTC, cb
+ SNDMSG hwndTC, TCM_SETITEMEXTRA, cb, NULL
+ENDM
+
+
+TabCtrl_AdjustRect MACRO hwnd, bLarger, prc
+ SNDMSG hwnd, TCM_ADJUSTRECT, bLarger, prc
+ENDM
+
+
+TabCtrl_SetItemSize MACRO hwnd, x, y
+ SNDMSG hwnd, TCM_SETITEMSIZE, NULL, ((x AND 0FFFFh) OR (y SHL 16)) ;; MAKELPARAM(x,y)
+ENDM
+
+TabCtrl_RemoveImage MACRO hwnd, i
+ SNDMSG hwnd, TCM_REMOVEIMAGE, i, NULL
+ENDM
+
+
+TabCtrl_SetPadding MACRO hwnd,  cx, cy
+ SNDMSG hwnd, TCM_SETPADDING, NULL, ((cx AND 0FFFFh) OR (cy SHL 16)) ;; MAKELPARAM(cx, cy))
+ENDM
+
+
+TabCtrl_GetRowCount MACRO hwnd
+ SNDMSG hwnd, TCM_GETROWCOUNT, NULL, NULL
+ENDM
+
+
+TabCtrl_GetToolTips MACRO hwnd
+ SNDMSG hwnd, TCM_GETTOOLTIPS, NULL, NULL
+ENDM
+
+
+TabCtrl_SetToolTips MACRO hwnd, hwndTT
+ SNDMSG hwnd, TCM_SETTOOLTIPS, hwndTT, NULL
+ENDM
+
+
+TabCtrl_GetCurFocus MACRO hwnd
+ SNDMSG hwnd, TCM_GETCURFOCUS, NULL, NULL
+ENDM
+
+
+TabCtrl_SetCurFocus MACRO hwnd, i
+ SNDMSG hwnd, TCM_SETCURFOCUS, i, NULL
+ENDM

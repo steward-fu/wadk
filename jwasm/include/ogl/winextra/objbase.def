@@ -1,0 +1,168 @@
+;* (C) Sergey Chaban <soul_cat@mindless.com> 
+;* (C) hardCode | http://bizarrecreations.webjump.com
+
+IFNDEF _OBJBASE_
+_OBJBASE_=1
+
+DEFINE_GUID MACRO guidname,guidfill
+PUBLIC guidname
+guidname GUID guidfill
+ENDM
+
+IFNDEF LPGUID
+ LPGUID typedef PTR GUID
+ENDIF
+
+IFNDEF REFGUID
+ REFGUID typedef PTR
+ENDIF
+
+IFNDEF REFCLSID
+ REFCLSID typedef PTR
+ENDIF
+
+IFNDEF HRESULT
+ HRESULT typedef DWORD
+ENDIF
+
+IFNDEF LPUNKNOWN
+ LPUNKNOWN typedef LPVOID
+ENDIF
+
+IFNDEF REFIID
+ REFIID typedef PTR
+ENDIF
+
+setDefStructPack MACRO x
+ defStructPack=x
+ENDM
+defStructPack=4
+
+DEF_STRUCT MACRO structName,sPak
+ usCurrStructName CATSTR <_>,<structName>
+ CurrStructName TEXTEQU <structName>
+ IFNB <sPak>
+  usCurrStructName STRUCT sPak
+ ELSE
+  usCurrStructName STRUCT defStructPack
+ ENDIF
+ENDM
+
+END_STRUCT MACRO
+LOCAL lpx
+ lpx CATSTR <LP>,CurrStructName
+ usCurrStructName ENDS
+ CurrStructName typedef usCurrStructName
+ lpx typedef PTR CurrStructName
+ENDM
+
+usCurrStructName TEXTEQU <>
+CurrStructName   TEXTEQU <>
+
+
+DECLARE_INTERFACE MACRO ifacename
+ ifacename typedef DWORD
+ CurrInterfaceName TEXTEQU <ifacename>
+ ifaceMethodVirtualOffset=0
+ENDM
+
+STDMETHOD MACRO MethodName:REQ,Args:VARARG
+ CurrMethodName CATSTR  CurrInterfaceName,<MethodName>
+ CurrMethodProto CATSTR CurrMethodName,<Proto>
+ CurrMethodProto typedef PROTO Args
+ CurrMethodName = ifaceMethodVirtualOffset
+ ;* Advance to the next position in vtable
+ ifaceMethodVirtualOffset=ifaceMethodVirtualOffset+sizeof(LPVOID)
+ ;;%ECHO &CurrMethodName
+ENDM
+
+ CurrInterfaceName TEXTEQU <>
+ ifaceMethodVirtualOffset=0
+
+ mcallDanger=0
+ mcallNumArgs=0
+
+Check_mcallArgs MACRO a1,a2,a3,a4,a5,a6,a7,a8,a9,a10
+LOCAL x,len
+ IFNB <a1>
+  mcallNumArgs=mcallNumArgs+1
+  Check_mcallArgs <a2>,<a3>,<a4>,<a5>,<a6>,<a7>,<a8>,<a9>,<a10>
+  len SIZESTR <a1>
+   IF (len GE 5)
+     x SUBSTR <a1>,1,5
+      IFIDNI x,<ADDR >
+       mcallDanger=mcallDanger+1
+      ENDIF
+   ENDIF
+ ENDIF
+ENDM
+
+;*****************************************************************************
+;*      Macro to call COM-object methods. Type checking is performed.        *
+;*****************************************************************************
+mcall MACRO ObjPtr:REQ,MethodName:REQ,Args:VARARG
+ CurrMethodProto CATSTR <MethodName>,<Proto>
+ IFNB <Args>
+  mcallDanger=0
+  mcallNumArgs=0
+  IFIDNI <ObjPtr>,<[eax]>
+   Check_mcallArgs Args
+  ENDIF
+  IF mcallDanger
+   echo Warning: Dangerous mcall!
+   push [eax]     ; save ObjPtr
+   invoke CurrMethodProto ptr [eax],Args
+   ORG $-2
+   mov eax,[esp+mcallNumArgs*4]
+   push eax       ; this
+   mov eax,[eax]  ; vtable*
+   call dword ptr [eax+MethodName]
+   add esp,4      ; clean up stack
+  ELSE
+   invoke CurrMethodProto ptr [eax],Args
+   ORG $-2
+   mov edx,edx    ; filler!
+   mov eax,ObjPtr
+   push eax       ; this
+   mov eax,[eax]  ; vtable*
+   call dword ptr [eax+MethodName]
+  ENDIF
+ ELSE ;----- No args
+  mov eax,ObjPtr
+  push eax       ; this
+  mov eax,[eax]  ; vtable*
+  invoke CurrMethodProto ptr [eax+MethodName]
+ ENDIF
+ENDM
+
+
+;* Handy macro for releasing COM-objects
+_RELEASE MACRO ObjPtr
+ .if ObjPtr
+   mcall ObjPtr,IUnknown_Release
+ .endif
+ENDM
+
+
+MAKE_HRESULT MACRO hres_name,severity,facility,code
+hres_name = (severity SHL 31) OR ((facility AND 0FFFh) SHL 16) OR (code AND 0FFFFh)
+ENDM
+
+
+
+; Define IUnknown interface, which is common for all objects
+DECLARE_INTERFACE <IUnknown_>
+;  /*** IUnknown methods ***/
+    STDMETHOD <QueryInterface>,:PTR,:PTR PTR
+    STDMETHOD <AddRef>
+    STDMETHOD <Release>
+
+
+INHERIT_IUnknown MACRO
+  STDMETHOD <QueryInterface>,:PTR,:PTR PTR
+  STDMETHOD <AddRef>
+  STDMETHOD <Release>
+ENDM
+
+
+ENDIF ;// _OBJBASE_

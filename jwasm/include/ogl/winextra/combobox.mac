@@ -1,0 +1,137 @@
+;* Macros for ComboBox control messages
+;* (C) hardCode | http://bizarrecreations.webjump.com
+
+include winextra.def
+
+ComboBox_Enable MACRO hwndCtl,fEnable
+ invoke EnableWindow,hwndCtl,fEnable
+ENDM
+
+ComboBox_GetText MACRO hwndCtl,lpch,cchMax
+ invoke GetWindowText,hwndCtl,lpch,cchMax
+ENDM
+
+ComboBox_GetTextLength MACRO hwndCtl
+ invoke GetWindowTextLength,hwndCtl
+ENDM
+
+ComboBox_SetText MACRO hwndCtl,lpsz
+ invoke SetWindowText,hwndCtl,lpsz
+ENDM
+
+ComboBox_LimitText MACRO hwndCtl,cchLimit
+ SNDMSG hwndCtl,CB_LIMITTEXT,cchLimit,0
+ENDM
+
+ComboBox_GetEditSel MACRO hwndCtl
+ SNDMSG hwndCtl,CB_GETEDITSEL,0,0
+ENDM
+
+ComboBox_SetEditSel MACRO hwndCtl,ichStart,ichEnd
+ SNDMSG hwndCtl,CB_SETEDITSEL,0,ichStart,ichEnd
+ENDM
+
+ComboBox_GetCount MACRO hwndCtl
+ SNDMSG hwndCtl,CB_GETCOUNT,0,0
+ENDM
+
+ComboBox_ResetContent MACRO hwndCtl
+ SNDMSG hwndCtl,CB_RESETCONTENT,0,0
+ENDM
+
+ComboBox_AddString MACRO hwndCtl,lpsz
+ SNDMSG hwndCtl,CB_ADDSTRING,0,lpsz
+ENDM
+
+ComboBox_InsertString MACRO hwndCtl,index,lpsz
+ SNDMSG hwndCtl,CB_INSERTSTRING,index,lpsz
+ENDM
+
+ComboBox_AddItemData MACRO hwndCtl,data
+ SNDMSG hwndCtl,CB_ADDSTRING,0,data
+ENDM
+
+ComboBox_InsertItemData MACRO hwndCtl,index,data 
+ SNDMSG hwndCtl,CB_INSERTSTRING,index,data
+ENDM
+
+ComboBox_DeleteString MACRO hwndCtl,index
+ SNDMSG hwndCtl,CB_DELETESTRING,index,0
+ENDM
+
+ComboBox_GetLBTextLen MACRO hwndCtl,index
+ SNDMSG hwndCtl,CB_GETLBTEXTLEN,index,0
+ENDM
+
+ComboBox_GetLBText MACRO hwndCtl,index,lpszBuffer
+ SNDMSG hwndCtl,CB_GETLBTEXT,index,lpszBuffer
+ENDM
+
+ComboBox_GetItemData MACRO hwndCtl,index
+ SNDMSG hwndCtl,CB_GETITEMDATA,index,0
+ENDM
+
+ComboBox_SetItemData MACRO hwndCtl,index,data 
+ SNDMSG hwndCtl,CB_SETITEMDATA,index,data
+ENDM
+
+ComboBox_FindString MACRO hwndCtl,indexStart,lpszFind
+ SNDMSG hwndCtl,CB_FINDSTRING,indexStart,lpszFind
+ENDM
+
+ComboBox_FindItemData MACRO hwndCtl,indexStart,data
+ SNDMSG hwndCtl,CB_FINDSTRING,indexStart,data
+ENDM
+
+ComboBox_GetCurSel MACRO hwndCtl
+ SNDMSG hwndCtl,CB_GETCURSEL,0,0
+ENDM
+
+ComboBox_SetCurSel MACRO hwndCtl,index
+ SNDMSG hwndCtl,CB_SETCURSEL,index,0
+ENDM
+
+ComboBox_SelectString MACRO hwndCtl,indexStart,lpszSelect
+ SNDMSG hwndCtl,CB_SELECTSTRING,indexStart,lpszSelect
+ENDM
+
+ComboBox_SelectItemData MACRO hwndCtl,indexStart,data
+ SNDMSG hwndCtl,CB_SELECTSTRING,indexStart,data
+ENDM
+
+ComboBox_Dir MACRO hwndCtl,attrs,lpszFileSpec
+ SNDMSG hwndCtl,CB_DIR,attrs,lpszFileSpec
+ENDM
+
+ComboBox_ShowDropdown MACRO hwndCtl,fShow
+ SNDMSG hwndCtl,CB_SHOWDROPDOWN,fShow,0
+ENDM
+
+ComboBox_FindStringExact MACRO hwndCtl,indexStart,lpszFind 
+ SNDMSG hwndCtl,CB_FINDSTRINGEXACT,indexStart,lpszFind
+ENDM
+
+ComboBox_GetDroppedState MACRO hwndCtl
+ SNDMSG hwndCtl,CB_GETDROPPEDSTATE,0,0
+ENDM
+
+ComboBox_GetDroppedControlRect MACRO hwndCtl,lprc
+ SNDMSG hwndCtl,CB_GETDROPPEDCONTROLRECT,0,lprc
+ENDM
+
+ComboBox_GetItemHeight MACRO hwndCtl
+ SNDMSG hwndCtl,CB_GETITEMHEIGHT,0,0
+ENDM
+
+ComboBox_SetItemHeight MACRO hwndCtl,index,cyItem
+ SNDMSG hwndCtl,CB_SETITEMHEIGHT,index,cyItem
+ENDM
+
+ComboBox_GetExtendedUI MACRO hwndCtl
+ SNDMSG hwndCtl,CB_GETEXTENDEDUI,0,0
+ENDM
+
+ComboBox_SetExtendedUI MACRO hwndCtl,flags
+ SNDMSG hwndCtl,CB_SETEXTENDEDUI,flags,0
+ENDM
+
