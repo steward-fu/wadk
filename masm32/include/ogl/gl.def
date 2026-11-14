@@ -861,7 +861,8 @@ GL_INDEX_MATERIAL_SGI		EQU		0000081b8h
 GL_INDEX_MATERIAL_PARAMETER_SGI	EQU		0000081b9h
 GL_INDEX_MATERIAL_FACE_SGI	EQU		0000081bah
 
-
+GL_TEXTURE0_ARB EQU 84C0h
+GL_TEXTURE1_ARB EQU 84C1h
 
 ;**************************************************************************
 ; functions prototypes for opengl.lib
