@@ -822,6 +822,7 @@ GL_COLOR_TABLE_INTENSITY_SIZE_EXT	EQU		0000080dfh
 
 
 ;/* EXT_bgra */
+GL_BGR   		EQU		0000080e0h
 GL_BGR_EXT		EQU		0000080e0h
 GL_BGRA_EXT		EQU		0000080e1h
 
@@ -1219,12 +1220,50 @@ gl_movf MACRO dest,numb
 ENDM
 
 ;====> Better close your eyes... ADULTS ONLY!
-fpc MACRO val:REQ
+f4 MACRO val:REQ
 	LOCAL w, x, y, z, zz, ww
 
 	z INSTR 1,<&val>, <! >
 	IF z EQ 0
 		y TEXTEQU <REAL4>
+		x TEXTEQU <&val>
+	ELSE
+		y TEXTEQU @SubStr(<&val>, 1, z - 1)
+		x TEXTEQU @SubStr(<&val>, z + 1,)
+	ENDIF
+
+	z INSTR 1, x, <!.>
+	IF z EQ 0
+		w TEXTEQU x
+		x CATSTR x, <.0>
+	ELSE
+		w CATSTR @SubStr(%x, 1, z-1), <_>, @SubStr(%x, z + 1, )
+	ENDIF
+
+	zz INSTR 1, w, <!->
+	IF zz EQ 0
+		ww TEXTEQU w
+	ELSE
+		ww CATSTR @SubStr(%w, 1, zz - 1), <_>, @SubStr(%w, zz + 1, )
+	ENDIF
+
+	z SIZESTR y
+	ww CATSTR <__>, ww, <r>, @SubStr(%y, z, 1)
+
+	IF (OPATTR(ww)) EQ 0
+		CONST SEGMENT
+			ww y x
+		CONST ENDS
+	ENDIF
+	EXITM ww
+ENDM
+
+f8 MACRO val:REQ
+	LOCAL w, x, y, z, zz, ww
+
+	z INSTR 1,<&val>, <! >
+	IF z EQ 0
+		y TEXTEQU <REAL8>
 		x TEXTEQU <&val>
 	ELSE
 		y TEXTEQU @SubStr(<&val>, 1, z - 1)
