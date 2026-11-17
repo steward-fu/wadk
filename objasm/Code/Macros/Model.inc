@@ -335,6 +335,7 @@ SysSetup macro Arguments:vararg
     % include &MacPath&WinHelpers.inc
     % include &IncPath&ObjAsm/ObjMem.inc
     % include &IncPath&OpenGL/gl.inc
+    % include &IncPath&OpenGL/glu.inc
   endif
   % include &MacPath&ConstDiv.inc
 
