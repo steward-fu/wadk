@@ -1,0 +1,53 @@
+; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい
+
+    INTEGER hFile
+    INTEGER rv
+    STRING  projname$
+    STRING  filename$
+    STRING  projpath$
+
+; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい
+
+  ; ---------------------
+  ; set the target folder
+  ; ---------------------
+    projpath$ = getfolder "Set your target folder" "Create your dialog template here"
+    if$ projpath$ = ""
+    end
+    chdir projpath$                     ; change to your target directory
+
+  ; --------------------
+  ; set the project name
+  ; --------------------
+    gettext "Type the project name with NO extension" "Do NOT use spaces in the name" "project"
+    if$ $0 = ""
+    end
+    projname$ = $0                      ; assign the gettext return string to a named variable string
+    filename$ = cat$ projname$ ".asm"   ; append the ASM extension to it
+
+; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい
+
+    ; --------------------------------------------------
+    ; this is a sample to show how to use multiple files
+    ; --------------------------------------------------
+
+    ; INTEGER hFile     << These must be commented out or deleted or you will
+    ; INTEGER rv        << get errors for duplicating the first declarations
+
+    hFile = fcreate "tbtile.bmp"
+
+rv = fhexout hFile "424D0E0100000000000036000000280000000100000040000000010018000000000000010000C30E0000C30E0000000000000000000046464600CBCDCC00C9CF"
+rv = fhexout hFile "C800C6C6C600C4C4C800C8C9C200C0C0C400BFC2C200BCC2BF00BFC0B900B7BBBD00B8B7B600BAB3B300B0B4B600B1B0B300B1ADB300AEACAF00ADADAD00ABAB"
+rv = fhexout hFile "AB00A8A4AA00A1A1A100A3A1A000A4A19F009CA29F009B9AA0009A9C9D00949498009899920090909400908F9500909293008D8B8E00898B8A008B8B87008A87"
+rv = fhexout hFile "85008284830080867F007D7D81007D8080007D797F007A78770077777700787578007373730074717400726B6F006B6E6A006A6968006C696B00666568006565"
+rv = fhexout hFile "650063635F005F5F5F005C5F5B005F5C5E005858580055585400585151004F5355005050500051524B00484C4E0049494900494A4300"
+
+    rv = fclose hFile
+
+; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい
+
+    run "makeit.bat"
+
+    openfile
+
+    end

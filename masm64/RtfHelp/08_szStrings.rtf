@@ -1,0 +1,339 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fmodern\fprq1\fcharset0 Fixedsys;}{\f1\fnil\fprq1\fcharset0 Segoe UI;}}
+{\colortbl ;\red204\green204\blue204;\red255\green255\blue255;\red255\green128\blue0;\red72\green72\blue72;\red0\green255\blue255;\red176\green176\blue176;\red0\green255\blue0;\red196\green64\blue0;}
+\viewkind4\uc1\pard\cf1\f0\fs18\par
+    \cf2\b\f1\fs35 ZERO\cf3  TERMINATED STRINGS\cf1\b0\f0\fs18\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2   szappend\par
+\cf5     Append string data to a buffer and return the next append location\par
+\cf1\par
+    \cf3 FORM\cf1\par
+\cf2     szappend proc buffer:\cf6 QWORD\cf2 ,addstr:\cf6 QWORD\cf2 ,location:\cf6 QWORD\cf2\par
+\cf1\par
+    \cf3 ARGUMENTS\cf1\par
+\cf2     1. buffer   \cf5 The address of the buffer to append data to\par
+\cf1\par
+\cf2     2. addstr\cf1    \cf5 The address of the string to append to it\par
+\cf1\par
+\cf2     3. location\cf1  \cf5 The current location counter\par
+\cf1\par
+\cf3     RETURN VALUE\par
+\cf5     The end location plus \cf2 1 BYTE\cf5  of the last append operation. This is\par
+    used as the next write position. It also serves as the final length\par
+    of the appended data so it can be used to truncate memory if required.\par
+\cf1\par
+    \cf3 EXAMPLE\cf1\par
+        LOCAL cloc  :QWORD                      \cf7 ; the current location counter\cf1\par
+        mov cloc, 0                             \cf7 ; zero the counter\par
+\cf1\par
+      \cf7 ; loop code\par
+\cf1\par
+\cf2         mov cloc, rv(szappend,pAddStr,cloc)     \cf7 ; append another string each iteration\par
+                                                ; of the loop code while updating \cf2 "cloc"\cf1\par
+\cf2       \cf7 ; end loop code\par
+\par
+\cf3     NOTES\par
+\cf5     This algorithm requires a location counter to be set before it\par
+    is called. It would usually be set to \cf2 zero (0)\cf5 . After each append\par
+    operation the return value is the write location for the next\par
+    append operation. The buffer to append to must be large enough to\par
+    hold all appended data.\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2   szCatStr\par
+\cf5     Peform a simple string append to the end of an existing string buffer\par
+\cf2\par
+\cf3     FORM\par
+\cf2     szCatStr proc src:\cf6 QWORD\cf2 , lpAdd:\cf6 QWORD\cf2\par
+\par
+\cf3     ARGUMENTS\par
+\cf2     1. src      \cf5 The address of the existing string to append another string to.\par
+\par
+\cf2     2. lpAdd    \cf5 The address of the string to append to the first string.\par
+\cf2\par
+\cf3     NOTES\par
+\cf6     The source buffer must be large enough to hold the appended string data.\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2   szCmp\par
+\cf5     Case sensitive comparison of two \cf2 (2)\cf5  strings\par
+\cf2\par
+\cf3     ARGUMENTS\par
+\cf2     1. \cf5 The address of the first string\par
+\cf2\par
+    2. \cf5 The address of the second string\par
+\cf2\par
+\cf3     RETURN VALUE\par
+\cf5     If there is no match, the return value in rax = \cf2 0\cf5 .\par
+    If there is a match, the return value in rax is \cf2 NON zero\cf5 .\par
+\par
+\cf3     COMMENTS\par
+\cf6     Test the result using code similar to this.\par
+\cf5\par
+\cf2         test rax, rax                           \cf7 ; test for zero\par
+\cf2         jz nomatch                              \cf7 : branch on no match\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2   szCmpi\par
+\cf5     Case insensitive comparison of two \cf2 (2)\cf5  strings\par
+\cf2\par
+\cf3     ARGUMENTS\par
+\cf2     1. \cf5 The address of the first string\par
+\cf2\par
+    2. \cf5 The address of the second string\par
+\par
+\cf3     RETURN VALUE\par
+\cf5     If there is no match, the return value in rax = \cf2 0\cf5 .\par
+    If there is a match, the return value in rax is \cf2 NON zero\cf5 .\par
+\par
+\cf3     COMMENTS\par
+\cf5     Test the result using code similar to this.\par
+\par
+\cf2         test rax, rax                           \cf7 ; test for zero\par
+\cf2         jz nomatch                              \cf7 : branch on no match\par
+\par
+\cf3     NOTES\par
+\cf5     The algorithm uses a \cf2 256\cf5  character lookup table that is for the English language. If you need\par
+    to perform case insensitive string comparisons in a language that does not use the same character\par
+    set as international English, you need to copy this algorithm with a different name and change\par
+    the lookup table at the beginning of the source. This can be done using the \cf2 MASM32/64\cf5  utility\par
+    \cf2 "maketbl.exe"\cf5 .\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2   szCopy\par
+\cf5     Copy a zero terminated string to another buffer\par
+\cf2\par
+\cf3     ARGUMENTS\par
+\cf2     1. \cf5 The address of the string to copy\par
+\cf2\par
+    2. \cf5 The address of the buffer to copy it to\par
+\cf2\par
+\cf3     RETURN VALUE\par
+\cf5     Return value is the address of the target buffer.\par
+\cf2\par
+\cf3     COMMENTS\par
+\cf6     The target buffer must be large enough to hold the data copied to it.\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2   szLeft\par
+\cf5     Copy a user defined number of characters from the left side of a zero terminated string to a\par
+    user defined b8uffer\par
+\cf2\par
+\cf3     ARGUMENTS\par
+\cf2     1. \cf5 The address of the source string to copy from\par
+\cf2\par
+    2. \cf5 The destination buffer to copy the characters to\par
+\cf2\par
+    3. \cf5 The number of characters to copy\par
+\cf2\par
+\cf3     COMMENTS\par
+\cf5     The target buffer must be large enough to hold the data copied to it. It is safe to set a\par
+    buffer of the same size as the source buffer in the event that the required characters count\par
+    is as long as the source buffer.\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2   szRight\par
+\cf5     Get a user defined number of characters from the right side of a zero terminated string\par
+\cf2\par
+    \cf3 ARGUMENTS\cf2\par
+    1. \cf5 The address of the string to obtain characters from\par
+\cf2\par
+    2. \cf5 The address of the output buffer\par
+\cf2\par
+    3. \cf5 The number of characters to obtain\par
+\cf2\par
+\cf3     RETURN VALUE\par
+\cf6     The return value is the destination address.\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2   szLtrim\par
+\cf5     Strip any tabs and spaces from the left side of a zero terminated string\par
+\cf2\par
+\cf3     ARGUMENTS\cf2\par
+    1. \cf5 The source string\par
+\cf2\par
+    2. \cf5 The destination buffer\par
+\cf2\par
+\cf3     NOTE\par
+\cf5     If you do not need to preserve the original string you may use the same address for the\par
+    destination as the source address. In this case the original is overwritten.\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2   szRtrim\par
+\cf5     Trim tabs and spaces from the right side of a string\par
+\cf2\par
+\cf3     ARGUMENTS\par
+\cf2     1. \cf5 The address of the source string\par
+\cf2\par
+    2. \cf5 The address of the destination buffer\par
+\cf2\par
+\cf3     RETURN VALUE\par
+\cf6     The return value is the destination address.\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2   szTrim\par
+\cf5     Trim tabs and space from both ends of a string\par
+\cf2\par
+\cf3     ARGUMENTS\par
+\cf2     1. \cf5 The address of the string to trim\par
+\cf2\par
+\cf3     NOTE\par
+\cf6     This algorithm overwrites the original string.\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2   szMono\par
+\cf5     This algorithm trim left and right sides of a string, replaces tabs with spaces and resticts\par
+    spacing to single space\par
+\cf2\par
+\cf3     ARGUMENTS\par
+\cf2     1. \cf5 The address of the string to clean up\par
+\cf2\par
+\cf3     RETURN VALUE\par
+\cf5     The return value is the original address of the string.\par
+\par
+\cf3     NOTE\par
+\cf6     The original string is overwritten with the result.\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2   szmulticat\par
+\cf5     This algorithm is designed to append multiple strings to a buffer large enough to hold all of\par
+    the data being written to it. It is intended to be called from a macro that handles the\par
+    complexities of a variable argument list which may exceed the first 4 registers defined in\par
+    the Win 64 ABI. \cf2 It is \cf8\ul not recommended\cf2\ulnone  that it be used directly.\par
+\par
+\cf3     ARGUMENTS\par
+\cf2     1. \cf5 Target buffer address\par
+\cf2\par
+    2. \cf5 The argument count\par
+\cf2\par
+    3. \cf5 The variable argument list from address \cf2 [rbp+32]\cf5  upwards\par
+\cf2\par
+\cf3     NOTE\par
+\cf5     The algorithm repeatedly calls the \cf2 "szappend"\cf5  algorithm to append each string in the argument\par
+    list to the target buffer.\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2   szRemove\par
+\cf5     Remove all instances of a user defined string in a source string\par
+\cf2\par
+\cf3     ARGUMENTS\par
+\cf2     1. \cf5 The address of the string to remove data from\par
+\cf2\par
+    2. \cf5 The destination buffer to write the results to\par
+\cf2\par
+    3. \cf5 The address of the string to remove from the source buffer\par
+\cf2\par
+\cf3     FORM\par
+\cf2     szRemove proc src:\cf6 QWORD\cf2 ,dst:\cf6 QWORD\cf2 ,remv:\cf6 QWORD\cf2\par
+\par
+\cf3     RETURN VALUE\par
+\cf5     The return value is the destination address.\par
+\cf2\par
+\cf3     NOTE\par
+\cf5     If you do not need to preserve the original string, you may use the source address as the\par
+    target address which will overwrite the original string.\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2   szRep\par
+\cf5     Replace existing text in a source string with user defined replacement strings. \cf8\ul Be sure you\par
+\ulnone     \ul read the notes below\cf5\ulnone  as this form of replacement is not a simple task if the replacement is\par
+    longer than the text it replaces.\par
+\cf2\par
+\cf3     ARGUMENTS\par
+\cf2     1. \cf5 The address of the text to perform replacements in\par
+\cf2\par
+    2. \cf5 The destination address of the modified string\par
+\cf2\par
+    3. \cf5 The address of the text to replace\par
+\cf2\par
+    4. \cf5 The address of the text to replace it with\par
+\cf2\par
+\cf3     FORM\par
+\cf2     szRep proc src:\cf6 QWORD\cf2 ,dst:\cf6 QWORD\cf2 ,txt1:\cf6 QWORD\cf2 ,txt2:\cf6 QWORD\cf2\par
+\par
+\cf3     NOTES\par
+\cf5     In the simple sense, if only small amounts of text need to be replaced, you can take a short\par
+    cut and just allocate a buffer that is big enough to hold any results.\par
+\cf2\par
+\cf6     If for example the string to perform replacements in is only 100 bytes or less, then allocating\par
+    \cf2 1k\cf6  can be done on the stack as a LOCAL in safety. You can adjust this if the replacements are\par
+    a lot larger than the text to replace.\par
+\par
+\cf5     The complicating factor is if the replacement is longer than the text it is to replace. If the\par
+    replacement is the same length or shorter then you can safely allocate a buffer the some length\par
+    as the original string.\par
+\cf6\par
+    If the replacement in longer, the \cf2 "szWcnt"\cf6  algorithm is useful in determining the number of\par
+    instances of the string to replace in the source string. Then do the simple arithmetic to\par
+    calculate how much longer the output buffer needs to be to hold the results.\par
+\cf2\par
+\cf5     Of the two options, that latter with calculated memory requirements is the safest and scales\par
+    up to the limit of available memory.\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2   szRev\par
+\cf5     Reverse the characters in a zero terminated string\par
+\cf2\par
+\cf3     ARGUMENTS\par
+\cf2     1. \cf5 The source address of the string to reverse\par
+\cf2\par
+    2. \cf5 The destination address of the reversed string\par
+\cf2\par
+\cf3     NOTE\par
+\cf6     If you do not need to preserve the original string you can use the same address for both\par
+    source and destination.\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2    szSpace\par
+\cf5     Write a user defined number of spaces as a zero terminated string to a buffer\par
+\cf2\par
+\cf3     ARGUMENTS\par
+\cf2     1. \cf5 The address of the buffer to write spaces to\par
+\cf2\par
+    2. \cf5 The number of spaces to write\par
+\cf2\par
+\cf3     RETURN VALUE\par
+\cf6     There is no return value.\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2   szLower\par
+\cf5     Convert an existing string to lower case\par
+\cf2\par
+\cf3     ARGUMENTS\par
+\cf2     1. \cf5 The address of the string to convert\par
+\cf2\par
+\cf3     NOTE\par
+\cf6     The algorithm overwrites the original string.\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2   szUpper\par
+\cf5     Convert a zero terminnated string to upper case\par
+\cf2\par
+\cf3     ARGUMENTS\par
+\cf2     1. \cf5 The address of the string to convert\par
+\cf2\par
+\cf3     NOTE\par
+\cf6     The algorithm overwrites the original string.\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2   szWcnt\par
+\cf5     Count the number of words or phrases in text\par
+\cf2\par
+\cf3     ARGUMENTS\par
+\cf2     1. \cf5 The address of the text to count sub strings in\par
+\cf2\par
+    2. \cf5 The text to count in the main string\par
+\cf2\par
+\cf3     FORM\par
+\cf2     szWcnt proc src:QWORD,txt:QWORD\par
+\par
+\cf3     COMMENTS\par
+\cf6     This algorithm was originally designed for the \cf2 "szRep"\cf6  algorithm to assist in calculating the\par
+    length of the target buffer when the replacement is longer than the word to replace. It can\par
+    be used for any other task that needs this capacity.\par
+\cf4   __________________________________________________________________________________________________\par
+  \'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\'af\par
+\cf2\par
+\cf1\par
+}
+ 

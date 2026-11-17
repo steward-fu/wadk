@@ -1,0 +1,110 @@
+[Project]
+Assemble Module,K:\masm64\bin64\assemble.bat {b}
+-
+Run makeit.bat,makeit.bat
+-
+Run Executable,{n}.exe
+
+[Tools]
+Edit dialogs in ResEd,{e}\ResEd.exe dlgs.rc
+-
+Subclass 64 Bit,{e}subclass64.exe
+Mangle Code,{e}mangle64.exe
+Bin2Db64,{e}bin2db64.exe
+-
+Unicode Editor,{e}uniedit.exe
+Create 256 Char Table,{e}maketbl.exe
+-
+RGB Colour Picker,{e}cpicker.exe
+Get RGB Colour,{e}getcolor.exe
+-
+Map Procedures,{e}procmap.exe {e}teditor.exe
+-
+Run Live Debug,{e}livedb.exe
+-
+Run Script Engine,{e}se.exe
+-
+Swap 64 Bit Registers,{e}Plugin64\regswap.dll
+-
+Reverse Selected Line Order,{e}Plugin64\invlines.dll
+-
+Toggle Block Comment,{e}Plugin64\blockc.dll
+
+[Code]
+Browse The MASM64 Library,{e}qetb.exe {e}\m64lib
+-
+Window at minimum Size,{e}se.exe {e}scripts\barewin.qse
+Window with Toolbar Win,{e}se.exe {e}scripts\toolbar_win.qse
+-
+Full Edit Application,{e}se.exe {e}scripts\fulledit.qse
+Sidebar Edit Application,{e}se.exe {e}scripts\sidebared.qse
+-
+Dialog template,{e}se.exe k:\masm64\scripts\mkdlg.qse
+Blank Dialog,{e}se.exe k:\masm64\scripts\blankdlg.qse
+Create Console App,{e}se.exe k:\masm64\scripts\console.qse
+-
+Create DLL Skeleton,{e}se.exe k:\masm64\scripts\dllskeleton.qse
+-
+Insert New Stack Frame Proc,{e}Plugin64\sframe.dll
+Insert New No Stack Frame Proc,{e}Plugin64\nsframe.dll
+-
+Entry_Point Proc,{e}text64\baretemplate.txt
+
+[Con&versions]
+Text to DW &UNICODE,{e}multitool.exe 1
+Text to &API UNICODE,{e}multitool.exe 2
+-
+Text to &DATA,{e}multitool.exe 3
+Text to &Compacted DB Format,{e}multitool.exe 4
+Text to &HEX Format,{e}multitool.exe 5
+-
+&Binary to Compacted DB Format,{e}bin2dbex.exe 1
+Binary to HE&X DB Format,{e}bin2dbex.exe 2
+
+[Text]
+Insert STACKFRAME,{e}text64\stackframe.txt
+Insert NOSTACKFRAME,{e}text64\nostackframe.txt
+-
+Insert MessageBox 64 Bit,{e}text64\msgbox64.txt
+Insert Msgbox Indirect With Icon,{e}text64\MsgboxI.txt
+-
+Create MANIFEST File,{e}text64\manifest64.txt
+Create Lib Batch File,{e}text64\libmake.txt
+-
+Assemble Module Batch File,{e}text64\assemble.txt
+Create Win UI makeit.bat,{e}text64\uimakeit.txt
+Create Console makelib.bat,{e}text64\consolemake.txt
+-
+Insert Comment «»«»«,{e}text64\comment2.txt
+Insert Comment ¤¤¤¤¤,{e}text64\comment1.txt
+Insert Comment «««««,{e}text64\comment0.txt
+Insert Comment ÷·÷·÷,{e}text64\comment3.txt
+Insert Comment ÷-÷-÷,{e}text64\comment4.txt
+Insert Comment ¤*¤*¤,{e}text64\comment5.txt
+Insert Comment ¤÷¤÷¤,{e}text64\comment6.txt
+Insert Comment -----,{e}text64\comment7.txt
+Insert Comment »»»»»,{e}text64\comment8.txt
+Insert Comment | | | | |,{e}text64\commentA.txt
+
+[Help]
+About tEditor,{e}Plugin64\about.dll
+-
+CPU && Memory Data,{e}cpudata.exe
+Real Time Memory Data,K:\masm64\memstat2.exe
+-
+General MASM64 Reference,{e}rtfhelp.exe {e}rtfhelp
+Detailed MASM64 Help,{e}help\MasmHelp.exe
+Earlier MASM64 Help,{e}help\masm64.chm
+-
+MSDN API Reference,https://docs.microsoft.com/en-us/windows/win32/apiindex/windows-api-list
+-
+Download The Intel Manuals,https://www.intel.com.au/content/www/au/en/support/articles/000006715/processors.html
+-
+Win32 Help,{e}help\win32.hlp
+-
+Visit The MASM Forum,http://www.masm32.com/board/index.php
+
+
+
+
+

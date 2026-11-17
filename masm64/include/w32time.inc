@@ -1,0 +1,42 @@
+extern __imp_fnW32TmRegisterServiceCtrlHandlerEx:PANYARGS
+fnW32TmRegisterServiceCtrlHandlerEx TEXTEQU <__imp_fnW32TmRegisterServiceCtrlHandlerEx>
+extern __imp_fnW32TmSetServiceStatus:PANYARGS
+fnW32TmSetServiceStatus TEXTEQU <__imp_fnW32TmSetServiceStatus>
+extern __imp_DllInstall:PANYARGS
+DllInstall TEXTEQU <__imp_DllInstall>
+extern __imp_DllRegisterServer:PANYARGS
+DllRegisterServer TEXTEQU <__imp_DllRegisterServer>
+extern __imp_DllUnregisterServer:PANYARGS
+DllUnregisterServer TEXTEQU <__imp_DllUnregisterServer>
+extern __imp_SvchostEntry_W32Time:PANYARGS
+SvchostEntry_W32Time TEXTEQU <__imp_SvchostEntry_W32Time>
+extern __imp_SvchostPushServiceGlobals:PANYARGS
+SvchostPushServiceGlobals TEXTEQU <__imp_SvchostPushServiceGlobals>
+extern __imp_TimeProvClose:PANYARGS
+TimeProvClose TEXTEQU <__imp_TimeProvClose>
+extern __imp_TimeProvCommand:PANYARGS
+TimeProvCommand TEXTEQU <__imp_TimeProvCommand>
+extern __imp_TimeProvOpen:PANYARGS
+TimeProvOpen TEXTEQU <__imp_TimeProvOpen>
+extern __imp_W32TimeBufferFree:PANYARGS
+W32TimeBufferFree TEXTEQU <__imp_W32TimeBufferFree>
+extern __imp_W32TimeDcPromo:PANYARGS
+W32TimeDcPromo TEXTEQU <__imp_W32TimeDcPromo>
+extern __imp_W32TimeGetNetlogonServiceBits:PANYARGS
+W32TimeGetNetlogonServiceBits TEXTEQU <__imp_W32TimeGetNetlogonServiceBits>
+extern __imp_W32TimeQueryConfig:PANYARGS
+W32TimeQueryConfig TEXTEQU <__imp_W32TimeQueryConfig>
+extern __imp_W32TimeQueryHardwareProviderStatus:PANYARGS
+W32TimeQueryHardwareProviderStatus TEXTEQU <__imp_W32TimeQueryHardwareProviderStatus>
+extern __imp_W32TimeQueryNTPProviderStatus:PANYARGS
+W32TimeQueryNTPProviderStatus TEXTEQU <__imp_W32TimeQueryNTPProviderStatus>
+extern __imp_W32TimeSetConfig:PANYARGS
+W32TimeSetConfig TEXTEQU <__imp_W32TimeSetConfig>
+extern __imp_W32TimeSyncNow:PANYARGS
+W32TimeSyncNow TEXTEQU <__imp_W32TimeSyncNow>
+extern __imp_W32TimeVerifyJoinConfig:PANYARGS
+W32TimeVerifyJoinConfig TEXTEQU <__imp_W32TimeVerifyJoinConfig>
+extern __imp_W32TimeVerifyUnjoinConfig:PANYARGS
+W32TimeVerifyUnjoinConfig TEXTEQU <__imp_W32TimeVerifyUnjoinConfig>
+extern __imp_W32TmServiceMain:PANYARGS
+W32TmServiceMain TEXTEQU <__imp_W32TmServiceMain>

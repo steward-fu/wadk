@@ -1,0 +1,20 @@
+extern __imp_ExGetCfgVersionInfo:PANYARGS
+ExGetCfgVersionInfo TEXTEQU <__imp_ExGetCfgVersionInfo>
+extern __imp_ExtEncryptionLevels:PANYARGS
+ExtEncryptionLevels TEXTEQU <__imp_ExtEncryptionLevels>
+extern __imp_ExtEnd:PANYARGS
+ExtEnd TEXTEQU <__imp_ExtEnd>
+extern __imp_ExtGetCapabilities:PANYARGS
+ExtGetCapabilities TEXTEQU <__imp_ExtGetCapabilities>
+extern __imp_ExtGetEncryptionLevelAndDescrEx:PANYARGS
+ExtGetEncryptionLevelAndDescrEx TEXTEQU <__imp_ExtGetEncryptionLevelAndDescrEx>
+extern __imp_ExtGetEncryptionLevelDescr:PANYARGS
+ExtGetEncryptionLevelDescr TEXTEQU <__imp_ExtGetEncryptionLevelDescr>
+extern __imp_ExtGetSecurityLayerDescrString:PANYARGS
+ExtGetSecurityLayerDescrString TEXTEQU <__imp_ExtGetSecurityLayerDescrString>
+extern __imp_ExtGetSecurityLayerName:PANYARGS
+ExtGetSecurityLayerName TEXTEQU <__imp_ExtGetSecurityLayerName>
+extern __imp_ExtSecurityLayers:PANYARGS
+ExtSecurityLayers TEXTEQU <__imp_ExtSecurityLayers>
+extern __imp_ExtStart:PANYARGS
+ExtStart TEXTEQU <__imp_ExtStart>

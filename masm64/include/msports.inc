@@ -1,0 +1,22 @@
+extern __imp_ComDBClaimNextFreePort:PANYARGS
+ComDBClaimNextFreePort TEXTEQU <__imp_ComDBClaimNextFreePort>
+extern __imp_ComDBClaimPort:PANYARGS
+ComDBClaimPort TEXTEQU <__imp_ComDBClaimPort>
+extern __imp_ComDBClose:PANYARGS
+ComDBClose TEXTEQU <__imp_ComDBClose>
+extern __imp_ComDBGetCurrentPortUsage:PANYARGS
+ComDBGetCurrentPortUsage TEXTEQU <__imp_ComDBGetCurrentPortUsage>
+extern __imp_ComDBOpen:PANYARGS
+ComDBOpen TEXTEQU <__imp_ComDBOpen>
+extern __imp_ComDBReleasePort:PANYARGS
+ComDBReleasePort TEXTEQU <__imp_ComDBReleasePort>
+extern __imp_ComDBResizeDatabase:PANYARGS
+ComDBResizeDatabase TEXTEQU <__imp_ComDBResizeDatabase>
+extern __imp_ParallelPortPropPageProvider:PANYARGS
+ParallelPortPropPageProvider TEXTEQU <__imp_ParallelPortPropPageProvider>
+extern __imp_PortsClassInstaller:PANYARGS
+PortsClassInstaller TEXTEQU <__imp_PortsClassInstaller>
+extern __imp_SerialDisplayAdvancedSettings:PANYARGS
+SerialDisplayAdvancedSettings TEXTEQU <__imp_SerialDisplayAdvancedSettings>
+extern __imp_SerialPortPropPageProvider:PANYARGS
+SerialPortPropPageProvider TEXTEQU <__imp_SerialPortPropPageProvider>

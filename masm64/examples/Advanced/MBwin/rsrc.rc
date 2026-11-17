@@ -1,0 +1,42 @@
+// *************************************************************************************************
+
+#include "\masm64\include64\resource.h"
+
+// *************************************************************************************************
+
+1 24 "manifest.xml"    // manifest file
+
+10 ICON "icon.ico"
+
+20 RCDATA "okU.png"
+25 RCDATA "okD.png"
+
+// *************************************************************************************************
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION 1, 0, 0, 0
+PRODUCTVERSION 1, 0, 0, 0
+FILEOS VOS__WINDOWS32
+FILETYPE VFT_APP
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904B0"
+    BEGIN
+      VALUE "CompanyName",      "The MASM64 SDK\000"
+      VALUE "FileDescription",  "MessageBox Replacement\000"
+      VALUE "FileVersion",      "1.0\000"
+      VALUE "InternalName",     "MBwin\000"
+      VALUE "OriginalFilename", "MBwin.exe\000"
+      VALUE "LegalCopyright",   "\251 2021 The MASM64 SDK\000"
+      VALUE "ProductName",      "MBwin\000"
+      VALUE "ProductVersion",   "1.0\000"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 0x4B0
+  END
+END
+
+// *************************************************************************************************

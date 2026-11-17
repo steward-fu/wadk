@@ -1,0 +1,18 @@
+extern __imp_CryptSIPGetInfo:PANYARGS
+CryptSIPGetInfo TEXTEQU <__imp_CryptSIPGetInfo>
+extern __imp_CryptSIPGetRegWorkingFlags:PANYARGS
+CryptSIPGetRegWorkingFlags TEXTEQU <__imp_CryptSIPGetRegWorkingFlags>
+extern __imp_CryptSIPCreateIndirectData:PANYARGS
+CryptSIPCreateIndirectData TEXTEQU <__imp_CryptSIPCreateIndirectData>
+extern __imp_CryptSIPGetSignedDataMsg:PANYARGS
+CryptSIPGetSignedDataMsg TEXTEQU <__imp_CryptSIPGetSignedDataMsg>
+extern __imp_CryptSIPPutSignedDataMsg:PANYARGS
+CryptSIPPutSignedDataMsg TEXTEQU <__imp_CryptSIPPutSignedDataMsg>
+extern __imp_CryptSIPRemoveSignedDataMsg:PANYARGS
+CryptSIPRemoveSignedDataMsg TEXTEQU <__imp_CryptSIPRemoveSignedDataMsg>
+extern __imp_CryptSIPVerifyIndirectData:PANYARGS
+CryptSIPVerifyIndirectData TEXTEQU <__imp_CryptSIPVerifyIndirectData>
+extern __imp_DllRegisterServer:PANYARGS
+DllRegisterServer TEXTEQU <__imp_DllRegisterServer>
+extern __imp_DllUnregisterServer:PANYARGS
+DllUnregisterServer TEXTEQU <__imp_DllUnregisterServer>

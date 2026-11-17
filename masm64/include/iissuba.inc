@@ -1,0 +1,6 @@
+extern __imp_Msv1_0SubAuthenticationRoutineEx:PANYARGS
+Msv1_0SubAuthenticationRoutineEx TEXTEQU <__imp_Msv1_0SubAuthenticationRoutineEx>
+extern __imp_RegisterIISSUBA:PANYARGS
+RegisterIISSUB  TEXTEQU <__imp_RegisterIISSUBA>
+extern __imp_UnregisterIISSUBA:PANYARGS
+UnregisterIISSUB  TEXTEQU <__imp_UnregisterIISSUBA>

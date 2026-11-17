@@ -1,0 +1,205 @@
+; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい
+
+    INTEGER hFile
+    INTEGER rv
+    STRING  projname$
+    STRING  filename$
+    STRING  projpath$
+
+; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい
+
+  ; ---------------------
+  ; set the target folder
+  ; ---------------------
+    projpath$ = getfolder "Set or create a target folder" "Create your basic window here"
+    if$ projpath$ = ""
+    end
+    chdir projpath$                     ; change to your target directory
+
+  ; --------------------
+  ; set the project name
+  ; --------------------
+    gettext "Type the project name with NO extension" "Do NOT use spaces in the name" "project"
+    if$ $0 = ""
+    end
+    projname$ = $0                      ; assign the gettext return string to a named variable string
+    filename$ = cat$ projname$ ".asm"   ; append the ASM extension to it
+
+; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい
+
+  ; K:\asm64\editor\text_template\template.asm
+
+    hFile = fcreate filename$
+
+    rv = fprint hFile "; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい"
+    rv = fprint hFile ""
+    rv = fprint hFile "    include \masm64\include64\masm64rt.inc"
+    rv = fprint hFile ""
+    rv = fprint hFile "; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい"
+    rv = fprint hFile ""
+    rv = fprint hFile "    ; -------------------------------------------"
+    rv = fprint hFile "    ; Build this DLL with the provided MAKEIT.BAT"
+    rv = fprint hFile "    ; -------------------------------------------"
+    rv = fprint hFile ""
+    rv = fprint hFile "      .data?"
+    rv = fprint hFile "        DLLinstance dq ?"
+    rv = fprint hFile "        hInstance   dq ?"
+    rv = fprint hFile "        hWnd        dq ?"
+    rv = fprint hFile "        hMenu       dq ?"
+    rv = fprint hFile "        hToolBar    dq ?"
+    rv = fprint hFile "        hStatus     dq ?"
+    rv = fprint hFile "        hEdit       dq ?"
+    rv = fprint hFile "        hIcon       dq ?"
+    rv = fprint hFile ""
+    rv = fprint hFile "      .code"
+    rv = fprint hFile ""
+    rv = fprint hFile "; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい"
+    rv = fprint hFile ""
+    rv = fprint hFile "LibMain proc instance:QWORD,reason:QWORD,unused:QWORD "
+    rv = fprint hFile ""
+    rv = fprint hFile "    .if reason == DLL_PROCESS_ATTACH"
+    rv = fprint hFile "      mrm DLLinstance, instance             ; copy local to global"
+    rv = fprint hFile "      mov rax, TRUE                         ; return TRUE so DLL will start"
+    rv = fprint hFile ""
+    rv = fprint hFile "    .elseif reason == DLL_PROCESS_DETACH"
+    rv = fprint hFile ""
+    rv = fprint hFile "    .elseif reason == DLL_THREAD_ATTACH"
+    rv = fprint hFile ""
+    rv = fprint hFile "    .elseif reason == DLL_THREAD_DETACH"
+    rv = fprint hFile ""
+    rv = fprint hFile "    .endif"
+    rv = fprint hFile ""
+    rv = fprint hFile "    ret"
+    rv = fprint hFile ""
+    rv = fprint hFile "LibMain endp"
+    rv = fprint hFile ""
+    rv = fprint hFile "; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい"
+    rv = fprint hFile ""
+    rv = fprint hFile "Plugin_Interface proc \"
+    rv = fprint hFile "                 Instance :QWORD, \"
+    rv = fprint hFile "                 Wnd      :QWORD, \"
+    rv = fprint hFile "                 Menu     :QWORD, \"
+    rv = fprint hFile "                 ToolBar  :QWORD, \"
+    rv = fprint hFile "                 Status   :QWORD, \"
+    rv = fprint hFile "                 Edit     :QWORD, \"
+    rv = fprint hFile "                 Icon     :QWORD"
+    rv = fprint hFile ""
+    rv = fprint hFile "  ; ---------------------------"
+    rv = fprint hFile "  ; load arguments into globals"
+    rv = fprint hFile "  ; ---------------------------"
+    rv = fprint hFile "    mrm hInstance,  Instance"
+    rv = fprint hFile "    mrm hWnd,       Wnd"
+    rv = fprint hFile "    mrm hMenu,      Menu"
+    rv = fprint hFile "    mrm hToolBar,   ToolBar"
+    rv = fprint hFile "    mrm hStatus,    Status"
+    rv = fprint hFile "    mrm hEdit,      Edit"
+    rv = fprint hFile "    mrm hIcon,      Icon"
+    rv = fprint hFile "  ; ---------------------------"
+    rv = fprint hFile ""
+    rv = fprint hFile "    call GetSelection"
+    rv = fprint hFile ""
+    rv = fprint hFile "    ret"
+    rv = fprint hFile ""
+    rv = fprint hFile "Plugin_Interface endp"
+    rv = fprint hFile ""
+    rv = fprint hFile "; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい"
+    rv = fprint hFile ""
+    rv = fprint hFile "GetSelection proc"
+    rv = fprint hFile ""
+    rv = fprint hFile "    LOCAL cr    :CHARRANGE"
+    rv = fprint hFile "    LOCAL pMem  :QWORD"
+    rv = fprint hFile "    LOCAL tlen  :QWORD"
+    rv = fprint hFile "    LOCAL pbuf  :QWORD"
+    rv = fprint hFile "    LOCAL buff[260]:BYTE"
+    rv = fprint hFile ""
+    rv = fprint hFile "    invoke SendMessage,hEdit,EM_EXGETSEL,0,ADDR cr          ; get the current selection"
+    rv = fprint hFile "    mov eax, cr.cpMax"
+    rv = fprint hFile "    sub eax, cr.cpMin"
+    rv = fprint hFile "    mov tlen, rax                                           ; get the selected text length"
+    rv = fprint hFile ""
+    rv = fprint hFile "    .if tlen == 0                                           ; exit with error message if no selection"
+    rv = fprint hFile "      .data"
+    rv = fprintc hFile "        message db \qNo selected text error message goes here\q,0\r\n"
+    rv = fprint hFile "        pmsg dq message"
+    rv = fprint hFile "      .code"
+    rv = fprintc hFile "      invoke MessageBox,hWnd,pmsg,\qNo Text Selected\q,MB_OK\r\n"
+    rv = fprint hFile "      ret"
+    rv = fprint hFile "    .endif"
+    rv = fprint hFile ""
+    rv = fprint hFile "    mov pMem, alloc(tlen)                                   ; allocate memory for selected text"
+    rv = fprint hFile "    invoke SendMessage,hEdit,EM_GETSELTEXT,0,pMem           ; load selected text into allocated memory"
+    rv = fprint hFile ""
+    rv = fprint hFile "  ; ----------------------------------------------------"
+    rv = fprint hFile ""
+    rv = fprint hFile "  ; pMem = allocated memory address"
+    rv = fprint hFile "  ; tlen = selected text length"
+    rv = fprint hFile ""
+    rv = fprint hFile "    mov pbuf, ptr$(buff)                                    ; get pointer to local memory"
+    rv = fprint hFile ""
+    rv = fprintc hFile "    mcat pbuf,\q Allocated memory address\q,lf,\q      \q,hex$(pMem),lf,lf, \\\r\n"
+    rv = fprintc hFile "              \q Text length\q,lf,\q      \q,str$(tlen),\q characters\q,lf\r\n"
+    rv = fprint hFile ""
+    rv = fprintc hFile "    invoke MessageBox,hWnd,pbuf,\qGetSelection\q,MB_OK\r\n"
+    rv = fprint hFile ""
+    rv = fprint hFile "  ; ----------------------------------------------------"
+    rv = fprint hFile ""
+    rv = fprint hFile "    invoke SendMessage,hEdit,EM_REPLACESEL,TRUE,pMem        ; replace selection"
+    rv = fprint hFile "    invoke SendMessage,hEdit,EM_EXSETSEL,0,ADDR cr          ; set the current selection"
+    rv = fprint hFile "    mfree pMem                                              ; release allocated memory"
+    rv = fprint hFile ""
+    rv = fprint hFile "    ret"
+    rv = fprint hFile ""
+    rv = fprint hFile "GetSelection endp"
+    rv = fprint hFile ""
+    rv = fprint hFile "; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい"
+    rv = fprint hFile ""
+    rv = fprint hFile "    end"
+    rv = fprint hFile ""
+
+    rv = fclose hFile
+
+; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい
+
+  ; K:\asm64\editor\text_template\makeit.bat
+
+    hFile = fcreate "makeit.bat"
+
+    rv = fprint hFile "@echo off"
+    rv = fprint hFile ""
+
+    $0 = cat$ "set appname=" projname$
+    rv = fprint hFile $0
+
+    rv = fprint hFile ""
+    rv = fprint hFile "if exist %1.obj del %appname%.obj"
+    rv = fprint hFile "if exist %1.exe del %appname%.dll"
+    rv = fprint hFile "\masm64\bin64\ml64 /c %appname%.asm"
+    rv = fprint hFile "\masm64\bin64\link /SUBSYSTEM:WINDOWS /entry:LibMain /DLL /DEF:%appname%.def %appname%.obj "
+    rv = fprint hFile "del %appname%.obj"
+    rv = fprint hFile "del %appname%.exp"
+    rv = fprint hFile "dir %appname%.*"
+    rv = fprint hFile "pause"
+
+    rv = fclose hFile
+
+; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい
+
+  ; K:\asm64\editor\text_template\template.def
+
+    $0 = cat$ projname$ ".def"
+    rv = fprint hFile $0
+
+    hFile = fcreate $0
+
+    $0 = cat$ "LIBRARY " projname$
+    rv = fprint hFile $0
+
+    rv = fprint hFile " EXPORTS Plugin_Interface"
+
+    rv = fclose hFile
+
+; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい
+
+    run "makeit.bat"
+
+    end

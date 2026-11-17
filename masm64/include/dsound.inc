@@ -1,0 +1,24 @@
+extern __imp_DirectSoundCreate:PANYARGS
+DirectSoundCreate TEXTEQU <__imp_DirectSoundCreate>
+extern __imp_DirectSoundEnumerateA:PANYARGS
+DirectSoundEnumerate  TEXTEQU <__imp_DirectSoundEnumerateA>
+extern __imp_DirectSoundEnumerateW:PANYARGS
+DirectSoundEnumerateW TEXTEQU <__imp_DirectSoundEnumerateW>
+extern __imp_DllCanUnloadNow:PANYARGS
+DllCanUnloadNow TEXTEQU <__imp_DllCanUnloadNow>
+extern __imp_DllGetClassObject:PANYARGS
+DllGetClassObject TEXTEQU <__imp_DllGetClassObject>
+extern __imp_DirectSoundCaptureCreate:PANYARGS
+DirectSoundCaptureCreate TEXTEQU <__imp_DirectSoundCaptureCreate>
+extern __imp_DirectSoundCaptureEnumerateA:PANYARGS
+DirectSoundCaptureEnumerate  TEXTEQU <__imp_DirectSoundCaptureEnumerateA>
+extern __imp_DirectSoundCaptureEnumerateW:PANYARGS
+DirectSoundCaptureEnumerateW TEXTEQU <__imp_DirectSoundCaptureEnumerateW>
+extern __imp_GetDeviceID:PANYARGS
+GetDeviceID TEXTEQU <__imp_GetDeviceID>
+extern __imp_DirectSoundFullDuplexCreate:PANYARGS
+DirectSoundFullDuplexCreate TEXTEQU <__imp_DirectSoundFullDuplexCreate>
+extern __imp_DirectSoundCreate8:PANYARGS
+DirectSoundCreate8 TEXTEQU <__imp_DirectSoundCreate8>
+extern __imp_DirectSoundCaptureCreate8:PANYARGS
+DirectSoundCaptureCreate8 TEXTEQU <__imp_DirectSoundCaptureCreate8>

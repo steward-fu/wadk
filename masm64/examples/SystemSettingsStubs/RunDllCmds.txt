@@ -1,0 +1,221 @@
+
+
+Open the Desktop Background page of Personalization
+rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,2
+
+Run the Add Printer wizard
+rundll32.exe shell32.dll,SHHelpShortcuts_RunDLL AddPrinter
+
+Run the Add Standard TCP/IP Printer Port wizard
+rundll32.exe tcpmonui.dll,LocalAddPortUI
+
+Printer User Interface
+rundll32.exe Printui.dll,PrintUIEntry /?
+
+Printers folder
+rundll32.exe Shell32.dll,SHHelpShortcuts_RunDLL PrintersFolder
+
+Open Control Panel
+rundll32.exe shell32.dll,Control_RunDLL
+
+Configure Date and Time
+rundll32.exe shell32.dll,Control_RunDLL timedate.cpl
+
+Set up additional clocks in the Date and Time applet
+rundll32.exe shell32.dll,Control_RunDLL timedate.cpl,,1
+
+Configure Desktop icons
+rundll32.EXE shell32.dll,Control_RunDLL desk.cpl,,0
+
+Open Device Manager
+rundll32.exe devmgr.dll DeviceManager_Execute
+
+Change Display Settings
+rundll32.exe shell32.dll,Control_RunDLL desk.cpl
+
+Open Ease of Access Center
+rundll32.exe shell32.dll,Control_RunDLL access.cpl
+
+Open File Explorer Options at the General tab
+rundll32.exe shell32.dll,Options_RunDLL 0
+
+Open File Explorer Options at the Search tab
+rundll32.exe shell32.dll,Options_RunDLL 2
+
+Open File Explorer Options at the View tab
+rundll32.exe shell32.dll,Options_RunDLL 7
+
+Open the Fonts folder
+rundll32.exe Shell32.dll,SHHelpShortcuts_RunDLL FontsFolder
+
+Run the Forgotten Password wizard
+rundll32.exe keymgr.dll,PRShowSaveWizardExW
+
+Open the Game Controllers applet
+rundll32.exe shell32.dll,Control_RunDLL joy.cpl
+
+Hibernate or Sleep your PC.
+rundll32.exe powrprof.dll, SetSuspendState 0,1,0
+
+Lock your computer
+rundll32.exe user32.dll,LockWorkStation
+
+Change Indexing options
+rundll32.exe shell32.dll,Control_RunDLL srchadmin.dll
+
+Open the Infared applet
+rundll32.exe shell32.dll,Control_RunDLL irprops.cpl
+
+Open Network Connections
+rundll32.exe shell32.dll,Control_RunDLL ncpa.cpl
+
+Run the Map Network Drive wizard
+rundll32.exe Shell32.dll,SHHelpShortcuts_RunDLL Connect
+
+Swap left and right mouse buttons
+rundll32.exe User32.dll,SwapMouseButton
+
+Open the Mouse Properties dialog window
+rundll32.exe Shell32.dll,Control_RunDLL main.cpl @0,0
+
+ODBC Data Source Administrator
+RunDll32 shell32.dll,Control_RunDLL odbccp32.cpl
+
+Open the Pen and Touch settings
+rundll32.exe shell32.dll,Control_RunDLL tabletpc.cpl
+
+Open Power Options
+rundll32.exe Shell32.dll,Control_RunDLL powercfg.cpl
+
+Process idle tasks
+rundll32.exe advapi32.dll,ProcessIdleTasks
+
+Open Programs and Features
+rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl,,0
+
+Open the Region applet at the Formats tab
+rundll32.exe Shell32.dll,Control_RunDLL Intl.cpl,,0
+
+Open the Region applet at the Location tab
+rundll32.exe Shell32.dll,Control_RunDLL Intl.cpl,,1
+
+Open the Region applet at the Administrative tab
+rundll32.exe Shell32.dll,Control_RunDLL Intl.cpl,,2
+
+Run the Safely Remove Hardware wizard
+rundll32.exe Shell32.dll,Control_RunDLL HotPlug.dll
+
+Open the Screen Saver settings
+rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,1
+
+Open Security and Maintenance
+rundll32.exe shell32.dll,Control_RunDLL wscui.cpl
+
+Configure default programs
+rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl,,3
+
+Run the Set Up a Network wizard
+rundll32.exe shell32.dll,Control_RunDLL NetSetup.cpl
+
+Open the Sounds applet at the Playback tab
+rundll32.exe Shell32.dll,Control_RunDLL Mmsys.cpl,,0
+
+Open the Sounds applet at the Recording tab
+rundll32.exe Shell32.dll,Control_RunDLL Mmsys.cpl,,1
+
+Open the Sounds applet at the Sounds tab
+rundll32.exe Shell32.dll,Control_RunDLL Mmsys.cpl,,2
+
+Open the Sounds applet at the Communications tab
+rundll32.exe Shell32.dll,Control_RunDLL Mmsys.cpl,,3
+
+Open Settings at the Personalization - Start page
+rundll32.exe shell32.dll,Options_RunDLL 3
+
+Stored User Names and Passwords
+rundll32.exe keymgr.dll,KRShowKeyMgr
+
+Open System Properties at the Computer Name tab
+rundll32.exe Shell32.dll,Control_RunDLL Sysdm.cpl,,1
+
+Open System Properties at the Hardware tab
+rundll32.exe Shell32.dll,Control_RunDLL Sysdm.cpl,,2
+
+Open System Properties at the Advanced tab
+rundll32.exe Shell32.dll,Control_RunDLL Sysdm.cpl,,3
+
+Open System Properties at the System Protection tab
+rundll32.exe Shell32.dll,Control_RunDLL Sysdm.cpl,,4
+
+Open System Properties at the Remote tab
+rundll32.exe Shell32.dll,Control_RunDLL Sysdm.cpl,,5
+
+Open Taskbar Settings in the Settings app
+rundll32.exe shell32.dll,Options_RunDLL 1
+
+Open the User Accounts applet
+rundll32.exe shell32.dll,Control_RunDLL nusrmgr.cpl
+
+Open Windows Features
+rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl,,2
+
+Open Windows Firewall
+rundll32.exe shell32.dll,Control_RunDLL firewall.cpl
+
+Open Keyboard Properties
+rundll32.exe shell32.dll,Control_RunDLL main.cpl @1
+
+Open the About Windows dialog window
+rundll32.exe SHELL32.DLL,ShellAbout
+
+Bonus tip: here is the list of rundll32.exe commands which will allow to manage Internet Explorer.
+RunDll32 commands for Internet Explorer
+
+Delete all browsing history in Internet Explorer
+rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 255
+
+Delete all browsing history and add-ons history in Internet Explorer
+rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 4351
+
+Delete Cookies and website data in Internet Explorer
+rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 2
+
+Delete Download History in Internet Explorer
+rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 16384
+
+Delete Form Data in Internet Explorer
+rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 16
+
+Delete History in Internet Explorer
+rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 1
+
+Delete passwords in Internet Explorer
+rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 32
+
+Delete temporary Internet files and website files in Internet Explorer
+rundll32.exe InetCpl.cpl,ClearMyTracksByProcess 8
+
+Organize Favorites in Internet Explorer
+Rundll32.exe shdocvw.dll,DoOrganizeFavDlg
+
+Open Internet Properties at the General tab
+rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl
+
+Open Internet Properties at the Security tab
+rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,1
+
+Open Internet Properties at the Privacy tab
+rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,2
+
+Open Internet Properties at the Content tab
+rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,3
+
+Open Internet Properties at the Connections tab
+rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,4
+
+Open Internet Properties at the Programs tab
+rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,5
+
+Open Internet Properties at the Advanced tab
+rundll32.exe shell32.dll,Control_RunDLL inetcpl.cpl,,6
+

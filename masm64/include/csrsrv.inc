@@ -1,0 +1,70 @@
+extern __imp_CsrAddStaticServerThread:PANYARGS
+CsrAddStaticServerThread TEXTEQU <__imp_CsrAddStaticServerThread>
+extern __imp_CsrCallServerFromServer:PANYARGS
+CsrCallServerFromServer TEXTEQU <__imp_CsrCallServerFromServer>
+extern __imp_CsrConnectToUser:PANYARGS
+CsrConnectToUser TEXTEQU <__imp_CsrConnectToUser>
+extern __imp_CsrCreateProcess:PANYARGS
+CsrCreateProcess TEXTEQU <__imp_CsrCreateProcess>
+extern __imp_CsrCreateRemoteThread:PANYARGS
+CsrCreateRemoteThread TEXTEQU <__imp_CsrCreateRemoteThread>
+extern __imp_CsrCreateThread:PANYARGS
+CsrCreateThread TEXTEQU <__imp_CsrCreateThread>
+extern __imp_CsrCreateWait:PANYARGS
+CsrCreateWait TEXTEQU <__imp_CsrCreateWait>
+extern __imp_CsrDebugProcess:PANYARGS
+CsrDebugProcess TEXTEQU <__imp_CsrDebugProcess>
+extern __imp_CsrDebugProcessStop:PANYARGS
+CsrDebugProcessStop TEXTEQU <__imp_CsrDebugProcessStop>
+extern __imp_CsrDereferenceProcess:PANYARGS
+CsrDereferenceProcess TEXTEQU <__imp_CsrDereferenceProcess>
+extern __imp_CsrDereferenceThread:PANYARGS
+CsrDereferenceThread TEXTEQU <__imp_CsrDereferenceThread>
+extern __imp_CsrDereferenceWait:PANYARGS
+CsrDereferenceWait TEXTEQU <__imp_CsrDereferenceWait>
+extern __imp_CsrDestroyProcess:PANYARGS
+CsrDestroyProcess TEXTEQU <__imp_CsrDestroyProcess>
+extern __imp_CsrDestroyThread:PANYARGS
+CsrDestroyThread TEXTEQU <__imp_CsrDestroyThread>
+extern __imp_CsrExecServerThread:PANYARGS
+CsrExecServerThread TEXTEQU <__imp_CsrExecServerThread>
+extern __imp_CsrGetProcessLuid:PANYARGS
+CsrGetProcessLuid TEXTEQU <__imp_CsrGetProcessLuid>
+extern __imp_CsrImpersonateClient:PANYARGS
+CsrImpersonateClient TEXTEQU <__imp_CsrImpersonateClient>
+extern __imp_CsrLockProcessByClientId:PANYARGS
+CsrLockProcessByClientId TEXTEQU <__imp_CsrLockProcessByClientId>
+extern __imp_CsrLockThreadByClientId:PANYARGS
+CsrLockThreadByClientId TEXTEQU <__imp_CsrLockThreadByClientId>
+extern __imp_CsrMoveSatisfiedWait:PANYARGS
+CsrMoveSatisfiedWait TEXTEQU <__imp_CsrMoveSatisfiedWait>
+extern __imp_CsrNotifyWait:PANYARGS
+CsrNotifyWait TEXTEQU <__imp_CsrNotifyWait>
+extern __imp_CsrPopulateDosDevices:PANYARGS
+CsrPopulateDosDevices TEXTEQU <__imp_CsrPopulateDosDevices>
+extern __imp_CsrQueryApiPort:PANYARGS
+CsrQueryApiPort TEXTEQU <__imp_CsrQueryApiPort>
+extern __imp_CsrReferenceThread:PANYARGS
+CsrReferenceThread TEXTEQU <__imp_CsrReferenceThread>
+extern __imp_CsrRevertToSelf:PANYARGS
+CsrRevertToSelf TEXTEQU <__imp_CsrRevertToSelf>
+extern __imp_CsrServerInitialization:PANYARGS
+CsrServerInitialization TEXTEQU <__imp_CsrServerInitialization>
+extern __imp_CsrSetBackgroundPriority:PANYARGS
+CsrSetBackgroundPriority TEXTEQU <__imp_CsrSetBackgroundPriority>
+extern __imp_CsrSetCallingSpooler:PANYARGS
+CsrSetCallingSpooler TEXTEQU <__imp_CsrSetCallingSpooler>
+extern __imp_CsrSetForegroundPriority:PANYARGS
+CsrSetForegroundPriority TEXTEQU <__imp_CsrSetForegroundPriority>
+extern __imp_CsrShutdownProcesses:PANYARGS
+CsrShutdownProcesses TEXTEQU <__imp_CsrShutdownProcesses>
+extern __imp_CsrUnhandledExceptionFilter:PANYARGS
+CsrUnhandledExceptionFilter TEXTEQU <__imp_CsrUnhandledExceptionFilter>
+extern __imp_CsrUnlockProcess:PANYARGS
+CsrUnlockProcess TEXTEQU <__imp_CsrUnlockProcess>
+extern __imp_CsrUnlockThread:PANYARGS
+CsrUnlockThread TEXTEQU <__imp_CsrUnlockThread>
+extern __imp_CsrValidateMessageBuffer:PANYARGS
+CsrValidateMessageBuffer TEXTEQU <__imp_CsrValidateMessageBuffer>
+extern __imp_CsrValidateMessageString:PANYARGS
+CsrValidateMessageString TEXTEQU <__imp_CsrValidateMessageString>

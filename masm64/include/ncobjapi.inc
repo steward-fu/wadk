@@ -1,0 +1,20 @@
+extern __imp_WmiCommitObject:PANYARGS
+WmiCommitObject TEXTEQU <__imp_WmiCommitObject>
+extern __imp_WmiAddObjectProp:PANYARGS
+WmiAddObjectProp TEXTEQU <__imp_WmiAddObjectProp>
+extern __imp_WmiCreateObject:PANYARGS
+WmiCreateObject TEXTEQU <__imp_WmiCreateObject>
+extern __imp_WmiCreateObjectWithFormat:PANYARGS
+WmiCreateObjectWithFormat TEXTEQU <__imp_WmiCreateObjectWithFormat>
+extern __imp_WmiCreateObjectWithProps:PANYARGS
+WmiCreateObjectWithProps TEXTEQU <__imp_WmiCreateObjectWithProps>
+extern __imp_WmiDestroyObject:PANYARGS
+WmiDestroyObject TEXTEQU <__imp_WmiDestroyObject>
+extern __imp_WmiEventSourceConnect:PANYARGS
+WmiEventSourceConnect TEXTEQU <__imp_WmiEventSourceConnect>
+extern __imp_WmiEventSourceDisconnect:PANYARGS
+WmiEventSourceDisconnect TEXTEQU <__imp_WmiEventSourceDisconnect>
+extern __imp_WmiIsObjectActive:PANYARGS
+WmiIsObjectActive TEXTEQU <__imp_WmiIsObjectActive>
+extern __imp_WmiSetAndCommitObject:PANYARGS
+WmiSetAndCommitObject TEXTEQU <__imp_WmiSetAndCommitObject>

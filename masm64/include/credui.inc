@@ -1,0 +1,34 @@
+extern __imp_CredUICmdLinePromptForCredentialsA:PANYARGS
+CredUICmdLinePromptForCredentials  TEXTEQU <__imp_CredUICmdLinePromptForCredentialsA>
+extern __imp_CredUICmdLinePromptForCredentialsW:PANYARGS
+CredUICmdLinePromptForCredentialsW TEXTEQU <__imp_CredUICmdLinePromptForCredentialsW>
+extern __imp_CredUIConfirmCredentialsA:PANYARGS
+CredUIConfirmCredentials  TEXTEQU <__imp_CredUIConfirmCredentialsA>
+extern __imp_CredUIConfirmCredentialsW:PANYARGS
+CredUIConfirmCredentialsW TEXTEQU <__imp_CredUIConfirmCredentialsW>
+extern __imp_CredUIInitControls:PANYARGS
+CredUIInitControls TEXTEQU <__imp_CredUIInitControls>
+extern __imp_CredUIParseUserNameA:PANYARGS
+CredUIParseUserName  TEXTEQU <__imp_CredUIParseUserNameA>
+extern __imp_CredUIParseUserNameW:PANYARGS
+CredUIParseUserNameW TEXTEQU <__imp_CredUIParseUserNameW>
+extern __imp_CredUIPromptForCredentialsA:PANYARGS
+CredUIPromptForCredentials  TEXTEQU <__imp_CredUIPromptForCredentialsA>
+extern __imp_CredUIPromptForCredentialsW:PANYARGS
+CredUIPromptForCredentialsW TEXTEQU <__imp_CredUIPromptForCredentialsW>
+extern __imp_CredUIReadSSOCredA:PANYARGS
+CredUIReadSSOCred  TEXTEQU <__imp_CredUIReadSSOCredA>
+extern __imp_CredUIReadSSOCredW:PANYARGS
+CredUIReadSSOCredW TEXTEQU <__imp_CredUIReadSSOCredW>
+extern __imp_CredUIStoreSSOCredA:PANYARGS
+CredUIStoreSSOCred  TEXTEQU <__imp_CredUIStoreSSOCredA>
+extern __imp_CredUIStoreSSOCredW:PANYARGS
+CredUIStoreSSOCredW TEXTEQU <__imp_CredUIStoreSSOCredW>
+extern __imp_DllCanUnloadNow:PANYARGS
+DllCanUnloadNow TEXTEQU <__imp_DllCanUnloadNow>
+extern __imp_DllGetClassObject:PANYARGS
+DllGetClassObject TEXTEQU <__imp_DllGetClassObject>
+extern __imp_DllRegisterServer:PANYARGS
+DllRegisterServer TEXTEQU <__imp_DllRegisterServer>
+extern __imp_DllUnregisterServer:PANYARGS
+DllUnregisterServer TEXTEQU <__imp_DllUnregisterServer>

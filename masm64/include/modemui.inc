@@ -1,0 +1,28 @@
+extern __imp_drvCommConfigDialogW:PANYARGS
+drvCommConfigDialogW TEXTEQU <__imp_drvCommConfigDialogW>
+extern __imp_drvCommConfigDialogA:PANYARGS
+drvCommConfigDialog  TEXTEQU <__imp_drvCommConfigDialogA>
+extern __imp_drvSetDefaultCommConfigW:PANYARGS
+drvSetDefaultCommConfigW TEXTEQU <__imp_drvSetDefaultCommConfigW>
+extern __imp_drvSetDefaultCommConfigA:PANYARGS
+drvSetDefaultCommConfig  TEXTEQU <__imp_drvSetDefaultCommConfigA>
+extern __imp_drvGetDefaultCommConfigW:PANYARGS
+drvGetDefaultCommConfigW TEXTEQU <__imp_drvGetDefaultCommConfigW>
+extern __imp_drvGetDefaultCommConfigA:PANYARGS
+drvGetDefaultCommConfig  TEXTEQU <__imp_drvGetDefaultCommConfigA>
+extern __imp_UnimodemDevConfigDialog:PANYARGS
+UnimodemDevConfigDialog TEXTEQU <__imp_UnimodemDevConfigDialog>
+extern __imp_CountryRunOnce:PANYARGS
+CountryRunOnce TEXTEQU <__imp_CountryRunOnce>
+extern __imp_UnimodemGetDefaultCommConfig:PANYARGS
+UnimodemGetDefaultCommConfig TEXTEQU <__imp_UnimodemGetDefaultCommConfig>
+extern __imp_UnimodemGetExtendedCaps:PANYARGS
+UnimodemGetExtendedCaps TEXTEQU <__imp_UnimodemGetExtendedCaps>
+extern __imp_InvokeControlPanel:PANYARGS
+InvokeControlPanel TEXTEQU <__imp_InvokeControlPanel>
+extern __imp_ModemCplDlgProc:PANYARGS
+ModemCplDlgProc TEXTEQU <__imp_ModemCplDlgProc>
+extern __imp_ModemPropPagesProvider:PANYARGS
+ModemPropPagesProvider TEXTEQU <__imp_ModemPropPagesProvider>
+extern __imp_QueryModemForCountrySettings:PANYARGS
+QueryModemForCountrySettings TEXTEQU <__imp_QueryModemForCountrySettings>

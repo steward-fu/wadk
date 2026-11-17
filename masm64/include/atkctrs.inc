@@ -1,0 +1,6 @@
+extern __imp_OpenAtkPerformanceData:PANYARGS
+OpenAtkPerformanceData TEXTEQU <__imp_OpenAtkPerformanceData>
+extern __imp_CollectAtkPerformanceData:PANYARGS
+CollectAtkPerformanceData TEXTEQU <__imp_CollectAtkPerformanceData>
+extern __imp_CloseAtkPerformanceData:PANYARGS
+CloseAtkPerformanceData TEXTEQU <__imp_CloseAtkPerformanceData>

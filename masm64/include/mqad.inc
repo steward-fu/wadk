@@ -1,0 +1,68 @@
+extern __imp_MQADBeginDeleteNotification:PANYARGS
+MQADBeginDeleteNotification TEXTEQU <__imp_MQADBeginDeleteNotification>
+extern __imp_MQADCreateObject:PANYARGS
+MQADCreateObject TEXTEQU <__imp_MQADCreateObject>
+extern __imp_MQADDeleteObject:PANYARGS
+MQADDeleteObject TEXTEQU <__imp_MQADDeleteObject>
+extern __imp_MQADDeleteObjectGuid:PANYARGS
+MQADDeleteObjectGuid TEXTEQU <__imp_MQADDeleteObjectGuid>
+extern __imp_MQADDeleteObjectGuidSid:PANYARGS
+MQADDeleteObjectGuidSid TEXTEQU <__imp_MQADDeleteObjectGuidSid>
+extern __imp_MQADEndDeleteNotification:PANYARGS
+MQADEndDeleteNotification TEXTEQU <__imp_MQADEndDeleteNotification>
+extern __imp_MQADEndQuery:PANYARGS
+MQADEndQuery TEXTEQU <__imp_MQADEndQuery>
+extern __imp_MQADFreeMemory:PANYARGS
+MQADFreeMemory TEXTEQU <__imp_MQADFreeMemory>
+extern __imp_MQADGetADsPathInfo:PANYARGS
+MQADGetADsPathInfo TEXTEQU <__imp_MQADGetADsPathInfo>
+extern __imp_MQADGetComputerSites:PANYARGS
+MQADGetComputerSites TEXTEQU <__imp_MQADGetComputerSites>
+extern __imp_MQADGetComputerVersion:PANYARGS
+MQADGetComputerVersion TEXTEQU <__imp_MQADGetComputerVersion>
+extern __imp_MQADGetGenObjectProperties:PANYARGS
+MQADGetGenObjectProperties TEXTEQU <__imp_MQADGetGenObjectProperties>
+extern __imp_MQADGetObjectProperties:PANYARGS
+MQADGetObjectProperties TEXTEQU <__imp_MQADGetObjectProperties>
+extern __imp_MQADGetObjectPropertiesGuid:PANYARGS
+MQADGetObjectPropertiesGuid TEXTEQU <__imp_MQADGetObjectPropertiesGuid>
+extern __imp_MQADGetObjectSecurity:PANYARGS
+MQADGetObjectSecurity TEXTEQU <__imp_MQADGetObjectSecurity>
+extern __imp_MQADGetObjectSecurityGuid:PANYARGS
+MQADGetObjectSecurityGuid TEXTEQU <__imp_MQADGetObjectSecurityGuid>
+extern __imp_MQADInit:PANYARGS
+MQADInit TEXTEQU <__imp_MQADInit>
+extern __imp_MQADNotifyDelete:PANYARGS
+MQADNotifyDelete TEXTEQU <__imp_MQADNotifyDelete>
+extern __imp_MQADQMGetObjectSecurity:PANYARGS
+MQADQMGetObjectSecurity TEXTEQU <__imp_MQADQMGetObjectSecurity>
+extern __imp_MQADQueryAllLinks:PANYARGS
+MQADQueryAllLinks TEXTEQU <__imp_MQADQueryAllLinks>
+extern __imp_MQADQueryAllSites:PANYARGS
+MQADQueryAllSites TEXTEQU <__imp_MQADQueryAllSites>
+extern __imp_MQADQueryConnectors:PANYARGS
+MQADQueryConnectors TEXTEQU <__imp_MQADQueryConnectors>
+extern __imp_MQADQueryForeignSites:PANYARGS
+MQADQueryForeignSites TEXTEQU <__imp_MQADQueryForeignSites>
+extern __imp_MQADQueryLinks:PANYARGS
+MQADQueryLinks TEXTEQU <__imp_MQADQueryLinks>
+extern __imp_MQADQueryMachineQueues:PANYARGS
+MQADQueryMachineQueues TEXTEQU <__imp_MQADQueryMachineQueues>
+extern __imp_MQADQueryNT4MQISServers:PANYARGS
+MQADQueryNT4MQISServers TEXTEQU <__imp_MQADQueryNT4MQISServers>
+extern __imp_MQADQueryQueues:PANYARGS
+MQADQueryQueues TEXTEQU <__imp_MQADQueryQueues>
+extern __imp_MQADQueryResults:PANYARGS
+MQADQueryResults TEXTEQU <__imp_MQADQueryResults>
+extern __imp_MQADQuerySiteServers:PANYARGS
+MQADQuerySiteServers TEXTEQU <__imp_MQADQuerySiteServers>
+extern __imp_MQADQueryUserCert:PANYARGS
+MQADQueryUserCert TEXTEQU <__imp_MQADQueryUserCert>
+extern __imp_MQADSetObjectProperties:PANYARGS
+MQADSetObjectProperties TEXTEQU <__imp_MQADSetObjectProperties>
+extern __imp_MQADSetObjectPropertiesGuid:PANYARGS
+MQADSetObjectPropertiesGuid TEXTEQU <__imp_MQADSetObjectPropertiesGuid>
+extern __imp_MQADSetObjectSecurity:PANYARGS
+MQADSetObjectSecurity TEXTEQU <__imp_MQADSetObjectSecurity>
+extern __imp_MQADSetObjectSecurityGuid:PANYARGS
+MQADSetObjectSecurityGuid TEXTEQU <__imp_MQADSetObjectSecurityGuid>

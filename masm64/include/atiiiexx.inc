@@ -1,0 +1,6 @@
+extern __imp_InfEngInstallINFFile:PANYARGS
+InfEngInstallINFFile TEXTEQU <__imp_InfEngInstallINFFile>
+extern __imp_InfEngUnInstallINFFile:PANYARGS
+InfEngUnInstallINFFile TEXTEQU <__imp_InfEngUnInstallINFFile>
+extern __imp_InfEngUnInstallINFFile_RunDLL:PANYARGS
+InfEngUnInstallINFFile_RunDLL TEXTEQU <__imp_InfEngUnInstallINFFile_RunDLL>

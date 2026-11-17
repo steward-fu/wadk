@@ -1,0 +1,16 @@
+extern __imp_SisCSFilesToBackupForLink:PANYARGS
+SisCSFilesToBackupForLink TEXTEQU <__imp_SisCSFilesToBackupForLink>
+extern __imp_SisCreateBackupStructure:PANYARGS
+SisCreateBackupStructure TEXTEQU <__imp_SisCreateBackupStructure>
+extern __imp_SisCreateRestoreStructure:PANYARGS
+SisCreateRestoreStructure TEXTEQU <__imp_SisCreateRestoreStructure>
+extern __imp_SisFreeAllocatedMemory:PANYARGS
+SisFreeAllocatedMemory TEXTEQU <__imp_SisFreeAllocatedMemory>
+extern __imp_SisFreeBackupStructure:PANYARGS
+SisFreeBackupStructure TEXTEQU <__imp_SisFreeBackupStructure>
+extern __imp_SisFreeRestoreStructure:PANYARGS
+SisFreeRestoreStructure TEXTEQU <__imp_SisFreeRestoreStructure>
+extern __imp_SisRestoredCommonStoreFile:PANYARGS
+SisRestoredCommonStoreFile TEXTEQU <__imp_SisRestoredCommonStoreFile>
+extern __imp_SisRestoredLink:PANYARGS
+SisRestoredLink TEXTEQU <__imp_SisRestoredLink>

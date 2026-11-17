@@ -1,0 +1,20 @@
+extern __imp_NotifyLogoffUser:PANYARGS
+NotifyLogoffUser TEXTEQU <__imp_NotifyLogoffUser>
+extern __imp_NotifyLogonUser:PANYARGS
+NotifyLogonUser TEXTEQU <__imp_NotifyLogonUser>
+extern __imp_ServiceMain:PANYARGS
+ServiceMain TEXTEQU <__imp_ServiceMain>
+extern __imp_LCEControlServer:PANYARGS
+LCEControlServer TEXTEQU <__imp_LCEControlServer>
+extern __imp_RegisterTheEventServiceDuringSetup:PANYARGS
+RegisterTheEventServiceDuringSetup TEXTEQU <__imp_RegisterTheEventServiceDuringSetup>
+extern __imp_RegisterTheEventServiceAfterSetup:PANYARGS
+RegisterTheEventServiceAfterSetup TEXTEQU <__imp_RegisterTheEventServiceAfterSetup>
+extern __imp_DllRegisterServer:PANYARGS
+DllRegisterServer TEXTEQU <__imp_DllRegisterServer>
+extern __imp_DllUnregisterServer:PANYARGS
+DllUnregisterServer TEXTEQU <__imp_DllUnregisterServer>
+extern __imp_DllCanUnloadNow:PANYARGS
+DllCanUnloadNow TEXTEQU <__imp_DllCanUnloadNow>
+extern __imp_DllGetClassObject:PANYARGS
+DllGetClassObject TEXTEQU <__imp_DllGetClassObject>

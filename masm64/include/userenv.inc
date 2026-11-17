@@ -1,0 +1,246 @@
+extern __imp_userenv_ordinal100:PANYARGS
+userenv_ordinal100 TEXTEQU <__imp_userenv_ordinal100>
+extern __imp_userenv_ordinal101:PANYARGS
+userenv_ordinal101 TEXTEQU <__imp_userenv_ordinal101>
+extern __imp_userenv_ordinal102:PANYARGS
+userenv_ordinal102 TEXTEQU <__imp_userenv_ordinal102>
+extern __imp_userenv_ordinal103:PANYARGS
+userenv_ordinal103 TEXTEQU <__imp_userenv_ordinal103>
+extern __imp_userenv_ordinal104:PANYARGS
+userenv_ordinal104 TEXTEQU <__imp_userenv_ordinal104>
+extern __imp_userenv_ordinal105:PANYARGS
+userenv_ordinal105 TEXTEQU <__imp_userenv_ordinal105>
+extern __imp_userenv_ordinal106:PANYARGS
+userenv_ordinal106 TEXTEQU <__imp_userenv_ordinal106>
+extern __imp_userenv_ordinal107:PANYARGS
+userenv_ordinal107 TEXTEQU <__imp_userenv_ordinal107>
+extern __imp_userenv_ordinal108:PANYARGS
+userenv_ordinal108 TEXTEQU <__imp_userenv_ordinal108>
+extern __imp_userenv_ordinal109:PANYARGS
+userenv_ordinal109 TEXTEQU <__imp_userenv_ordinal109>
+extern __imp_userenv_ordinal110:PANYARGS
+userenv_ordinal110 TEXTEQU <__imp_userenv_ordinal110>
+extern __imp_userenv_ordinal111:PANYARGS
+userenv_ordinal111 TEXTEQU <__imp_userenv_ordinal111>
+extern __imp_userenv_ordinal112:PANYARGS
+userenv_ordinal112 TEXTEQU <__imp_userenv_ordinal112>
+extern __imp_userenv_ordinal113:PANYARGS
+userenv_ordinal113 TEXTEQU <__imp_userenv_ordinal113>
+extern __imp_userenv_ordinal114:PANYARGS
+userenv_ordinal114 TEXTEQU <__imp_userenv_ordinal114>
+extern __imp_userenv_ordinal115:PANYARGS
+userenv_ordinal115 TEXTEQU <__imp_userenv_ordinal115>
+extern __imp_userenv_ordinal116:PANYARGS
+userenv_ordinal116 TEXTEQU <__imp_userenv_ordinal116>
+extern __imp_userenv_ordinal117:PANYARGS
+userenv_ordinal117 TEXTEQU <__imp_userenv_ordinal117>
+extern __imp_userenv_ordinal118:PANYARGS
+userenv_ordinal118 TEXTEQU <__imp_userenv_ordinal118>
+extern __imp_userenv_ordinal119:PANYARGS
+userenv_ordinal119 TEXTEQU <__imp_userenv_ordinal119>
+extern __imp_userenv_ordinal120:PANYARGS
+userenv_ordinal120 TEXTEQU <__imp_userenv_ordinal120>
+extern __imp_userenv_ordinal121:PANYARGS
+userenv_ordinal121 TEXTEQU <__imp_userenv_ordinal121>
+extern __imp_userenv_ordinal122:PANYARGS
+userenv_ordinal122 TEXTEQU <__imp_userenv_ordinal122>
+extern __imp_userenv_ordinal123:PANYARGS
+userenv_ordinal123 TEXTEQU <__imp_userenv_ordinal123>
+extern __imp_userenv_ordinal124:PANYARGS
+userenv_ordinal124 TEXTEQU <__imp_userenv_ordinal124>
+extern __imp_userenv_ordinal125:PANYARGS
+userenv_ordinal125 TEXTEQU <__imp_userenv_ordinal125>
+extern __imp_userenv_ordinal126:PANYARGS
+userenv_ordinal126 TEXTEQU <__imp_userenv_ordinal126>
+extern __imp_userenv_ordinal127:PANYARGS
+userenv_ordinal127 TEXTEQU <__imp_userenv_ordinal127>
+extern __imp_userenv_ordinal128:PANYARGS
+userenv_ordinal128 TEXTEQU <__imp_userenv_ordinal128>
+extern __imp_userenv_ordinal129:PANYARGS
+userenv_ordinal129 TEXTEQU <__imp_userenv_ordinal129>
+extern __imp_userenv_ordinal130:PANYARGS
+userenv_ordinal130 TEXTEQU <__imp_userenv_ordinal130>
+extern __imp_userenv_ordinal131:PANYARGS
+userenv_ordinal131 TEXTEQU <__imp_userenv_ordinal131>
+extern __imp_CreateEnvironmentBlock:PANYARGS
+CreateEnvironmentBlock TEXTEQU <__imp_CreateEnvironmentBlock>
+extern __imp_DeleteProfileA:PANYARGS
+DeleteProfile  TEXTEQU <__imp_DeleteProfileA>
+extern __imp_DeleteProfileW:PANYARGS
+DeleteProfileW TEXTEQU <__imp_DeleteProfileW>
+extern __imp_userenv_ordinal135:PANYARGS
+userenv_ordinal135 TEXTEQU <__imp_userenv_ordinal135>
+extern __imp_userenv_ordinal136:PANYARGS
+userenv_ordinal136 TEXTEQU <__imp_userenv_ordinal136>
+extern __imp_userenv_ordinal137:PANYARGS
+userenv_ordinal137 TEXTEQU <__imp_userenv_ordinal137>
+extern __imp_userenv_ordinal138:PANYARGS
+userenv_ordinal138 TEXTEQU <__imp_userenv_ordinal138>
+extern __imp_userenv_ordinal139:PANYARGS
+userenv_ordinal139 TEXTEQU <__imp_userenv_ordinal139>
+extern __imp_userenv_ordinal140:PANYARGS
+userenv_ordinal140 TEXTEQU <__imp_userenv_ordinal140>
+extern __imp_userenv_ordinal141:PANYARGS
+userenv_ordinal141 TEXTEQU <__imp_userenv_ordinal141>
+extern __imp_userenv_ordinal142:PANYARGS
+userenv_ordinal142 TEXTEQU <__imp_userenv_ordinal142>
+extern __imp_userenv_ordinal143:PANYARGS
+userenv_ordinal143 TEXTEQU <__imp_userenv_ordinal143>
+extern __imp_userenv_ordinal144:PANYARGS
+userenv_ordinal144 TEXTEQU <__imp_userenv_ordinal144>
+extern __imp_userenv_ordinal145:PANYARGS
+userenv_ordinal145 TEXTEQU <__imp_userenv_ordinal145>
+extern __imp_userenv_ordinal146:PANYARGS
+userenv_ordinal146 TEXTEQU <__imp_userenv_ordinal146>
+extern __imp_userenv_ordinal147:PANYARGS
+userenv_ordinal147 TEXTEQU <__imp_userenv_ordinal147>
+extern __imp_userenv_ordinal148:PANYARGS
+userenv_ordinal148 TEXTEQU <__imp_userenv_ordinal148>
+extern __imp_userenv_ordinal149:PANYARGS
+userenv_ordinal149 TEXTEQU <__imp_userenv_ordinal149>
+extern __imp_userenv_ordinal150:PANYARGS
+userenv_ordinal150 TEXTEQU <__imp_userenv_ordinal150>
+extern __imp_userenv_ordinal151:PANYARGS
+userenv_ordinal151 TEXTEQU <__imp_userenv_ordinal151>
+extern __imp_userenv_ordinal152:PANYARGS
+userenv_ordinal152 TEXTEQU <__imp_userenv_ordinal152>
+extern __imp_userenv_ordinal153:PANYARGS
+userenv_ordinal153 TEXTEQU <__imp_userenv_ordinal153>
+extern __imp_userenv_ordinal154:PANYARGS
+userenv_ordinal154 TEXTEQU <__imp_userenv_ordinal154>
+extern __imp_userenv_ordinal155:PANYARGS
+userenv_ordinal155 TEXTEQU <__imp_userenv_ordinal155>
+extern __imp_userenv_ordinal156:PANYARGS
+userenv_ordinal156 TEXTEQU <__imp_userenv_ordinal156>
+extern __imp_userenv_ordinal157:PANYARGS
+userenv_ordinal157 TEXTEQU <__imp_userenv_ordinal157>
+extern __imp_userenv_ordinal158:PANYARGS
+userenv_ordinal158 TEXTEQU <__imp_userenv_ordinal158>
+extern __imp_userenv_ordinal159:PANYARGS
+userenv_ordinal159 TEXTEQU <__imp_userenv_ordinal159>
+extern __imp_userenv_ordinal160:PANYARGS
+userenv_ordinal160 TEXTEQU <__imp_userenv_ordinal160>
+extern __imp_userenv_ordinal161:PANYARGS
+userenv_ordinal161 TEXTEQU <__imp_userenv_ordinal161>
+extern __imp_userenv_ordinal162:PANYARGS
+userenv_ordinal162 TEXTEQU <__imp_userenv_ordinal162>
+extern __imp_userenv_ordinal163:PANYARGS
+userenv_ordinal163 TEXTEQU <__imp_userenv_ordinal163>
+extern __imp_userenv_ordinal164:PANYARGS
+userenv_ordinal164 TEXTEQU <__imp_userenv_ordinal164>
+extern __imp_userenv_ordinal165:PANYARGS
+userenv_ordinal165 TEXTEQU <__imp_userenv_ordinal165>
+extern __imp_userenv_ordinal166:PANYARGS
+userenv_ordinal166 TEXTEQU <__imp_userenv_ordinal166>
+extern __imp_userenv_ordinal167:PANYARGS
+userenv_ordinal167 TEXTEQU <__imp_userenv_ordinal167>
+extern __imp_userenv_ordinal168:PANYARGS
+userenv_ordinal168 TEXTEQU <__imp_userenv_ordinal168>
+extern __imp_userenv_ordinal169:PANYARGS
+userenv_ordinal169 TEXTEQU <__imp_userenv_ordinal169>
+extern __imp_userenv_ordinal170:PANYARGS
+userenv_ordinal170 TEXTEQU <__imp_userenv_ordinal170>
+extern __imp_userenv_ordinal171:PANYARGS
+userenv_ordinal171 TEXTEQU <__imp_userenv_ordinal171>
+extern __imp_userenv_ordinal172:PANYARGS
+userenv_ordinal172 TEXTEQU <__imp_userenv_ordinal172>
+extern __imp_userenv_ordinal173:PANYARGS
+userenv_ordinal173 TEXTEQU <__imp_userenv_ordinal173>
+extern __imp_userenv_ordinal174:PANYARGS
+userenv_ordinal174 TEXTEQU <__imp_userenv_ordinal174>
+extern __imp_userenv_ordinal175:PANYARGS
+userenv_ordinal175 TEXTEQU <__imp_userenv_ordinal175>
+extern __imp_DestroyEnvironmentBlock:PANYARGS
+DestroyEnvironmentBlock TEXTEQU <__imp_DestroyEnvironmentBlock>
+extern __imp_DllCanUnloadNow:PANYARGS
+DllCanUnloadNow TEXTEQU <__imp_DllCanUnloadNow>
+extern __imp_DllGetClassObject:PANYARGS
+DllGetClassObject TEXTEQU <__imp_DllGetClassObject>
+extern __imp_DllInstall:PANYARGS
+DllInstall TEXTEQU <__imp_DllInstall>
+extern __imp_DllRegisterServer:PANYARGS
+DllRegisterServer TEXTEQU <__imp_DllRegisterServer>
+extern __imp_DllUnregisterServer:PANYARGS
+DllUnregisterServer TEXTEQU <__imp_DllUnregisterServer>
+extern __imp_EnterCriticalPolicySection:PANYARGS
+EnterCriticalPolicySection TEXTEQU <__imp_EnterCriticalPolicySection>
+extern __imp_ExpandEnvironmentStringsForUserA:PANYARGS
+ExpandEnvironmentStringsForUser  TEXTEQU <__imp_ExpandEnvironmentStringsForUserA>
+extern __imp_ExpandEnvironmentStringsForUserW:PANYARGS
+ExpandEnvironmentStringsForUserW TEXTEQU <__imp_ExpandEnvironmentStringsForUserW>
+extern __imp_ForceSyncFgPolicy:PANYARGS
+ForceSyncFgPolicy TEXTEQU <__imp_ForceSyncFgPolicy>
+extern __imp_FreeGPOListA:PANYARGS
+FreeGPOList  TEXTEQU <__imp_FreeGPOListA>
+extern __imp_FreeGPOListW:PANYARGS
+FreeGPOListW TEXTEQU <__imp_FreeGPOListW>
+extern __imp_GenerateRsopPolicy:PANYARGS
+GenerateRsopPolicy TEXTEQU <__imp_GenerateRsopPolicy>
+extern __imp_GetAllUsersProfileDirectoryA:PANYARGS
+GetAllUsersProfileDirectory  TEXTEQU <__imp_GetAllUsersProfileDirectoryA>
+extern __imp_GetAllUsersProfileDirectoryW:PANYARGS
+GetAllUsersProfileDirectoryW TEXTEQU <__imp_GetAllUsersProfileDirectoryW>
+extern __imp_GetAppliedGPOListA:PANYARGS
+GetAppliedGPOList  TEXTEQU <__imp_GetAppliedGPOListA>
+extern __imp_GetAppliedGPOListW:PANYARGS
+GetAppliedGPOListW TEXTEQU <__imp_GetAppliedGPOListW>
+extern __imp_GetDefaultUserProfileDirectoryA:PANYARGS
+GetDefaultUserProfileDirectory  TEXTEQU <__imp_GetDefaultUserProfileDirectoryA>
+extern __imp_GetDefaultUserProfileDirectoryW:PANYARGS
+GetDefaultUserProfileDirectoryW TEXTEQU <__imp_GetDefaultUserProfileDirectoryW>
+extern __imp_GetGPOListA:PANYARGS
+GetGPOList  TEXTEQU <__imp_GetGPOListA>
+extern __imp_GetGPOListW:PANYARGS
+GetGPOListW TEXTEQU <__imp_GetGPOListW>
+extern __imp_GetNextFgPolicyRefreshInfo:PANYARGS
+GetNextFgPolicyRefreshInfo TEXTEQU <__imp_GetNextFgPolicyRefreshInfo>
+extern __imp_GetPreviousFgPolicyRefreshInfo:PANYARGS
+GetPreviousFgPolicyRefreshInfo TEXTEQU <__imp_GetPreviousFgPolicyRefreshInfo>
+extern __imp_GetProfileType:PANYARGS
+GetProfileType TEXTEQU <__imp_GetProfileType>
+extern __imp_userenv_ordinal200:PANYARGS
+userenv_ordinal200 TEXTEQU <__imp_userenv_ordinal200>
+extern __imp_userenv_ordinal201:PANYARGS
+userenv_ordinal201 TEXTEQU <__imp_userenv_ordinal201>
+extern __imp_GetProfilesDirectoryA:PANYARGS
+GetProfilesDirectory  TEXTEQU <__imp_GetProfilesDirectoryA>
+extern __imp_GetProfilesDirectoryW:PANYARGS
+GetProfilesDirectoryW TEXTEQU <__imp_GetProfilesDirectoryW>
+extern __imp_GetUserProfileDirectoryA:PANYARGS
+GetUserProfileDirectory  TEXTEQU <__imp_GetUserProfileDirectoryA>
+extern __imp_GetUserProfileDirectoryW:PANYARGS
+GetUserProfileDirectoryW TEXTEQU <__imp_GetUserProfileDirectoryW>
+extern __imp_LeaveCriticalPolicySection:PANYARGS
+LeaveCriticalPolicySection TEXTEQU <__imp_LeaveCriticalPolicySection>
+extern __imp_LoadUserProfileA:PANYARGS
+LoadUserProfile  TEXTEQU <__imp_LoadUserProfileA>
+extern __imp_LoadUserProfileW:PANYARGS
+LoadUserProfileW TEXTEQU <__imp_LoadUserProfileW>
+extern __imp_ProcessGroupPolicyCompleted:PANYARGS
+ProcessGroupPolicyCompleted TEXTEQU <__imp_ProcessGroupPolicyCompleted>
+extern __imp_ProcessGroupPolicyCompletedEx:PANYARGS
+ProcessGroupPolicyCompletedEx TEXTEQU <__imp_ProcessGroupPolicyCompletedEx>
+extern __imp_RefreshPolicy:PANYARGS
+RefreshPolicy TEXTEQU <__imp_RefreshPolicy>
+extern __imp_RefreshPolicyEx:PANYARGS
+RefreshPolicyEx TEXTEQU <__imp_RefreshPolicyEx>
+extern __imp_RegisterGPNotification:PANYARGS
+RegisterGPNotification TEXTEQU <__imp_RegisterGPNotification>
+extern __imp_RsopAccessCheckByType:PANYARGS
+RsopAccessCheckByType TEXTEQU <__imp_RsopAccessCheckByType>
+extern __imp_RsopFileAccessCheck:PANYARGS
+RsopFileAccessCheck TEXTEQU <__imp_RsopFileAccessCheck>
+extern __imp_RsopLoggingEnabled:PANYARGS
+RsopLoggingEnabled TEXTEQU <__imp_RsopLoggingEnabled>
+extern __imp_RsopResetPolicySettingStatus:PANYARGS
+RsopResetPolicySettingStatus TEXTEQU <__imp_RsopResetPolicySettingStatus>
+extern __imp_RsopSetPolicySettingStatus:PANYARGS
+RsopSetPolicySettingStatus TEXTEQU <__imp_RsopSetPolicySettingStatus>
+extern __imp_UnloadUserProfile:PANYARGS
+UnloadUserProfile TEXTEQU <__imp_UnloadUserProfile>
+extern __imp_UnregisterGPNotification:PANYARGS
+UnregisterGPNotification TEXTEQU <__imp_UnregisterGPNotification>
+extern __imp_WaitForMachinePolicyForegroundProcessing:PANYARGS
+WaitForMachinePolicyForegroundProcessing TEXTEQU <__imp_WaitForMachinePolicyForegroundProcessing>
+extern __imp_WaitForUserPolicyForegroundProcessing:PANYARGS
+WaitForUserPolicyForegroundProcessing TEXTEQU <__imp_WaitForUserPolicyForegroundProcessing>

@@ -1,0 +1,6 @@
+extern __imp_CloseNetSvcsObject:PANYARGS
+CloseNetSvcsObject TEXTEQU <__imp_CloseNetSvcsObject>
+extern __imp_CollectNetSvcsObjectData:PANYARGS
+CollectNetSvcsObjectData TEXTEQU <__imp_CollectNetSvcsObjectData>
+extern __imp_OpenNetSvcsObject:PANYARGS
+OpenNetSvcsObject TEXTEQU <__imp_OpenNetSvcsObject>

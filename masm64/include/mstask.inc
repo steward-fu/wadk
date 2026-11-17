@@ -1,0 +1,26 @@
+extern __imp_ConvertAtJobsToTasks:PANYARGS
+ConvertAtJobsToTasks TEXTEQU <__imp_ConvertAtJobsToTasks>
+extern __imp_DllCanUnloadNow:PANYARGS
+DllCanUnloadNow TEXTEQU <__imp_DllCanUnloadNow>
+extern __imp_DllGetClassObject:PANYARGS
+DllGetClassObject TEXTEQU <__imp_DllGetClassObject>
+extern __imp_GetNetScheduleAccountInformation:PANYARGS
+GetNetScheduleAccountInformation TEXTEQU <__imp_GetNetScheduleAccountInformation>
+extern __imp_NetrJobAdd:PANYARGS
+NetrJobAdd TEXTEQU <__imp_NetrJobAdd>
+extern __imp_NetrJobDel:PANYARGS
+NetrJobDel TEXTEQU <__imp_NetrJobDel>
+extern __imp_NetrJobEnum:PANYARGS
+NetrJobEnum TEXTEQU <__imp_NetrJobEnum>
+extern __imp_NetrJobGetInfo:PANYARGS
+NetrJobGetInfo TEXTEQU <__imp_NetrJobGetInfo>
+extern __imp_SAGetAccountInformation:PANYARGS
+SAGetAccountInformation TEXTEQU <__imp_SAGetAccountInformation>
+extern __imp_SAGetNSAccountInformation:PANYARGS
+SAGetNSAccountInformation TEXTEQU <__imp_SAGetNSAccountInformation>
+extern __imp_SASetAccountInformation:PANYARGS
+SASetAccountInformation TEXTEQU <__imp_SASetAccountInformation>
+extern __imp_SASetNSAccountInformation:PANYARGS
+SASetNSAccountInformation TEXTEQU <__imp_SASetNSAccountInformation>
+extern __imp_SetNetScheduleAccountInformation:PANYARGS
+SetNetScheduleAccountInformation TEXTEQU <__imp_SetNetScheduleAccountInformation>

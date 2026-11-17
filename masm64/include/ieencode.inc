@@ -1,0 +1,18 @@
+extern __imp_CceDetectInputCode:PANYARGS
+CceDetectInputCode TEXTEQU <__imp_CceDetectInputCode>
+extern __imp_CceGetAvailableEncodings:PANYARGS
+CceGetAvailableEncodings TEXTEQU <__imp_CceGetAvailableEncodings>
+extern __imp_CceIsAvailableEncoding:PANYARGS
+CceIsAvailableEncoding TEXTEQU <__imp_CceIsAvailableEncoding>
+extern __imp_CceStreamMultiByteToUnicode:PANYARGS
+CceStreamMultiByteToUnicode TEXTEQU <__imp_CceStreamMultiByteToUnicode>
+extern __imp_CceStreamUnicodeToMultiByte:PANYARGS
+CceStreamUnicodeToMultiByte TEXTEQU <__imp_CceStreamUnicodeToMultiByte>
+extern __imp_CceStringMultiByteToUnicode:PANYARGS
+CceStringMultiByteToUnicode TEXTEQU <__imp_CceStringMultiByteToUnicode>
+extern __imp_CceStringUnicodeToMultiByte:PANYARGS
+CceStringUnicodeToMultiByte TEXTEQU <__imp_CceStringUnicodeToMultiByte>
+extern __imp_DllMain:PANYARGS
+DllMain TEXTEQU <__imp_DllMain>
+extern __imp_FetchMsEncodeDllVersion:PANYARGS
+FetchMsEncodeDllVersion TEXTEQU <__imp_FetchMsEncodeDllVersion>

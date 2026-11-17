@@ -1,0 +1,8 @@
+extern __imp_BaseSetProcessCreateNotify:PANYARGS
+BaseSetProcessCreateNotify TEXTEQU <__imp_BaseSetProcessCreateNotify>
+extern __imp_BaseSrvNlsLogon:PANYARGS
+BaseSrvNlsLogon TEXTEQU <__imp_BaseSrvNlsLogon>
+extern __imp_BaseSrvNlsUpdateRegistryCache:PANYARGS
+BaseSrvNlsUpdateRegistryCache TEXTEQU <__imp_BaseSrvNlsUpdateRegistryCache>
+extern __imp_ServerDllInitialization:PANYARGS
+ServerDllInitialization TEXTEQU <__imp_ServerDllInitialization>

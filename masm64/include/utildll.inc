@@ -1,0 +1,72 @@
+extern __imp_AsyncDeviceEnumerate:PANYARGS
+AsyncDeviceEnumerate TEXTEQU <__imp_AsyncDeviceEnumerate>
+extern __imp_CachedGetUserFromSid:PANYARGS
+CachedGetUserFromSid TEXTEQU <__imp_CachedGetUserFromSid>
+extern __imp_CalculateDiffTime:PANYARGS
+CalculateDiffTime TEXTEQU <__imp_CalculateDiffTime>
+extern __imp_CalculateElapsedTime:PANYARGS
+CalculateElapsedTime TEXTEQU <__imp_CalculateElapsedTime>
+extern __imp_CompareElapsedTime:PANYARGS
+CompareElapsedTime TEXTEQU <__imp_CompareElapsedTime>
+extern __imp_ConfigureModem:PANYARGS
+ConfigureModem TEXTEQU <__imp_ConfigureModem>
+extern __imp_CtxGetAnyDCName:PANYARGS
+CtxGetAnyDCName TEXTEQU <__imp_CtxGetAnyDCName>
+extern __imp_CurrentDateTimeString:PANYARGS
+CurrentDateTimeString TEXTEQU <__imp_CurrentDateTimeString>
+extern __imp_DateTimeString:PANYARGS
+DateTimeString TEXTEQU <__imp_DateTimeString>
+extern __imp_ElapsedTimeString:PANYARGS
+ElapsedTimeString TEXTEQU <__imp_ElapsedTimeString>
+extern __imp_EnumerateMultiUserServers:PANYARGS
+EnumerateMultiUserServers TEXTEQU <__imp_EnumerateMultiUserServers>
+extern __imp_FormDecoratedAsyncDeviceName:PANYARGS
+FormDecoratedAsyncDeviceName TEXTEQU <__imp_FormDecoratedAsyncDeviceName>
+extern __imp_GetAssociatedPortName:PANYARGS
+GetAssociatedPortName TEXTEQU <__imp_GetAssociatedPortName>
+extern __imp_GetSystemMessageA:PANYARGS
+GetSystemMessage  TEXTEQU <__imp_GetSystemMessageA>
+extern __imp_GetSystemMessageW:PANYARGS
+GetSystemMessageW TEXTEQU <__imp_GetSystemMessageW>
+extern __imp_GetUnknownString:PANYARGS
+GetUnknownString TEXTEQU <__imp_GetUnknownString>
+extern __imp_GetUserFromSid:PANYARGS
+GetUserFromSid TEXTEQU <__imp_GetUserFromSid>
+extern __imp_HaveAnonymousUsersChanged:PANYARGS
+HaveAnonymousUsersChanged TEXTEQU <__imp_HaveAnonymousUsersChanged>
+extern __imp_InitializeAnonymousUserCompareList:PANYARGS
+InitializeAnonymousUserCompareList TEXTEQU <__imp_InitializeAnonymousUserCompareList>
+extern __imp_InstallModem:PANYARGS
+InstallModem TEXTEQU <__imp_InstallModem>
+extern __imp_IsPartOfDomain:PANYARGS
+IsPartOfDomain TEXTEQU <__imp_IsPartOfDomain>
+extern __imp_NetBIOSDeviceEnumerate:PANYARGS
+NetBIOSDeviceEnumerate TEXTEQU <__imp_NetBIOSDeviceEnumerate>
+extern __imp_NetworkDeviceEnumerate:PANYARGS
+NetworkDeviceEnumerate TEXTEQU <__imp_NetworkDeviceEnumerate>
+extern __imp_ParseDecoratedAsyncDeviceName:PANYARGS
+ParseDecoratedAsyncDeviceName TEXTEQU <__imp_ParseDecoratedAsyncDeviceName>
+extern __imp_QueryCurrentWinStation:PANYARGS
+QueryCurrentWinStation TEXTEQU <__imp_QueryCurrentWinStation>
+extern __imp_RegGetNetworkDeviceName:PANYARGS
+RegGetNetworkDeviceName TEXTEQU <__imp_RegGetNetworkDeviceName>
+extern __imp_RegGetNetworkServiceName:PANYARGS
+RegGetNetworkServiceName TEXTEQU <__imp_RegGetNetworkServiceName>
+extern __imp_SetupAsyncCdConfig:PANYARGS
+SetupAsyncCdConfig TEXTEQU <__imp_SetupAsyncCdConfig>
+extern __imp_StandardErrorMessage:PANYARGS
+StandardErrorMessage TEXTEQU <__imp_StandardErrorMessage>
+extern __imp_StrAsyncConnectState:PANYARGS
+StrAsyncConnectState TEXTEQU <__imp_StrAsyncConnectState>
+extern __imp_StrConnectState:PANYARGS
+StrConnectState TEXTEQU <__imp_StrConnectState>
+extern __imp_StrProcessState:PANYARGS
+StrProcessState TEXTEQU <__imp_StrProcessState>
+extern __imp_StrSdClass:PANYARGS
+StrSdClass TEXTEQU <__imp_StrSdClass>
+extern __imp_StrSystemWaitReason:PANYARGS
+StrSystemWaitReason TEXTEQU <__imp_StrSystemWaitReason>
+extern __imp_TestUserForAdmin:PANYARGS
+TestUserForAdmin TEXTEQU <__imp_TestUserForAdmin>
+extern __imp_WinEnumerateDevices:PANYARGS
+WinEnumerateDevices TEXTEQU <__imp_WinEnumerateDevices>

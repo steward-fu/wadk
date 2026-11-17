@@ -1,0 +1,6 @@
+extern __imp_InternetInitializeAutoProxyDll:PANYARGS
+InternetInitializeAutoProxyDll TEXTEQU <__imp_InternetInitializeAutoProxyDll>
+extern __imp_InternetDeInitializeAutoProxyDll:PANYARGS
+InternetDeInitializeAutoProxyDll TEXTEQU <__imp_InternetDeInitializeAutoProxyDll>
+extern __imp_InternetGetProxyInfo:PANYARGS
+InternetGetProxyInfo TEXTEQU <__imp_InternetGetProxyInfo>

@@ -1,0 +1,8 @@
+extern __imp_ConServerDllInitialization:PANYARGS
+ConServerDllInitialization TEXTEQU <__imp_ConServerDllInitialization>
+extern __imp_UserServerDllInitialization:PANYARGS
+UserServerDllInitialization TEXTEQU <__imp_UserServerDllInitialization>
+extern __imp__UserSoundSentry:PANYARGS
+_UserSoundSentry TEXTEQU <__imp__UserSoundSentry>
+extern __imp__UserTestTokenForInteractive:PANYARGS
+_UserTestTokenForInteractive TEXTEQU <__imp__UserTestTokenForInteractive>

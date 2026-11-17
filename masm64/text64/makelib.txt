@@ -1,0 +1,28 @@
+@echo off
+  if "%1" == "" goto quit
+  if "%1" == "?" goto help
+  dir /b *.asm > src.txt
+  \masm64\bin64\ml64 /c @src.txt
+  dir /b *.obj > obj.txt
+  @echo.
+  \masm64\bin64\lib /MACHINE:X64 /OUT:%1.lib @obj.txt
+  del *.obj
+  del obj.txt
+  del src.txt
+  dir *.lib
+  pause
+  goto theend
+:help
+  @echo.
+  @echo ****************************
+  @echo SYNTAX : makelib YourLibName
+  @echo ****************************
+  @echo.
+  pause
+  goto theend
+:quit
+  %echo --------------------------------------------------------------------------------------------
+  %echo Missing library name, run the batch file with the library name you require with NO extension
+  %echo --------------------------------------------------------------------------------------------
+  goto help
+:theend

@@ -1,0 +1,24 @@
+extern __imp_GetClientAdvises:PANYARGS
+GetClientAdvises TEXTEQU <__imp_GetClientAdvises>
+extern __imp_DllRegisterServer:PANYARGS
+DllRegisterServer TEXTEQU <__imp_DllRegisterServer>
+extern __imp_DllUnregisterServer:PANYARGS
+DllUnregisterServer TEXTEQU <__imp_DllUnregisterServer>
+extern __imp_HrGetPnpDeviceStatus:PANYARGS
+HrGetPnpDeviceStatus TEXTEQU <__imp_HrGetPnpDeviceStatus>
+extern __imp_HrLanConnectionNameFromGuidOrPath:PANYARGS
+HrLanConnectionNameFromGuidOrPath TEXTEQU <__imp_HrLanConnectionNameFromGuidOrPath>
+extern __imp_HrPnpInstanceIdFromGuid:PANYARGS
+HrPnpInstanceIdFromGuid TEXTEQU <__imp_HrPnpInstanceIdFromGuid>
+extern __imp_HrQueryLanMediaState:PANYARGS
+HrQueryLanMediaState TEXTEQU <__imp_HrQueryLanMediaState>
+extern __imp_HrRasConnectionNameFromGuid:PANYARGS
+HrRasConnectionNameFromGuid TEXTEQU <__imp_HrRasConnectionNameFromGuid>
+extern __imp_NetManDiagFromCommandArgs:PANYARGS
+NetManDiagFromCommandArgs TEXTEQU <__imp_NetManDiagFromCommandArgs>
+extern __imp_ProcessQueue:PANYARGS
+ProcessQueue TEXTEQU <__imp_ProcessQueue>
+extern __imp_RasEventNotify:PANYARGS
+RasEventNotify TEXTEQU <__imp_RasEventNotify>
+extern __imp_ServiceMain:PANYARGS
+ServiceMain TEXTEQU <__imp_ServiceMain>

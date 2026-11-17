@@ -1,0 +1,81 @@
+; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい
+
+[callname] proc
+
+    invoke DialogBoxParam,hInstance,[dlgID],hWnd,ADDR [dialog],0      ; call as modal dialog
+
+    ret
+
+[callname] endp
+
+; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい
+
+    In .data? section
+
+    hBrush dq ?
+    bBordr dq ?
+    eColor dq ?
+    lColor dq ?
+
+  ; --------------------
+  ; dialog brush colours
+  ; --------------------
+    mov hBrush, rvcall(CreateSolidBrush,00222222h)      ; create the dialog background brush
+    mov bBordr, rvcall(CreateSolidBrush,00222222h)      ; create the button border colour
+    mov eColor, rvcall(CreateSolidBrush,00111111h)      ; create the Edit window back colour
+    mov lColor, rvcall(CreateSolidBrush,00333333h)      ; create the list and combo back colour
+
+; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい
+
+[dialog] proc hWin:QWORD,uMsg:QWORD,wParam:QWORD,lParam:QWORD
+
+ ;     LOCAL icoImg :QWORD
+
+    .switch uMsg
+      .case WM_INITDIALOG
+
+ ;         mov icoImg, rvcall(GetDlgItem,hWin,CTLnum)
+ ;         invoke SendMessage,icoImg,STM_SETIMAGE,IMAGE_ICON,hIcon     ; large icon
+
+      .case WM_COMMAND
+        .switch wParam
+          .case 1111                ; set correct ID here
+            jmp exit_dialog
+        .endsw
+
+    ; ----------------------------------
+    ; CTL_COLORxxx variables are globals
+    ; ----------------------------------
+      .case WM_CTLCOLORDLG
+        mov rax, hBrush
+        ret
+
+      .case WM_CTLCOLORBTN
+        mov rax, bBordr
+        ret
+
+      .case WM_CTLCOLORSTATIC                                       ; static controls
+        rcall SetBkColor,wParam,00222222h
+        rcall SetTextColor,wParam,00FFFFFFh
+        mov rax, hBrush
+        ret
+
+      .case WM_CTLCOLOREDIT                                         ; edit controls
+        rcall SetBkColor,wParam,00111111h
+        rcall SetTextColor,wParam,00FFFFFFh
+        mov rax, eColor
+        ret
+
+      .case WM_CLOSE
+        exit_dialog:
+        invoke EndDialog,hWin,0                                     ; exit from system menu
+
+    .endsw
+
+    xor rax, rax
+
+    ret
+
+[dialog] endp
+
+; いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい

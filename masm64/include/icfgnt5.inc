@@ -1,0 +1,30 @@
+extern __imp_IcfgInstallModem:PANYARGS
+IcfgInstallModem TEXTEQU <__imp_IcfgInstallModem>
+extern __imp_IcfgNeedModem:PANYARGS
+IcfgNeedModem TEXTEQU <__imp_IcfgNeedModem>
+extern __imp_IcfgSetInstallSourcePath:PANYARGS
+IcfgSetInstallSourcePath TEXTEQU <__imp_IcfgSetInstallSourcePath>
+extern __imp_InetSetAutodial:PANYARGS
+InetSetAutodial TEXTEQU <__imp_InetSetAutodial>
+extern __imp_InetSetAutodialAddress:PANYARGS
+InetSetAutodialAddress TEXTEQU <__imp_InetSetAutodialAddress>
+extern __imp_IcfgGetLastInstallErrorText:PANYARGS
+IcfgGetLastInstallErrorText TEXTEQU <__imp_IcfgGetLastInstallErrorText>
+extern __imp_IcfgInstallInetComponents:PANYARGS
+IcfgInstallInetComponents TEXTEQU <__imp_IcfgInstallInetComponents>
+extern __imp_IcfgIsFileSharingTurnedOn:PANYARGS
+IcfgIsFileSharingTurnedOn TEXTEQU <__imp_IcfgIsFileSharingTurnedOn>
+extern __imp_IcfgIsGlobalDNS:PANYARGS
+IcfgIsGlobalDNS TEXTEQU <__imp_IcfgIsGlobalDNS>
+extern __imp_IcfgNeedInetComponents:PANYARGS
+IcfgNeedInetComponents TEXTEQU <__imp_IcfgNeedInetComponents>
+extern __imp_IcfgRemoveGlobalDNS:PANYARGS
+IcfgRemoveGlobalDNS TEXTEQU <__imp_IcfgRemoveGlobalDNS>
+extern __imp_IcfgStartServices:PANYARGS
+IcfgStartServices TEXTEQU <__imp_IcfgStartServices>
+extern __imp_IcfgTurnOffFileSharing:PANYARGS
+IcfgTurnOffFileSharing TEXTEQU <__imp_IcfgTurnOffFileSharing>
+extern __imp_InetGetAutodial:PANYARGS
+InetGetAutodial TEXTEQU <__imp_InetGetAutodial>
+extern __imp_InetGetSupportedPlatform:PANYARGS
+InetGetSupportedPlatform TEXTEQU <__imp_InetGetSupportedPlatform>

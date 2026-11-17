@@ -1,0 +1,13 @@
+: ----------------------------------------
+:  batch file to assemble a module
+: ----------------------------------------
+
+    @echo off
+    set module=[module_name_here]
+
+    \masm64\bin64\ml64.exe /c %module%.asm
+
+    dir %module%.*
+    pause
+
+: ----------------------------------------

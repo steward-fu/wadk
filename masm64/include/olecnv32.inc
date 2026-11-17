@@ -1,0 +1,2 @@
+extern __imp_QD2GDI:PANYARGS
+QD2GDI TEXTEQU <__imp_QD2GDI>

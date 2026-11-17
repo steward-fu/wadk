@@ -1,0 +1,78 @@
+extern __imp_TF_GetLangIcon:PANYARGS
+TF_GetLangIcon TEXTEQU <__imp_TF_GetLangIcon>
+extern __imp_TF_GetMlngHKL:PANYARGS
+TF_GetMlngHKL TEXTEQU <__imp_TF_GetMlngHKL>
+extern __imp_TF_GetMlngIconIndex:PANYARGS
+TF_GetMlngIconIndex TEXTEQU <__imp_TF_GetMlngIconIndex>
+extern __imp_TF_GetThreadFlags:PANYARGS
+TF_GetThreadFlags TEXTEQU <__imp_TF_GetThreadFlags>
+extern __imp_TF_InatExtractIcon:PANYARGS
+TF_InatExtractIcon TEXTEQU <__imp_TF_InatExtractIcon>
+extern __imp_TF_InitMlngInfo:PANYARGS
+TF_InitMlngInfo TEXTEQU <__imp_TF_InitMlngInfo>
+extern __imp_TF_IsInMarshaling:PANYARGS
+TF_IsInMarshaling TEXTEQU <__imp_TF_IsInMarshaling>
+extern __imp_TF_MlngInfoCount:PANYARGS
+TF_MlngInfoCount TEXTEQU <__imp_TF_MlngInfoCount>
+extern __imp_TF_RunInputCPL:PANYARGS
+TF_RunInputCPL TEXTEQU <__imp_TF_RunInputCPL>
+extern __imp_DllCanUnloadNow:PANYARGS
+DllCanUnloadNow TEXTEQU <__imp_DllCanUnloadNow>
+extern __imp_DllGetClassObject:PANYARGS
+DllGetClassObject TEXTEQU <__imp_DllGetClassObject>
+extern __imp_DllRegisterServer:PANYARGS
+DllRegisterServer TEXTEQU <__imp_DllRegisterServer>
+extern __imp_DllUnregisterServer:PANYARGS
+DllUnregisterServer TEXTEQU <__imp_DllUnregisterServer>
+extern __imp_SetInputScope:PANYARGS
+SetInputScope TEXTEQU <__imp_SetInputScope>
+extern __imp_SetInputScopeXML:PANYARGS
+SetInputScopeXML TEXTEQU <__imp_SetInputScopeXML>
+extern __imp_SetInputScopes:PANYARGS
+SetInputScopes TEXTEQU <__imp_SetInputScopes>
+extern __imp_TF_CUASAppFix:PANYARGS
+TF_CUASAppFix TEXTEQU <__imp_TF_CUASAppFix>
+extern __imp_TF_CheckThreadInputIdle:PANYARGS
+TF_CheckThreadInputIdle TEXTEQU <__imp_TF_CheckThreadInputIdle>
+extern __imp_TF_ClearLangBarAddIns:PANYARGS
+TF_ClearLangBarAddIns TEXTEQU <__imp_TF_ClearLangBarAddIns>
+extern __imp_TF_CreateCategoryMgr:PANYARGS
+TF_CreateCategoryMgr TEXTEQU <__imp_TF_CreateCategoryMgr>
+extern __imp_TF_CreateCicLoadMutex:PANYARGS
+TF_CreateCicLoadMutex TEXTEQU <__imp_TF_CreateCicLoadMutex>
+extern __imp_TF_CreateDisplayAttributeMgr:PANYARGS
+TF_CreateDisplayAttributeMgr TEXTEQU <__imp_TF_CreateDisplayAttributeMgr>
+extern __imp_TF_CreateInputProcessorProfiles:PANYARGS
+TF_CreateInputProcessorProfiles TEXTEQU <__imp_TF_CreateInputProcessorProfiles>
+extern __imp_TF_CreateLangBarItemMgr:PANYARGS
+TF_CreateLangBarItemMgr TEXTEQU <__imp_TF_CreateLangBarItemMgr>
+extern __imp_TF_CreateLangBarMgr:PANYARGS
+TF_CreateLangBarMgr TEXTEQU <__imp_TF_CreateLangBarMgr>
+extern __imp_TF_CreateThreadMgr:PANYARGS
+TF_CreateThreadMgr TEXTEQU <__imp_TF_CreateThreadMgr>
+extern __imp_TF_DllDetachInOther:PANYARGS
+TF_DllDetachInOther TEXTEQU <__imp_TF_DllDetachInOther>
+extern __imp_TF_GetGlobalCompartment:PANYARGS
+TF_GetGlobalCompartment TEXTEQU <__imp_TF_GetGlobalCompartment>
+extern __imp_TF_GetInputScope:PANYARGS
+TF_GetInputScope TEXTEQU <__imp_TF_GetInputScope>
+extern __imp_TF_GetThreadMgr:PANYARGS
+TF_GetThreadMgr TEXTEQU <__imp_TF_GetThreadMgr>
+extern __imp_TF_InitSystem:PANYARGS
+TF_InitSystem TEXTEQU <__imp_TF_InitSystem>
+extern __imp_TF_InvalidAssemblyListCache:PANYARGS
+TF_InvalidAssemblyListCache TEXTEQU <__imp_TF_InvalidAssemblyListCache>
+extern __imp_TF_InvalidAssemblyListCacheIfExist:PANYARGS
+TF_InvalidAssemblyListCacheIfExist TEXTEQU <__imp_TF_InvalidAssemblyListCacheIfExist>
+extern __imp_TF_IsCtfmonRunning:PANYARGS
+TF_IsCtfmonRunning TEXTEQU <__imp_TF_IsCtfmonRunning>
+extern __imp_TF_IsFullScreenWindowAcitvated:PANYARGS
+TF_IsFullScreenWindowAcitvated TEXTEQU <__imp_TF_IsFullScreenWindowAcitvated>
+extern __imp_TF_PostAllThreadMsg:PANYARGS
+TF_PostAllThreadMsg TEXTEQU <__imp_TF_PostAllThreadMsg>
+extern __imp_TF_RegisterLangBarAddIn:PANYARGS
+TF_RegisterLangBarAddIn TEXTEQU <__imp_TF_RegisterLangBarAddIn>
+extern __imp_TF_UninitSystem:PANYARGS
+TF_UninitSystem TEXTEQU <__imp_TF_UninitSystem>
+extern __imp_TF_UnregisterLangBarAddIn:PANYARGS
+TF_UnregisterLangBarAddIn TEXTEQU <__imp_TF_UnregisterLangBarAddIn>

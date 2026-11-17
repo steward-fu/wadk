@@ -1,0 +1,6 @@
+extern __imp_CloseSysProcessObject:PANYARGS
+CloseSysProcessObject TEXTEQU <__imp_CloseSysProcessObject>
+extern __imp_CollectSysProcessObjectData:PANYARGS
+CollectSysProcessObjectData TEXTEQU <__imp_CollectSysProcessObjectData>
+extern __imp_OpenSysProcessObject:PANYARGS
+OpenSysProcessObject TEXTEQU <__imp_OpenSysProcessObject>

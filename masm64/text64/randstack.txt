@@ -1,0 +1,9 @@
+  ; ---------------
+  ; randomise stack
+  ; ---------------
+    rcall seed_rrand,rv(get_unique_seed)        ; get a unique seed
+    rcall rrand,1,16                            ; get a random number vetween 1 & 16
+    shl rax, 6                                  ; mul by 64
+    alignup rax, 16                             ; align it up to next 16 byte boundary
+    sub rsp, rax                                ; subtract it from rsp
+  ; ---------------

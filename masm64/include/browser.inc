@@ -1,0 +1,6 @@
+extern __imp_I_BrowserServerEnumForXactsrv:PANYARGS
+I_BrowserServerEnumForXactsrv TEXTEQU <__imp_I_BrowserServerEnumForXactsrv>
+extern __imp_ServiceMain:PANYARGS
+ServiceMain TEXTEQU <__imp_ServiceMain>
+extern __imp_SvchostPushServiceGlobals:PANYARGS
+SvchostPushServiceGlobals TEXTEQU <__imp_SvchostPushServiceGlobals>

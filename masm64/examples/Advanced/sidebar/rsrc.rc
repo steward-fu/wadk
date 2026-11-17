@@ -1,0 +1,76 @@
+// *************************************************************************************************
+
+#include "\masm64\include64\resource.h"
+
+// *************************************************************************************************
+
+1 24 "manifest.xml"    // manifest file
+
+10 ICON MOVEABLE PURE LOADONCALL DISCARDABLE "icon.ico"
+20 BITMAP MOVEABLE PURE LOADONCALL DISCARDABLE "toolbar.bmp"
+30 BITMAP MOVEABLE PURE LOADONCALL DISCARDABLE "gradient.bmp"
+
+100	MENUEX MOVEABLE IMPURE LOADONCALL DISCARDABLE
+BEGIN
+    POPUP "&File", , , 0
+    BEGIN
+        MENUITEM "&New",  101
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "&Open", 102
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "&Save", 103
+        MENUITEM "&Save As", 104
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "&Exit", 125
+    END
+
+    POPUP "&Edit", , , 0
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z", 200
+        MENUITEM "&Redo\tCtrl+Y", 201
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "&Cut\tCtrl+X", 202
+        MENUITEM "Copy\tCtrl+C", 203
+        MENUITEM "&Paste\tCtrl+V", 204
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "Clear\tDel", 205
+    END
+
+    POPUP "&Help    ", ,MFT_RIGHTJUSTIFY, 0
+    BEGIN
+        MENUITEM "&About", 300
+    END
+END
+
+#include "dlgs.rc"
+
+// *************************************************************************************************
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION 1, 0, 0, 0
+PRODUCTVERSION 1, 0, 0, 0
+FILEOS VOS__WINDOWS32
+FILETYPE VFT_APP
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904B0"
+    BEGIN
+      VALUE "CompanyName",      "The MASM32 SDK\000"
+      VALUE "FileDescription",  "Vertical Toolbar Demo\000"
+      VALUE "FileVersion",      "1.0\000"
+      VALUE "InternalName",     "vtedit\000"
+      VALUE "OriginalFilename", "vtedit.exe\000"
+      VALUE "LegalCopyright",   "\251 2016 The MASM32 SDK\000"
+      VALUE "ProductName",      "vtedit\000"
+      VALUE "ProductVersion",   "1.0\000"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 0x4B0
+  END
+END
+
+// *************************************************************************************************
+

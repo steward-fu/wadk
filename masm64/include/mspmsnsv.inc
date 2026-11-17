@@ -1,0 +1,8 @@
+extern __imp_ServiceMain:PANYARGS
+ServiceMain TEXTEQU <__imp_ServiceMain>
+extern __imp_DllMain:PANYARGS
+DllMain TEXTEQU <__imp_DllMain>
+extern __imp_DllRegisterServer:PANYARGS
+DllRegisterServer TEXTEQU <__imp_DllRegisterServer>
+extern __imp_DllUnregisterServer:PANYARGS
+DllUnregisterServer TEXTEQU <__imp_DllUnregisterServer>

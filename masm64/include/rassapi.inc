@@ -1,0 +1,28 @@
+extern __imp_RasAdminDLLInit:PANYARGS
+RasAdminDLLInit TEXTEQU <__imp_RasAdminDLLInit>
+extern __imp_RasAdminUserSetInfo:PANYARGS
+RasAdminUserSetInfo TEXTEQU <__imp_RasAdminUserSetInfo>
+extern __imp_RasAdminUserGetInfo:PANYARGS
+RasAdminUserGetInfo TEXTEQU <__imp_RasAdminUserGetInfo>
+extern __imp_RasAdminGetUserAccountServer:PANYARGS
+RasAdminGetUserAccountServer TEXTEQU <__imp_RasAdminGetUserAccountServer>
+extern __imp_RasAdminPortEnum:PANYARGS
+RasAdminPortEnum TEXTEQU <__imp_RasAdminPortEnum>
+extern __imp_RasAdminPortGetInfo:PANYARGS
+RasAdminPortGetInfo TEXTEQU <__imp_RasAdminPortGetInfo>
+extern __imp_RasAdminPortClearStatistics:PANYARGS
+RasAdminPortClearStatistics TEXTEQU <__imp_RasAdminPortClearStatistics>
+extern __imp_RasAdminServerGetInfo:PANYARGS
+RasAdminServerGetInfo TEXTEQU <__imp_RasAdminServerGetInfo>
+extern __imp_RasAdminPortDisconnect:PANYARGS
+RasAdminPortDisconnect TEXTEQU <__imp_RasAdminPortDisconnect>
+extern __imp_RasAdminFreeBuffer:PANYARGS
+RasAdminFreeBuffer TEXTEQU <__imp_RasAdminFreeBuffer>
+extern __imp_RasAdminSetUserParms:PANYARGS
+RasAdminSetUserParms TEXTEQU <__imp_RasAdminSetUserParms>
+extern __imp_RasAdminGetUserParms:PANYARGS
+RasAdminGetUserParms TEXTEQU <__imp_RasAdminGetUserParms>
+extern __imp_RasAdminCompressPhoneNumber:PANYARGS
+RasAdminCompressPhoneNumber TEXTEQU <__imp_RasAdminCompressPhoneNumber>
+extern __imp_RasAdminGetErrorString:PANYARGS
+RasAdminGetErrorString TEXTEQU <__imp_RasAdminGetErrorString>

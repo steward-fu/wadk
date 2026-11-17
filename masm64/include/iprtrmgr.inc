@@ -1,0 +1,8 @@
+extern __imp_MapAddressToAdapter:PANYARGS
+MapAddressToAdapter TEXTEQU <__imp_MapAddressToAdapter>
+extern __imp_MapInterfaceToAdapter:PANYARGS
+MapInterfaceToAdapter TEXTEQU <__imp_MapInterfaceToAdapter>
+extern __imp_MapInterfaceToRouterIfType:PANYARGS
+MapInterfaceToRouterIfType TEXTEQU <__imp_MapInterfaceToRouterIfType>
+extern __imp_StartRouter:PANYARGS
+StartRouter TEXTEQU <__imp_StartRouter>

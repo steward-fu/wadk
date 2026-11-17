@@ -1,0 +1,18 @@
+extern __imp_DeleteServicePlugPlayRegKeys:PANYARGS
+DeleteServicePlugPlayRegKeys TEXTEQU <__imp_DeleteServicePlugPlayRegKeys>
+extern __imp_PNP_GetDeviceList:PANYARGS
+PNP_GetDeviceList TEXTEQU <__imp_PNP_GetDeviceList>
+extern __imp_PNP_GetDeviceListSize:PANYARGS
+PNP_GetDeviceListSize TEXTEQU <__imp_PNP_GetDeviceListSize>
+extern __imp_PNP_GetDeviceRegProp:PANYARGS
+PNP_GetDeviceRegProp TEXTEQU <__imp_PNP_GetDeviceRegProp>
+extern __imp_PNP_HwProfFlags:PANYARGS
+PNP_HwProfFlags TEXTEQU <__imp_PNP_HwProfFlags>
+extern __imp_PNP_SetActiveService:PANYARGS
+PNP_SetActiveService TEXTEQU <__imp_PNP_SetActiveService>
+extern __imp_RegisterScmCallback:PANYARGS
+RegisterScmCallback TEXTEQU <__imp_RegisterScmCallback>
+extern __imp_RegisterServiceNotification:PANYARGS
+RegisterServiceNotification TEXTEQU <__imp_RegisterServiceNotification>
+extern __imp_SvcEntry_PlugPlay:PANYARGS
+SvcEntry_PlugPlay TEXTEQU <__imp_SvcEntry_PlugPlay>

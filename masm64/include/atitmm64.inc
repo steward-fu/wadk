@@ -1,0 +1,16 @@
+extern __imp_ATIDMM_ControllerSetConfig:PANYARGS
+ATIDMM_ControllerSetConfig TEXTEQU <__imp_ATIDMM_ControllerSetConfig>
+extern __imp_ATIDMM_ExtEscape:PANYARGS
+ATIDMM_ExtEscape TEXTEQU <__imp_ATIDMM_ExtEscape>
+extern __imp_ATIDMM_GetSourceID:PANYARGS
+ATIDMM_GetSourceID TEXTEQU <__imp_ATIDMM_GetSourceID>
+extern __imp_ATIDMM_SetDriverConfiguration:PANYARGS
+ATIDMM_SetDriverConfiguration TEXTEQU <__imp_ATIDMM_SetDriverConfiguration>
+extern __imp_DllCanUnloadNow:PANYARGS
+DllCanUnloadNow TEXTEQU <__imp_DllCanUnloadNow>
+extern __imp_DllGetClassObject:PANYARGS
+DllGetClassObject TEXTEQU <__imp_DllGetClassObject>
+extern __imp_DllRegisterServer:PANYARGS
+DllRegisterServer TEXTEQU <__imp_DllRegisterServer>
+extern __imp_DllUnregisterServer:PANYARGS
+DllUnregisterServer TEXTEQU <__imp_DllUnregisterServer>

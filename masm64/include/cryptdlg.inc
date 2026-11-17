@@ -1,0 +1,42 @@
+extern __imp_CertConfigureTrustA:PANYARGS
+CertConfigureTrust  TEXTEQU <__imp_CertConfigureTrustA>
+extern __imp_CertConfigureTrustW:PANYARGS
+CertConfigureTrustW TEXTEQU <__imp_CertConfigureTrustW>
+extern __imp_CertTrustCertPolicy:PANYARGS
+CertTrustCertPolicy TEXTEQU <__imp_CertTrustCertPolicy>
+extern __imp_CertTrustCleanup:PANYARGS
+CertTrustCleanup TEXTEQU <__imp_CertTrustCleanup>
+extern __imp_CertTrustFinalPolicy:PANYARGS
+CertTrustFinalPolicy TEXTEQU <__imp_CertTrustFinalPolicy>
+extern __imp_CertTrustInit:PANYARGS
+CertTrustInit TEXTEQU <__imp_CertTrustInit>
+extern __imp_DecodeAttrSequence:PANYARGS
+DecodeAttrSequence TEXTEQU <__imp_DecodeAttrSequence>
+extern __imp_DecodeRecipientID:PANYARGS
+DecodeRecipientID TEXTEQU <__imp_DecodeRecipientID>
+extern __imp_EncodeAttrSequence:PANYARGS
+EncodeAttrSequence TEXTEQU <__imp_EncodeAttrSequence>
+extern __imp_EncodeRecipientID:PANYARGS
+EncodeRecipientID TEXTEQU <__imp_EncodeRecipientID>
+extern __imp_FormatPKIXEmailProtection:PANYARGS
+FormatPKIXEmailProtection TEXTEQU <__imp_FormatPKIXEmailProtection>
+extern __imp_FormatVerisignExtension:PANYARGS
+FormatVerisignExtension TEXTEQU <__imp_FormatVerisignExtension>
+extern __imp_CertModifyCertificatesToTrust:PANYARGS
+CertModifyCertificatesToTrust TEXTEQU <__imp_CertModifyCertificatesToTrust>
+extern __imp_CertSelectCertificateA:PANYARGS
+CertSelectCertificate  TEXTEQU <__imp_CertSelectCertificateA>
+extern __imp_CertSelectCertificateW:PANYARGS
+CertSelectCertificateW TEXTEQU <__imp_CertSelectCertificateW>
+extern __imp_CertViewPropertiesA:PANYARGS
+CertViewProperties  TEXTEQU <__imp_CertViewPropertiesA>
+extern __imp_CertViewPropertiesW:PANYARGS
+CertViewPropertiesW TEXTEQU <__imp_CertViewPropertiesW>
+extern __imp_DllRegisterServer:PANYARGS
+DllRegisterServer TEXTEQU <__imp_DllRegisterServer>
+extern __imp_DllUnregisterServer:PANYARGS
+DllUnregisterServer TEXTEQU <__imp_DllUnregisterServer>
+extern __imp_GetFriendlyNameOfCertA:PANYARGS
+GetFriendlyNameOfCert  TEXTEQU <__imp_GetFriendlyNameOfCertA>
+extern __imp_GetFriendlyNameOfCertW:PANYARGS
+GetFriendlyNameOfCertW TEXTEQU <__imp_GetFriendlyNameOfCertW>

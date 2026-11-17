@@ -1,0 +1,6 @@
+extern __imp_WPUGetQOSTemplate:PANYARGS
+WPUGetQOSTemplate TEXTEQU <__imp_WPUGetQOSTemplate>
+extern __imp_WSCInstallQOSTemplate:PANYARGS
+WSCInstallQOSTemplate TEXTEQU <__imp_WSCInstallQOSTemplate>
+extern __imp_WSCRemoveQOSTemplate:PANYARGS
+WSCRemoveQOSTemplate TEXTEQU <__imp_WSCRemoveQOSTemplate>

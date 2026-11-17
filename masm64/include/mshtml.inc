@@ -1,0 +1,38 @@
+extern __imp_CreateHTMLPropertyPage:PANYARGS
+CreateHTMLPropertyPage TEXTEQU <__imp_CreateHTMLPropertyPage>
+extern __imp_DllCanUnloadNow:PANYARGS
+DllCanUnloadNow TEXTEQU <__imp_DllCanUnloadNow>
+extern __imp_DllEnumClassObjects:PANYARGS
+DllEnumClassObjects TEXTEQU <__imp_DllEnumClassObjects>
+extern __imp_DllGetClassObject:PANYARGS
+DllGetClassObject TEXTEQU <__imp_DllGetClassObject>
+extern __imp_DllInstall:PANYARGS
+DllInstall TEXTEQU <__imp_DllInstall>
+extern __imp_DllRegisterServer:PANYARGS
+DllRegisterServer TEXTEQU <__imp_DllRegisterServer>
+extern __imp_DllUnregisterServer:PANYARGS
+DllUnregisterServer TEXTEQU <__imp_DllUnregisterServer>
+extern __imp_MatchExactGetIDsOfNames:PANYARGS
+MatchExactGetIDsOfNames TEXTEQU <__imp_MatchExactGetIDsOfNames>
+extern __imp_PrintHTML:PANYARGS
+PrintHTML TEXTEQU <__imp_PrintHTML>
+extern __imp_RNIGetCompatibleVersion:PANYARGS
+RNIGetCompatibleVersion TEXTEQU <__imp_RNIGetCompatibleVersion>
+extern __imp_RunHTMLApplication:PANYARGS
+RunHTMLApplication TEXTEQU <__imp_RunHTMLApplication>
+extern __imp_ShowHTMLDialog:PANYARGS
+ShowHTMLDialog TEXTEQU <__imp_ShowHTMLDialog>
+extern __imp_ShowHTMLDialogEx:PANYARGS
+ShowHTMLDialogEx TEXTEQU <__imp_ShowHTMLDialogEx>
+extern __imp_ShowModalDialog:PANYARGS
+ShowModalDialog TEXTEQU <__imp_ShowModalDialog>
+extern __imp_ShowModelessHTMLDialog:PANYARGS
+ShowModelessHTMLDialog TEXTEQU <__imp_ShowModelessHTMLDialog>
+extern __imp_com_ms_osp_ospmrshl_classInit:PANYARGS
+com_ms_osp_ospmrshl_classInit TEXTEQU <__imp_com_ms_osp_ospmrshl_classInit>
+extern __imp_com_ms_osp_ospmrshl_copyToExternal64:PANYARGS
+com_ms_osp_ospmrshl_copyToExternal64 TEXTEQU <__imp_com_ms_osp_ospmrshl_copyToExternal64>
+extern __imp_com_ms_osp_ospmrshl_releaseByValExternal64:PANYARGS
+com_ms_osp_ospmrshl_releaseByValExternal64 TEXTEQU <__imp_com_ms_osp_ospmrshl_releaseByValExternal64>
+extern __imp_com_ms_osp_ospmrshl_toJava64:PANYARGS
+com_ms_osp_ospmrshl_toJava64 TEXTEQU <__imp_com_ms_osp_ospmrshl_toJava64>

@@ -1,0 +1,12 @@
+atlprovui.dll
+bscmakeui.dll
+clui.dll
+cvtresui.dll
+linkui.dll
+LocalESPCui.dll
+lst.txt
+mspdbcmfui.dll
+mspft140ui.dll
+nmakeui.dll
+pgort140ui.dll
+pgoui.dll

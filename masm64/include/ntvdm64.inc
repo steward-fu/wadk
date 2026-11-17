@@ -1,0 +1,6 @@
+extern __imp_DllInstall:PANYARGS
+DllInstall TEXTEQU <__imp_DllInstall>
+extern __imp_NtVdm64CreateProcess:PANYARGS
+NtVdm64CreateProcess TEXTEQU <__imp_NtVdm64CreateProcess>
+extern __imp_NtVdm64RaiseInvalid16BitError:PANYARGS
+NtVdm64RaiseInvalid16BitError TEXTEQU <__imp_NtVdm64RaiseInvalid16BitError>

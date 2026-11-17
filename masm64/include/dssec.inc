@@ -1,0 +1,12 @@
+extern __imp_DSCreateISecurityInfoObject:PANYARGS
+DSCreateISecurityInfoObject TEXTEQU <__imp_DSCreateISecurityInfoObject>
+extern __imp_DSCreateSecurityPage:PANYARGS
+DSCreateSecurityPage TEXTEQU <__imp_DSCreateSecurityPage>
+extern __imp_DSEditSecurity:PANYARGS
+DSEditSecurity TEXTEQU <__imp_DSEditSecurity>
+extern __imp_DSCreateISecurityInfoObjectEx:PANYARGS
+DSCreateISecurityInfoObjectEx TEXTEQU <__imp_DSCreateISecurityInfoObjectEx>
+extern __imp_DllCanUnloadNow:PANYARGS
+DllCanUnloadNow TEXTEQU <__imp_DllCanUnloadNow>
+extern __imp_DllGetClassObject:PANYARGS
+DllGetClassObject TEXTEQU <__imp_DllGetClassObject>

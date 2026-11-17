@@ -1,0 +1,12 @@
+extern __imp_HrRehydratorCreateServiceObject:PANYARGS
+HrRehydratorCreateServiceObject TEXTEQU <__imp_HrRehydratorCreateServiceObject>
+extern __imp_HrRehydratorInvokeServiceAction:PANYARGS
+HrRehydratorInvokeServiceAction TEXTEQU <__imp_HrRehydratorInvokeServiceAction>
+extern __imp_DllCanUnloadNow:PANYARGS
+DllCanUnloadNow TEXTEQU <__imp_DllCanUnloadNow>
+extern __imp_DllGetClassObject:PANYARGS
+DllGetClassObject TEXTEQU <__imp_DllGetClassObject>
+extern __imp_DllRegisterServer:PANYARGS
+DllRegisterServer TEXTEQU <__imp_DllRegisterServer>
+extern __imp_DllUnregisterServer:PANYARGS
+DllUnregisterServer TEXTEQU <__imp_DllUnregisterServer>

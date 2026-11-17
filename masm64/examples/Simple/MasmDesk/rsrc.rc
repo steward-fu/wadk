@@ -1,0 +1,60 @@
+// *************************************************************************************************
+
+#include "\masm64\include64\resource.h"
+
+// *************************************************************************************************
+
+1 24 "manifest.xml"    // manifest file
+
+10 ICON MOVEABLE PURE LOADONCALL DISCARDABLE "icon.ico"
+
+100	MENUEX MOVEABLE IMPURE LOADONCALL DISCARDABLE
+BEGIN
+    POPUP "&System", , , 0
+    BEGIN
+        MENUITEM "&Explorer", 200
+        MENUITEM "&Control Panel", 202
+        MENUITEM "&Task Manager", 203
+        MENUITEM "",,MFT_SEPARATOR
+        MENUITEM "Cmd &Prompt", 201
+        MENUITEM "",,MFT_SEPARATOR
+        MENUITEM "&About", 300
+        MENUITEM "",,MFT_SEPARATOR
+        MENUITEM "&Exit", 220
+    END
+
+    POPUP "x", ,MFT_RIGHTJUSTIFY, 0
+    BEGIN
+        MENUITEM "Close", 220
+    END
+END
+
+// *************************************************************************************************
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION 1, 0, 0, 0
+PRODUCTVERSION 1, 0, 0, 0
+FILEOS VOS__WINDOWS32
+FILETYPE VFT_APP
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904B0"
+    BEGIN
+      VALUE "CompanyName",      "The MASM32 SDK\000"
+      VALUE "FileDescription",  "MASM 64 Desktop\000"
+      VALUE "FileVersion",      "1.0\000"
+      VALUE "InternalName",     "MasmDesk\000"
+      VALUE "OriginalFilename", "MasmDesk.exe\000"
+      VALUE "LegalCopyright",   "\251 2016 The MASM32 SDK\000"
+      VALUE "ProductName",      "MasmDesk\000"
+      VALUE "ProductVersion",   "1.0\000"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 0x4B0
+  END
+END
+
+// *************************************************************************************************

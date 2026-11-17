@@ -1,0 +1,44 @@
+extern __imp_DeviceProperties_RunDLLA:PANYARGS
+DeviceProperties_RunDLL  TEXTEQU <__imp_DeviceProperties_RunDLLA>
+extern __imp_DeviceProperties_RunDLLW:PANYARGS
+DeviceProperties_RunDLLW TEXTEQU <__imp_DeviceProperties_RunDLLW>
+extern __imp_DevicePropertiesA:PANYARGS
+DeviceProperties  TEXTEQU <__imp_DevicePropertiesA>
+extern __imp_DevicePropertiesW:PANYARGS
+DevicePropertiesW TEXTEQU <__imp_DevicePropertiesW>
+extern __imp_DeviceManager_ExecuteA:PANYARGS
+DeviceManager_Execute  TEXTEQU <__imp_DeviceManager_ExecuteA>
+extern __imp_DeviceManager_ExecuteW:PANYARGS
+DeviceManager_ExecuteW TEXTEQU <__imp_DeviceManager_ExecuteW>
+extern __imp_DeviceProblemTextA:PANYARGS
+DeviceProblemText  TEXTEQU <__imp_DeviceProblemTextA>
+extern __imp_DeviceProblemTextW:PANYARGS
+DeviceProblemTextW TEXTEQU <__imp_DeviceProblemTextW>
+extern __imp_DeviceProblemWizardA:PANYARGS
+DeviceProblemWizard  TEXTEQU <__imp_DeviceProblemWizardA>
+extern __imp_DeviceProblemWizardW:PANYARGS
+DeviceProblemWizardW TEXTEQU <__imp_DeviceProblemWizardW>
+extern __imp_DllCanUnloadNow:PANYARGS
+DllCanUnloadNow TEXTEQU <__imp_DllCanUnloadNow>
+extern __imp_DllGetClassObject:PANYARGS
+DllGetClassObject TEXTEQU <__imp_DllGetClassObject>
+extern __imp_DeviceAdvancedPropertiesA:PANYARGS
+DeviceAdvancedProperties  TEXTEQU <__imp_DeviceAdvancedPropertiesA>
+extern __imp_DeviceAdvancedPropertiesW:PANYARGS
+DeviceAdvancedPropertiesW TEXTEQU <__imp_DeviceAdvancedPropertiesW>
+extern __imp_DeviceCreateHardwarePage:PANYARGS
+DeviceCreateHardwarePage TEXTEQU <__imp_DeviceCreateHardwarePage>
+extern __imp_DeviceCreateHardwarePageEx:PANYARGS
+DeviceCreateHardwarePageEx TEXTEQU <__imp_DeviceCreateHardwarePageEx>
+extern __imp_DevicePropertiesExA:PANYARGS
+DevicePropertiesEx  TEXTEQU <__imp_DevicePropertiesExA>
+extern __imp_DevicePropertiesExW:PANYARGS
+DevicePropertiesExW TEXTEQU <__imp_DevicePropertiesExW>
+extern __imp_DeviceProblenWizard_RunDLLA:PANYARGS
+DeviceProblenWizard_RunDLL  TEXTEQU <__imp_DeviceProblenWizard_RunDLLA>
+extern __imp_DeviceProblenWizard_RunDLLW:PANYARGS
+DeviceProblenWizard_RunDLLW TEXTEQU <__imp_DeviceProblenWizard_RunDLLW>
+extern __imp_DllRegisterServer:PANYARGS
+DllRegisterServer TEXTEQU <__imp_DllRegisterServer>
+extern __imp_DllUnregisterServer:PANYARGS
+DllUnregisterServer TEXTEQU <__imp_DllUnregisterServer>

@@ -1,0 +1,2 @@
+extern __imp_MchgrClassCoInstaller:PANYARGS
+MchgrClassCoInstaller TEXTEQU <__imp_MchgrClassCoInstaller>

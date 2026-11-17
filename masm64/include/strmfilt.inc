@@ -1,0 +1,22 @@
+extern __imp_IsapiFilterInitialize:PANYARGS
+IsapiFilterInitialize TEXTEQU <__imp_IsapiFilterInitialize>
+extern __imp_IsapiFilterTerminate:PANYARGS
+IsapiFilterTerminate TEXTEQU <__imp_IsapiFilterTerminate>
+extern __imp_StreamFilterClientInitialize:PANYARGS
+StreamFilterClientInitialize TEXTEQU <__imp_StreamFilterClientInitialize>
+extern __imp_StreamFilterClientStart:PANYARGS
+StreamFilterClientStart TEXTEQU <__imp_StreamFilterClientStart>
+extern __imp_StreamFilterClientStop:PANYARGS
+StreamFilterClientStop TEXTEQU <__imp_StreamFilterClientStop>
+extern __imp_StreamFilterClientTerminate:PANYARGS
+StreamFilterClientTerminate TEXTEQU <__imp_StreamFilterClientTerminate>
+extern __imp_StreamFilterInitialize:PANYARGS
+StreamFilterInitialize TEXTEQU <__imp_StreamFilterInitialize>
+extern __imp_StreamFilterStart:PANYARGS
+StreamFilterStart TEXTEQU <__imp_StreamFilterStart>
+extern __imp_StreamFilterStop:PANYARGS
+StreamFilterStop TEXTEQU <__imp_StreamFilterStop>
+extern __imp_StreamFilterTerminate:PANYARGS
+StreamFilterTerminate TEXTEQU <__imp_StreamFilterTerminate>
+extern __imp_DllMain:PANYARGS
+DllMain TEXTEQU <__imp_DllMain>

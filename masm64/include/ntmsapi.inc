@@ -1,0 +1,150 @@
+extern __imp_AccessNtmsLibraryDoor:PANYARGS
+AccessNtmsLibraryDoor TEXTEQU <__imp_AccessNtmsLibraryDoor>
+extern __imp_AddNtmsMediaType:PANYARGS
+AddNtmsMediaType TEXTEQU <__imp_AddNtmsMediaType>
+extern __imp_AllocateNtmsMedia:PANYARGS
+AllocateNtmsMedia TEXTEQU <__imp_AllocateNtmsMedia>
+extern __imp_BeginNtmsDeviceChangeDetection:PANYARGS
+BeginNtmsDeviceChangeDetection TEXTEQU <__imp_BeginNtmsDeviceChangeDetection>
+extern __imp_CancelNtmsLibraryRequest:PANYARGS
+CancelNtmsLibraryRequest TEXTEQU <__imp_CancelNtmsLibraryRequest>
+extern __imp_CancelNtmsOperatorRequest:PANYARGS
+CancelNtmsOperatorRequest TEXTEQU <__imp_CancelNtmsOperatorRequest>
+extern __imp_ChangeNtmsMediaType:PANYARGS
+ChangeNtmsMediaType TEXTEQU <__imp_ChangeNtmsMediaType>
+extern __imp_CleanNtmsDrive:PANYARGS
+CleanNtmsDrive TEXTEQU <__imp_CleanNtmsDrive>
+extern __imp_CloseNtmsNotification:PANYARGS
+CloseNtmsNotification TEXTEQU <__imp_CloseNtmsNotification>
+extern __imp_CloseNtmsSession:PANYARGS
+CloseNtmsSession TEXTEQU <__imp_CloseNtmsSession>
+extern __imp_CreateNtmsMediaA:PANYARGS
+CreateNtmsMedia  TEXTEQU <__imp_CreateNtmsMediaA>
+extern __imp_CreateNtmsMediaPoolA:PANYARGS
+CreateNtmsMediaPool  TEXTEQU <__imp_CreateNtmsMediaPoolA>
+extern __imp_CreateNtmsMediaPoolW:PANYARGS
+CreateNtmsMediaPoolW TEXTEQU <__imp_CreateNtmsMediaPoolW>
+extern __imp_CreateNtmsMediaW:PANYARGS
+CreateNtmsMediaW TEXTEQU <__imp_CreateNtmsMediaW>
+extern __imp_DeallocateNtmsMedia:PANYARGS
+DeallocateNtmsMedia TEXTEQU <__imp_DeallocateNtmsMedia>
+extern __imp_DecommissionNtmsMedia:PANYARGS
+DecommissionNtmsMedia TEXTEQU <__imp_DecommissionNtmsMedia>
+extern __imp_DeleteNtmsDrive:PANYARGS
+DeleteNtmsDrive TEXTEQU <__imp_DeleteNtmsDrive>
+extern __imp_DeleteNtmsLibrary:PANYARGS
+DeleteNtmsLibrary TEXTEQU <__imp_DeleteNtmsLibrary>
+extern __imp_DeleteNtmsMedia:PANYARGS
+DeleteNtmsMedia TEXTEQU <__imp_DeleteNtmsMedia>
+extern __imp_DeleteNtmsMediaPool:PANYARGS
+DeleteNtmsMediaPool TEXTEQU <__imp_DeleteNtmsMediaPool>
+extern __imp_DeleteNtmsMediaType:PANYARGS
+DeleteNtmsMediaType TEXTEQU <__imp_DeleteNtmsMediaType>
+extern __imp_DeleteNtmsRequests:PANYARGS
+DeleteNtmsRequests TEXTEQU <__imp_DeleteNtmsRequests>
+extern __imp_DisableNtmsObject:PANYARGS
+DisableNtmsObject TEXTEQU <__imp_DisableNtmsObject>
+extern __imp_DismountNtmsDrive:PANYARGS
+DismountNtmsDrive TEXTEQU <__imp_DismountNtmsDrive>
+extern __imp_DismountNtmsMedia:PANYARGS
+DismountNtmsMedia TEXTEQU <__imp_DismountNtmsMedia>
+extern __imp_DoEjectFromSADriveW:PANYARGS
+DoEjectFromSADriveW TEXTEQU <__imp_DoEjectFromSADriveW>
+extern __imp_EjectDiskFromSADriveA:PANYARGS
+EjectDiskFromSADrive  TEXTEQU <__imp_EjectDiskFromSADriveA>
+extern __imp_EjectDiskFromSADriveW:PANYARGS
+EjectDiskFromSADriveW TEXTEQU <__imp_EjectDiskFromSADriveW>
+extern __imp_EjectNtmsCleaner:PANYARGS
+EjectNtmsCleaner TEXTEQU <__imp_EjectNtmsCleaner>
+extern __imp_EjectNtmsMedia:PANYARGS
+EjectNtmsMedia TEXTEQU <__imp_EjectNtmsMedia>
+extern __imp_EnableNtmsObject:PANYARGS
+EnableNtmsObject TEXTEQU <__imp_EnableNtmsObject>
+extern __imp_EndNtmsDeviceChangeDetection:PANYARGS
+EndNtmsDeviceChangeDetection TEXTEQU <__imp_EndNtmsDeviceChangeDetection>
+extern __imp_EnumerateNtmsObject:PANYARGS
+EnumerateNtmsObject TEXTEQU <__imp_EnumerateNtmsObject>
+extern __imp_ExportNtmsDatabase:PANYARGS
+ExportNtmsDatabase TEXTEQU <__imp_ExportNtmsDatabase>
+extern __imp_GetNtmsMediaPoolNameA:PANYARGS
+GetNtmsMediaPoolName  TEXTEQU <__imp_GetNtmsMediaPoolNameA>
+extern __imp_GetNtmsMediaPoolNameW:PANYARGS
+GetNtmsMediaPoolNameW TEXTEQU <__imp_GetNtmsMediaPoolNameW>
+extern __imp_GetNtmsObjectAttributeA:PANYARGS
+GetNtmsObjectAttribute  TEXTEQU <__imp_GetNtmsObjectAttributeA>
+extern __imp_GetNtmsObjectAttributeW:PANYARGS
+GetNtmsObjectAttributeW TEXTEQU <__imp_GetNtmsObjectAttributeW>
+extern __imp_GetNtmsObjectInformationA:PANYARGS
+GetNtmsObjectInformation  TEXTEQU <__imp_GetNtmsObjectInformationA>
+extern __imp_GetNtmsObjectInformationW:PANYARGS
+GetNtmsObjectInformationW TEXTEQU <__imp_GetNtmsObjectInformationW>
+extern __imp_GetNtmsObjectSecurity:PANYARGS
+GetNtmsObjectSecurity TEXTEQU <__imp_GetNtmsObjectSecurity>
+extern __imp_GetNtmsRequestOrder:PANYARGS
+GetNtmsRequestOrder TEXTEQU <__imp_GetNtmsRequestOrder>
+extern __imp_GetNtmsUIOptionsA:PANYARGS
+GetNtmsUIOptions  TEXTEQU <__imp_GetNtmsUIOptionsA>
+extern __imp_GetNtmsUIOptionsW:PANYARGS
+GetNtmsUIOptionsW TEXTEQU <__imp_GetNtmsUIOptionsW>
+extern __imp_GetVolumesFromDriveA:PANYARGS
+GetVolumesFromDrive  TEXTEQU <__imp_GetVolumesFromDriveA>
+extern __imp_GetVolumesFromDriveW:PANYARGS
+GetVolumesFromDriveW TEXTEQU <__imp_GetVolumesFromDriveW>
+extern __imp_IdentifyNtmsSlot:PANYARGS
+IdentifyNtmsSlot TEXTEQU <__imp_IdentifyNtmsSlot>
+extern __imp_ImportNtmsDatabase:PANYARGS
+ImportNtmsDatabase TEXTEQU <__imp_ImportNtmsDatabase>
+extern __imp_InjectNtmsCleaner:PANYARGS
+InjectNtmsCleaner TEXTEQU <__imp_InjectNtmsCleaner>
+extern __imp_InjectNtmsMedia:PANYARGS
+InjectNtmsMedia TEXTEQU <__imp_InjectNtmsMedia>
+extern __imp_InventoryNtmsLibrary:PANYARGS
+InventoryNtmsLibrary TEXTEQU <__imp_InventoryNtmsLibrary>
+extern __imp_MountNtmsMedia:PANYARGS
+MountNtmsMedia TEXTEQU <__imp_MountNtmsMedia>
+extern __imp_MoveToNtmsMediaPool:PANYARGS
+MoveToNtmsMediaPool TEXTEQU <__imp_MoveToNtmsMediaPool>
+extern __imp_OpenNtmsNotification:PANYARGS
+OpenNtmsNotification TEXTEQU <__imp_OpenNtmsNotification>
+extern __imp_OpenNtmsSessionA:PANYARGS
+OpenNtmsSession  TEXTEQU <__imp_OpenNtmsSessionA>
+extern __imp_OpenNtmsSessionW:PANYARGS
+OpenNtmsSessionW TEXTEQU <__imp_OpenNtmsSessionW>
+extern __imp_ReleaseNtmsCleanerSlot:PANYARGS
+ReleaseNtmsCleanerSlot TEXTEQU <__imp_ReleaseNtmsCleanerSlot>
+extern __imp_ReserveNtmsCleanerSlot:PANYARGS
+ReserveNtmsCleanerSlot TEXTEQU <__imp_ReserveNtmsCleanerSlot>
+extern __imp_SatisfyNtmsOperatorRequest:PANYARGS
+SatisfyNtmsOperatorRequest TEXTEQU <__imp_SatisfyNtmsOperatorRequest>
+extern __imp_SetNtmsDeviceChangeDetection:PANYARGS
+SetNtmsDeviceChangeDetection TEXTEQU <__imp_SetNtmsDeviceChangeDetection>
+extern __imp_SetNtmsMediaComplete:PANYARGS
+SetNtmsMediaComplete TEXTEQU <__imp_SetNtmsMediaComplete>
+extern __imp_SetNtmsObjectAttributeA:PANYARGS
+SetNtmsObjectAttribute  TEXTEQU <__imp_SetNtmsObjectAttributeA>
+extern __imp_SetNtmsObjectAttributeW:PANYARGS
+SetNtmsObjectAttributeW TEXTEQU <__imp_SetNtmsObjectAttributeW>
+extern __imp_SetNtmsObjectInformationA:PANYARGS
+SetNtmsObjectInformation  TEXTEQU <__imp_SetNtmsObjectInformationA>
+extern __imp_SetNtmsObjectInformationW:PANYARGS
+SetNtmsObjectInformationW TEXTEQU <__imp_SetNtmsObjectInformationW>
+extern __imp_SetNtmsObjectSecurity:PANYARGS
+SetNtmsObjectSecurity TEXTEQU <__imp_SetNtmsObjectSecurity>
+extern __imp_SetNtmsRequestOrder:PANYARGS
+SetNtmsRequestOrder TEXTEQU <__imp_SetNtmsRequestOrder>
+extern __imp_SetNtmsUIOptionsA:PANYARGS
+SetNtmsUIOptions  TEXTEQU <__imp_SetNtmsUIOptionsA>
+extern __imp_SetNtmsUIOptionsW:PANYARGS
+SetNtmsUIOptionsW TEXTEQU <__imp_SetNtmsUIOptionsW>
+extern __imp_SubmitNtmsOperatorRequestA:PANYARGS
+SubmitNtmsOperatorRequest  TEXTEQU <__imp_SubmitNtmsOperatorRequestA>
+extern __imp_SubmitNtmsOperatorRequestW:PANYARGS
+SubmitNtmsOperatorRequestW TEXTEQU <__imp_SubmitNtmsOperatorRequestW>
+extern __imp_SwapNtmsMedia:PANYARGS
+SwapNtmsMedia TEXTEQU <__imp_SwapNtmsMedia>
+extern __imp_UpdateNtmsOmidInfo:PANYARGS
+UpdateNtmsOmidInfo TEXTEQU <__imp_UpdateNtmsOmidInfo>
+extern __imp_WaitForNtmsNotification:PANYARGS
+WaitForNtmsNotification TEXTEQU <__imp_WaitForNtmsNotification>
+extern __imp_WaitForNtmsOperatorRequest:PANYARGS
+WaitForNtmsOperatorRequest TEXTEQU <__imp_WaitForNtmsOperatorRequest>

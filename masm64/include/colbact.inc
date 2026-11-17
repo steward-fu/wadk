@@ -1,0 +1,14 @@
+extern __imp_DllGetClassObject:PANYARGS
+DllGetClassObject TEXTEQU <__imp_DllGetClassObject>
+extern __imp_DllRegisterServer:PANYARGS
+DllRegisterServer TEXTEQU <__imp_DllRegisterServer>
+extern __imp_DllUnregisterServer:PANYARGS
+DllUnregisterServer TEXTEQU <__imp_DllUnregisterServer>
+extern __imp_GetClassInfoForCurrentUser:PANYARGS
+GetClassInfoForCurrentUser TEXTEQU <__imp_GetClassInfoForCurrentUser>
+extern __imp_GetDefaultPartitionForCurrentUser:PANYARGS
+GetDefaultPartitionForCurrentUser TEXTEQU <__imp_GetDefaultPartitionForCurrentUser>
+extern __imp_GetDefaultPartitionForSid:PANYARGS
+GetDefaultPartitionForSid TEXTEQU <__imp_GetDefaultPartitionForSid>
+extern __imp_PartitionAccessCheck:PANYARGS
+PartitionAccessCheck TEXTEQU <__imp_PartitionAccessCheck>

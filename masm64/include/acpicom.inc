@@ -1,0 +1,10 @@
+extern __imp_acPipeInterpreterCall:PANYARGS
+acPipeInterpreterCall TEXTEQU <__imp_acPipeInterpreterCall>
+extern __imp_acPipeInterpreterCallEx:PANYARGS
+acPipeInterpreterCallEx TEXTEQU <__imp_acPipeInterpreterCallEx>
+extern __imp_acPipeInterpreterEnd:PANYARGS
+acPipeInterpreterEnd TEXTEQU <__imp_acPipeInterpreterEnd>
+extern __imp_acPipeInterpreterGetVersion:PANYARGS
+acPipeInterpreterGetVersion TEXTEQU <__imp_acPipeInterpreterGetVersion>
+extern __imp_acPipeInterpreterInit:PANYARGS
+acPipeInterpreterInit TEXTEQU <__imp_acPipeInterpreterInit>

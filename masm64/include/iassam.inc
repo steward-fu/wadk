@@ -1,0 +1,18 @@
+extern __imp_DllCanUnloadNow:PANYARGS
+DllCanUnloadNow TEXTEQU <__imp_DllCanUnloadNow>
+extern __imp_DllGetClassObject:PANYARGS
+DllGetClassObject TEXTEQU <__imp_DllGetClassObject>
+extern __imp_DllRegisterServer:PANYARGS
+DllRegisterServer TEXTEQU <__imp_DllRegisterServer>
+extern __imp_DllUnregisterServer:PANYARGS
+DllUnregisterServer TEXTEQU <__imp_DllUnregisterServer>
+extern __imp_IASParmsFreeUserParms:PANYARGS
+IASParmsFreeUserParms TEXTEQU <__imp_IASParmsFreeUserParms>
+extern __imp_IASParmsQueryRasUser0:PANYARGS
+IASParmsQueryRasUser0 TEXTEQU <__imp_IASParmsQueryRasUser0>
+extern __imp_IASParmsQueryUserProperty:PANYARGS
+IASParmsQueryUserProperty TEXTEQU <__imp_IASParmsQueryUserProperty>
+extern __imp_IASParmsSetRasUser0:PANYARGS
+IASParmsSetRasUser0 TEXTEQU <__imp_IASParmsSetRasUser0>
+extern __imp_IASParmsSetUserProperty:PANYARGS
+IASParmsSetUserProperty TEXTEQU <__imp_IASParmsSetUserProperty>

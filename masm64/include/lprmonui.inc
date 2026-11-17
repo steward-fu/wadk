@@ -1,0 +1,2 @@
+extern __imp_InitializePrintMonitorUI:PANYARGS
+InitializePrintMonitorUI TEXTEQU <__imp_InitializePrintMonitorUI>

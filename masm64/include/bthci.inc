@@ -1,0 +1,2 @@
+extern __imp_BluetoothClassInstaller:PANYARGS
+BluetoothClassInstaller TEXTEQU <__imp_BluetoothClassInstaller>

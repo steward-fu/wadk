@@ -1,0 +1,10 @@
+
+; source file = tview.asm
+        ; Procedure name = entry_point
+        ; Procedure name = main
+        ; Procedure name = msgloop
+        ; Procedure name = WndProc
+        ; Procedure name = rich_edit
+        ; Procedure name = Select_All
+        ; Procedure name = set_edit_colours
+        ; Procedure name = set_text_colour

@@ -1,0 +1,6 @@
+extern __imp_ClosePerformanceData:PANYARGS
+ClosePerformanceData TEXTEQU <__imp_ClosePerformanceData>
+extern __imp_CollectPerformanceData:PANYARGS
+CollectPerformanceData TEXTEQU <__imp_CollectPerformanceData>
+extern __imp_OpenPerformanceData:PANYARGS
+OpenPerformanceData TEXTEQU <__imp_OpenPerformanceData>

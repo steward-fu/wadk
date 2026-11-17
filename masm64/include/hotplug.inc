@@ -1,0 +1,26 @@
+extern __imp_CPlApplet:PANYARGS
+CPlApplet TEXTEQU <__imp_CPlApplet>
+extern __imp_HotPlugChildWithInvalidIdW:PANYARGS
+HotPlugChildWithInvalidIdW TEXTEQU <__imp_HotPlugChildWithInvalidIdW>
+extern __imp_HotPlugDriverBlockedW:PANYARGS
+HotPlugDriverBlockedW TEXTEQU <__imp_HotPlugDriverBlockedW>
+extern __imp_HotPlugEjectVetoedW:PANYARGS
+HotPlugEjectVetoedW TEXTEQU <__imp_HotPlugEjectVetoedW>
+extern __imp_HotPlugHibernateVetoedW:PANYARGS
+HotPlugHibernateVetoedW TEXTEQU <__imp_HotPlugHibernateVetoedW>
+extern __imp_HotPlugRemovalVetoedW:PANYARGS
+HotPlugRemovalVetoedW TEXTEQU <__imp_HotPlugRemovalVetoedW>
+extern __imp_HotPlugSafeRemovalNotificationW:PANYARGS
+HotPlugSafeRemovalNotificationW TEXTEQU <__imp_HotPlugSafeRemovalNotificationW>
+extern __imp_HotPlugStandbyVetoedW:PANYARGS
+HotPlugStandbyVetoedW TEXTEQU <__imp_HotPlugStandbyVetoedW>
+extern __imp_HotPlugWarmEjectVetoedW:PANYARGS
+HotPlugWarmEjectVetoedW TEXTEQU <__imp_HotPlugWarmEjectVetoedW>
+extern __imp_DllCanUnloadNow:PANYARGS
+DllCanUnloadNow TEXTEQU <__imp_DllCanUnloadNow>
+extern __imp_DllGetClassObject:PANYARGS
+DllGetClassObject TEXTEQU <__imp_DllGetClassObject>
+extern __imp_DllRegisterServer:PANYARGS
+DllRegisterServer TEXTEQU <__imp_DllRegisterServer>
+extern __imp_DllUnregisterServer:PANYARGS
+DllUnregisterServer TEXTEQU <__imp_DllUnregisterServer>

@@ -1,0 +1,5 @@
+
+    LOCAL pbuf  :QWORD
+    LOCAL buff[260]:BYTE
+
+    mov pbuf, ptr$(buff)

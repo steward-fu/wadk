@@ -1,0 +1,63 @@
+
+# Makefile for NMAKE. Tools to be used:
+# either JWASM and JWLINK (default)
+# or      MASM and MS LINK.
+# the tools must be found somewhere in PATH.
+
+# to create the binary with JWASM/JWLINK, just enter NMAKE
+# to create the binary with MASM/MS LINK, enter NMAKE MASM=1
+
+!ifndef MASM
+MASM=0
+MSLINK=0
+!else
+MSLINK=1
+!endif
+
+NAME=GdiPlus
+OUTDIR=.
+
+!ifndef DEBUG
+DEBUG=0
+!endif
+
+!if $(DEBUG)
+!if $(MSLINK)
+LOPTD=/DEBUG:FULL
+!else
+LOPTD=debug c op cvp
+!endif
+AOPTD=-Zi
+!else
+LOPTD=
+AOPTD=
+!endif
+
+ASMOPT= -c -nologo -coff -Sg -Fl$* -Fo$* -I..\..\Include $(AOPTD)
+!if $(MASM)
+ASM = ml.exe $(ASMOPT)
+!else
+ASM = jwasm.exe $(ASMOPT)
+!endif
+
+!if $(MSLINK)
+LOPT=/LibPath:..\..\Lib /MAP:$*.map /SUBSYSTEM:WINDOWS $(LOPTD) /OPT:NOWIN98
+LINK=link.exe $(LOPTD) $(LOPT) /OUT:$*.exe $*.obj
+RC=rc.exe /i..\..\Include
+!else
+LOPT= LibPath ..\..\Lib op MAP, quiet
+LINK=jwlink.exe $(LOPTD) format windows pe runtime windows file $(OUTDIR)\$(NAME).obj $(LOPT)
+RC=wrc.exe -q -r -i=..\..\Include
+!endif
+
+$(OUTDIR)\$(NAME).exe: $(OUTDIR)\$(NAME).obj Makefile
+	@$(LINK)
+
+$(OUTDIR)\$(NAME).obj: $(NAME).asm makefile
+	@$(ASM) $(NAME).asm
+
+CLEAN :
+	-@erase "$(OUTDIR)\$(NAME).obj"
+	-@erase "$(OUTDIR)\$(NAME).map"
+	-@erase "$(OUTDIR)\$(NAME).lst"
+

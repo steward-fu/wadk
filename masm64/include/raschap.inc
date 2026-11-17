@@ -1,0 +1,28 @@
+extern __imp_DllCanUnloadNow:PANYARGS
+DllCanUnloadNow TEXTEQU <__imp_DllCanUnloadNow>
+extern __imp_DllGetClassObject:PANYARGS
+DllGetClassObject TEXTEQU <__imp_DllGetClassObject>
+extern __imp_DllRegisterServer:PANYARGS
+DllRegisterServer TEXTEQU <__imp_DllRegisterServer>
+extern __imp_DllUnregisterServer:PANYARGS
+DllUnregisterServer TEXTEQU <__imp_DllUnregisterServer>
+extern __imp_RasCpEnumProtocolIds:PANYARGS
+RasCpEnumProtocolIds TEXTEQU <__imp_RasCpEnumProtocolIds>
+extern __imp_RasCpGetInfo:PANYARGS
+RasCpGetInfo TEXTEQU <__imp_RasCpGetInfo>
+extern __imp_RasEapCreateConnectionProperties:PANYARGS
+RasEapCreateConnectionProperties TEXTEQU <__imp_RasEapCreateConnectionProperties>
+extern __imp_RasEapCreateUserProperties:PANYARGS
+RasEapCreateUserProperties TEXTEQU <__imp_RasEapCreateUserProperties>
+extern __imp_RasEapFreeMemory:PANYARGS
+RasEapFreeMemory TEXTEQU <__imp_RasEapFreeMemory>
+extern __imp_RasEapGetCredentials:PANYARGS
+RasEapGetCredentials TEXTEQU <__imp_RasEapGetCredentials>
+extern __imp_RasEapGetIdentity:PANYARGS
+RasEapGetIdentity TEXTEQU <__imp_RasEapGetIdentity>
+extern __imp_RasEapGetInfo:PANYARGS
+RasEapGetInfo TEXTEQU <__imp_RasEapGetInfo>
+extern __imp_RasEapInvokeConfigUI:PANYARGS
+RasEapInvokeConfigUI TEXTEQU <__imp_RasEapInvokeConfigUI>
+extern __imp_RasEapInvokeInteractiveUI:PANYARGS
+RasEapInvokeInteractiveUI TEXTEQU <__imp_RasEapInvokeInteractiveUI>

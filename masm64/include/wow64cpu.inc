@@ -1,0 +1,42 @@
+extern __imp_CpuFlushInstructionCache:PANYARGS
+CpuFlushInstructionCache TEXTEQU <__imp_CpuFlushInstructionCache>
+extern __imp_CpuGetContext:PANYARGS
+CpuGetContext TEXTEQU <__imp_CpuGetContext>
+extern __imp_CpuGetStackPointer:PANYARGS
+CpuGetStackPointer TEXTEQU <__imp_CpuGetStackPointer>
+extern __imp_CpuInitializeStartupContext:PANYARGS
+CpuInitializeStartupContext TEXTEQU <__imp_CpuInitializeStartupContext>
+extern __imp_CpuNotifyDllLoad:PANYARGS
+CpuNotifyDllLoad TEXTEQU <__imp_CpuNotifyDllLoad>
+extern __imp_CpuNotifyDllUnload:PANYARGS
+CpuNotifyDllUnload TEXTEQU <__imp_CpuNotifyDllUnload>
+extern __imp_CpuPrepareForDebuggerAttach:PANYARGS
+CpuPrepareForDebuggerAttach TEXTEQU <__imp_CpuPrepareForDebuggerAttach>
+extern __imp_CpuProcessDebugEvent:PANYARGS
+CpuProcessDebugEvent TEXTEQU <__imp_CpuProcessDebugEvent>
+extern __imp_CpuProcessInit:PANYARGS
+CpuProcessInit TEXTEQU <__imp_CpuProcessInit>
+extern __imp_CpuProcessTerm:PANYARGS
+CpuProcessTerm TEXTEQU <__imp_CpuProcessTerm>
+extern __imp_CpuResetFloatingPoint:PANYARGS
+CpuResetFloatingPoint TEXTEQU <__imp_CpuResetFloatingPoint>
+extern __imp_CpuResetToConsistentState:PANYARGS
+CpuResetToConsistentState TEXTEQU <__imp_CpuResetToConsistentState>
+extern __imp_CpuSetContext:PANYARGS
+CpuSetContext TEXTEQU <__imp_CpuSetContext>
+extern __imp_CpuSetInstructionPointer:PANYARGS
+CpuSetInstructionPointer TEXTEQU <__imp_CpuSetInstructionPointer>
+extern __imp_CpuSetStackPointer:PANYARGS
+CpuSetStackPointer TEXTEQU <__imp_CpuSetStackPointer>
+extern __imp_CpuSimulate:PANYARGS
+CpuSimulate TEXTEQU <__imp_CpuSimulate>
+extern __imp_CpuSuspendThread:PANYARGS
+CpuSuspendThread TEXTEQU <__imp_CpuSuspendThread>
+extern __imp_CpuThreadInit:PANYARGS
+CpuThreadInit TEXTEQU <__imp_CpuThreadInit>
+extern __imp_CpuThreadTerm:PANYARGS
+CpuThreadTerm TEXTEQU <__imp_CpuThreadTerm>
+extern __imp_TurboDispatchJumpAddressEnd:PANYARGS
+TurboDispatchJumpAddressEnd TEXTEQU <__imp_TurboDispatchJumpAddressEnd>
+extern __imp_TurboDispatchJumpAddressStart:PANYARGS
+TurboDispatchJumpAddressStart TEXTEQU <__imp_TurboDispatchJumpAddressStart>

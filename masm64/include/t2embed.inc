@@ -1,0 +1,28 @@
+extern __imp_TTCharToUnicode:PANYARGS
+TTCharToUnicode TEXTEQU <__imp_TTCharToUnicode>
+extern __imp_TTDeleteEmbeddedFont:PANYARGS
+TTDeleteEmbeddedFont TEXTEQU <__imp_TTDeleteEmbeddedFont>
+extern __imp_TTEmbedFont:PANYARGS
+TTEmbedFont TEXTEQU <__imp_TTEmbedFont>
+extern __imp_TTEmbedFontEx:PANYARGS
+TTEmbedFontEx TEXTEQU <__imp_TTEmbedFontEx>
+extern __imp_TTEmbedFontFromFileA:PANYARGS
+TTEmbedFontFromFile  TEXTEQU <__imp_TTEmbedFontFromFileA>
+extern __imp_TTEnableEmbeddingForFacename:PANYARGS
+TTEnableEmbeddingForFacename TEXTEQU <__imp_TTEnableEmbeddingForFacename>
+extern __imp_TTGetEmbeddedFontInfo:PANYARGS
+TTGetEmbeddedFontInfo TEXTEQU <__imp_TTGetEmbeddedFontInfo>
+extern __imp_TTGetEmbeddingType:PANYARGS
+TTGetEmbeddingType TEXTEQU <__imp_TTGetEmbeddingType>
+extern __imp_TTGetNewFontName:PANYARGS
+TTGetNewFontName TEXTEQU <__imp_TTGetNewFontName>
+extern __imp_TTIsEmbeddingEnabled:PANYARGS
+TTIsEmbeddingEnabled TEXTEQU <__imp_TTIsEmbeddingEnabled>
+extern __imp_TTIsEmbeddingEnabledForFacename:PANYARGS
+TTIsEmbeddingEnabledForFacename TEXTEQU <__imp_TTIsEmbeddingEnabledForFacename>
+extern __imp_TTLoadEmbeddedFont:PANYARGS
+TTLoadEmbeddedFont TEXTEQU <__imp_TTLoadEmbeddedFont>
+extern __imp_TTRunValidationTests:PANYARGS
+TTRunValidationTests TEXTEQU <__imp_TTRunValidationTests>
+extern __imp_TTRunValidationTestsEx:PANYARGS
+TTRunValidationTestsEx TEXTEQU <__imp_TTRunValidationTestsEx>

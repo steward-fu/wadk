@@ -1,0 +1,20 @@
+extern __imp_CdromDisableDigitalPlayback:PANYARGS
+CdromDisableDigitalPlayback TEXTEQU <__imp_CdromDisableDigitalPlayback>
+extern __imp_CdromEnableDigitalPlayback:PANYARGS
+CdromEnableDigitalPlayback TEXTEQU <__imp_CdromEnableDigitalPlayback>
+extern __imp_CdromIsDigitalPlaybackEnabled:PANYARGS
+CdromIsDigitalPlaybackEnabled TEXTEQU <__imp_CdromIsDigitalPlaybackEnabled>
+extern __imp_CdromKnownGoodDigitalPlayback:PANYARGS
+CdromKnownGoodDigitalPlayback TEXTEQU <__imp_CdromKnownGoodDigitalPlayback>
+extern __imp_DiskClassInstaller:PANYARGS
+DiskClassInstaller TEXTEQU <__imp_DiskClassInstaller>
+extern __imp_DvdClassInstaller:PANYARGS
+DvdClassInstaller TEXTEQU <__imp_DvdClassInstaller>
+extern __imp_DvdLauncher:PANYARGS
+DvdLauncher TEXTEQU <__imp_DvdLauncher>
+extern __imp_DvdPropPageProvider:PANYARGS
+DvdPropPageProvider TEXTEQU <__imp_DvdPropPageProvider>
+extern __imp_IdePropPageProvider:PANYARGS
+IdePropPageProvider TEXTEQU <__imp_IdePropPageProvider>
+extern __imp_VolumePropPageProvider:PANYARGS
+VolumePropPageProvider TEXTEQU <__imp_VolumePropPageProvider>

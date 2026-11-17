@@ -1,0 +1,14 @@
+extern __imp_ACErrMesDisplay:PANYARGS
+ACErrMesDisplay TEXTEQU <__imp_ACErrMesDisplay>
+extern __imp_ACErrMesDisplayEx:PANYARGS
+ACErrMesDisplayEx TEXTEQU <__imp_ACErrMesDisplayEx>
+extern __imp_ACErrMesDisplayExWithParam:PANYARGS
+ACErrMesDisplayExWithParam TEXTEQU <__imp_ACErrMesDisplayExWithParam>
+extern __imp_ACErrMesDisplayExWithParent:PANYARGS
+ACErrMesDisplayExWithParent TEXTEQU <__imp_ACErrMesDisplayExWithParent>
+extern __imp_ACErrMesDisplayExWithParentParamAndReader:PANYARGS
+ACErrMesDisplayExWithParentParamAndReader TEXTEQU <__imp_ACErrMesDisplayExWithParentParamAndReader>
+extern __imp_ACErrMesDisplayWithParent:PANYARGS
+ACErrMesDisplayWithParent TEXTEQU <__imp_ACErrMesDisplayWithParent>
+extern __imp_ACMessageBox:PANYARGS
+ACMessageBox TEXTEQU <__imp_ACMessageBox>

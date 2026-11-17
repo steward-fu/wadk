@@ -1,0 +1,24 @@
+extern __imp_BackupPerfRegistryToFileW:PANYARGS
+BackupPerfRegistryToFileW TEXTEQU <__imp_BackupPerfRegistryToFileW>
+extern __imp_InstallPerfDllA:PANYARGS
+InstallPerfDll  TEXTEQU <__imp_InstallPerfDllA>
+extern __imp_InstallPerfDllW:PANYARGS
+InstallPerfDllW TEXTEQU <__imp_InstallPerfDllW>
+extern __imp_LoadPerfCounterTextStringsA:PANYARGS
+LoadPerfCounterTextStrings  TEXTEQU <__imp_LoadPerfCounterTextStringsA>
+extern __imp_LoadPerfCounterTextStringsW:PANYARGS
+LoadPerfCounterTextStringsW TEXTEQU <__imp_LoadPerfCounterTextStringsW>
+extern __imp_RestorePerfRegistryFromFileW:PANYARGS
+RestorePerfRegistryFromFileW TEXTEQU <__imp_RestorePerfRegistryFromFileW>
+extern __imp_SetServiceAsTrustedA:PANYARGS
+SetServiceAsTrusted  TEXTEQU <__imp_SetServiceAsTrustedA>
+extern __imp_SetServiceAsTrustedW:PANYARGS
+SetServiceAsTrustedW TEXTEQU <__imp_SetServiceAsTrustedW>
+extern __imp_UnloadPerfCounterTextStringsA:PANYARGS
+UnloadPerfCounterTextStrings  TEXTEQU <__imp_UnloadPerfCounterTextStringsA>
+extern __imp_UnloadPerfCounterTextStringsW:PANYARGS
+UnloadPerfCounterTextStringsW TEXTEQU <__imp_UnloadPerfCounterTextStringsW>
+extern __imp_UpdatePerfNameFilesA:PANYARGS
+UpdatePerfNameFiles  TEXTEQU <__imp_UpdatePerfNameFilesA>
+extern __imp_UpdatePerfNameFilesW:PANYARGS
+UpdatePerfNameFilesW TEXTEQU <__imp_UpdatePerfNameFilesW>

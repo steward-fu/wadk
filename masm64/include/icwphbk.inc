@@ -1,0 +1,16 @@
+extern __imp_GetSupportNumbers:PANYARGS
+GetSupportNumbers TEXTEQU <__imp_GetSupportNumbers>
+extern __imp_PhbkGenericDlgProc:PANYARGS
+PhbkGenericDlgProc TEXTEQU <__imp_PhbkGenericDlgProc>
+extern __imp_PhoneBookDisplaySignUpNumbers:PANYARGS
+PhoneBookDisplaySignUpNumbers TEXTEQU <__imp_PhoneBookDisplaySignUpNumbers>
+extern __imp_PhoneBookGetCanonical:PANYARGS
+PhoneBookGetCanonical TEXTEQU <__imp_PhoneBookGetCanonical>
+extern __imp_PhoneBookLoad:PANYARGS
+PhoneBookLoad TEXTEQU <__imp_PhoneBookLoad>
+extern __imp_PhoneBookMergeChanges:PANYARGS
+PhoneBookMergeChanges TEXTEQU <__imp_PhoneBookMergeChanges>
+extern __imp_PhoneBookSuggestNumbers:PANYARGS
+PhoneBookSuggestNumbers TEXTEQU <__imp_PhoneBookSuggestNumbers>
+extern __imp_PhoneBookUnload:PANYARGS
+PhoneBookUnload TEXTEQU <__imp_PhoneBookUnload>

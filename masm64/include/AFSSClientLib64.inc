@@ -1,0 +1,2 @@
+extern __imp_GetAFSSClientInterface:PANYARGS
+GetAFSSClientInterface TEXTEQU <__imp_GetAFSSClientInterface>

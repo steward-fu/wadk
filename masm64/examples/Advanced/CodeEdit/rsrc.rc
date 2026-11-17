@@ -1,0 +1,113 @@
+// *************************************************************************************************
+
+#include "\masm64\include64\resource.h"
+
+// *************************************************************************************************
+
+1 24 "manifest.xml"    // manifest file
+
+10 ICON "icon.ico"
+20 RCDATA "toolbar.png"
+30 BITMAP "gradient.bmp"
+
+100	MENUEX
+BEGIN
+    POPUP "  &File", , , 0
+    BEGIN
+        MENUITEM "&New\tCtrl N",  101
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "&Open\tCtrl O", 102
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "&Save\tCtrl S", 103
+        MENUITEM "Save &As\tCtrl T", 104
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "New Instance\tCtrl I", 105
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "Command Prompt\tCtrl P", 106
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "Merge Text\tCtrl M", 107
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "&Exit\tCtrl Q", 125
+    END
+
+    POPUP "&Edit", , , 0
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z", 200
+        MENUITEM "&Redo\tCtrl+Y", 201
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "&Cut\tCtrl+X", 202
+        MENUITEM "Copy\tCtrl+C", 203
+        MENUITEM "&Paste\tCtrl+V", 204
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "Clear\tDel", 205
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "Micro Indent +\tCtrl+Right", 500
+        MENUITEM "Micro Indent -\tCtrl+Left", 501
+    END
+
+    POPUP "&Search", , , 0
+    BEGIN
+        MENUITEM "&Find Text\tF2", 250
+        MENUITEM "&Replace Text\tF3", 260
+    END
+
+    POPUP "&Project", , , 0
+    BEGIN
+        MENUITEM "Create Project Form Script", 275
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "Run Makeit.bat", 276
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "Run Executable", 277
+    END
+
+    POPUP "&Tools", , , 0
+    BEGIN
+        MENUITEM "Run The Source Browser", 352
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "Run Color Picker", 350
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "Run Get Color", 351
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "Run Custom Plugin", 353
+    END
+
+    POPUP "&Help", , , 0
+    BEGIN
+        MENUITEM "Call Winhelp", 301
+        MENUITEM "", , 0x0800 /*MFT_SEPARATOR*/
+        MENUITEM "&About CodeEdit", 300
+    END
+END
+
+#include "dlgs.rc"
+
+// *************************************************************************************************
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION 1, 0, 0, 0
+PRODUCTVERSION 1, 0, 0, 0
+FILEOS VOS__WINDOWS32
+FILETYPE VFT_APP
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904B0"
+    BEGIN
+      VALUE "CompanyName",      "The MASM64 SDK\000"
+      VALUE "FileDescription",  "64 Bit MASM Text Editor\000"
+      VALUE "FileVersion",      "1.0\000"
+      VALUE "InternalName",     "editor\000"
+      VALUE "OriginalFilename", "editor.exe\000"
+      VALUE "LegalCopyright",   "\251 2022 The MASM64 SDK\000"
+      VALUE "ProductName",      "editor\000"
+      VALUE "ProductVersion",   "1.0\000"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 0x4B0
+  END
+END
+
+// *************************************************************************************************
+

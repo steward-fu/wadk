@@ -1,0 +1,12 @@
+extern __imp_drvCommConfigDialogW:PANYARGS
+drvCommConfigDialogW TEXTEQU <__imp_drvCommConfigDialogW>
+extern __imp_drvCommConfigDialogA:PANYARGS
+drvCommConfigDialog  TEXTEQU <__imp_drvCommConfigDialogA>
+extern __imp_drvSetDefaultCommConfigW:PANYARGS
+drvSetDefaultCommConfigW TEXTEQU <__imp_drvSetDefaultCommConfigW>
+extern __imp_drvSetDefaultCommConfigA:PANYARGS
+drvSetDefaultCommConfig  TEXTEQU <__imp_drvSetDefaultCommConfigA>
+extern __imp_drvGetDefaultCommConfigW:PANYARGS
+drvGetDefaultCommConfigW TEXTEQU <__imp_drvGetDefaultCommConfigW>
+extern __imp_drvGetDefaultCommConfigA:PANYARGS
+drvGetDefaultCommConfig  TEXTEQU <__imp_drvGetDefaultCommConfigA>

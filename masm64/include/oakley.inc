@@ -1,0 +1,38 @@
+extern __imp_IKEQueryStatistics:PANYARGS
+IKEQueryStatistics TEXTEQU <__imp_IKEQueryStatistics>
+extern __imp_IKEEnumMMs:PANYARGS
+IKEEnumMMs TEXTEQU <__imp_IKEEnumMMs>
+extern __imp_IKEDeleteAssociation:PANYARGS
+IKEDeleteAssociation TEXTEQU <__imp_IKEDeleteAssociation>
+extern __imp_IKEInitiateIKENegotiation:PANYARGS
+IKEInitiateIKENegotiation TEXTEQU <__imp_IKEInitiateIKENegotiation>
+extern __imp_IKEQuerySpiChange:PANYARGS
+IKEQuerySpiChange TEXTEQU <__imp_IKEQuerySpiChange>
+extern __imp_IKERegisterNotifyClient:PANYARGS
+IKERegisterNotifyClient TEXTEQU <__imp_IKERegisterNotifyClient>
+extern __imp_oakley_ordinal29:PANYARGS
+oakley_ordinal29 TEXTEQU <__imp_oakley_ordinal29>
+extern __imp_IKEInit:PANYARGS
+IKEInit TEXTEQU <__imp_IKEInit>
+extern __imp_IKEShutdown:PANYARGS
+IKEShutdown TEXTEQU <__imp_IKEShutdown>
+extern __imp_oakley_ordinal32:PANYARGS
+oakley_ordinal32 TEXTEQU <__imp_oakley_ordinal32>
+extern __imp_IKEInterfaceChange:PANYARGS
+IKEInterfaceChange TEXTEQU <__imp_IKEInterfaceChange>
+extern __imp_IKECloseIKENotifyHandle:PANYARGS
+IKECloseIKENotifyHandle TEXTEQU <__imp_IKECloseIKENotifyHandle>
+extern __imp_IKEQueryIKENegotiationStatus:PANYARGS
+IKEQueryIKENegotiationStatus TEXTEQU <__imp_IKEQueryIKENegotiationStatus>
+extern __imp_IKECloseIKENegotiationHandle:PANYARGS
+IKECloseIKENegotiationHandle TEXTEQU <__imp_IKECloseIKENegotiationHandle>
+extern __imp_IKENotifyPolicyChange:PANYARGS
+IKENotifyPolicyChange TEXTEQU <__imp_IKENotifyPolicyChange>
+extern __imp_IKEAddSAs:PANYARGS
+IKEAddSAs TEXTEQU <__imp_IKEAddSAs>
+extern __imp_IKESetConfigurationVariables:PANYARGS
+IKESetConfigurationVariables TEXTEQU <__imp_IKESetConfigurationVariables>
+extern __imp_IKEGetConfigurationVariables:PANYARGS
+IKEGetConfigurationVariables TEXTEQU <__imp_IKEGetConfigurationVariables>
+extern __imp_IKESetSddlConfig:PANYARGS
+IKESetSddlConfig TEXTEQU <__imp_IKESetSddlConfig>

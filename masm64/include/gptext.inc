@@ -1,0 +1,26 @@
+extern __imp_GenerateIPSECPolicy:PANYARGS
+GenerateIPSECPolicy TEXTEQU <__imp_GenerateIPSECPolicy>
+extern __imp_GenerateScriptsGroupPolicy:PANYARGS
+GenerateScriptsGroupPolicy TEXTEQU <__imp_GenerateScriptsGroupPolicy>
+extern __imp_GenerateWIRELESSPolicy:PANYARGS
+GenerateWIRELESSPolicy TEXTEQU <__imp_GenerateWIRELESSPolicy>
+extern __imp_ProcessIPSECPolicyEx:PANYARGS
+ProcessIPSECPolicyEx TEXTEQU <__imp_ProcessIPSECPolicyEx>
+extern __imp_ProcessPSCHEDPolicy:PANYARGS
+ProcessPSCHEDPolicy TEXTEQU <__imp_ProcessPSCHEDPolicy>
+extern __imp_ProcessScriptsGroupPolicy:PANYARGS
+ProcessScriptsGroupPolicy TEXTEQU <__imp_ProcessScriptsGroupPolicy>
+extern __imp_ProcessScriptsGroupPolicyEx:PANYARGS
+ProcessScriptsGroupPolicyEx TEXTEQU <__imp_ProcessScriptsGroupPolicyEx>
+extern __imp_ProcessWIRELESSPolicyEx:PANYARGS
+ProcessWIRELESSPolicyEx TEXTEQU <__imp_ProcessWIRELESSPolicyEx>
+extern __imp_DllCanUnloadNow:PANYARGS
+DllCanUnloadNow TEXTEQU <__imp_DllCanUnloadNow>
+extern __imp_DllGetClassObject:PANYARGS
+DllGetClassObject TEXTEQU <__imp_DllGetClassObject>
+extern __imp_DllRegisterServer:PANYARGS
+DllRegisterServer TEXTEQU <__imp_DllRegisterServer>
+extern __imp_DllUnregisterServer:PANYARGS
+DllUnregisterServer TEXTEQU <__imp_DllUnregisterServer>
+extern __imp_ScrRegGPOListToWbem:PANYARGS
+ScrRegGPOListToWbem TEXTEQU <__imp_ScrRegGPOListToWbem>

@@ -1,0 +1,2 @@
+extern __imp_DriverSigningDialog:PANYARGS
+DriverSigningDialog TEXTEQU <__imp_DriverSigningDialog>

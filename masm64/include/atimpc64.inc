@@ -1,0 +1,4 @@
+extern __imp_atimpc64_ordinal2007:PANYARGS
+atimpc64_ordinal2007 TEXTEQU <__imp_atimpc64_ordinal2007>
+extern __imp_atimpc64_ordinal2008:PANYARGS
+atimpc64_ordinal2008 TEXTEQU <__imp_atimpc64_ordinal2008>

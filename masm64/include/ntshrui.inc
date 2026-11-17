@@ -1,0 +1,36 @@
+extern __imp_CanShareFolderW:PANYARGS
+CanShareFolderW TEXTEQU <__imp_CanShareFolderW>
+extern __imp_DllCanUnloadNow:PANYARGS
+DllCanUnloadNow TEXTEQU <__imp_DllCanUnloadNow>
+extern __imp_DllGetClassObject:PANYARGS
+DllGetClassObject TEXTEQU <__imp_DllGetClassObject>
+extern __imp_GetLocalPathFromNetResource:PANYARGS
+GetLocalPathFromNetResource TEXTEQU <__imp_GetLocalPathFromNetResource>
+extern __imp_GetLocalPathFromNetResourceA:PANYARGS
+GetLocalPathFromNetResource  TEXTEQU <__imp_GetLocalPathFromNetResourceA>
+extern __imp_GetLocalPathFromNetResourceW:PANYARGS
+GetLocalPathFromNetResourceW TEXTEQU <__imp_GetLocalPathFromNetResourceW>
+extern __imp_GetNetResourceFromLocalPath:PANYARGS
+GetNetResourceFromLocalPath TEXTEQU <__imp_GetNetResourceFromLocalPath>
+extern __imp_GetNetResourceFromLocalPathA:PANYARGS
+GetNetResourceFromLocalPath  TEXTEQU <__imp_GetNetResourceFromLocalPathA>
+extern __imp_GetNetResourceFromLocalPathW:PANYARGS
+GetNetResourceFromLocalPathW TEXTEQU <__imp_GetNetResourceFromLocalPathW>
+extern __imp_IsFolderPrivateForUser:PANYARGS
+IsFolderPrivateForUser TEXTEQU <__imp_IsFolderPrivateForUser>
+extern __imp_IsPathShared:PANYARGS
+IsPathShared TEXTEQU <__imp_IsPathShared>
+extern __imp_IsPathSharedA:PANYARGS
+IsPathShared  TEXTEQU <__imp_IsPathSharedA>
+extern __imp_IsPathSharedW:PANYARGS
+IsPathSharedW TEXTEQU <__imp_IsPathSharedW>
+extern __imp_SetFolderPermissionsForSharing:PANYARGS
+SetFolderPermissionsForSharing TEXTEQU <__imp_SetFolderPermissionsForSharing>
+extern __imp_SharingDialog:PANYARGS
+SharingDialog TEXTEQU <__imp_SharingDialog>
+extern __imp_SharingDialogA:PANYARGS
+SharingDialog  TEXTEQU <__imp_SharingDialogA>
+extern __imp_SharingDialogW:PANYARGS
+SharingDialogW TEXTEQU <__imp_SharingDialogW>
+extern __imp_ShowShareFolderUIW:PANYARGS
+ShowShareFolderUIW TEXTEQU <__imp_ShowShareFolderUIW>

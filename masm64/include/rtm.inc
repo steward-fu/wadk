@@ -1,0 +1,224 @@
+extern __imp_BestMatchInTable:PANYARGS
+BestMatchInTable TEXTEQU <__imp_BestMatchInTable>
+extern __imp_CheckTable:PANYARGS
+CheckTable TEXTEQU <__imp_CheckTable>
+extern __imp_CreateTable:PANYARGS
+CreateTable TEXTEQU <__imp_CreateTable>
+extern __imp_DeleteFromTable:PANYARGS
+DeleteFromTable TEXTEQU <__imp_DeleteFromTable>
+extern __imp_DestroyTable:PANYARGS
+DestroyTable TEXTEQU <__imp_DestroyTable>
+extern __imp_DumpTable:PANYARGS
+DumpTable TEXTEQU <__imp_DumpTable>
+extern __imp_EnumOverTable:PANYARGS
+EnumOverTable TEXTEQU <__imp_EnumOverTable>
+extern __imp_InsertIntoTable:PANYARGS
+InsertIntoTable TEXTEQU <__imp_InsertIntoTable>
+extern __imp_MgmAddGroupMembershipEntry:PANYARGS
+MgmAddGroupMembershipEntry TEXTEQU <__imp_MgmAddGroupMembershipEntry>
+extern __imp_MgmDeInitialize:PANYARGS
+MgmDeInitialize TEXTEQU <__imp_MgmDeInitialize>
+extern __imp_MgmDeRegisterMProtocol:PANYARGS
+MgmDeRegisterMProtocol TEXTEQU <__imp_MgmDeRegisterMProtocol>
+extern __imp_MgmDeleteGroupMembershipEntry:PANYARGS
+MgmDeleteGroupMembershipEntry TEXTEQU <__imp_MgmDeleteGroupMembershipEntry>
+extern __imp_MgmGetFirstMfe:PANYARGS
+MgmGetFirstMfe TEXTEQU <__imp_MgmGetFirstMfe>
+extern __imp_MgmGetFirstMfeStats:PANYARGS
+MgmGetFirstMfeStats TEXTEQU <__imp_MgmGetFirstMfeStats>
+extern __imp_MgmGetMfe:PANYARGS
+MgmGetMfe TEXTEQU <__imp_MgmGetMfe>
+extern __imp_MgmGetMfeStats:PANYARGS
+MgmGetMfeStats TEXTEQU <__imp_MgmGetMfeStats>
+extern __imp_MgmGetNextMfe:PANYARGS
+MgmGetNextMfe TEXTEQU <__imp_MgmGetNextMfe>
+extern __imp_MgmGetNextMfeStats:PANYARGS
+MgmGetNextMfeStats TEXTEQU <__imp_MgmGetNextMfeStats>
+extern __imp_MgmGetProtocolOnInterface:PANYARGS
+MgmGetProtocolOnInterface TEXTEQU <__imp_MgmGetProtocolOnInterface>
+extern __imp_MgmGroupEnumerationEnd:PANYARGS
+MgmGroupEnumerationEnd TEXTEQU <__imp_MgmGroupEnumerationEnd>
+extern __imp_MgmGroupEnumerationGetNext:PANYARGS
+MgmGroupEnumerationGetNext TEXTEQU <__imp_MgmGroupEnumerationGetNext>
+extern __imp_MgmGroupEnumerationStart:PANYARGS
+MgmGroupEnumerationStart TEXTEQU <__imp_MgmGroupEnumerationStart>
+extern __imp_MgmInitialize:PANYARGS
+MgmInitialize TEXTEQU <__imp_MgmInitialize>
+extern __imp_MgmRegisterMProtocol:PANYARGS
+MgmRegisterMProtocol TEXTEQU <__imp_MgmRegisterMProtocol>
+extern __imp_MgmReleaseInterfaceOwnership:PANYARGS
+MgmReleaseInterfaceOwnership TEXTEQU <__imp_MgmReleaseInterfaceOwnership>
+extern __imp_MgmTakeInterfaceOwnership:PANYARGS
+MgmTakeInterfaceOwnership TEXTEQU <__imp_MgmTakeInterfaceOwnership>
+extern __imp_NextMatchInTable:PANYARGS
+NextMatchInTable TEXTEQU <__imp_NextMatchInTable>
+extern __imp_RtmAddNextHop:PANYARGS
+RtmAddNextHop TEXTEQU <__imp_RtmAddNextHop>
+extern __imp_RtmAddRoute:PANYARGS
+RtmAddRoute TEXTEQU <__imp_RtmAddRoute>
+extern __imp_RtmAddRouteToDest:PANYARGS
+RtmAddRouteToDest TEXTEQU <__imp_RtmAddRouteToDest>
+extern __imp_RtmBlockConvertRoutesToStatic:PANYARGS
+RtmBlockConvertRoutesToStatic TEXTEQU <__imp_RtmBlockConvertRoutesToStatic>
+extern __imp_RtmBlockDeleteRoutes:PANYARGS
+RtmBlockDeleteRoutes TEXTEQU <__imp_RtmBlockDeleteRoutes>
+extern __imp_RtmBlockMethods:PANYARGS
+RtmBlockMethods TEXTEQU <__imp_RtmBlockMethods>
+extern __imp_RtmBlockSetRouteEnable:PANYARGS
+RtmBlockSetRouteEnable TEXTEQU <__imp_RtmBlockSetRouteEnable>
+extern __imp_RtmCloseEnumerationHandle:PANYARGS
+RtmCloseEnumerationHandle TEXTEQU <__imp_RtmCloseEnumerationHandle>
+extern __imp_RtmCreateDestEnum:PANYARGS
+RtmCreateDestEnum TEXTEQU <__imp_RtmCreateDestEnum>
+extern __imp_RtmCreateEnumerationHandle:PANYARGS
+RtmCreateEnumerationHandle TEXTEQU <__imp_RtmCreateEnumerationHandle>
+extern __imp_RtmCreateNextHopEnum:PANYARGS
+RtmCreateNextHopEnum TEXTEQU <__imp_RtmCreateNextHopEnum>
+extern __imp_RtmCreateRouteEnum:PANYARGS
+RtmCreateRouteEnum TEXTEQU <__imp_RtmCreateRouteEnum>
+extern __imp_RtmCreateRouteList:PANYARGS
+RtmCreateRouteList TEXTEQU <__imp_RtmCreateRouteList>
+extern __imp_RtmCreateRouteListEnum:PANYARGS
+RtmCreateRouteListEnum TEXTEQU <__imp_RtmCreateRouteListEnum>
+extern __imp_RtmCreateRouteTable:PANYARGS
+RtmCreateRouteTable TEXTEQU <__imp_RtmCreateRouteTable>
+extern __imp_RtmDeleteEnumHandle:PANYARGS
+RtmDeleteEnumHandle TEXTEQU <__imp_RtmDeleteEnumHandle>
+extern __imp_RtmDeleteNextHop:PANYARGS
+RtmDeleteNextHop TEXTEQU <__imp_RtmDeleteNextHop>
+extern __imp_RtmDeleteRoute:PANYARGS
+RtmDeleteRoute TEXTEQU <__imp_RtmDeleteRoute>
+extern __imp_RtmDeleteRouteList:PANYARGS
+RtmDeleteRouteList TEXTEQU <__imp_RtmDeleteRouteList>
+extern __imp_RtmDeleteRouteTable:PANYARGS
+RtmDeleteRouteTable TEXTEQU <__imp_RtmDeleteRouteTable>
+extern __imp_RtmDeleteRouteToDest:PANYARGS
+RtmDeleteRouteToDest TEXTEQU <__imp_RtmDeleteRouteToDest>
+extern __imp_RtmDequeueRouteChangeMessage:PANYARGS
+RtmDequeueRouteChangeMessage TEXTEQU <__imp_RtmDequeueRouteChangeMessage>
+extern __imp_RtmDereferenceHandles:PANYARGS
+RtmDereferenceHandles TEXTEQU <__imp_RtmDereferenceHandles>
+extern __imp_RtmDeregisterClient:PANYARGS
+RtmDeregisterClient TEXTEQU <__imp_RtmDeregisterClient>
+extern __imp_RtmDeregisterEntity:PANYARGS
+RtmDeregisterEntity TEXTEQU <__imp_RtmDeregisterEntity>
+extern __imp_RtmDeregisterFromChangeNotification:PANYARGS
+RtmDeregisterFromChangeNotification TEXTEQU <__imp_RtmDeregisterFromChangeNotification>
+extern __imp_RtmEnumerateGetNextRoute:PANYARGS
+RtmEnumerateGetNextRoute TEXTEQU <__imp_RtmEnumerateGetNextRoute>
+extern __imp_RtmFindNextHop:PANYARGS
+RtmFindNextHop TEXTEQU <__imp_RtmFindNextHop>
+extern __imp_RtmGetAddressFamilyInfo:PANYARGS
+RtmGetAddressFamilyInfo TEXTEQU <__imp_RtmGetAddressFamilyInfo>
+extern __imp_RtmGetChangeStatus:PANYARGS
+RtmGetChangeStatus TEXTEQU <__imp_RtmGetChangeStatus>
+extern __imp_RtmGetChangedDests:PANYARGS
+RtmGetChangedDests TEXTEQU <__imp_RtmGetChangedDests>
+extern __imp_RtmGetDestInfo:PANYARGS
+RtmGetDestInfo TEXTEQU <__imp_RtmGetDestInfo>
+extern __imp_RtmGetEntityInfo:PANYARGS
+RtmGetEntityInfo TEXTEQU <__imp_RtmGetEntityInfo>
+extern __imp_RtmGetEntityMethods:PANYARGS
+RtmGetEntityMethods TEXTEQU <__imp_RtmGetEntityMethods>
+extern __imp_RtmGetEnumDests:PANYARGS
+RtmGetEnumDests TEXTEQU <__imp_RtmGetEnumDests>
+extern __imp_RtmGetEnumNextHops:PANYARGS
+RtmGetEnumNextHops TEXTEQU <__imp_RtmGetEnumNextHops>
+extern __imp_RtmGetEnumRoutes:PANYARGS
+RtmGetEnumRoutes TEXTEQU <__imp_RtmGetEnumRoutes>
+extern __imp_RtmGetExactMatchDestination:PANYARGS
+RtmGetExactMatchDestination TEXTEQU <__imp_RtmGetExactMatchDestination>
+extern __imp_RtmGetExactMatchRoute:PANYARGS
+RtmGetExactMatchRoute TEXTEQU <__imp_RtmGetExactMatchRoute>
+extern __imp_RtmGetFirstRoute:PANYARGS
+RtmGetFirstRoute TEXTEQU <__imp_RtmGetFirstRoute>
+extern __imp_RtmGetInstanceInfo:PANYARGS
+RtmGetInstanceInfo TEXTEQU <__imp_RtmGetInstanceInfo>
+extern __imp_RtmGetInstances:PANYARGS
+RtmGetInstances TEXTEQU <__imp_RtmGetInstances>
+extern __imp_RtmGetLessSpecificDestination:PANYARGS
+RtmGetLessSpecificDestination TEXTEQU <__imp_RtmGetLessSpecificDestination>
+extern __imp_RtmGetListEnumRoutes:PANYARGS
+RtmGetListEnumRoutes TEXTEQU <__imp_RtmGetListEnumRoutes>
+extern __imp_RtmGetMostSpecificDestination:PANYARGS
+RtmGetMostSpecificDestination TEXTEQU <__imp_RtmGetMostSpecificDestination>
+extern __imp_RtmGetNetworkCount:PANYARGS
+RtmGetNetworkCount TEXTEQU <__imp_RtmGetNetworkCount>
+extern __imp_RtmGetNextHopInfo:PANYARGS
+RtmGetNextHopInfo TEXTEQU <__imp_RtmGetNextHopInfo>
+extern __imp_RtmGetNextHopPointer:PANYARGS
+RtmGetNextHopPointer TEXTEQU <__imp_RtmGetNextHopPointer>
+extern __imp_RtmGetNextRoute:PANYARGS
+RtmGetNextRoute TEXTEQU <__imp_RtmGetNextRoute>
+extern __imp_RtmGetOpaqueInformationPointer:PANYARGS
+RtmGetOpaqueInformationPointer TEXTEQU <__imp_RtmGetOpaqueInformationPointer>
+extern __imp_RtmGetRegisteredEntities:PANYARGS
+RtmGetRegisteredEntities TEXTEQU <__imp_RtmGetRegisteredEntities>
+extern __imp_RtmGetRouteAge:PANYARGS
+RtmGetRouteAge TEXTEQU <__imp_RtmGetRouteAge>
+extern __imp_RtmGetRouteInfo:PANYARGS
+RtmGetRouteInfo TEXTEQU <__imp_RtmGetRouteInfo>
+extern __imp_RtmGetRoutePointer:PANYARGS
+RtmGetRoutePointer TEXTEQU <__imp_RtmGetRoutePointer>
+extern __imp_RtmHoldDestination:PANYARGS
+RtmHoldDestination TEXTEQU <__imp_RtmHoldDestination>
+extern __imp_RtmIgnoreChangedDests:PANYARGS
+RtmIgnoreChangedDests TEXTEQU <__imp_RtmIgnoreChangedDests>
+extern __imp_RtmInsertInRouteList:PANYARGS
+RtmInsertInRouteList TEXTEQU <__imp_RtmInsertInRouteList>
+extern __imp_RtmInvokeMethod:PANYARGS
+RtmInvokeMethod TEXTEQU <__imp_RtmInvokeMethod>
+extern __imp_RtmIsBestRoute:PANYARGS
+RtmIsBestRoute TEXTEQU <__imp_RtmIsBestRoute>
+extern __imp_RtmIsMarkedForChangeNotification:PANYARGS
+RtmIsMarkedForChangeNotification TEXTEQU <__imp_RtmIsMarkedForChangeNotification>
+extern __imp_RtmIsRoute:PANYARGS
+RtmIsRoute TEXTEQU <__imp_RtmIsRoute>
+extern __imp_RtmLockDestination:PANYARGS
+RtmLockDestination TEXTEQU <__imp_RtmLockDestination>
+extern __imp_RtmLockNextHop:PANYARGS
+RtmLockNextHop TEXTEQU <__imp_RtmLockNextHop>
+extern __imp_RtmLockRoute:PANYARGS
+RtmLockRoute TEXTEQU <__imp_RtmLockRoute>
+extern __imp_RtmLookupIPDestination:PANYARGS
+RtmLookupIPDestination TEXTEQU <__imp_RtmLookupIPDestination>
+extern __imp_RtmMarkDestForChangeNotification:PANYARGS
+RtmMarkDestForChangeNotification TEXTEQU <__imp_RtmMarkDestForChangeNotification>
+extern __imp_RtmReadAddressFamilyConfig:PANYARGS
+RtmReadAddressFamilyConfig TEXTEQU <__imp_RtmReadAddressFamilyConfig>
+extern __imp_RtmReadInstanceConfig:PANYARGS
+RtmReadInstanceConfig TEXTEQU <__imp_RtmReadInstanceConfig>
+extern __imp_RtmReferenceHandles:PANYARGS
+RtmReferenceHandles TEXTEQU <__imp_RtmReferenceHandles>
+extern __imp_RtmRegisterClient:PANYARGS
+RtmRegisterClient TEXTEQU <__imp_RtmRegisterClient>
+extern __imp_RtmRegisterEntity:PANYARGS
+RtmRegisterEntity TEXTEQU <__imp_RtmRegisterEntity>
+extern __imp_RtmRegisterForChangeNotification:PANYARGS
+RtmRegisterForChangeNotification TEXTEQU <__imp_RtmRegisterForChangeNotification>
+extern __imp_RtmReleaseChangedDests:PANYARGS
+RtmReleaseChangedDests TEXTEQU <__imp_RtmReleaseChangedDests>
+extern __imp_RtmReleaseDestInfo:PANYARGS
+RtmReleaseDestInfo TEXTEQU <__imp_RtmReleaseDestInfo>
+extern __imp_RtmReleaseDests:PANYARGS
+RtmReleaseDests TEXTEQU <__imp_RtmReleaseDests>
+extern __imp_RtmReleaseEntities:PANYARGS
+RtmReleaseEntities TEXTEQU <__imp_RtmReleaseEntities>
+extern __imp_RtmReleaseEntityInfo:PANYARGS
+RtmReleaseEntityInfo TEXTEQU <__imp_RtmReleaseEntityInfo>
+extern __imp_RtmReleaseNextHopInfo:PANYARGS
+RtmReleaseNextHopInfo TEXTEQU <__imp_RtmReleaseNextHopInfo>
+extern __imp_RtmReleaseNextHops:PANYARGS
+RtmReleaseNextHops TEXTEQU <__imp_RtmReleaseNextHops>
+extern __imp_RtmReleaseRouteInfo:PANYARGS
+RtmReleaseRouteInfo TEXTEQU <__imp_RtmReleaseRouteInfo>
+extern __imp_RtmReleaseRoutes:PANYARGS
+RtmReleaseRoutes TEXTEQU <__imp_RtmReleaseRoutes>
+extern __imp_RtmUpdateAndUnlockRoute:PANYARGS
+RtmUpdateAndUnlockRoute TEXTEQU <__imp_RtmUpdateAndUnlockRoute>
+extern __imp_RtmWriteAddressFamilyConfig:PANYARGS
+RtmWriteAddressFamilyConfig TEXTEQU <__imp_RtmWriteAddressFamilyConfig>
+extern __imp_RtmWriteInstanceConfig:PANYARGS
+RtmWriteInstanceConfig TEXTEQU <__imp_RtmWriteInstanceConfig>
+extern __imp_SearchInTable:PANYARGS
+SearchInTable TEXTEQU <__imp_SearchInTable>

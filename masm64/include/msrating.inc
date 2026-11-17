@@ -1,0 +1,54 @@
+extern __imp_ChangeSupervisorPassword:PANYARGS
+ChangeSupervisorPassword TEXTEQU <__imp_ChangeSupervisorPassword>
+extern __imp_ClickedOnPRF:PANYARGS
+ClickedOnPRF TEXTEQU <__imp_ClickedOnPRF>
+extern __imp_ClickedOnRAT:PANYARGS
+ClickedOnRAT TEXTEQU <__imp_ClickedOnRAT>
+extern __imp_DllCanUnloadNow:PANYARGS
+DllCanUnloadNow TEXTEQU <__imp_DllCanUnloadNow>
+extern __imp_DllGetClassObject:PANYARGS
+DllGetClassObject TEXTEQU <__imp_DllGetClassObject>
+extern __imp_DllRegisterServer:PANYARGS
+DllRegisterServer TEXTEQU <__imp_DllRegisterServer>
+extern __imp_DllUnregisterServer:PANYARGS
+DllUnregisterServer TEXTEQU <__imp_DllUnregisterServer>
+extern __imp_RatingAccessDeniedDialog:PANYARGS
+RatingAccessDeniedDialog TEXTEQU <__imp_RatingAccessDeniedDialog>
+extern __imp_RatingAccessDeniedDialog2:PANYARGS
+RatingAccessDeniedDialog2 TEXTEQU <__imp_RatingAccessDeniedDialog2>
+extern __imp_RatingAddPropertyPages:PANYARGS
+RatingAddPropertyPages TEXTEQU <__imp_RatingAddPropertyPages>
+extern __imp_RatingCheckUserAccess:PANYARGS
+RatingCheckUserAccess TEXTEQU <__imp_RatingCheckUserAccess>
+extern __imp_RatingCustomAddRatingHelper:PANYARGS
+RatingCustomAddRatingHelper TEXTEQU <__imp_RatingCustomAddRatingHelper>
+extern __imp_RatingCustomAddRatingSystem:PANYARGS
+RatingCustomAddRatingSystem TEXTEQU <__imp_RatingCustomAddRatingSystem>
+extern __imp_RatingCustomCrackData:PANYARGS
+RatingCustomCrackData TEXTEQU <__imp_RatingCustomCrackData>
+extern __imp_RatingCustomDeleteCrackedData:PANYARGS
+RatingCustomDeleteCrackedData TEXTEQU <__imp_RatingCustomDeleteCrackedData>
+extern __imp_RatingCustomInit:PANYARGS
+RatingCustomInit TEXTEQU <__imp_RatingCustomInit>
+extern __imp_RatingCustomRemoveRatingHelper:PANYARGS
+RatingCustomRemoveRatingHelper TEXTEQU <__imp_RatingCustomRemoveRatingHelper>
+extern __imp_RatingCustomSetDefaultBureau:PANYARGS
+RatingCustomSetDefaultBureau TEXTEQU <__imp_RatingCustomSetDefaultBureau>
+extern __imp_RatingCustomSetUserOptions:PANYARGS
+RatingCustomSetUserOptions TEXTEQU <__imp_RatingCustomSetUserOptions>
+extern __imp_RatingEnable:PANYARGS
+RatingEnable TEXTEQU <__imp_RatingEnable>
+extern __imp_RatingEnabledQuery:PANYARGS
+RatingEnabledQuery TEXTEQU <__imp_RatingEnabledQuery>
+extern __imp_RatingFreeDetails:PANYARGS
+RatingFreeDetails TEXTEQU <__imp_RatingFreeDetails>
+extern __imp_RatingInit:PANYARGS
+RatingInit TEXTEQU <__imp_RatingInit>
+extern __imp_RatingObtainCancel:PANYARGS
+RatingObtainCancel TEXTEQU <__imp_RatingObtainCancel>
+extern __imp_RatingObtainQuery:PANYARGS
+RatingObtainQuery TEXTEQU <__imp_RatingObtainQuery>
+extern __imp_RatingSetupUI:PANYARGS
+RatingSetupUI TEXTEQU <__imp_RatingSetupUI>
+extern __imp_VerifySupervisorPassword:PANYARGS
+VerifySupervisorPassword TEXTEQU <__imp_VerifySupervisorPassword>

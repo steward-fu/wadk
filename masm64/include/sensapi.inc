@@ -1,0 +1,6 @@
+extern __imp_IsDestinationReachableA:PANYARGS
+IsDestinationReachable  TEXTEQU <__imp_IsDestinationReachableA>
+extern __imp_IsDestinationReachableW:PANYARGS
+IsDestinationReachableW TEXTEQU <__imp_IsDestinationReachableW>
+extern __imp_IsNetworkAlive:PANYARGS
+IsNetworkAlive TEXTEQU <__imp_IsNetworkAlive>

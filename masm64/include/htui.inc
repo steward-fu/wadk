@@ -1,0 +1,14 @@
+extern __imp_DllMain:PANYARGS
+DllMain TEXTEQU <__imp_DllMain>
+extern __imp_HTUI_ColorAdjustment:PANYARGS
+HTUI_ColorAdjustment TEXTEQU <__imp_HTUI_ColorAdjustment>
+extern __imp_HTUI_ColorAdjustmentA:PANYARGS
+HTUI_ColorAdjustment  TEXTEQU <__imp_HTUI_ColorAdjustmentA>
+extern __imp_HTUI_ColorAdjustmentW:PANYARGS
+HTUI_ColorAdjustmentW TEXTEQU <__imp_HTUI_ColorAdjustmentW>
+extern __imp_HTUI_DeviceColorAdjustment:PANYARGS
+HTUI_DeviceColorAdjustment TEXTEQU <__imp_HTUI_DeviceColorAdjustment>
+extern __imp_HTUI_DeviceColorAdjustmentA:PANYARGS
+HTUI_DeviceColorAdjustment  TEXTEQU <__imp_HTUI_DeviceColorAdjustmentA>
+extern __imp_HTUI_DeviceColorAdjustmentW:PANYARGS
+HTUI_DeviceColorAdjustmentW TEXTEQU <__imp_HTUI_DeviceColorAdjustmentW>

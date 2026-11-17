@@ -1,0 +1,58 @@
+extern __imp_FilterAttach:PANYARGS
+FilterAttach TEXTEQU <__imp_FilterAttach>
+extern __imp_FilterAttachAtAltitude:PANYARGS
+FilterAttachAtAltitude TEXTEQU <__imp_FilterAttachAtAltitude>
+extern __imp_FilterClose:PANYARGS
+FilterClose TEXTEQU <__imp_FilterClose>
+extern __imp_FilterConnectCommunicationPort:PANYARGS
+FilterConnectCommunicationPort TEXTEQU <__imp_FilterConnectCommunicationPort>
+extern __imp_FilterCreate:PANYARGS
+FilterCreate TEXTEQU <__imp_FilterCreate>
+extern __imp_FilterDetach:PANYARGS
+FilterDetach TEXTEQU <__imp_FilterDetach>
+extern __imp_FilterFindClose:PANYARGS
+FilterFindClose TEXTEQU <__imp_FilterFindClose>
+extern __imp_FilterFindFirst:PANYARGS
+FilterFindFirst TEXTEQU <__imp_FilterFindFirst>
+extern __imp_FilterFindNext:PANYARGS
+FilterFindNext TEXTEQU <__imp_FilterFindNext>
+extern __imp_FilterGetDosName:PANYARGS
+FilterGetDosName TEXTEQU <__imp_FilterGetDosName>
+extern __imp_FilterGetInformation:PANYARGS
+FilterGetInformation TEXTEQU <__imp_FilterGetInformation>
+extern __imp_FilterGetMessage:PANYARGS
+FilterGetMessage TEXTEQU <__imp_FilterGetMessage>
+extern __imp_FilterInstanceClose:PANYARGS
+FilterInstanceClose TEXTEQU <__imp_FilterInstanceClose>
+extern __imp_FilterInstanceCreate:PANYARGS
+FilterInstanceCreate TEXTEQU <__imp_FilterInstanceCreate>
+extern __imp_FilterInstanceFindClose:PANYARGS
+FilterInstanceFindClose TEXTEQU <__imp_FilterInstanceFindClose>
+extern __imp_FilterInstanceFindFirst:PANYARGS
+FilterInstanceFindFirst TEXTEQU <__imp_FilterInstanceFindFirst>
+extern __imp_FilterInstanceFindNext:PANYARGS
+FilterInstanceFindNext TEXTEQU <__imp_FilterInstanceFindNext>
+extern __imp_FilterInstanceGetInformation:PANYARGS
+FilterInstanceGetInformation TEXTEQU <__imp_FilterInstanceGetInformation>
+extern __imp_FilterLoad:PANYARGS
+FilterLoad TEXTEQU <__imp_FilterLoad>
+extern __imp_FilterReplyMessage:PANYARGS
+FilterReplyMessage TEXTEQU <__imp_FilterReplyMessage>
+extern __imp_FilterSendMessage:PANYARGS
+FilterSendMessage TEXTEQU <__imp_FilterSendMessage>
+extern __imp_FilterUnload:PANYARGS
+FilterUnload TEXTEQU <__imp_FilterUnload>
+extern __imp_FilterVolumeClose:PANYARGS
+FilterVolumeClose TEXTEQU <__imp_FilterVolumeClose>
+extern __imp_FilterVolumeFindClose:PANYARGS
+FilterVolumeFindClose TEXTEQU <__imp_FilterVolumeFindClose>
+extern __imp_FilterVolumeFindFirst:PANYARGS
+FilterVolumeFindFirst TEXTEQU <__imp_FilterVolumeFindFirst>
+extern __imp_FilterVolumeFindNext:PANYARGS
+FilterVolumeFindNext TEXTEQU <__imp_FilterVolumeFindNext>
+extern __imp_FilterVolumeInstanceFindClose:PANYARGS
+FilterVolumeInstanceFindClose TEXTEQU <__imp_FilterVolumeInstanceFindClose>
+extern __imp_FilterVolumeInstanceFindFirst:PANYARGS
+FilterVolumeInstanceFindFirst TEXTEQU <__imp_FilterVolumeInstanceFindFirst>
+extern __imp_FilterVolumeInstanceFindNext:PANYARGS
+FilterVolumeInstanceFindNext TEXTEQU <__imp_FilterVolumeInstanceFindNext>

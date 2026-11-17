@@ -1,0 +1,6 @@
+extern __imp_OpenRasPerformanceData:PANYARGS
+OpenRasPerformanceData TEXTEQU <__imp_OpenRasPerformanceData>
+extern __imp_CollectRasPerformanceData:PANYARGS
+CollectRasPerformanceData TEXTEQU <__imp_CollectRasPerformanceData>
+extern __imp_CloseRasPerformanceData:PANYARGS
+CloseRasPerformanceData TEXTEQU <__imp_CloseRasPerformanceData>

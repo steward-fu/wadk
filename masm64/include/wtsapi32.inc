@@ -1,0 +1,70 @@
+extern __imp_WTSCloseServer:PANYARGS
+WTSCloseServer TEXTEQU <__imp_WTSCloseServer>
+extern __imp_WTSDisconnectSession:PANYARGS
+WTSDisconnectSession TEXTEQU <__imp_WTSDisconnectSession>
+extern __imp_WTSEnumerateProcessesA:PANYARGS
+WTSEnumerateProcesses  TEXTEQU <__imp_WTSEnumerateProcessesA>
+extern __imp_WTSEnumerateProcessesW:PANYARGS
+WTSEnumerateProcessesW TEXTEQU <__imp_WTSEnumerateProcessesW>
+extern __imp_WTSEnumerateServersA:PANYARGS
+WTSEnumerateServers  TEXTEQU <__imp_WTSEnumerateServersA>
+extern __imp_WTSEnumerateServersW:PANYARGS
+WTSEnumerateServersW TEXTEQU <__imp_WTSEnumerateServersW>
+extern __imp_WTSEnumerateSessionsA:PANYARGS
+WTSEnumerateSessions  TEXTEQU <__imp_WTSEnumerateSessionsA>
+extern __imp_WTSEnumerateSessionsW:PANYARGS
+WTSEnumerateSessionsW TEXTEQU <__imp_WTSEnumerateSessionsW>
+extern __imp_WTSFreeMemory:PANYARGS
+WTSFreeMemory TEXTEQU <__imp_WTSFreeMemory>
+extern __imp_WTSLogoffSession:PANYARGS
+WTSLogoffSession TEXTEQU <__imp_WTSLogoffSession>
+extern __imp_WTSOpenServerA:PANYARGS
+WTSOpenServer  TEXTEQU <__imp_WTSOpenServerA>
+extern __imp_WTSOpenServerW:PANYARGS
+WTSOpenServerW TEXTEQU <__imp_WTSOpenServerW>
+extern __imp_WTSQuerySessionInformationA:PANYARGS
+WTSQuerySessionInformation  TEXTEQU <__imp_WTSQuerySessionInformationA>
+extern __imp_WTSQuerySessionInformationW:PANYARGS
+WTSQuerySessionInformationW TEXTEQU <__imp_WTSQuerySessionInformationW>
+extern __imp_WTSQueryUserConfigA:PANYARGS
+WTSQueryUserConfig  TEXTEQU <__imp_WTSQueryUserConfigA>
+extern __imp_WTSQueryUserConfigW:PANYARGS
+WTSQueryUserConfigW TEXTEQU <__imp_WTSQueryUserConfigW>
+extern __imp_WTSQueryUserToken:PANYARGS
+WTSQueryUserToken TEXTEQU <__imp_WTSQueryUserToken>
+extern __imp_WTSRegisterSessionNotification:PANYARGS
+WTSRegisterSessionNotification TEXTEQU <__imp_WTSRegisterSessionNotification>
+extern __imp_WTSSendMessageA:PANYARGS
+WTSSendMessage  TEXTEQU <__imp_WTSSendMessageA>
+extern __imp_WTSSendMessageW:PANYARGS
+WTSSendMessageW TEXTEQU <__imp_WTSSendMessageW>
+extern __imp_WTSSetSessionInformationA:PANYARGS
+WTSSetSessionInformation  TEXTEQU <__imp_WTSSetSessionInformationA>
+extern __imp_WTSSetSessionInformationW:PANYARGS
+WTSSetSessionInformationW TEXTEQU <__imp_WTSSetSessionInformationW>
+extern __imp_WTSSetUserConfigA:PANYARGS
+WTSSetUserConfig  TEXTEQU <__imp_WTSSetUserConfigA>
+extern __imp_WTSSetUserConfigW:PANYARGS
+WTSSetUserConfigW TEXTEQU <__imp_WTSSetUserConfigW>
+extern __imp_WTSShutdownSystem:PANYARGS
+WTSShutdownSystem TEXTEQU <__imp_WTSShutdownSystem>
+extern __imp_WTSTerminateProcess:PANYARGS
+WTSTerminateProcess TEXTEQU <__imp_WTSTerminateProcess>
+extern __imp_WTSUnRegisterSessionNotification:PANYARGS
+WTSUnRegisterSessionNotification TEXTEQU <__imp_WTSUnRegisterSessionNotification>
+extern __imp_WTSVirtualChannelClose:PANYARGS
+WTSVirtualChannelClose TEXTEQU <__imp_WTSVirtualChannelClose>
+extern __imp_WTSVirtualChannelOpen:PANYARGS
+WTSVirtualChannelOpen TEXTEQU <__imp_WTSVirtualChannelOpen>
+extern __imp_WTSVirtualChannelPurgeInput:PANYARGS
+WTSVirtualChannelPurgeInput TEXTEQU <__imp_WTSVirtualChannelPurgeInput>
+extern __imp_WTSVirtualChannelPurgeOutput:PANYARGS
+WTSVirtualChannelPurgeOutput TEXTEQU <__imp_WTSVirtualChannelPurgeOutput>
+extern __imp_WTSVirtualChannelQuery:PANYARGS
+WTSVirtualChannelQuery TEXTEQU <__imp_WTSVirtualChannelQuery>
+extern __imp_WTSVirtualChannelRead:PANYARGS
+WTSVirtualChannelRead TEXTEQU <__imp_WTSVirtualChannelRead>
+extern __imp_WTSVirtualChannelWrite:PANYARGS
+WTSVirtualChannelWrite TEXTEQU <__imp_WTSVirtualChannelWrite>
+extern __imp_WTSWaitSystemEvent:PANYARGS
+WTSWaitSystemEvent TEXTEQU <__imp_WTSWaitSystemEvent>

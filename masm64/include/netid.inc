@@ -1,0 +1,4 @@
+extern __imp_CreateNetIDPropertyPage:PANYARGS
+CreateNetIDPropertyPage TEXTEQU <__imp_CreateNetIDPropertyPage>
+extern __imp_ShowDcNotFoundErrorDialog:PANYARGS
+ShowDcNotFoundErrorDialog TEXTEQU <__imp_ShowDcNotFoundErrorDialog>

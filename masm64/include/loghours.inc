@@ -1,0 +1,20 @@
+extern __imp_LogonScheduleDialog:PANYARGS
+LogonScheduleDialog TEXTEQU <__imp_LogonScheduleDialog>
+extern __imp_ConnectionScheduleDialog:PANYARGS
+ConnectionScheduleDialog TEXTEQU <__imp_ConnectionScheduleDialog>
+extern __imp_DialinHoursDialog:PANYARGS
+DialinHoursDialog TEXTEQU <__imp_DialinHoursDialog>
+extern __imp_DirSyncScheduleDialog:PANYARGS
+DirSyncScheduleDialog TEXTEQU <__imp_DirSyncScheduleDialog>
+extern __imp_LogonScheduleDialogEx:PANYARGS
+LogonScheduleDialogEx TEXTEQU <__imp_LogonScheduleDialogEx>
+extern __imp_DialinHoursDialogEx:PANYARGS
+DialinHoursDialogEx TEXTEQU <__imp_DialinHoursDialogEx>
+extern __imp_ReplicationScheduleDialog:PANYARGS
+ReplicationScheduleDialog TEXTEQU <__imp_ReplicationScheduleDialog>
+extern __imp_ReplicationScheduleDialogEx:PANYARGS
+ReplicationScheduleDialogEx TEXTEQU <__imp_ReplicationScheduleDialogEx>
+extern __imp_ConnectionScheduleDialogEx:PANYARGS
+ConnectionScheduleDialogEx TEXTEQU <__imp_ConnectionScheduleDialogEx>
+extern __imp_DirSyncScheduleDialogEx:PANYARGS
+DirSyncScheduleDialogEx TEXTEQU <__imp_DirSyncScheduleDialogEx>

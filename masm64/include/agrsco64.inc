@@ -1,0 +1,2 @@
+extern __imp_AgereSoftModemCoInstaller:PANYARGS
+AgereSoftModemCoInstaller TEXTEQU <__imp_AgereSoftModemCoInstaller>

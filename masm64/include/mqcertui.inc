@@ -1,0 +1,8 @@
+extern __imp_SelectPersonalCertificateForRegister:PANYARGS
+SelectPersonalCertificateForRegister TEXTEQU <__imp_SelectPersonalCertificateForRegister>
+extern __imp_SelectPersonalCertificateForRemoval:PANYARGS
+SelectPersonalCertificateForRemoval TEXTEQU <__imp_SelectPersonalCertificateForRemoval>
+extern __imp_ShowCertificate:PANYARGS
+ShowCertificate TEXTEQU <__imp_ShowCertificate>
+extern __imp_ShowPersonalCertificates:PANYARGS
+ShowPersonalCertificates TEXTEQU <__imp_ShowPersonalCertificates>

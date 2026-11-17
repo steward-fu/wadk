@@ -1,0 +1,4 @@
+extern __imp_KbdLayerDescriptor:PANYARGS
+KbdLayerDescriptor TEXTEQU <__imp_KbdLayerDescriptor>
+extern __imp_KbdNlsLayerDescriptor:PANYARGS
+KbdNlsLayerDescriptor TEXTEQU <__imp_KbdNlsLayerDescriptor>

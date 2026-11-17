@@ -1,0 +1,24 @@
+extern __imp_ClientSideInstallW:PANYARGS
+ClientSideInstallW TEXTEQU <__imp_ClientSideInstallW>
+extern __imp_DevInstallW:PANYARGS
+DevInstallW TEXTEQU <__imp_DevInstallW>
+extern __imp_InstallDevInst:PANYARGS
+InstallDevInst TEXTEQU <__imp_InstallDevInst>
+extern __imp_InstallDevInstEx:PANYARGS
+InstallDevInstEx TEXTEQU <__imp_InstallDevInstEx>
+extern __imp_InstallNewDevice:PANYARGS
+InstallNewDevice TEXTEQU <__imp_InstallNewDevice>
+extern __imp_InstallSelectedDevice:PANYARGS
+InstallSelectedDevice TEXTEQU <__imp_InstallSelectedDevice>
+extern __imp_InstallSelectedDriver:PANYARGS
+InstallSelectedDriver TEXTEQU <__imp_InstallSelectedDriver>
+extern __imp_InstallWindowsUpdateDriver:PANYARGS
+InstallWindowsUpdateDriver TEXTEQU <__imp_InstallWindowsUpdateDriver>
+extern __imp_RollbackDriver:PANYARGS
+RollbackDriver TEXTEQU <__imp_RollbackDriver>
+extern __imp_UpdateDriverForPlugAndPlayDevicesA:PANYARGS
+UpdateDriverForPlugAndPlayDevices  TEXTEQU <__imp_UpdateDriverForPlugAndPlayDevicesA>
+extern __imp_UpdateDriverForPlugAndPlayDevicesW:PANYARGS
+UpdateDriverForPlugAndPlayDevicesW TEXTEQU <__imp_UpdateDriverForPlugAndPlayDevicesW>
+extern __imp_WindowsUpdateDriverSearchingPolicyUi:PANYARGS
+WindowsUpdateDriverSearchingPolicyUi TEXTEQU <__imp_WindowsUpdateDriverSearchingPolicyUi>

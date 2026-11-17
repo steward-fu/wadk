@@ -1,0 +1,16 @@
+extern __imp_StreamingDeviceClassInstaller:PANYARGS
+StreamingDeviceClassInstaller TEXTEQU <__imp_StreamingDeviceClassInstaller>
+extern __imp_StreamingDeviceRemove:PANYARGS
+StreamingDeviceRemove TEXTEQU <__imp_StreamingDeviceRemove>
+extern __imp_StreamingDeviceRemoveA:PANYARGS
+StreamingDeviceRemove  TEXTEQU <__imp_StreamingDeviceRemoveA>
+extern __imp_StreamingDeviceRemoveW:PANYARGS
+StreamingDeviceRemoveW TEXTEQU <__imp_StreamingDeviceRemoveW>
+extern __imp_StreamingDeviceSetup:PANYARGS
+StreamingDeviceSetup TEXTEQU <__imp_StreamingDeviceSetup>
+extern __imp_StreamingDeviceSetupA:PANYARGS
+StreamingDeviceSetup  TEXTEQU <__imp_StreamingDeviceSetupA>
+extern __imp_StreamingDeviceSetupW:PANYARGS
+StreamingDeviceSetupW TEXTEQU <__imp_StreamingDeviceSetupW>
+extern __imp_SwEnumCoInstaller:PANYARGS
+SwEnumCoInstaller TEXTEQU <__imp_SwEnumCoInstaller>

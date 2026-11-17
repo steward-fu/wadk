@@ -1,0 +1,16 @@
+extern __imp_CPlApplet:PANYARGS
+CPlApplet TEXTEQU <__imp_CPlApplet>
+extern __imp_USBControllerBandwidthPage:PANYARGS
+USBControllerBandwidthPage TEXTEQU <__imp_USBControllerBandwidthPage>
+extern __imp_USBControllerPropPageProvider:PANYARGS
+USBControllerPropPageProvider TEXTEQU <__imp_USBControllerPropPageProvider>
+extern __imp_USBDevicePropPageProvider:PANYARGS
+USBDevicePropPageProvider TEXTEQU <__imp_USBDevicePropPageProvider>
+extern __imp_USBErrorHandler:PANYARGS
+USBErrorHandler TEXTEQU <__imp_USBErrorHandler>
+extern __imp_USBHubPowerPage:PANYARGS
+USBHubPowerPage TEXTEQU <__imp_USBHubPowerPage>
+extern __imp_USBHubPropPageProvider:PANYARGS
+USBHubPropPageProvider TEXTEQU <__imp_USBHubPropPageProvider>
+extern __imp_UsbControlPanelApplet:PANYARGS
+UsbControlPanelApplet TEXTEQU <__imp_UsbControlPanelApplet>

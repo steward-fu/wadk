@@ -1,0 +1,30 @@
+: いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい
+
+@echo off
+
+: ---------------------------------------------
+: type the library name WITH the .lib extension
+: ---------------------------------------------
+  set libname=[put name here]
+
+: delete any existing library
+  if exist %libname% del %libname%
+
+: assemble modules
+  for %%x in (*.asm) do \masm64\bin64\ml64 /c /nologo %%x
+
+: redirect object files into a response file
+  dir /b *.obj > obj.txt
+
+: link the object modules into a library
+  \masm64\bin64\lib /MACHINE:X64 /OUT:%libname% @obj.txt
+
+: clean up the junk
+  del *.obj
+
+: display the library at the console
+  dir *.lib                                             
+
+  pause
+
+: いいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいいい

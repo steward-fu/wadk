@@ -1,0 +1,24 @@
+extern __imp_ApplyPatchToFileA:PANYARGS
+ApplyPatchToFile  TEXTEQU <__imp_ApplyPatchToFileA>
+extern __imp_ApplyPatchToFileByHandles:PANYARGS
+ApplyPatchToFileByHandles TEXTEQU <__imp_ApplyPatchToFileByHandles>
+extern __imp_ApplyPatchToFileByHandlesEx:PANYARGS
+ApplyPatchToFileByHandlesEx TEXTEQU <__imp_ApplyPatchToFileByHandlesEx>
+extern __imp_ApplyPatchToFileExA:PANYARGS
+ApplyPatchToFileEx  TEXTEQU <__imp_ApplyPatchToFileExA>
+extern __imp_ApplyPatchToFileExW:PANYARGS
+ApplyPatchToFileExW TEXTEQU <__imp_ApplyPatchToFileExW>
+extern __imp_ApplyPatchToFileW:PANYARGS
+ApplyPatchToFileW TEXTEQU <__imp_ApplyPatchToFileW>
+extern __imp_GetFilePatchSignatureA:PANYARGS
+GetFilePatchSignature  TEXTEQU <__imp_GetFilePatchSignatureA>
+extern __imp_GetFilePatchSignatureByHandle:PANYARGS
+GetFilePatchSignatureByHandle TEXTEQU <__imp_GetFilePatchSignatureByHandle>
+extern __imp_GetFilePatchSignatureW:PANYARGS
+GetFilePatchSignatureW TEXTEQU <__imp_GetFilePatchSignatureW>
+extern __imp_TestApplyPatchToFileA:PANYARGS
+TestApplyPatchToFile  TEXTEQU <__imp_TestApplyPatchToFileA>
+extern __imp_TestApplyPatchToFileByHandles:PANYARGS
+TestApplyPatchToFileByHandles TEXTEQU <__imp_TestApplyPatchToFileByHandles>
+extern __imp_TestApplyPatchToFileW:PANYARGS
+TestApplyPatchToFileW TEXTEQU <__imp_TestApplyPatchToFileW>
