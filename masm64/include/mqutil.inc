@@ -1,2 +1,0 @@
-extern __imp_MQGetResourceHandle:PANYARGS
-MQGetResourceHandle TEXTEQU <__imp_MQGetResourceHandle>

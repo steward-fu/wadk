@@ -1,2 +1,0 @@
-extern __imp_SvcPackCallbackRoutine:PANYARGS
-SvcPackCallbackRoutine TEXTEQU <__imp_SvcPackCallbackRoutine>

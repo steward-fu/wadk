@@ -1,4 +1,0 @@
-extern __imp_amdpcom64_ordinal2007:PANYARGS
-amdpcom64_ordinal2007 TEXTEQU <__imp_amdpcom64_ordinal2007>
-extern __imp_amdpcom64_ordinal2008:PANYARGS
-amdpcom64_ordinal2008 TEXTEQU <__imp_amdpcom64_ordinal2008>

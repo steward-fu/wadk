@@ -1,8 +1,0 @@
-extern __imp_SCCPDllCanUnloadNow:PANYARGS
-SCCPDllCanUnloadNow TEXTEQU <__imp_SCCPDllCanUnloadNow>
-extern __imp_SCCPDllGetClassObject:PANYARGS
-SCCPDllGetClassObject TEXTEQU <__imp_SCCPDllGetClassObject>
-extern __imp_SCCPDllRegisterServer:PANYARGS
-SCCPDllRegisterServer TEXTEQU <__imp_SCCPDllRegisterServer>
-extern __imp_SCCPDllUnregisterServer:PANYARGS
-SCCPDllUnregisterServer TEXTEQU <__imp_SCCPDllUnregisterServer>

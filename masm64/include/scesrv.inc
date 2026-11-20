@@ -1,4 +1,0 @@
-extern __imp_ScesrvInitializeServer:PANYARGS
-ScesrvInitializeServer TEXTEQU <__imp_ScesrvInitializeServer>
-extern __imp_ScesrvTerminateServer:PANYARGS
-ScesrvTerminateServer TEXTEQU <__imp_ScesrvTerminateServer>

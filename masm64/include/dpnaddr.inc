@@ -1,2 +1,0 @@
-extern __imp_DirectPlay8AddressCreate:PANYARGS
-DirectPlay8AddressCreate TEXTEQU <__imp_DirectPlay8AddressCreate>

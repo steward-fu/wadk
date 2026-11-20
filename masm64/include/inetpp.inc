@@ -1,2 +1,0 @@
-extern __imp_InitializePrintProvidor:PANYARGS
-InitializePrintProvidor TEXTEQU <__imp_InitializePrintProvidor>

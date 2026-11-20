@@ -1,2 +1,0 @@
-extern __imp_SKEY_SystemParametersInfo:PANYARGS
-SKEY_SystemParametersInfo TEXTEQU <__imp_SKEY_SystemParametersInfo>

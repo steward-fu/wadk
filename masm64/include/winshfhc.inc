@@ -1,2 +1,0 @@
-extern __imp_winshfhc_ordinal101:PANYARGS
-winshfhc_ordinal101 TEXTEQU <__imp_winshfhc_ordinal101>

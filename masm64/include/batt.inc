@@ -1,4 +1,0 @@
-extern __imp_BatteryClassCoInstaller:PANYARGS
-BatteryClassCoInstaller TEXTEQU <__imp_BatteryClassCoInstaller>
-extern __imp_BatteryClassInstall:PANYARGS
-BatteryClassInstall TEXTEQU <__imp_BatteryClassInstall>
