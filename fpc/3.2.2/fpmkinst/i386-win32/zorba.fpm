@@ -1,0 +1,9 @@
+Name=zorba
+Version=3.2.2
+Checksum=1387233623
+CPU=i386
+OS=win32
+FPMakeOptions=-o -Ur -o -Xs -o -O2 -o -n -o -di386 -o -dRELEASE -o -XX -o -CX
+Depends=rtl
+NeedLibC=N
+FPMakeAddIn=N

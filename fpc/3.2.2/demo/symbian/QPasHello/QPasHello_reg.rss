@@ -1,0 +1,10 @@
+// QPasHello_reg.rss
+#include <AppInfo.rh>
+UID2 0x100039CE
+UID3 0xE1000002
+RESOURCE APP_REGISTRATION_INFO
+{
+  // filename of app binary (minus extension)
+  app_file = "QPasHello";
+}
+

@@ -1,0 +1,40 @@
+#
+#   Makefile.fpc for FPC demo package
+#
+
+[package]
+name=demo
+version=3.2.2
+
+[target]
+dirs=text
+dirs_go32v2=modex graph
+dirs_win32=win32 graph lister
+dirs_win64=win32 graph lister
+dirs_linux=linux unix graph lister
+dirs_freebsd=freebsd unix graph lister
+dirs_netbsd=unix graph lister
+dirs_openbsd=unix graph lister
+dirs_os2=os2 lister graph
+dirs_netware=netware
+dirs_netwlibc=netwlibc
+dirs_morphos=morphos
+
+[install]
+fpcpackage=y
+
+[rules]
+#################################
+# Demo installation for linux
+#
+
+.PHONY: installexamples demozip
+
+installexamples:
+        $(MKDIR) $(INSTALL_SOURCEDIR)
+        $(COPYTREE) * $(INSTALL_SOURCEDIR)
+
+demozip: zipsourceinstall
+
+[default]
+fpcdir=../fpcsrc

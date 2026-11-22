@@ -1,0 +1,6 @@
+// QPasHello.rss
+#include <uikon.rh>
+NAME QPHR
+RESOURCE RSS_SIGNATURE { }
+RESOURCE TBUF { buf = ""; }
+RESOURCE EIK_APP_INFO { }

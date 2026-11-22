@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <PathDelim Value="\"/>
+    <Version Value="5"/>
+    <General>
+      <MainUnit Value="0"/>
+      <IconPath Value="./"/>
+      <TargetFileExt Value=".exe"/>
+      <ActiveEditorIndexAtStart Value="0"/>
+    </General>
+    <Units Count="16">
+      <Unit0>
+        <CursorPos X="1" Y="64"/>
+        <EditorIndex Value="0"/>
+        <Filename Value="sysinfo.pp"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="64"/>
+        <UnitName Value="sysinfo"/>
+        <UsageCount Value="74"/>
+      </Unit0>
+      <Unit1>
+        <CursorPos X="24" Y="4"/>
+        <Filename Value="sysinfo.rc"/>
+        <SyntaxHighlighter Value="None"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="36"/>
+      </Unit1>
+      <Unit2>
+        <CursorPos X="14" Y="5"/>
+        <EditorIndex Value="1"/>
+        <Filename Value="appconst.inc"/>
+        <Loaded Value="True"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="36"/>
+      </Unit2>
+      <Unit3>
+        <CursorPos X="24" Y="51"/>
+        <Filename Value="D:\LAZARUS\designer\jitforms.pp"/>
+        <TopLine Value="25"/>
+        <UnitName Value="JITForms"/>
+        <UsageCount Value="10"/>
+      </Unit3>
+      <Unit4>
+        <CursorPos X="6" Y="1206"/>
+        <Filename Value="D:\LAZARUS\fpcsrc\rtl\win32\wininc\messages.inc"/>
+        <TopLine Value="1195"/>
+        <UsageCount Value="22"/>
+      </Unit4>
+      <Unit5>
+        <CursorPos X="18" Y="23"/>
+        <Filename Value="D:\LAZARUS\fpcsrc\rtl\objpas\strutils.pp"/>
+        <TopLine Value="1"/>
+        <UnitName Value="strutils"/>
+        <UsageCount Value="20"/>
+      </Unit5>
+      <Unit6>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="D:\LAZARUS\fpcsrc\rtl\win32\sysutils.pp"/>
+        <TopLine Value="1"/>
+        <UnitName Value="sysutils"/>
+        <UsageCount Value="20"/>
+      </Unit6>
+      <Unit7>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="D:\LAZARUS\fpcsrc\rtl\inc\strings.pp"/>
+        <TopLine Value="1"/>
+        <UnitName Value="strings"/>
+        <UsageCount Value="20"/>
+      </Unit7>
+      <Unit8>
+        <CursorPos X="10" Y="35"/>
+        <Filename Value="D:\REPSVN\FPCTRUNK\fpcsrc\rtl\inc\wstringh.inc"/>
+        <TopLine Value="26"/>
+        <UsageCount Value="20"/>
+      </Unit8>
+      <Unit9>
+        <CursorPos X="15" Y="271"/>
+        <Filename Value="D:\LAZARUS\lcl\graphtype.pp"/>
+        <TopLine Value="256"/>
+        <UnitName Value="GraphType"/>
+        <UsageCount Value="9"/>
+      </Unit9>
+      <Unit10>
+        <CursorPos X="61" Y="271"/>
+        <Filename Value="D:\LAZARUS\lcl\interfaces\win32\win32wscomctrls.pp"/>
+        <TopLine Value="256"/>
+        <UnitName Value="Win32WSComCtrls"/>
+        <UsageCount Value="10"/>
+      </Unit10>
+      <Unit11>
+        <CursorPos X="11" Y="29"/>
+        <Filename Value="D:\LAZARUS\fpcsrc\rtl\inc\wstringh.inc"/>
+        <TopLine Value="8"/>
+        <UsageCount Value="12"/>
+      </Unit11>
+      <Unit12>
+        <CursorPos X="4" Y="61"/>
+        <Filename Value="d:\lazarus\fpcsrc\rtl\objpas\sysutils\sysutilh.inc"/>
+        <TopLine Value="40"/>
+        <UsageCount Value="10"/>
+      </Unit12>
+      <Unit13>
+        <CursorPos X="21" Y="64"/>
+        <Filename Value="d:\lazarus\fpcsrc\rtl\inc\objpash.inc"/>
+        <TopLine Value="64"/>
+        <UsageCount Value="10"/>
+      </Unit13>
+      <Unit14>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="D:\REPSVN\FPCTRUNK\fpcsrc\rtl\objpas\objpas.pp"/>
+        <TopLine Value="1"/>
+        <UnitName Value="objpas"/>
+        <UsageCount Value="12"/>
+      </Unit14>
+      <Unit15>
+        <CursorPos X="1" Y="22"/>
+        <Filename Value="D:\REPSVN\FPCTRUNK\fpcsrc\rtl\objpas\sysconst.pp"/>
+        <TopLine Value="22"/>
+        <UnitName Value="sysconst"/>
+        <UsageCount Value="12"/>
+      </Unit15>
+    </Units>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <JumpHistory Count="0" HistoryIndex="-1"/>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="5"/>
+    <PathDelim Value="\"/>
+    <CodeGeneration>
+      <Generate Value="Faster"/>
+    </CodeGeneration>
+    <Other>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <BreakPoints Count="1">
+      <Item1>
+        <Source Value="D:\LAZARUS\components\tdbf\registerdbf.pas"/>
+        <Line Value="1"/>
+      </Item1>
+    </BreakPoints>
+    <Watches Count="1">
+      <Item1>
+        <Expression Value="sValues"/>
+        <Enabled Value="False"/>
+      </Item1>
+    </Watches>
+  </Debugging>
+</CONFIG>

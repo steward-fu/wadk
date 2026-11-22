@@ -1,0 +1,9 @@
+#
+#   Makefile.fpc for FPC unix demos (part of FPC demo package)
+#
+
+[target]
+programs=cgibmp daemon
+
+[default]
+fpcdir=../../fpcsrc

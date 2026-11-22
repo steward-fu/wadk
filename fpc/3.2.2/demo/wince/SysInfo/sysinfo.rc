@@ -1,0 +1,67 @@
+#include "windres.h"
+#include "appconst.h"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_SYSINFO ICON DISCARDABLE "sysinfo.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+IDC_SYSINFO ACCELERATORS DISCARDABLE
+BEGIN
+ "A" , IDM_HELP_ABOUT , VIRTKEY , CONTROL , NOINVERT
+ "Q",  IDOK , VIRTKEY , CONTROL , NOINVERT
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Data
+//
+
+IDR_MENUBAR RCDATA MOVEABLE PURE
+BEGIN
+    IDM_MENU , 1 ,
+    I_IMAGENONE ,
+    IDM_MAIN_COMMAND1 ,
+    TBSTATE_ENABLED ,
+    TBSTYLE_DROPDOWN | TBSTYLE_AUTOSIZE ,
+    IDS_HELP , 0 , 0
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menubar
+//
+
+IDM_MENU MENU DISCARDABLE
+BEGIN
+    POPUP "Tools"
+    BEGIN
+        MENUITEM "About" , IDM_HELP_ABOUT
+        MENUITEM "Quit" , IDM_QUIT
+    END
+
+    MENUITEM " " , IDM_MENUITEM40005
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_HELP "Tools"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_COMMAND1  "Done"
+END

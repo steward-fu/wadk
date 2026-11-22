@@ -1,0 +1,9 @@
+Name=fcl-res
+Version=3.2.2
+Checksum=1387233606
+CPU=i386
+OS=win32
+FPMakeOptions=-o -Ur -o -Xs -o -O2 -o -n -o -di386 -o -dRELEASE -o -XX -o -CX
+Depends=rtl,rtl-objpas|1387233594,fcl-base|1387233595,tplylib|1387233606
+NeedLibC=N
+FPMakeAddIn=N
