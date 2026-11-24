@@ -1,5 +1,7 @@
-d:
 devcon.exe install main.inf *mydriver
+
+cls
 app.exe
-devcon.exe remove main.inf *mydriver
 pause
+
+devcon.exe remove main.inf *mydriver

@@ -1,3 +1,7 @@
-e:\devcon.exe install e:\main.inf *mydriver
-e:\app.exe
-e:\devcon.exe remove e:\main.inf *mydriver
+devcon.exe install main.inf *mydriver
+
+cls
+app.exe
+pause
+
+devcon.exe remove main.inf *mydriver
